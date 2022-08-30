@@ -1,0 +1,868 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'C:\\Users\\molierzhang\\AppData\\Roaming\\npm\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'install',
+1 verbose cli   '-g',
+1 verbose cli   'hexo-cli' ]
+2 info using npm@3.10.10
+3 info using node@v8.11.4
+4 silly loadCurrentTree Starting
+5 silly install loadCurrentTree
+6 silly install readGlobalPackageData
+7 silly fetchPackageMetaData hexo-cli
+8 silly fetchNamedPackageData hexo-cli
+9 silly mapToRegistry name hexo-cli
+10 silly mapToRegistry using default registry
+11 silly mapToRegistry registry https://registry.npmjs.org/
+12 silly mapToRegistry data Result {
+12 silly mapToRegistry   raw: 'hexo-cli',
+12 silly mapToRegistry   scope: null,
+12 silly mapToRegistry   escapedName: 'hexo-cli',
+12 silly mapToRegistry   name: 'hexo-cli',
+12 silly mapToRegistry   rawSpec: '',
+12 silly mapToRegistry   spec: 'latest',
+12 silly mapToRegistry   type: 'tag' }
+13 silly mapToRegistry uri https://registry.npmjs.org/hexo-cli
+14 verbose request uri https://registry.npmjs.org/hexo-cli
+15 verbose request no auth needed
+16 info attempt registry request try #1 at 17:14:16
+17 verbose request id 2c810bb66872cd35
+18 verbose etag W/"8bf560df3356555fd25d22629f3d14d8"
+19 verbose lastModified Sun, 27 May 2018 03:43:44 GMT
+20 http request GET https://registry.npmjs.org/hexo-cli
+21 info retry will retry, error on last attempt: Error: connect ETIMEDOUT 104.16.26.35:443
+22 info attempt registry request try #2 at 17:14:47
+23 verbose etag W/"8bf560df3356555fd25d22629f3d14d8"
+24 verbose lastModified Sun, 27 May 2018 03:43:44 GMT
+25 http request GET https://registry.npmjs.org/hexo-cli
+26 info retry will retry, error on last attempt: Error: connect ETIMEDOUT 104.16.20.35:443
+27 info attempt registry request try #3 at 17:16:08
+28 verbose etag W/"8bf560df3356555fd25d22629f3d14d8"
+29 verbose lastModified Sun, 27 May 2018 03:43:44 GMT
+30 http request GET https://registry.npmjs.org/hexo-cli
+31 silly get cb [ 304, undefined ]
+32 verbose etag https://registry.npmjs.org/hexo-cli from cache
+33 verbose get saving hexo-cli to C:\Users\molierzhang\AppData\Roaming\npm-cache\registry.npmjs.org\hexo-cli\.cache.json
+34 verbose correctMkdir C:\Users\molierzhang\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+35 silly install normalizeTree
+36 silly loadCurrentTree Finishing
+37 silly loadIdealTree Starting
+38 silly install loadIdealTree
+39 silly cloneCurrentTree Starting
+40 silly install cloneCurrentTreeToIdealTree
+41 silly cloneCurrentTree Finishing
+42 silly loadShrinkwrap Starting
+43 silly install loadShrinkwrap
+44 silly loadShrinkwrap Finishing
+45 silly loadAllDepsIntoIdealTree Starting
+46 silly install loadAllDepsIntoIdealTree
+47 silly resolveWithNewModule hexo-cli@1.1.0 checking installable status
+48 silly cache add args [ 'hexo-cli', null ]
+49 verbose cache add spec hexo-cli
+50 silly cache add parsed spec Result {
+50 silly cache add   raw: 'hexo-cli',
+50 silly cache add   scope: null,
+50 silly cache add   escapedName: 'hexo-cli',
+50 silly cache add   name: 'hexo-cli',
+50 silly cache add   rawSpec: '',
+50 silly cache add   spec: 'latest',
+50 silly cache add   type: 'tag' }
+51 silly addNamed hexo-cli@latest
+52 verbose addNamed "latest" is being treated as a dist-tag for hexo-cli
+53 info addNameTag [ 'hexo-cli', 'latest' ]
+54 silly mapToRegistry name hexo-cli
+55 silly mapToRegistry using default registry
+56 silly mapToRegistry registry https://registry.npmjs.org/
+57 silly mapToRegistry data Result {
+57 silly mapToRegistry   raw: 'hexo-cli',
+57 silly mapToRegistry   scope: null,
+57 silly mapToRegistry   escapedName: 'hexo-cli',
+57 silly mapToRegistry   name: 'hexo-cli',
+57 silly mapToRegistry   rawSpec: '',
+57 silly mapToRegistry   spec: 'latest',
+57 silly mapToRegistry   type: 'tag' }
+58 silly mapToRegistry uri https://registry.npmjs.org/hexo-cli
+59 verbose addNameTag registry:https://registry.npmjs.org/hexo-cli not in flight; fetching
+60 verbose get https://registry.npmjs.org/hexo-cli not expired, no request
+61 silly addNameTag next cb for hexo-cli with tag latest
+62 silly addNamed hexo-cli@1.1.0
+63 verbose addNamed "1.1.0" is a plain semver version for hexo-cli
+64 silly cache afterAdd hexo-cli@1.1.0
+65 verbose afterAdd C:\Users\molierzhang\AppData\Roaming\npm-cache\hexo-cli\1.1.0\package\package.json not in flight; writing
+66 verbose correctMkdir C:\Users\molierzhang\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+67 verbose afterAdd C:\Users\molierzhang\AppData\Roaming\npm-cache\hexo-cli\1.1.0\package\package.json written
+68 silly fetchNamedPackageData abbrev
+69 silly mapToRegistry name abbrev
+70 silly mapToRegistry using default registry
+71 silly mapToRegistry registry https://registry.npmjs.org/
+72 silly mapToRegistry data Result {
+72 silly mapToRegistry   raw: 'abbrev',
+72 silly mapToRegistry   scope: null,
+72 silly mapToRegistry   escapedName: 'abbrev',
+72 silly mapToRegistry   name: 'abbrev',
+72 silly mapToRegistry   rawSpec: '',
+72 silly mapToRegistry   spec: 'latest',
+72 silly mapToRegistry   type: 'tag' }
+73 silly mapToRegistry uri https://registry.npmjs.org/abbrev
+74 silly fetchNamedPackageData bluebird
+75 silly mapToRegistry name bluebird
+76 silly mapToRegistry using default registry
+77 silly mapToRegistry registry https://registry.npmjs.org/
+78 silly mapToRegistry data Result {
+78 silly mapToRegistry   raw: 'bluebird',
+78 silly mapToRegistry   scope: null,
+78 silly mapToRegistry   escapedName: 'bluebird',
+78 silly mapToRegistry   name: 'bluebird',
+78 silly mapToRegistry   rawSpec: '',
+78 silly mapToRegistry   spec: 'latest',
+78 silly mapToRegistry   type: 'tag' }
+79 silly mapToRegistry uri https://registry.npmjs.org/bluebird
+80 silly fetchNamedPackageData chalk
+81 silly mapToRegistry name chalk
+82 silly mapToRegistry using default registry
+83 silly mapToRegistry registry https://registry.npmjs.org/
+84 silly mapToRegistry data Result {
+84 silly mapToRegistry   raw: 'chalk',
+84 silly mapToRegistry   scope: null,
+84 silly mapToRegistry   escapedName: 'chalk',
+84 silly mapToRegistry   name: 'chalk',
+84 silly mapToRegistry   rawSpec: '',
+84 silly mapToRegistry   spec: 'latest',
+84 silly mapToRegistry   type: 'tag' }
+85 silly mapToRegistry uri https://registry.npmjs.org/chalk
+86 silly fetchNamedPackageData command-exists
+87 silly mapToRegistry name command-exists
+88 silly mapToRegistry using default registry
+89 silly mapToRegistry registry https://registry.npmjs.org/
+90 silly mapToRegistry data Result {
+90 silly mapToRegistry   raw: 'command-exists',
+90 silly mapToRegistry   scope: null,
+90 silly mapToRegistry   escapedName: 'command-exists',
+90 silly mapToRegistry   name: 'command-exists',
+90 silly mapToRegistry   rawSpec: '',
+90 silly mapToRegistry   spec: 'latest',
+90 silly mapToRegistry   type: 'tag' }
+91 silly mapToRegistry uri https://registry.npmjs.org/command-exists
+92 silly fetchNamedPackageData hexo-fs
+93 silly mapToRegistry name hexo-fs
+94 silly mapToRegistry using default registry
+95 silly mapToRegistry registry https://registry.npmjs.org/
+96 silly mapToRegistry data Result {
+96 silly mapToRegistry   raw: 'hexo-fs',
+96 silly mapToRegistry   scope: null,
+96 silly mapToRegistry   escapedName: 'hexo-fs',
+96 silly mapToRegistry   name: 'hexo-fs',
+96 silly mapToRegistry   rawSpec: '',
+96 silly mapToRegistry   spec: 'latest',
+96 silly mapToRegistry   type: 'tag' }
+97 silly mapToRegistry uri https://registry.npmjs.org/hexo-fs
+98 silly fetchNamedPackageData hexo-log
+99 silly mapToRegistry name hexo-log
+100 silly mapToRegistry using default registry
+101 silly mapToRegistry registry https://registry.npmjs.org/
+102 silly mapToRegistry data Result {
+102 silly mapToRegistry   raw: 'hexo-log',
+102 silly mapToRegistry   scope: null,
+102 silly mapToRegistry   escapedName: 'hexo-log',
+102 silly mapToRegistry   name: 'hexo-log',
+102 silly mapToRegistry   rawSpec: '',
+102 silly mapToRegistry   spec: 'latest',
+102 silly mapToRegistry   type: 'tag' }
+103 silly mapToRegistry uri https://registry.npmjs.org/hexo-log
+104 silly fetchNamedPackageData hexo-util
+105 silly mapToRegistry name hexo-util
+106 silly mapToRegistry using default registry
+107 silly mapToRegistry registry https://registry.npmjs.org/
+108 silly mapToRegistry data Result {
+108 silly mapToRegistry   raw: 'hexo-util',
+108 silly mapToRegistry   scope: null,
+108 silly mapToRegistry   escapedName: 'hexo-util',
+108 silly mapToRegistry   name: 'hexo-util',
+108 silly mapToRegistry   rawSpec: '',
+108 silly mapToRegistry   spec: 'latest',
+108 silly mapToRegistry   type: 'tag' }
+109 silly mapToRegistry uri https://registry.npmjs.org/hexo-util
+110 silly fetchNamedPackageData minimist
+111 silly mapToRegistry name minimist
+112 silly mapToRegistry using default registry
+113 silly mapToRegistry registry https://registry.npmjs.org/
+114 silly mapToRegistry data Result {
+114 silly mapToRegistry   raw: 'minimist',
+114 silly mapToRegistry   scope: null,
+114 silly mapToRegistry   escapedName: 'minimist',
+114 silly mapToRegistry   name: 'minimist',
+114 silly mapToRegistry   rawSpec: '',
+114 silly mapToRegistry   spec: 'latest',
+114 silly mapToRegistry   type: 'tag' }
+115 silly mapToRegistry uri https://registry.npmjs.org/minimist
+116 silly fetchNamedPackageData object-assign
+117 silly mapToRegistry name object-assign
+118 silly mapToRegistry using default registry
+119 silly mapToRegistry registry https://registry.npmjs.org/
+120 silly mapToRegistry data Result {
+120 silly mapToRegistry   raw: 'object-assign',
+120 silly mapToRegistry   scope: null,
+120 silly mapToRegistry   escapedName: 'object-assign',
+120 silly mapToRegistry   name: 'object-assign',
+120 silly mapToRegistry   rawSpec: '',
+120 silly mapToRegistry   spec: 'latest',
+120 silly mapToRegistry   type: 'tag' }
+121 silly mapToRegistry uri https://registry.npmjs.org/object-assign
+122 silly fetchNamedPackageData resolve
+123 silly mapToRegistry name resolve
+124 silly mapToRegistry using default registry
+125 silly mapToRegistry registry https://registry.npmjs.org/
+126 silly mapToRegistry data Result {
+126 silly mapToRegistry   raw: 'resolve',
+126 silly mapToRegistry   scope: null,
+126 silly mapToRegistry   escapedName: 'resolve',
+126 silly mapToRegistry   name: 'resolve',
+126 silly mapToRegistry   rawSpec: '',
+126 silly mapToRegistry   spec: 'latest',
+126 silly mapToRegistry   type: 'tag' }
+127 silly mapToRegistry uri https://registry.npmjs.org/resolve
+128 silly fetchNamedPackageData tildify
+129 silly mapToRegistry name tildify
+130 silly mapToRegistry using default registry
+131 silly mapToRegistry registry https://registry.npmjs.org/
+132 silly mapToRegistry data Result {
+132 silly mapToRegistry   raw: 'tildify',
+132 silly mapToRegistry   scope: null,
+132 silly mapToRegistry   escapedName: 'tildify',
+132 silly mapToRegistry   name: 'tildify',
+132 silly mapToRegistry   rawSpec: '',
+132 silly mapToRegistry   spec: 'latest',
+132 silly mapToRegistry   type: 'tag' }
+133 silly mapToRegistry uri https://registry.npmjs.org/tildify
+134 verbose request uri https://registry.npmjs.org/bluebird
+135 verbose request no auth needed
+136 info attempt registry request try #1 at 17:16:29
+137 http request GET https://registry.npmjs.org/bluebird
+138 verbose request uri https://registry.npmjs.org/hexo-fs
+139 verbose request no auth needed
+140 info attempt registry request try #1 at 17:16:29
+141 http request GET https://registry.npmjs.org/hexo-fs
+142 verbose request uri https://registry.npmjs.org/hexo-util
+143 verbose request no auth needed
+144 info attempt registry request try #1 at 17:16:29
+145 http request GET https://registry.npmjs.org/hexo-util
+146 verbose request uri https://registry.npmjs.org/object-assign
+147 verbose request no auth needed
+148 info attempt registry request try #1 at 17:16:29
+149 http request GET https://registry.npmjs.org/object-assign
+150 verbose request uri https://registry.npmjs.org/command-exists
+151 verbose request no auth needed
+152 info attempt registry request try #1 at 17:16:29
+153 verbose etag W/"568ae3062d9fc034f0e0a69fe2b904cc"
+154 verbose lastModified Mon, 18 Jun 2018 22:56:13 GMT
+155 http request GET https://registry.npmjs.org/command-exists
+156 verbose request uri https://registry.npmjs.org/hexo-log
+157 verbose request no auth needed
+158 info attempt registry request try #1 at 17:16:29
+159 verbose etag W/"e7fb1922b4a42d6d4090484eb93f09b5"
+160 verbose lastModified Sat, 26 May 2018 11:37:16 GMT
+161 http request GET https://registry.npmjs.org/hexo-log
+162 verbose request uri https://registry.npmjs.org/abbrev
+163 verbose request no auth needed
+164 info attempt registry request try #1 at 17:16:29
+165 verbose etag W/"33e72d5d2da378b49ce64515b48ede5e"
+166 verbose lastModified Sat, 26 May 2018 16:03:07 GMT
+167 http request GET https://registry.npmjs.org/abbrev
+168 verbose request uri https://registry.npmjs.org/minimist
+169 verbose request no auth needed
+170 info attempt registry request try #1 at 17:16:29
+171 verbose etag W/"a309d845da557cd62ddd4d71233aa5c5"
+172 verbose lastModified Fri, 03 Aug 2018 00:33:10 GMT
+173 http request GET https://registry.npmjs.org/minimist
+174 verbose request uri https://registry.npmjs.org/chalk
+175 verbose request no auth needed
+176 info attempt registry request try #1 at 17:16:29
+177 verbose etag W/"c98b2001b26558c3c093bfcd6601fce8"
+178 verbose lastModified Fri, 17 Aug 2018 06:37:45 GMT
+179 http request GET https://registry.npmjs.org/chalk
+180 verbose request uri https://registry.npmjs.org/resolve
+181 verbose request no auth needed
+182 info attempt registry request try #1 at 17:16:29
+183 verbose etag W/"2ace988392350c318096f8c6c592b591"
+184 verbose lastModified Sun, 17 Jun 2018 18:27:44 GMT
+185 http request GET https://registry.npmjs.org/resolve
+186 verbose request uri https://registry.npmjs.org/tildify
+187 verbose request no auth needed
+188 info attempt registry request try #1 at 17:16:29
+189 verbose etag W/"2a7982d2d0b53f7d091298e939cda712"
+190 verbose lastModified Sun, 27 May 2018 19:30:06 GMT
+191 http request GET https://registry.npmjs.org/tildify
+192 info retry will retry, error on last attempt: Error: connect ETIMEDOUT 104.16.20.35:443
+193 info retry will retry, error on last attempt: Error: connect ETIMEDOUT 104.16.20.35:443
+194 info retry will retry, error on last attempt: Error: connect ETIMEDOUT 104.16.20.35:443
+195 info retry will retry, error on last attempt: Error: connect ETIMEDOUT 104.16.20.35:443
+196 info retry will retry, error on last attempt: Error: connect ETIMEDOUT 104.16.20.35:443
+197 info retry will retry, error on last attempt: Error: connect ETIMEDOUT 104.16.20.35:443
+198 info retry will retry, error on last attempt: Error: connect ETIMEDOUT 104.16.20.35:443
+199 info retry will retry, error on last attempt: Error: connect ETIMEDOUT 104.16.20.35:443
+200 info retry will retry, error on last attempt: Error: connect ETIMEDOUT 104.16.20.35:443
+201 info retry will retry, error on last attempt: Error: connect ETIMEDOUT 104.16.20.35:443
+202 info retry will retry, error on last attempt: Error: connect ETIMEDOUT 104.16.20.35:443
+203 info attempt registry request try #2 at 17:17:00
+204 http request GET https://registry.npmjs.org/hexo-util
+205 info attempt registry request try #2 at 17:17:00
+206 http request GET https://registry.npmjs.org/hexo-fs
+207 info attempt registry request try #2 at 17:17:00
+208 http request GET https://registry.npmjs.org/object-assign
+209 info attempt registry request try #2 at 17:17:00
+210 http request GET https://registry.npmjs.org/bluebird
+211 info attempt registry request try #2 at 17:17:00
+212 verbose etag W/"568ae3062d9fc034f0e0a69fe2b904cc"
+213 verbose lastModified Mon, 18 Jun 2018 22:56:13 GMT
+214 http request GET https://registry.npmjs.org/command-exists
+215 info attempt registry request try #2 at 17:17:00
+216 verbose etag W/"e7fb1922b4a42d6d4090484eb93f09b5"
+217 verbose lastModified Sat, 26 May 2018 11:37:16 GMT
+218 http request GET https://registry.npmjs.org/hexo-log
+219 info attempt registry request try #2 at 17:17:00
+220 verbose etag W/"33e72d5d2da378b49ce64515b48ede5e"
+221 verbose lastModified Sat, 26 May 2018 16:03:07 GMT
+222 http request GET https://registry.npmjs.org/abbrev
+223 info attempt registry request try #2 at 17:17:00
+224 verbose etag W/"a309d845da557cd62ddd4d71233aa5c5"
+225 verbose lastModified Fri, 03 Aug 2018 00:33:10 GMT
+226 http request GET https://registry.npmjs.org/minimist
+227 info attempt registry request try #2 at 17:17:00
+228 verbose etag W/"c98b2001b26558c3c093bfcd6601fce8"
+229 verbose lastModified Fri, 17 Aug 2018 06:37:45 GMT
+230 http request GET https://registry.npmjs.org/chalk
+231 info attempt registry request try #2 at 17:17:00
+232 verbose etag W/"2a7982d2d0b53f7d091298e939cda712"
+233 verbose lastModified Sun, 27 May 2018 19:30:06 GMT
+234 http request GET https://registry.npmjs.org/tildify
+235 info attempt registry request try #2 at 17:17:00
+236 verbose etag W/"2ace988392350c318096f8c6c592b591"
+237 verbose lastModified Sun, 17 Jun 2018 18:27:44 GMT
+238 http request GET https://registry.npmjs.org/resolve
+239 info retry will retry, error on last attempt: Error: connect ETIMEDOUT 104.16.20.35:443
+240 info retry will retry, error on last attempt: Error: connect ETIMEDOUT 104.16.20.35:443
+241 info retry will retry, error on last attempt: Error: connect ETIMEDOUT 104.16.20.35:443
+242 info retry will retry, error on last attempt: Error: connect ETIMEDOUT 104.16.20.35:443
+243 info retry will retry, error on last attempt: Error: connect ETIMEDOUT 104.16.20.35:443
+244 info retry will retry, error on last attempt: Error: connect ETIMEDOUT 104.16.20.35:443
+245 info retry will retry, error on last attempt: Error: connect ETIMEDOUT 104.16.20.35:443
+246 info retry will retry, error on last attempt: Error: connect ETIMEDOUT 104.16.20.35:443
+247 info retry will retry, error on last attempt: Error: connect ETIMEDOUT 104.16.20.35:443
+248 info retry will retry, error on last attempt: Error: connect ETIMEDOUT 104.16.20.35:443
+249 info retry will retry, error on last attempt: Error: connect ETIMEDOUT 104.16.20.35:443
+250 info attempt registry request try #3 at 17:18:21
+251 http request GET https://registry.npmjs.org/hexo-util
+252 info attempt registry request try #3 at 17:18:21
+253 http request GET https://registry.npmjs.org/hexo-fs
+254 info attempt registry request try #3 at 17:18:21
+255 http request GET https://registry.npmjs.org/object-assign
+256 info attempt registry request try #3 at 17:18:21
+257 verbose etag W/"568ae3062d9fc034f0e0a69fe2b904cc"
+258 verbose lastModified Mon, 18 Jun 2018 22:56:13 GMT
+259 http request GET https://registry.npmjs.org/command-exists
+260 info attempt registry request try #3 at 17:18:21
+261 http request GET https://registry.npmjs.org/bluebird
+262 info attempt registry request try #3 at 17:18:21
+263 verbose etag W/"e7fb1922b4a42d6d4090484eb93f09b5"
+264 verbose lastModified Sat, 26 May 2018 11:37:16 GMT
+265 http request GET https://registry.npmjs.org/hexo-log
+266 info attempt registry request try #3 at 17:18:21
+267 verbose etag W/"a309d845da557cd62ddd4d71233aa5c5"
+268 verbose lastModified Fri, 03 Aug 2018 00:33:10 GMT
+269 http request GET https://registry.npmjs.org/minimist
+270 info attempt registry request try #3 at 17:18:21
+271 verbose etag W/"33e72d5d2da378b49ce64515b48ede5e"
+272 verbose lastModified Sat, 26 May 2018 16:03:07 GMT
+273 http request GET https://registry.npmjs.org/abbrev
+274 info attempt registry request try #3 at 17:18:21
+275 verbose etag W/"c98b2001b26558c3c093bfcd6601fce8"
+276 verbose lastModified Fri, 17 Aug 2018 06:37:45 GMT
+277 http request GET https://registry.npmjs.org/chalk
+278 info attempt registry request try #3 at 17:18:21
+279 verbose etag W/"2a7982d2d0b53f7d091298e939cda712"
+280 verbose lastModified Sun, 27 May 2018 19:30:06 GMT
+281 http request GET https://registry.npmjs.org/tildify
+282 info attempt registry request try #3 at 17:18:21
+283 verbose etag W/"2ace988392350c318096f8c6c592b591"
+284 verbose lastModified Sun, 17 Jun 2018 18:27:44 GMT
+285 http request GET https://registry.npmjs.org/resolve
+286 silly fetchPackageMetaData Error: connect ETIMEDOUT 104.16.20.35:443
+286 silly fetchPackageMetaData     at Object._errnoException (util.js:992:11)
+286 silly fetchPackageMetaData     at _exceptionWithHostPort (util.js:1014:20)
+286 silly fetchPackageMetaData     at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1186:14)
+286 silly fetchPackageMetaData  error for hexo-util@^0.6.0 { Error: connect ETIMEDOUT 104.16.20.35:443
+286 silly fetchPackageMetaData     at Object._errnoException (util.js:992:11)
+286 silly fetchPackageMetaData     at _exceptionWithHostPort (util.js:1014:20)
+286 silly fetchPackageMetaData     at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1186:14)
+286 silly fetchPackageMetaData   code: 'ETIMEDOUT',
+286 silly fetchPackageMetaData   errno: 'ETIMEDOUT',
+286 silly fetchPackageMetaData   syscall: 'connect',
+286 silly fetchPackageMetaData   address: '104.16.20.35',
+286 silly fetchPackageMetaData   port: 443 }
+287 silly fetchPackageMetaData Error: connect ETIMEDOUT 104.16.20.35:443
+287 silly fetchPackageMetaData     at Object._errnoException (util.js:992:11)
+287 silly fetchPackageMetaData     at _exceptionWithHostPort (util.js:1014:20)
+287 silly fetchPackageMetaData     at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1186:14)
+287 silly fetchPackageMetaData  error for object-assign@^4.1.0 { Error: connect ETIMEDOUT 104.16.20.35:443
+287 silly fetchPackageMetaData     at Object._errnoException (util.js:992:11)
+287 silly fetchPackageMetaData     at _exceptionWithHostPort (util.js:1014:20)
+287 silly fetchPackageMetaData     at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1186:14)
+287 silly fetchPackageMetaData   code: 'ETIMEDOUT',
+287 silly fetchPackageMetaData   errno: 'ETIMEDOUT',
+287 silly fetchPackageMetaData   syscall: 'connect',
+287 silly fetchPackageMetaData   address: '104.16.20.35',
+287 silly fetchPackageMetaData   port: 443 }
+288 silly get cb [ 304, undefined ]
+289 verbose etag https://registry.npmjs.org/minimist from cache
+290 verbose get saving minimist to C:\Users\molierzhang\AppData\Roaming\npm-cache\registry.npmjs.org\minimist\.cache.json
+291 verbose correctMkdir C:\Users\molierzhang\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+292 silly get cb [ 304, undefined ]
+293 verbose etag https://registry.npmjs.org/hexo-log from cache
+294 verbose get saving hexo-log to C:\Users\molierzhang\AppData\Roaming\npm-cache\registry.npmjs.org\hexo-log\.cache.json
+295 verbose correctMkdir C:\Users\molierzhang\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+296 silly fetchPackageMetaData Error: connect ETIMEDOUT 104.16.20.35:443
+296 silly fetchPackageMetaData     at Object._errnoException (util.js:992:11)
+296 silly fetchPackageMetaData     at _exceptionWithHostPort (util.js:1014:20)
+296 silly fetchPackageMetaData     at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1186:14)
+296 silly fetchPackageMetaData  error for hexo-fs@^0.2.0 { Error: connect ETIMEDOUT 104.16.20.35:443
+296 silly fetchPackageMetaData     at Object._errnoException (util.js:992:11)
+296 silly fetchPackageMetaData     at _exceptionWithHostPort (util.js:1014:20)
+296 silly fetchPackageMetaData     at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1186:14)
+296 silly fetchPackageMetaData   code: 'ETIMEDOUT',
+296 silly fetchPackageMetaData   errno: 'ETIMEDOUT',
+296 silly fetchPackageMetaData   syscall: 'connect',
+296 silly fetchPackageMetaData   address: '104.16.20.35',
+296 silly fetchPackageMetaData   port: 443 }
+297 silly get cb [ 304, undefined ]
+298 verbose etag https://registry.npmjs.org/command-exists from cache
+299 verbose get saving command-exists to C:\Users\molierzhang\AppData\Roaming\npm-cache\registry.npmjs.org\command-exists\.cache.json
+300 verbose correctMkdir C:\Users\molierzhang\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+301 silly get cb [ 304, undefined ]
+302 verbose etag https://registry.npmjs.org/abbrev from cache
+303 verbose get saving abbrev to C:\Users\molierzhang\AppData\Roaming\npm-cache\registry.npmjs.org\abbrev\.cache.json
+304 verbose correctMkdir C:\Users\molierzhang\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+305 silly fetchPackageMetaData Error: connect ETIMEDOUT 104.16.20.35:443
+305 silly fetchPackageMetaData     at Object._errnoException (util.js:992:11)
+305 silly fetchPackageMetaData     at _exceptionWithHostPort (util.js:1014:20)
+305 silly fetchPackageMetaData     at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1186:14)
+305 silly fetchPackageMetaData  error for bluebird@^3.4.0 { Error: connect ETIMEDOUT 104.16.20.35:443
+305 silly fetchPackageMetaData     at Object._errnoException (util.js:992:11)
+305 silly fetchPackageMetaData     at _exceptionWithHostPort (util.js:1014:20)
+305 silly fetchPackageMetaData     at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1186:14)
+305 silly fetchPackageMetaData   code: 'ETIMEDOUT',
+305 silly fetchPackageMetaData   errno: 'ETIMEDOUT',
+305 silly fetchPackageMetaData   syscall: 'connect',
+305 silly fetchPackageMetaData   address: '104.16.20.35',
+305 silly fetchPackageMetaData   port: 443 }
+306 silly get cb [ 304, undefined ]
+307 verbose etag https://registry.npmjs.org/chalk from cache
+308 verbose get saving chalk to C:\Users\molierzhang\AppData\Roaming\npm-cache\registry.npmjs.org\chalk\.cache.json
+309 verbose correctMkdir C:\Users\molierzhang\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+310 silly get cb [ 304, undefined ]
+311 verbose etag https://registry.npmjs.org/resolve from cache
+312 verbose get saving resolve to C:\Users\molierzhang\AppData\Roaming\npm-cache\registry.npmjs.org\resolve\.cache.json
+313 verbose correctMkdir C:\Users\molierzhang\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+314 silly get cb [ 304, undefined ]
+315 verbose etag https://registry.npmjs.org/tildify from cache
+316 verbose get saving tildify to C:\Users\molierzhang\AppData\Roaming\npm-cache\registry.npmjs.org\tildify\.cache.json
+317 verbose correctMkdir C:\Users\molierzhang\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+318 silly resolveWithNewModule abbrev@1.1.1 checking installable status
+319 silly cache add args [ 'abbrev@^1.0.7', null ]
+320 verbose cache add spec abbrev@^1.0.7
+321 silly cache add parsed spec Result {
+321 silly cache add   raw: 'abbrev@^1.0.7',
+321 silly cache add   scope: null,
+321 silly cache add   escapedName: 'abbrev',
+321 silly cache add   name: 'abbrev',
+321 silly cache add   rawSpec: '^1.0.7',
+321 silly cache add   spec: '>=1.0.7 <2.0.0',
+321 silly cache add   type: 'range' }
+322 silly addNamed abbrev@>=1.0.7 <2.0.0
+323 verbose addNamed ">=1.0.7 <2.0.0" is a valid semver range for abbrev
+324 silly addNameRange { name: 'abbrev', range: '>=1.0.7 <2.0.0', hasData: false }
+325 silly mapToRegistry name abbrev
+326 silly mapToRegistry using default registry
+327 silly mapToRegistry registry https://registry.npmjs.org/
+328 silly mapToRegistry data Result {
+328 silly mapToRegistry   raw: 'abbrev',
+328 silly mapToRegistry   scope: null,
+328 silly mapToRegistry   escapedName: 'abbrev',
+328 silly mapToRegistry   name: 'abbrev',
+328 silly mapToRegistry   rawSpec: '',
+328 silly mapToRegistry   spec: 'latest',
+328 silly mapToRegistry   type: 'tag' }
+329 silly mapToRegistry uri https://registry.npmjs.org/abbrev
+330 verbose addNameRange registry:https://registry.npmjs.org/abbrev not in flight; fetching
+331 silly resolveWithNewModule minimist@1.2.0 checking installable status
+332 silly cache add args [ 'minimist@^1.2.0', null ]
+333 verbose cache add spec minimist@^1.2.0
+334 silly cache add parsed spec Result {
+334 silly cache add   raw: 'minimist@^1.2.0',
+334 silly cache add   scope: null,
+334 silly cache add   escapedName: 'minimist',
+334 silly cache add   name: 'minimist',
+334 silly cache add   rawSpec: '^1.2.0',
+334 silly cache add   spec: '>=1.2.0 <2.0.0',
+334 silly cache add   type: 'range' }
+335 silly addNamed minimist@>=1.2.0 <2.0.0
+336 verbose addNamed ">=1.2.0 <2.0.0" is a valid semver range for minimist
+337 silly addNameRange { name: 'minimist', range: '>=1.2.0 <2.0.0', hasData: false }
+338 silly mapToRegistry name minimist
+339 silly mapToRegistry using default registry
+340 silly mapToRegistry registry https://registry.npmjs.org/
+341 silly mapToRegistry data Result {
+341 silly mapToRegistry   raw: 'minimist',
+341 silly mapToRegistry   scope: null,
+341 silly mapToRegistry   escapedName: 'minimist',
+341 silly mapToRegistry   name: 'minimist',
+341 silly mapToRegistry   rawSpec: '',
+341 silly mapToRegistry   spec: 'latest',
+341 silly mapToRegistry   type: 'tag' }
+342 silly mapToRegistry uri https://registry.npmjs.org/minimist
+343 verbose addNameRange registry:https://registry.npmjs.org/minimist not in flight; fetching
+344 silly resolveWithNewModule hexo-log@0.2.0 checking installable status
+345 silly cache add args [ 'hexo-log@^0.2.0', null ]
+346 verbose cache add spec hexo-log@^0.2.0
+347 silly cache add parsed spec Result {
+347 silly cache add   raw: 'hexo-log@^0.2.0',
+347 silly cache add   scope: null,
+347 silly cache add   escapedName: 'hexo-log',
+347 silly cache add   name: 'hexo-log',
+347 silly cache add   rawSpec: '^0.2.0',
+347 silly cache add   spec: '>=0.2.0 <0.3.0',
+347 silly cache add   type: 'range' }
+348 silly addNamed hexo-log@>=0.2.0 <0.3.0
+349 verbose addNamed ">=0.2.0 <0.3.0" is a valid semver range for hexo-log
+350 silly addNameRange { name: 'hexo-log', range: '>=0.2.0 <0.3.0', hasData: false }
+351 silly mapToRegistry name hexo-log
+352 silly mapToRegistry using default registry
+353 silly mapToRegistry registry https://registry.npmjs.org/
+354 silly mapToRegistry data Result {
+354 silly mapToRegistry   raw: 'hexo-log',
+354 silly mapToRegistry   scope: null,
+354 silly mapToRegistry   escapedName: 'hexo-log',
+354 silly mapToRegistry   name: 'hexo-log',
+354 silly mapToRegistry   rawSpec: '',
+354 silly mapToRegistry   spec: 'latest',
+354 silly mapToRegistry   type: 'tag' }
+355 silly mapToRegistry uri https://registry.npmjs.org/hexo-log
+356 verbose addNameRange registry:https://registry.npmjs.org/hexo-log not in flight; fetching
+357 silly resolveWithNewModule command-exists@1.2.7 checking installable status
+358 silly cache add args [ 'command-exists@^1.2.0', null ]
+359 verbose cache add spec command-exists@^1.2.0
+360 silly cache add parsed spec Result {
+360 silly cache add   raw: 'command-exists@^1.2.0',
+360 silly cache add   scope: null,
+360 silly cache add   escapedName: 'command-exists',
+360 silly cache add   name: 'command-exists',
+360 silly cache add   rawSpec: '^1.2.0',
+360 silly cache add   spec: '>=1.2.0 <2.0.0',
+360 silly cache add   type: 'range' }
+361 silly addNamed command-exists@>=1.2.0 <2.0.0
+362 verbose addNamed ">=1.2.0 <2.0.0" is a valid semver range for command-exists
+363 silly addNameRange { name: 'command-exists',
+363 silly addNameRange   range: '>=1.2.0 <2.0.0',
+363 silly addNameRange   hasData: false }
+364 silly mapToRegistry name command-exists
+365 silly mapToRegistry using default registry
+366 silly mapToRegistry registry https://registry.npmjs.org/
+367 silly mapToRegistry data Result {
+367 silly mapToRegistry   raw: 'command-exists',
+367 silly mapToRegistry   scope: null,
+367 silly mapToRegistry   escapedName: 'command-exists',
+367 silly mapToRegistry   name: 'command-exists',
+367 silly mapToRegistry   rawSpec: '',
+367 silly mapToRegistry   spec: 'latest',
+367 silly mapToRegistry   type: 'tag' }
+368 silly mapToRegistry uri https://registry.npmjs.org/command-exists
+369 verbose addNameRange registry:https://registry.npmjs.org/command-exists not in flight; fetching
+370 silly resolveWithNewModule chalk@1.1.3 checking installable status
+371 silly cache add args [ 'chalk@^1.1.3', null ]
+372 verbose cache add spec chalk@^1.1.3
+373 silly cache add parsed spec Result {
+373 silly cache add   raw: 'chalk@^1.1.3',
+373 silly cache add   scope: null,
+373 silly cache add   escapedName: 'chalk',
+373 silly cache add   name: 'chalk',
+373 silly cache add   rawSpec: '^1.1.3',
+373 silly cache add   spec: '>=1.1.3 <2.0.0',
+373 silly cache add   type: 'range' }
+374 silly addNamed chalk@>=1.1.3 <2.0.0
+375 verbose addNamed ">=1.1.3 <2.0.0" is a valid semver range for chalk
+376 silly addNameRange { name: 'chalk', range: '>=1.1.3 <2.0.0', hasData: false }
+377 silly mapToRegistry name chalk
+378 silly mapToRegistry using default registry
+379 silly mapToRegistry registry https://registry.npmjs.org/
+380 silly mapToRegistry data Result {
+380 silly mapToRegistry   raw: 'chalk',
+380 silly mapToRegistry   scope: null,
+380 silly mapToRegistry   escapedName: 'chalk',
+380 silly mapToRegistry   name: 'chalk',
+380 silly mapToRegistry   rawSpec: '',
+380 silly mapToRegistry   spec: 'latest',
+380 silly mapToRegistry   type: 'tag' }
+381 silly mapToRegistry uri https://registry.npmjs.org/chalk
+382 verbose addNameRange registry:https://registry.npmjs.org/chalk not in flight; fetching
+383 verbose get https://registry.npmjs.org/abbrev not expired, no request
+384 silly addNameRange number 2 { name: 'abbrev', range: '>=1.0.7 <2.0.0', hasData: true }
+385 silly addNameRange versions [ 'abbrev',
+385 silly addNameRange   [ '1.0.3',
+385 silly addNameRange     '1.0.4',
+385 silly addNameRange     '1.0.5',
+385 silly addNameRange     '1.0.6',
+385 silly addNameRange     '1.0.7',
+385 silly addNameRange     '1.0.9',
+385 silly addNameRange     '1.1.0',
+385 silly addNameRange     '1.1.1' ] ]
+386 silly addNamed abbrev@1.1.1
+387 verbose addNamed "1.1.1" is a plain semver version for abbrev
+388 verbose get https://registry.npmjs.org/minimist not expired, no request
+389 silly addNameRange number 2 { name: 'minimist', range: '>=1.2.0 <2.0.0', hasData: true }
+390 silly addNameRange versions [ 'minimist',
+390 silly addNameRange   [ '0.0.0',
+390 silly addNameRange     '0.0.1',
+390 silly addNameRange     '0.0.2',
+390 silly addNameRange     '0.0.3',
+390 silly addNameRange     '0.0.4',
+390 silly addNameRange     '0.0.5',
+390 silly addNameRange     '0.0.6',
+390 silly addNameRange     '0.0.7',
+390 silly addNameRange     '0.0.8',
+390 silly addNameRange     '0.0.9',
+390 silly addNameRange     '0.0.10',
+390 silly addNameRange     '0.1.0',
+390 silly addNameRange     '0.2.0',
+390 silly addNameRange     '1.0.0',
+390 silly addNameRange     '1.1.0',
+390 silly addNameRange     '1.1.1',
+390 silly addNameRange     '1.1.2',
+390 silly addNameRange     '1.1.3',
+390 silly addNameRange     '1.2.0' ] ]
+391 silly addNamed minimist@1.2.0
+392 verbose addNamed "1.2.0" is a plain semver version for minimist
+393 silly resolveWithNewModule tildify@1.2.0 checking installable status
+394 silly cache add args [ 'tildify@^1.2.0', null ]
+395 verbose cache add spec tildify@^1.2.0
+396 silly cache add parsed spec Result {
+396 silly cache add   raw: 'tildify@^1.2.0',
+396 silly cache add   scope: null,
+396 silly cache add   escapedName: 'tildify',
+396 silly cache add   name: 'tildify',
+396 silly cache add   rawSpec: '^1.2.0',
+396 silly cache add   spec: '>=1.2.0 <2.0.0',
+396 silly cache add   type: 'range' }
+397 silly addNamed tildify@>=1.2.0 <2.0.0
+398 verbose addNamed ">=1.2.0 <2.0.0" is a valid semver range for tildify
+399 silly addNameRange { name: 'tildify', range: '>=1.2.0 <2.0.0', hasData: false }
+400 silly mapToRegistry name tildify
+401 silly mapToRegistry using default registry
+402 silly mapToRegistry registry https://registry.npmjs.org/
+403 silly mapToRegistry data Result {
+403 silly mapToRegistry   raw: 'tildify',
+403 silly mapToRegistry   scope: null,
+403 silly mapToRegistry   escapedName: 'tildify',
+403 silly mapToRegistry   name: 'tildify',
+403 silly mapToRegistry   rawSpec: '',
+403 silly mapToRegistry   spec: 'latest',
+403 silly mapToRegistry   type: 'tag' }
+404 silly mapToRegistry uri https://registry.npmjs.org/tildify
+405 verbose addNameRange registry:https://registry.npmjs.org/tildify not in flight; fetching
+406 silly resolveWithNewModule resolve@1.8.1 checking installable status
+407 silly cache add args [ 'resolve@^1.5.0', null ]
+408 verbose cache add spec resolve@^1.5.0
+409 silly cache add parsed spec Result {
+409 silly cache add   raw: 'resolve@^1.5.0',
+409 silly cache add   scope: null,
+409 silly cache add   escapedName: 'resolve',
+409 silly cache add   name: 'resolve',
+409 silly cache add   rawSpec: '^1.5.0',
+409 silly cache add   spec: '>=1.5.0 <2.0.0',
+409 silly cache add   type: 'range' }
+410 silly addNamed resolve@>=1.5.0 <2.0.0
+411 verbose addNamed ">=1.5.0 <2.0.0" is a valid semver range for resolve
+412 silly addNameRange { name: 'resolve', range: '>=1.5.0 <2.0.0', hasData: false }
+413 silly mapToRegistry name resolve
+414 silly mapToRegistry using default registry
+415 silly mapToRegistry registry https://registry.npmjs.org/
+416 silly mapToRegistry data Result {
+416 silly mapToRegistry   raw: 'resolve',
+416 silly mapToRegistry   scope: null,
+416 silly mapToRegistry   escapedName: 'resolve',
+416 silly mapToRegistry   name: 'resolve',
+416 silly mapToRegistry   rawSpec: '',
+416 silly mapToRegistry   spec: 'latest',
+416 silly mapToRegistry   type: 'tag' }
+417 silly mapToRegistry uri https://registry.npmjs.org/resolve
+418 verbose addNameRange registry:https://registry.npmjs.org/resolve not in flight; fetching
+419 verbose get https://registry.npmjs.org/hexo-log not expired, no request
+420 silly addNameRange number 2 { name: 'hexo-log', range: '>=0.2.0 <0.3.0', hasData: true }
+421 silly addNameRange versions [ 'hexo-log', [ '0.1.0', '0.1.1', '0.1.2', '0.1.3', '0.2.0' ] ]
+422 silly addNamed hexo-log@0.2.0
+423 verbose addNamed "0.2.0" is a plain semver version for hexo-log
+424 verbose get https://registry.npmjs.org/command-exists not expired, no request
+425 silly addNameRange number 2 { name: 'command-exists',
+425 silly addNameRange   range: '>=1.2.0 <2.0.0',
+425 silly addNameRange   hasData: true }
+426 silly addNameRange versions [ 'command-exists',
+426 silly addNameRange   [ '0.1.0',
+426 silly addNameRange     '0.1.1',
+426 silly addNameRange     '1.0.0',
+426 silly addNameRange     '1.0.1',
+426 silly addNameRange     '1.0.2',
+426 silly addNameRange     '1.1.0',
+426 silly addNameRange     '1.2.0',
+426 silly addNameRange     '1.2.1',
+426 silly addNameRange     '1.2.2',
+426 silly addNameRange     '1.2.3',
+426 silly addNameRange     '1.2.4',
+426 silly addNameRange     '1.2.5',
+426 silly addNameRange     '1.2.6',
+426 silly addNameRange     '1.2.7' ] ]
+427 silly addNamed command-exists@1.2.7
+428 verbose addNamed "1.2.7" is a plain semver version for command-exists
+429 verbose get https://registry.npmjs.org/chalk not expired, no request
+430 silly addNameRange number 2 { name: 'chalk', range: '>=1.1.3 <2.0.0', hasData: true }
+431 silly addNameRange versions [ 'chalk',
+431 silly addNameRange   [ '0.1.0',
+431 silly addNameRange     '0.1.1',
+431 silly addNameRange     '0.2.0',
+431 silly addNameRange     '0.2.1',
+431 silly addNameRange     '0.3.0',
+431 silly addNameRange     '0.4.0',
+431 silly addNameRange     '0.5.0',
+431 silly addNameRange     '0.5.1',
+431 silly addNameRange     '1.0.0',
+431 silly addNameRange     '1.1.0',
+431 silly addNameRange     '1.1.1',
+431 silly addNameRange     '1.1.2',
+431 silly addNameRange     '1.1.3',
+431 silly addNameRange     '2.0.0',
+431 silly addNameRange     '2.0.1',
+431 silly addNameRange     '2.1.0',
+431 silly addNameRange     '2.2.0',
+431 silly addNameRange     '2.2.2',
+431 silly addNameRange     '2.3.0',
+431 silly addNameRange     '2.3.1',
+431 silly addNameRange     '2.3.2',
+431 silly addNameRange     '2.4.0',
+431 silly addNameRange     '2.4.1' ] ]
+432 silly addNamed chalk@1.1.3
+433 verbose addNamed "1.1.3" is a plain semver version for chalk
+434 silly cache afterAdd abbrev@1.1.1
+435 verbose afterAdd C:\Users\molierzhang\AppData\Roaming\npm-cache\abbrev\1.1.1\package\package.json not in flight; writing
+436 verbose correctMkdir C:\Users\molierzhang\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+437 verbose get https://registry.npmjs.org/tildify not expired, no request
+438 silly addNameRange number 2 { name: 'tildify', range: '>=1.2.0 <2.0.0', hasData: true }
+439 silly addNameRange versions [ 'tildify',
+439 silly addNameRange   [ '0.1.0', '0.2.0', '1.0.0', '1.1.0', '1.1.1', '1.1.2', '1.2.0' ] ]
+440 silly addNamed tildify@1.2.0
+441 verbose addNamed "1.2.0" is a plain semver version for tildify
+442 verbose get https://registry.npmjs.org/resolve not expired, no request
+443 silly addNameRange number 2 { name: 'resolve', range: '>=1.5.0 <2.0.0', hasData: true }
+444 silly addNameRange versions [ 'resolve',
+444 silly addNameRange   [ '0.0.0',
+444 silly addNameRange     '0.0.1',
+444 silly addNameRange     '0.0.2',
+444 silly addNameRange     '0.0.3',
+444 silly addNameRange     '0.0.4',
+444 silly addNameRange     '0.1.0',
+444 silly addNameRange     '0.1.2',
+444 silly addNameRange     '0.1.3',
+444 silly addNameRange     '0.2.0',
+444 silly addNameRange     '0.2.1',
+444 silly addNameRange     '0.2.2',
+444 silly addNameRange     '0.2.3',
+444 silly addNameRange     '0.2.4',
+444 silly addNameRange     '0.2.5',
+444 silly addNameRange     '0.2.6',
+444 silly addNameRange     '0.2.7',
+444 silly addNameRange     '0.2.8',
+444 silly addNameRange     '0.3.0',
+444 silly addNameRange     '0.3.1',
+444 silly addNameRange     '0.4.0',
+444 silly addNameRange     '0.4.1',
+444 silly addNameRange     '0.4.2',
+444 silly addNameRange     '0.4.3',
+444 silly addNameRange     '0.5.0',
+444 silly addNameRange     '0.5.1',
+444 silly addNameRange     '0.6.0',
+444 silly addNameRange     '0.6.1',
+444 silly addNameRange     '0.6.2',
+444 silly addNameRange     '0.6.3',
+444 silly addNameRange     '0.7.0',
+444 silly addNameRange     '0.7.1',
+444 silly addNameRange     '0.7.2',
+444 silly addNameRange     '0.7.3',
+444 silly addNameRange     '0.7.4',
+444 silly addNameRange     '1.0.0',
+444 silly addNameRange     '1.1.0',
+444 silly addNameRange     '1.1.2',
+444 silly addNameRange     '1.1.3',
+444 silly addNameRange     '1.1.4',
+444 silly addNameRange     '1.1.5',
+444 silly addNameRange     '1.1.6',
+444 silly addNameRange     '1.1.7',
+444 silly addNameRange     '1.2.0',
+444 silly addNameRange     '1.3.0',
+444 silly addNameRange     '1.3.1',
+444 silly addNameRange     '1.2.1',
+444 silly addNameRange     '1.3.2',
+444 silly addNameRange     '1.3.3',
+444 silly addNameRange     '1.4.0',
+444 silly addNameRange     '1.5.0',
+444 silly addNameRange     '1.6.0',
+444 silly addNameRange     '1.7.0',
+444 silly addNameRange     '1.7.1',
+444 silly addNameRange     '1.8.0',
+444 silly addNameRange     '1.8.1' ] ]
+445 silly addNamed resolve@1.8.1
+446 verbose addNamed "1.8.1" is a plain semver version for resolve
+447 silly cache afterAdd minimist@1.2.0
+448 verbose afterAdd C:\Users\molierzhang\AppData\Roaming\npm-cache\minimist\1.2.0\package\package.json not in flight; writing
+449 verbose correctMkdir C:\Users\molierzhang\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+450 silly cache afterAdd command-exists@1.2.7
+451 verbose afterAdd C:\Users\molierzhang\AppData\Roaming\npm-cache\command-exists\1.2.7\package\package.json not in flight; writing
+452 verbose correctMkdir C:\Users\molierzhang\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+453 silly cache afterAdd hexo-log@0.2.0
+454 verbose afterAdd C:\Users\molierzhang\AppData\Roaming\npm-cache\hexo-log\0.2.0\package\package.json not in flight; writing
+455 verbose correctMkdir C:\Users\molierzhang\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+456 silly cache afterAdd chalk@1.1.3
+457 verbose afterAdd C:\Users\molierzhang\AppData\Roaming\npm-cache\chalk\1.1.3\package\package.json not in flight; writing
+458 verbose correctMkdir C:\Users\molierzhang\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+459 silly cache afterAdd tildify@1.2.0
+460 verbose afterAdd C:\Users\molierzhang\AppData\Roaming\npm-cache\tildify\1.2.0\package\package.json not in flight; writing
+461 verbose correctMkdir C:\Users\molierzhang\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+462 silly cache afterAdd resolve@1.8.1
+463 verbose afterAdd C:\Users\molierzhang\AppData\Roaming\npm-cache\resolve\1.8.1\package\package.json not in flight; writing
+464 verbose correctMkdir C:\Users\molierzhang\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+465 verbose afterAdd C:\Users\molierzhang\AppData\Roaming\npm-cache\abbrev\1.1.1\package\package.json written
+466 verbose afterAdd C:\Users\molierzhang\AppData\Roaming\npm-cache\minimist\1.2.0\package\package.json written
+467 verbose afterAdd C:\Users\molierzhang\AppData\Roaming\npm-cache\command-exists\1.2.7\package\package.json written
+468 verbose afterAdd C:\Users\molierzhang\AppData\Roaming\npm-cache\hexo-log\0.2.0\package\package.json written
+469 verbose afterAdd C:\Users\molierzhang\AppData\Roaming\npm-cache\chalk\1.1.3\package\package.json written
+470 verbose afterAdd C:\Users\molierzhang\AppData\Roaming\npm-cache\tildify\1.2.0\package\package.json written
+471 verbose afterAdd C:\Users\molierzhang\AppData\Roaming\npm-cache\resolve\1.8.1\package\package.json written
+472 silly rollbackFailedOptional Starting
+473 silly rollbackFailedOptional Finishing
+474 silly runTopLevelLifecycles Finishing
+475 silly install printInstalled
+476 verbose stack Error: connect ETIMEDOUT 104.16.20.35:443
+476 verbose stack     at Object._errnoException (util.js:992:11)
+476 verbose stack     at _exceptionWithHostPort (util.js:1014:20)
+476 verbose stack     at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1186:14)
+477 verbose cwd C:\Users\molierzhang\Desktop\blog\molier.bitbucket.io
+478 error Windows_NT 10.0.16299
+479 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Users\\molierzhang\\AppData\\Roaming\\npm\\node_modules\\npm\\bin\\npm-cli.js" "install" "-g" "hexo-cli"
+480 error node v8.11.4
+481 error npm  v3.10.10
+482 error code ETIMEDOUT
+483 error errno ETIMEDOUT
+484 error syscall connect
+485 error network connect ETIMEDOUT 104.16.20.35:443
+486 error network This is most likely not a problem with npm itself
+486 error network and is related to network connectivity.
+486 error network In most cases you are behind a proxy or have bad network settings.
+486 error network
+486 error network If you are behind a proxy, please make sure that the
+486 error network 'proxy' config is set properly.  See: 'npm help config'
+487 verbose exit [ 1, true ]
