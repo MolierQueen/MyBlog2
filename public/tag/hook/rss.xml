@@ -8,12 +8,12 @@
         <pubDate>Wed, 24 Jan 2018 12:24:06 +0800</pubDate>
         <lastBuildDate>Wed, 24 Jan 2018 12:24:06 +0800</lastBuildDate>
         <category>欢迎页</category>
+        <category>网络</category>
+        <category>底层</category>
         <category>DNS解析</category>
         <category>LocalDNS</category>
         <category>OpenGL</category>
-        <category>底层</category>
         <category>UI</category>
-        <category>网络</category>
         <category>动画</category>
         <category>性能优化</category>
         <category>xcode</category>
@@ -25,9 +25,9 @@
         <category>翻译</category>
         <category>优化</category>
         <category>国外文献</category>
+        <category>httpdns</category>
         <category>Cocoapods</category>
         <category>架构</category>
-        <category>httpdns</category>
         <category>AlertView</category>
         <category>Hook</category>
         <category>杂谈</category>
@@ -49,8 +49,8 @@
         <category>K歌</category>
         <category>AVFoundation</category>
         <category>git</category>
-        <category>代码版本控制</category>
         <category>效率工作</category>
+        <category>代码版本控制</category>
         <category>iOS</category>
         <category>Crash防护</category>
         <category>Apple登录</category>

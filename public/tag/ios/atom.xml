@@ -5,12 +5,12 @@
     <link href="https://oliverqueen.cn" />
     <updated>2022-08-24T07:04:39.000Z</updated>
     <category term="欢迎页" />
+    <category term="网络" />
+    <category term="底层" />
     <category term="DNS解析" />
     <category term="LocalDNS" />
     <category term="OpenGL" />
-    <category term="底层" />
     <category term="UI" />
-    <category term="网络" />
     <category term="动画" />
     <category term="性能优化" />
     <category term="xcode" />
@@ -22,9 +22,9 @@
     <category term="翻译" />
     <category term="优化" />
     <category term="国外文献" />
+    <category term="httpdns" />
     <category term="Cocoapods" />
     <category term="架构" />
-    <category term="httpdns" />
     <category term="AlertView" />
     <category term="Hook" />
     <category term="杂谈" />
@@ -46,8 +46,8 @@
     <category term="K歌" />
     <category term="AVFoundation" />
     <category term="git" />
-    <category term="代码版本控制" />
     <category term="效率工作" />
+    <category term="代码版本控制" />
     <category term="iOS" />
     <category term="Crash防护" />
     <category term="Apple登录" />
@@ -808,10 +808,10 @@ Mach 异常，分为两种情况，第一种是本身就是硬件层面或者系
 &lt;h1 id=&#34;0x6-最后&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#0x6-最后&#34;&gt;#&lt;/a&gt; 0x6: 最后&lt;/h1&gt;
 &lt;p&gt;大概这就是所有 Crash 防护的流程，通过两篇文章讲解，希望大家对 iOS 系统的 Crash 流程能有些许的了解，并没有贴太多的源码，其实还是解耦度不够，思路有了代码就很简单了。&lt;/p&gt;
 &lt;p&gt;
-        &lt;div id=&#34;aplayer-JEUdbeeS&#34; class=&#34;aplayer aplayer-tag-marker&#34; style=&#34;margin-bottom: 20px;&#34;&gt;&lt;/div&gt;
+        &lt;div id=&#34;aplayer-dfhcZmiT&#34; class=&#34;aplayer aplayer-tag-marker&#34; style=&#34;margin-bottom: 20px;&#34;&gt;&lt;/div&gt;
 			  &lt;script&gt;
 				  var options = {&#34;narrow&#34;:false,&#34;autoplay&#34;:true,&#34;showlrc&#34;:0,&#34;mutex&#34;:true,&#34;music&#34;:[{&#34;title&#34;:&#34;错位时空&#34;,&#34;author&#34;:&#34;艾辰&#34;,&#34;url&#34;:&#34;https://molier-1256056152.cos.ap-guangzhou.myqcloud.com/%E8%89%BE%E8%BE%B0%20-%20%E9%94%99%E4%BD%8D%E6%97%B6%E7%A9%BA.mp3&#34;,&#34;pic&#34;:&#34;https://bkimg.cdn.bcebos.com/pic/a8ec8a13632762d0f7037ac288a71ffa513d26976830?x-bce-process=image/watermark,image_d2F0ZXIvYmFpa2UxMTY=,g_7,xp_5,yp_5/format,f_auto&#34;,&#34;lrc&#34;:&#34;https://歌词.lrc&#34;}]};
-				  options.element = document.getElementById(&#34;aplayer-JEUdbeeS&#34;);
+				  options.element = document.getElementById(&#34;aplayer-dfhcZmiT&#34;);
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);

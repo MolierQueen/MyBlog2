@@ -16,6 +16,103 @@
       </tags>
   </entry>
   <entry>
+    <title>CFNetwork的介绍和使用</title>
+    <url>/2018-01-23-CFNetwork%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h3 id="cfnetwork背景简介"><a class="anchor" href="#cfnetwork背景简介">#</a> CFNetwork 背景简介</h3>
+<p>CFNetwork 是 ISO 中一个比较底层的网络框架，C 语言编写，可以控制一些更底层的东西，如各种常用网络协议、socket 通讯等，我们通常使用的 NSURL 则更倾向于 API 数据请求等，虽然框架也提供了一些操作，但是远不如 CFNetwork 丰富。CFNetwork 已经接近于 UNIX 系统的 socket 通信了，使用 CFHttpMessageRef 进行 HTTP 连接的好处就是控制的粒度更细了，例如你可以设置 SSL 连接的 PeerName，证书验证的方式，还可以控制每个响应包的接收。不过 CFNetwork 本质上还是应用层上的封装的通用 API。使用者可以不用关心底层协议的实际细节。下图是 CFNetwork 在 iOS 系统中的位置 (图片来源于官方文档)。</p>
+<p><span id="more"></span><br />
+<img data-src="https://wx2.sinaimg.cn/large/006tNc79gy1fo6mit8tsij30bn06lwen.jpg" alt="image.png" /></p>
+<p>由上图可以看出目前 iOS 的网络编程分四层：</p>
+<ul>
+<li>
+<p>WebKit：属于 Cocoa 层，苹果很多地方用到的页面渲染引擎 WKWebview；</p>
+</li>
+<li>
+<p>NSURL：也属于 Cocoa 层，对各类 URL 请求的封装 (NSURLRequest)；</p>
+</li>
+<li>
+<p>CFNetwork：属于 Core Foundation 层，基于 C 的封装，同样的还有 CFNetServices (write/readstream)；</p>
+</li>
+<li>
+<p>BSD sockets：属于 OS 层，也是基于 C 的封装；</p>
+</li>
+</ul>
+<h3 id="cfnetwork结构"><a class="anchor" href="#cfnetwork结构">#</a> CFNetwork 结构</h3>
+<p><img data-src="https://wx2.sinaimg.cn/large/006tNc79gy1fo6mlt3gwcj30od0a474w.jpg" alt="image.png" /><br />
+ 上图也是官方文档的图片，描述了 CFNetwork 的结构，下面逐一讲解。</p>
+<h5 id="cfsocket-api"><a class="anchor" href="#cfsocket-api">#</a> CFSocket API</h5>
+<p>Socket 是网络通讯的底层基础，两个 socket 端口可以互发数据。我们通常使用的是 BSD socket，CFSocket 则是 BSD socket 的抽象，基本上实现了几乎所有 BSD socket 的功能，并且还融入了 run loop。</p>
+<h5 id="cfstream-api"><a class="anchor" href="#cfstream-api">#</a> CFStream API</h5>
+<p>CFStream API 提供了数据读写的方法，即读写流，使用它可以为内存、文件、网络（使用 socket）的数据建立 stream，我们进行网络请求就是对数据的读写，CFStream 提供 API 对两种 CFType 对象提供抽象：CFReadStream and CFWriteStream。它同时也是 CFHTTP 和 CFFTP 的基础。stream 有一个很重要的特性就是一旦数据流被提供或者被消耗，就不能从流中重新取出。比如这样</p>
+<p><figure class="highlight objectivec"><table><tr><td class="code"><pre><span class="line">uint8_t d[<span class="number">1024</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line"><span class="comment">//循环条件：流中是否有可用数据(被读过的数据不可用了)</span></span><br><span class="line"><span class="keyword">while</span> ([<span class="keyword">self</span>.inputStream hasBytesAvailable]) &#123;</span><br><span class="line">    <span class="comment">//读取相应长度的数据数据</span></span><br><span class="line">    <span class="built_in">NSInteger</span> len = [<span class="keyword">self</span>.inputStream read:d maxLength:<span class="number">1024</span>];</span><br><span class="line">    <span class="comment">//如果读取到数据，便将数据快拼接</span></span><br><span class="line">    <span class="keyword">if</span> (len &gt; <span class="number">0</span> &amp;&amp; !<span class="keyword">self</span>.inputStream.streamError) &#123;</span><br><span class="line">        [data appendBytes:(<span class="type">void</span> *)d length:len];</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h5 id="cfftp-api"><a class="anchor" href="#cfftp-api">#</a> CFFTP API</h5>
+<p>对用 FTP 协议通信的封装，能下载、上传文件和目录到 FTP 服务器。CFFTP 建立的连接可以是同步或者异步，此次不做详解。</p>
+<h5 id="cfhttp-api"><a class="anchor" href="#cfhttp-api">#</a> CFHTTP API</h5>
+<p>是 HTTP 协议的抽象，主要对象是 CFHTTPMessageRef (类似于我们通常的 NSURLRequest) 我们需要像构建 NSURLRequest 那样来构建 CFHTTPMessageRef，同样包含一下几个元素</p>
+<ul>
+<li>
+<p>必须元素</p>
+<ul>
+<li>
+<p>请求方法 (类型为 CFStringRef)：POST、GET、DELETE 等..</p>
+</li>
+<li>
+<p>请求的 URL 地址 (类型为 CFURLRef)：<span class="exturl" data-url="aHR0cHM6Ly93d3cuYmFpZHUuY29t">https://www.baidu.com</span></p>
+</li>
+<li>
+<p>请求的 HTTP 版本 (类型为 CFStringRef)：通常使用 kCFHTTPVersion1_1</p>
+</li>
+<li>
+<p>kCFAllocatorDefault：用于创建消息引用的指定默认的系统内存分配器。</p>
+</li>
+</ul>
+</li>
+<li>
+<p>可选参数</p>
+<ul>
+<li>body 体 (类型为 CFDataRef)</li>
+</ul>
+</li>
+</ul>
+<p><figure class="highlight objectivec"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">CFHTTPMessageSetBody</span>(<span class="built_in">CFHTTPMessageRef</span> message, <span class="built_in">CFDataRef</span> bodyData) <span class="built_in">CF_AVAILABLE</span>(<span class="number">10</span>_1, <span class="number">2</span>_0);</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>消息头部，如 User-Agent 等；</li>
+</ul>
+<p><figure class="highlight objectivec"><table><tr><td class="code"><pre><span class="line"><span class="built_in">CFHTTPMessageSetHeaderFieldValue</span>(<span class="built_in">CFHTTPMessageRef</span> message, <span class="built_in">CFStringRef</span> headerField, <span class="built_in">CFStringRef</span> __<span class="keyword">nullable</span> value) <span class="built_in">CF_AVAILABLE</span>(<span class="number">10</span>_1, <span class="number">2</span>_0);</span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+<h3 id="cfnetwork请求过程"><a class="anchor" href="#cfnetwork请求过程">#</a> CFNetwork 请求过程</h3>
+<h5 id="1构造并创建cfhttpmessageref对象"><a class="anchor" href="#1构造并创建cfhttpmessageref对象">#</a> 1：构造并创建 CFHTTPMessageRef 对象</h5>
+<p><figure class="highlight objectivec"><table><tr><td class="code"><pre><span class="line"><span class="comment">//构造的方式上一步已讲</span></span><br><span class="line"><span class="built_in">CFHTTPMessageCreateRequest</span>(<span class="built_in">CFAllocatorRef</span> __<span class="keyword">nullable</span> alloc, <span class="built_in">CFStringRef</span> requestMethod, <span class="built_in">CFURLRef</span> url, <span class="built_in">CFStringRef</span> httpVersion) <span class="built_in">CF_AVAILABLE</span>(<span class="number">10</span>_1, <span class="number">2</span>_0);</span><br></pre></td></tr></table></figure></p>
+<h5 id="2使用cfhttpmessageref对象创建输入流"><a class="anchor" href="#2使用cfhttpmessageref对象创建输入流">#</a> 2：使用 CFHTTPMessageRef 对象创建输入流</h5>
+<p><figure class="highlight objectivec"><table><tr><td class="code"><pre><span class="line"><span class="comment">//第一个参数传默认</span></span><br><span class="line"><span class="built_in">CFReadStreamCreateForHTTPRequest</span>(<span class="built_in">CFAllocatorRef</span> __<span class="keyword">nullable</span> alloc, <span class="built_in">CFHTTPMessageRef</span> request) <span class="built_in">CF_DEPRECATED</span>(<span class="number">10</span>_2, <span class="number">10</span>_11, <span class="number">2</span>_0, <span class="number">9</span>_0, <span class="string">&quot;Use NSURLSession API for http requests&quot;</span>);</span><br></pre></td></tr></table></figure></p>
+<h5 id="3适配sni环境一个-ip-地址上可以为不同域名分配使用不同的-ssl-证书这同时意味着共享-ip-的虚拟主机也可实现-ssltls-连接"><a class="anchor" href="#3适配sni环境一个-ip-地址上可以为不同域名分配使用不同的-ssl-证书这同时意味着共享-ip-的虚拟主机也可实现-ssltls-连接">#</a> 3：适配 SNI 环境（一个 IP 地址上可以为不同域名分配使用不同的 SSL 证书；这同时意味着，共享 IP 的虚拟主机也可实现 SSL/TLS 连接。）</h5>
+<p>因为配置 sni 环境的所有配置都是基于输入流来操作，所以我们构建完成输入流之后来处理 sni，像这样<br />
+ <figure class="highlight objectivec"><table><tr><td class="code"><pre><span class="line">[<span class="keyword">self</span>.inputStream setProperty:<span class="built_in">NSStreamSocketSecurityLevelNegotiatedSSL</span> forKey:<span class="built_in">NSStreamSocketSecurityLevelKey</span>];</span><br><span class="line"><span class="comment">//请求的URL的Host</span></span><br><span class="line"><span class="built_in">NSDictionary</span> *sslProperties = @&#123; (__bridge <span class="type">id</span>) kCFStreamSSLPeerName : host &#125;;</span><br><span class="line">[<span class="keyword">self</span>.inputStream setProperty:sslProperties forKey:(__bridge_transfer <span class="built_in">NSString</span> *) kCFStreamPropertySSLSettings];</span><br></pre></td></tr></table></figure></p>
+<h5 id="4打开输入流"><a class="anchor" href="#4打开输入流">#</a> 4：打开输入流</h5>
+<p>打开输入流分为两步</p>
+<ul>
+<li>设置代理：[self.inputStream setDelegate:weakSelf]</li>
+<li>加入当前的 runloop：<br />
+<figure class="highlight crystal"><table><tr><td class="code"><pre><span class="line">[_inputStream <span class="symbol">removeFromRunLoop:</span><span class="keyword">self</span>.runloop <span class="symbol">forMode:</span>[<span class="keyword">self</span> runloopMode]];</span><br></pre></td></tr></table></figure></li>
+<li>调用 Open 方法</li>
+</ul>
+<h5 id="5收到代理数据回调"><a class="anchor" href="#5收到代理数据回调">#</a> 5：收到代理数据回调</h5>
+<p><figure class="highlight erlang"><table><tr><td class="code"><pre><span class="line">- <span class="params">(void)</span>stream:<span class="params">(NSStream *)</span>aStream handleEvent:<span class="params">(NSStreamEvent)</span>eventCode;</span><br></pre></td></tr></table></figure><br />
+ 其中分为几个状态<br />
+ <figure class="highlight elm"><table><tr><td class="code"><pre><span class="line">typedef <span class="type">NS_OPTIONS</span>(<span class="type">NSUInteger</span>, <span class="type">NSStreamEvent</span>) &#123;</span><br><span class="line">    <span class="type">NSStreamEventNone</span> = 0,</span><br><span class="line">    <span class="type">NSStreamEventOpenCompleted</span> = 1UL &lt;&lt; 0,</span><br><span class="line">    <span class="type">NSStreamEventHasBytesAvailable</span> = 1UL &lt;&lt; 1,</span><br><span class="line">    <span class="type">NSStreamEventHasSpaceAvailable</span> = 1UL &lt;&lt; 2,</span><br><span class="line">    <span class="type">NSStreamEventErrorOccurred</span> = 1UL &lt;&lt; 3,</span><br><span class="line">    <span class="type">NSStreamEventEndEncountered</span> = 1UL &lt;&lt; 4</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><br />
+ 通常我们会关心 NSStreamEventOpenCompleted、NSStreamEventHasBytesAvailable、NSStreamEventErrorOccurred、<br />
+由于数据是以流的形式回来，我们需要在在 NSStreamEventHasBytesAvailable 下取出数据然后做数据拼接，拼接好完整的数据才可使用，像这样<br />
+ <figure class="highlight objectivec"><table><tr><td class="code"><pre><span class="line"> <span class="keyword">case</span> <span class="built_in">NSStreamEventHasBytesAvailable</span>:</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">UInt8</span> buffer[BUFFER_SIZE]; <span class="comment">//设置缓存区</span></span><br><span class="line">    <span class="built_in">NSInteger</span> numBytesRead = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">NSInputStream</span> *inputstream = (<span class="built_in">NSInputStream</span> *) aStream;</span><br><span class="line">    <span class="comment">// Read data</span></span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">        numBytesRead = [inputstream read:buffer maxLength:<span class="keyword">sizeof</span>(buffer)];</span><br><span class="line">        <span class="keyword">if</span> (numBytesRead &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            [<span class="keyword">self</span>.resultData appendBytes:buffer length:numBytesRead];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">while</span> (numBytesRead &gt; <span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">break</span>;</span><br></pre></td></tr></table></figure><br />
+ 循环结束后我们的 resultData 就是完整的返回数据了。</p>
+]]></content>
+      <categories>
+        <category>iOS开发</category>
+      </categories>
+      <tags>
+        <tag>网络</tag>
+        <tag>底层</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>IOS下三种DNS解析方式分析（LocalDns）</title>
     <url>/2018-01-23-IOS%E4%B8%8B%E4%B8%89%E7%A7%8DDNS%E8%A7%A3%E6%9E%90%E6%96%B9%E5%BC%8F%E5%88%86%E6%9E%90%EF%BC%88LocalDns%EF%BC%89/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h3 id="背景"><a class="anchor" href="#背景">#</a> 背景</h3>
@@ -170,106 +267,9 @@
         <category>iOS开发</category>
       </categories>
       <tags>
+        <tag>底层</tag>
         <tag>OpenGL</tag>
-        <tag>底层</tag>
         <tag>UI</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CFNetwork的介绍和使用</title>
-    <url>/2018-01-23-CFNetwork%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h3 id="cfnetwork背景简介"><a class="anchor" href="#cfnetwork背景简介">#</a> CFNetwork 背景简介</h3>
-<p>CFNetwork 是 ISO 中一个比较底层的网络框架，C 语言编写，可以控制一些更底层的东西，如各种常用网络协议、socket 通讯等，我们通常使用的 NSURL 则更倾向于 API 数据请求等，虽然框架也提供了一些操作，但是远不如 CFNetwork 丰富。CFNetwork 已经接近于 UNIX 系统的 socket 通信了，使用 CFHttpMessageRef 进行 HTTP 连接的好处就是控制的粒度更细了，例如你可以设置 SSL 连接的 PeerName，证书验证的方式，还可以控制每个响应包的接收。不过 CFNetwork 本质上还是应用层上的封装的通用 API。使用者可以不用关心底层协议的实际细节。下图是 CFNetwork 在 iOS 系统中的位置 (图片来源于官方文档)。</p>
-<p><span id="more"></span><br />
-<img data-src="https://wx2.sinaimg.cn/large/006tNc79gy1fo6mit8tsij30bn06lwen.jpg" alt="image.png" /></p>
-<p>由上图可以看出目前 iOS 的网络编程分四层：</p>
-<ul>
-<li>
-<p>WebKit：属于 Cocoa 层，苹果很多地方用到的页面渲染引擎 WKWebview；</p>
-</li>
-<li>
-<p>NSURL：也属于 Cocoa 层，对各类 URL 请求的封装 (NSURLRequest)；</p>
-</li>
-<li>
-<p>CFNetwork：属于 Core Foundation 层，基于 C 的封装，同样的还有 CFNetServices (write/readstream)；</p>
-</li>
-<li>
-<p>BSD sockets：属于 OS 层，也是基于 C 的封装；</p>
-</li>
-</ul>
-<h3 id="cfnetwork结构"><a class="anchor" href="#cfnetwork结构">#</a> CFNetwork 结构</h3>
-<p><img data-src="https://wx2.sinaimg.cn/large/006tNc79gy1fo6mlt3gwcj30od0a474w.jpg" alt="image.png" /><br />
- 上图也是官方文档的图片，描述了 CFNetwork 的结构，下面逐一讲解。</p>
-<h5 id="cfsocket-api"><a class="anchor" href="#cfsocket-api">#</a> CFSocket API</h5>
-<p>Socket 是网络通讯的底层基础，两个 socket 端口可以互发数据。我们通常使用的是 BSD socket，CFSocket 则是 BSD socket 的抽象，基本上实现了几乎所有 BSD socket 的功能，并且还融入了 run loop。</p>
-<h5 id="cfstream-api"><a class="anchor" href="#cfstream-api">#</a> CFStream API</h5>
-<p>CFStream API 提供了数据读写的方法，即读写流，使用它可以为内存、文件、网络（使用 socket）的数据建立 stream，我们进行网络请求就是对数据的读写，CFStream 提供 API 对两种 CFType 对象提供抽象：CFReadStream and CFWriteStream。它同时也是 CFHTTP 和 CFFTP 的基础。stream 有一个很重要的特性就是一旦数据流被提供或者被消耗，就不能从流中重新取出。比如这样</p>
-<p><figure class="highlight objectivec"><table><tr><td class="code"><pre><span class="line">uint8_t d[<span class="number">1024</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line"><span class="comment">//循环条件：流中是否有可用数据(被读过的数据不可用了)</span></span><br><span class="line"><span class="keyword">while</span> ([<span class="keyword">self</span>.inputStream hasBytesAvailable]) &#123;</span><br><span class="line">    <span class="comment">//读取相应长度的数据数据</span></span><br><span class="line">    <span class="built_in">NSInteger</span> len = [<span class="keyword">self</span>.inputStream read:d maxLength:<span class="number">1024</span>];</span><br><span class="line">    <span class="comment">//如果读取到数据，便将数据快拼接</span></span><br><span class="line">    <span class="keyword">if</span> (len &gt; <span class="number">0</span> &amp;&amp; !<span class="keyword">self</span>.inputStream.streamError) &#123;</span><br><span class="line">        [data appendBytes:(<span class="type">void</span> *)d length:len];</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h5 id="cfftp-api"><a class="anchor" href="#cfftp-api">#</a> CFFTP API</h5>
-<p>对用 FTP 协议通信的封装，能下载、上传文件和目录到 FTP 服务器。CFFTP 建立的连接可以是同步或者异步，此次不做详解。</p>
-<h5 id="cfhttp-api"><a class="anchor" href="#cfhttp-api">#</a> CFHTTP API</h5>
-<p>是 HTTP 协议的抽象，主要对象是 CFHTTPMessageRef (类似于我们通常的 NSURLRequest) 我们需要像构建 NSURLRequest 那样来构建 CFHTTPMessageRef，同样包含一下几个元素</p>
-<ul>
-<li>
-<p>必须元素</p>
-<ul>
-<li>
-<p>请求方法 (类型为 CFStringRef)：POST、GET、DELETE 等..</p>
-</li>
-<li>
-<p>请求的 URL 地址 (类型为 CFURLRef)：<span class="exturl" data-url="aHR0cHM6Ly93d3cuYmFpZHUuY29t">https://www.baidu.com</span></p>
-</li>
-<li>
-<p>请求的 HTTP 版本 (类型为 CFStringRef)：通常使用 kCFHTTPVersion1_1</p>
-</li>
-<li>
-<p>kCFAllocatorDefault：用于创建消息引用的指定默认的系统内存分配器。</p>
-</li>
-</ul>
-</li>
-<li>
-<p>可选参数</p>
-<ul>
-<li>body 体 (类型为 CFDataRef)</li>
-</ul>
-</li>
-</ul>
-<p><figure class="highlight objectivec"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">CFHTTPMessageSetBody</span>(<span class="built_in">CFHTTPMessageRef</span> message, <span class="built_in">CFDataRef</span> bodyData) <span class="built_in">CF_AVAILABLE</span>(<span class="number">10</span>_1, <span class="number">2</span>_0);</span><br></pre></td></tr></table></figure></p>
-<ul>
-<li>消息头部，如 User-Agent 等；</li>
-</ul>
-<p><figure class="highlight objectivec"><table><tr><td class="code"><pre><span class="line"><span class="built_in">CFHTTPMessageSetHeaderFieldValue</span>(<span class="built_in">CFHTTPMessageRef</span> message, <span class="built_in">CFStringRef</span> headerField, <span class="built_in">CFStringRef</span> __<span class="keyword">nullable</span> value) <span class="built_in">CF_AVAILABLE</span>(<span class="number">10</span>_1, <span class="number">2</span>_0);</span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
-<h3 id="cfnetwork请求过程"><a class="anchor" href="#cfnetwork请求过程">#</a> CFNetwork 请求过程</h3>
-<h5 id="1构造并创建cfhttpmessageref对象"><a class="anchor" href="#1构造并创建cfhttpmessageref对象">#</a> 1：构造并创建 CFHTTPMessageRef 对象</h5>
-<p><figure class="highlight objectivec"><table><tr><td class="code"><pre><span class="line"><span class="comment">//构造的方式上一步已讲</span></span><br><span class="line"><span class="built_in">CFHTTPMessageCreateRequest</span>(<span class="built_in">CFAllocatorRef</span> __<span class="keyword">nullable</span> alloc, <span class="built_in">CFStringRef</span> requestMethod, <span class="built_in">CFURLRef</span> url, <span class="built_in">CFStringRef</span> httpVersion) <span class="built_in">CF_AVAILABLE</span>(<span class="number">10</span>_1, <span class="number">2</span>_0);</span><br></pre></td></tr></table></figure></p>
-<h5 id="2使用cfhttpmessageref对象创建输入流"><a class="anchor" href="#2使用cfhttpmessageref对象创建输入流">#</a> 2：使用 CFHTTPMessageRef 对象创建输入流</h5>
-<p><figure class="highlight objectivec"><table><tr><td class="code"><pre><span class="line"><span class="comment">//第一个参数传默认</span></span><br><span class="line"><span class="built_in">CFReadStreamCreateForHTTPRequest</span>(<span class="built_in">CFAllocatorRef</span> __<span class="keyword">nullable</span> alloc, <span class="built_in">CFHTTPMessageRef</span> request) <span class="built_in">CF_DEPRECATED</span>(<span class="number">10</span>_2, <span class="number">10</span>_11, <span class="number">2</span>_0, <span class="number">9</span>_0, <span class="string">&quot;Use NSURLSession API for http requests&quot;</span>);</span><br></pre></td></tr></table></figure></p>
-<h5 id="3适配sni环境一个-ip-地址上可以为不同域名分配使用不同的-ssl-证书这同时意味着共享-ip-的虚拟主机也可实现-ssltls-连接"><a class="anchor" href="#3适配sni环境一个-ip-地址上可以为不同域名分配使用不同的-ssl-证书这同时意味着共享-ip-的虚拟主机也可实现-ssltls-连接">#</a> 3：适配 SNI 环境（一个 IP 地址上可以为不同域名分配使用不同的 SSL 证书；这同时意味着，共享 IP 的虚拟主机也可实现 SSL/TLS 连接。）</h5>
-<p>因为配置 sni 环境的所有配置都是基于输入流来操作，所以我们构建完成输入流之后来处理 sni，像这样<br />
- <figure class="highlight objectivec"><table><tr><td class="code"><pre><span class="line">[<span class="keyword">self</span>.inputStream setProperty:<span class="built_in">NSStreamSocketSecurityLevelNegotiatedSSL</span> forKey:<span class="built_in">NSStreamSocketSecurityLevelKey</span>];</span><br><span class="line"><span class="comment">//请求的URL的Host</span></span><br><span class="line"><span class="built_in">NSDictionary</span> *sslProperties = @&#123; (__bridge <span class="type">id</span>) kCFStreamSSLPeerName : host &#125;;</span><br><span class="line">[<span class="keyword">self</span>.inputStream setProperty:sslProperties forKey:(__bridge_transfer <span class="built_in">NSString</span> *) kCFStreamPropertySSLSettings];</span><br></pre></td></tr></table></figure></p>
-<h5 id="4打开输入流"><a class="anchor" href="#4打开输入流">#</a> 4：打开输入流</h5>
-<p>打开输入流分为两步</p>
-<ul>
-<li>设置代理：[self.inputStream setDelegate:weakSelf]</li>
-<li>加入当前的 runloop：<br />
-<figure class="highlight crystal"><table><tr><td class="code"><pre><span class="line">[_inputStream <span class="symbol">removeFromRunLoop:</span><span class="keyword">self</span>.runloop <span class="symbol">forMode:</span>[<span class="keyword">self</span> runloopMode]];</span><br></pre></td></tr></table></figure></li>
-<li>调用 Open 方法</li>
-</ul>
-<h5 id="5收到代理数据回调"><a class="anchor" href="#5收到代理数据回调">#</a> 5：收到代理数据回调</h5>
-<p><figure class="highlight erlang"><table><tr><td class="code"><pre><span class="line">- <span class="params">(void)</span>stream:<span class="params">(NSStream *)</span>aStream handleEvent:<span class="params">(NSStreamEvent)</span>eventCode;</span><br></pre></td></tr></table></figure><br />
- 其中分为几个状态<br />
- <figure class="highlight elm"><table><tr><td class="code"><pre><span class="line">typedef <span class="type">NS_OPTIONS</span>(<span class="type">NSUInteger</span>, <span class="type">NSStreamEvent</span>) &#123;</span><br><span class="line">    <span class="type">NSStreamEventNone</span> = 0,</span><br><span class="line">    <span class="type">NSStreamEventOpenCompleted</span> = 1UL &lt;&lt; 0,</span><br><span class="line">    <span class="type">NSStreamEventHasBytesAvailable</span> = 1UL &lt;&lt; 1,</span><br><span class="line">    <span class="type">NSStreamEventHasSpaceAvailable</span> = 1UL &lt;&lt; 2,</span><br><span class="line">    <span class="type">NSStreamEventErrorOccurred</span> = 1UL &lt;&lt; 3,</span><br><span class="line">    <span class="type">NSStreamEventEndEncountered</span> = 1UL &lt;&lt; 4</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><br />
- 通常我们会关心 NSStreamEventOpenCompleted、NSStreamEventHasBytesAvailable、NSStreamEventErrorOccurred、<br />
-由于数据是以流的形式回来，我们需要在在 NSStreamEventHasBytesAvailable 下取出数据然后做数据拼接，拼接好完整的数据才可使用，像这样<br />
- <figure class="highlight objectivec"><table><tr><td class="code"><pre><span class="line"> <span class="keyword">case</span> <span class="built_in">NSStreamEventHasBytesAvailable</span>:</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">UInt8</span> buffer[BUFFER_SIZE]; <span class="comment">//设置缓存区</span></span><br><span class="line">    <span class="built_in">NSInteger</span> numBytesRead = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">NSInputStream</span> *inputstream = (<span class="built_in">NSInputStream</span> *) aStream;</span><br><span class="line">    <span class="comment">// Read data</span></span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">        numBytesRead = [inputstream read:buffer maxLength:<span class="keyword">sizeof</span>(buffer)];</span><br><span class="line">        <span class="keyword">if</span> (numBytesRead &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            [<span class="keyword">self</span>.resultData appendBytes:buffer length:numBytesRead];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">while</span> (numBytesRead &gt; <span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">break</span>;</span><br></pre></td></tr></table></figure><br />
- 循环结束后我们的 resultData 就是完整的返回数据了。</p>
-]]></content>
-      <categories>
-        <category>iOS开发</category>
-      </categories>
-      <tags>
-        <tag>底层</tag>
-        <tag>网络</tag>
       </tags>
   </entry>
   <entry>
@@ -749,65 +749,6 @@ Facebook 的 iOS 端有许多的地方都共享着一块内存，如果任何一
       </tags>
   </entry>
   <entry>
-    <title>在iOS工程中Cocoapods的使用</title>
-    <url>/2018-01-24-%E5%9C%A8iOS%E5%B7%A5%E7%A8%8B%E4%B8%ADCocoapods%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>我们在开发 iOS 程序的时候，往往都会根据需要导入很多的第三方框架，但是不同的框架完成的功能不同，所以导入的方式也不同，并不是把它直接拖进工程中就完事了，我们需要配置各种环境，链接各种库文件等等。有的时候我们并不能一个不漏的完成导入，而一旦出了问题，尤其是那些需要框架比较多的工程 (比如早期的百度地图框架)，将很难解决，而且，如果遇到了第三方库升级，更新了方法那么我们还需要把之前的旧版本删掉，再重复一下前面的工作，这将是非常的繁琐，极大地影响了开发的效率。这个时候我们就需要用到 cocoapods 来管理我们的第三方了，在我们有了 CocoaPods 这个工具之后，只需要将用到的第三方开源库放到一个名为 Podfile 的文件中，<br />
-<span id="more"></span><br />
- 然后在命令行执行 $ pod install 命令。CocoaPods 就会自动将这些第三方开源库的源码下载下来，并且为我的工程设置好相应的系统依赖和编译参数，不管是导入还是更新或者移除，都是一句命令就搞定的。网上也有类似的教程，但是有些很旧，有些写的不详细，导致新手在使用的时候整的一头雾水，我就来说下。<br />
-### 第一步 ：<br />
-首先安装 cocoapods 要在 ruby 环境下进行，虽然我们的 mac 系统都是自带了 ruby，但是为了保险起见我们还是要先更新一下 ruby 环境：在这里我们直接使用   sudo gem update --system   命令来更新，网上有的说使用 gem update --system 前面少了 sudo，其实加 sudo 的目的就是用管理员的权限去执行这句更新命令，不加的话容易出现这个错误</p>
-<p><img data-src="https://wx4.sinaimg.cn/large/006tNc79gy1fo6jyxwn6cj30ta06kn1a.jpg" alt="" /></p>
-<p>意思是你没有权限去执行这个命令，等出现了 RubyGems system software updated 这句话的时候就证明升级成功了。</p>
-<p>### 第二步：<br />
-安装 cocoapods 时候我们要访问 cocoapods.org 这个网站，不用想这个网站已经被墙了，所以我们可以用淘宝的 ruby 的镜像来访问该网站。首先我们输入 gem sources -l 来看一下我们现在有什么，我目前里面只有一个</p>
-<p><img data-src="https://wx3.sinaimg.cn/large/006tNc79gy1fo6jzdqmrlj30ma03ydjy.jpg" alt="" /></p>
-<p>也就是我们需要的，不过可能有些人的里面不止一个，会有其他的东西，这时候我们先用 gem sources --remove XXXXXXXXXXXXXXX 来把其他的 source 删除掉，只保留这一个，如果没有的话就手动添加用这个命令 gem sources -a <span class="exturl" data-url="aHR0cHM6Ly9ydWJ5LnRhb2Jhby5vcmcv">https://ruby.taobao.org/</span> 来将我们需要的源添加进去，最后再用那个查看命令 最后只有确保像我里面一样只有那一个就好，要注意的是 https  网上好多教程写的是 http，那个已经作废了</p>
-<p><img data-src="https://wx4.sinaimg.cn/large/006tNc79gy1fo6jzxkmf5j31kw0ask74.jpg" alt="" /></p>
-<h3 id="第三步"><a class="anchor" href="#第三步">#</a> 第三步：</h3>
-<p>安装是 cocoapods 使用 sudo gem install cocoapods 命令来安装 cocoapods，你输入完这个命令回车后会提示你输入密码，这时候是没有光标提示的，也不会移动，凭感觉输入对之后就回车吧，然后就是等，时间长短是根据你的网速来的。安装完成后终端就进入待命阶段了。<br />
-### 第四步：<br />
-使用 search 命令来搜索类库，这个是支持模糊搜索的，记不清全名，打一部分名也行，不过那样的就要从搜出来的东西里找你想要的类库了。比如我想找 afnetworking 我就输入 pod search afn 回车后就会输出所有以 afn 开头的类库名字，像这样</p>
-<p><img data-src="https://wx1.sinaimg.cn/large/006tNc79gy1fo6k0kkcjjj311u0wq4qp.jpg" alt="" /></p>
-<p>搜出很多，其中第三就是我们想要的，afnetworking，用红圈圈起来是一会编辑 podfile 时候需要用的，可以先把他复制下来省的手打，后面的小数代表的是类库的版本，一般是最新的显示在这里，下面的 version 是历史版本，如果有需要可以直接导入它的历史版本，就是把后面的版本号替换下就好。</p>
-<h6 id="值得注意的是如果你不是第一次安装cocoapods-那么之前的缓存会对你有影响search先清理下缓存-使用这个命之后就可以了-rm-~librarycachescocoapodssearch_indexjson"><a class="anchor" href="#值得注意的是如果你不是第一次安装cocoapods-那么之前的缓存会对你有影响search先清理下缓存-使用这个命之后就可以了-rm-~librarycachescocoapodssearch_indexjson">#</a> 值得注意的是如果你不是第一次安装 cocoapods， 那么之前的缓存会对你有影响 search 先清理下缓存 使用这个命之后就可以了 rm ~/Library/Caches/CocoaPods/search_index.json</h6>
-<p>### 第五步：<br />
-进入你的工程目录，这里建议直接右键你工程中.xcodeproj 文件选择在终端中打开，然后 在终端中输入命令 cd ..  就会跳到.xcodeproj 所在的目录，也就是我们需要的目录，很多新手在这个地方容易出错。然后输入命令 vim Podfile 熟悉 Linux 的用户都知道这是创建一个 Podfile 文件并打开编辑，按 “i” 进入编辑模式，将第五部粘贴的东西拷贝进来，然后依次操作 esc 键  -&gt;  &quot;:&quot;  -&gt;  输入 wq</p>
-<p><img data-src="https://wx4.sinaimg.cn/large/006tNc79gy1fo6k16wn0yj311s0wqth2.jpg" alt="" /></p>
-<p>然后输入命令来安装 pod update --verbose --no-repo-update 等待过后就安装完成啦，其实使用 pod install 也可以，只是后者需要更新一个仓库，这是相当耗时的，我们可以使用前者来避免更新仓库就好，很快就结束了。</p>
-<p><img data-src="https://wx1.sinaimg.cn/large/006tNc79gy1fo6k1nkijrj311u0wq1g6.jpg" alt="" /></p>
-<p>安装成功！以后打卡工程就直接打开这个文件就好啦</p>
-<p><img data-src="https://wx1.sinaimg.cn/large/006tNc79gy1fo6k1y1x80j306q0cb0sy.jpg" alt="" /></p>
-<p>其中 podfile 文件中显示了我们这个工程中所以集成的第三方，</p>
-<p><img data-src="https://wx2.sinaimg.cn/large/006tNc79gy1fo6k27zcbxj30ln0bfmxn.jpg" alt="" /></p>
-<p>想修改版本的话就把后面的版本号改成你所需要的版本号就好，想删除的话就把这行删掉，想添加的话就用第五部的搜索命令去搜索然后同样把搜索结果中以 pod 开头的那句话复制进来就好。注意以上所有的增删改操作完成之后需要在去终端中相应的目录下使用 pod install --verbose --no-repo-update 命令来更新，这样才会真正的生效。</p>
-<h3 id="第六步"><a class="anchor" href="#第六步">#</a> 第六步：</h3>
-<p>关于 cocoapods 的更新。有的时候在 pod install 的时候会出现 [!] The 'master' repo requires CocoaPods 0.32.1 - 这样的错误，是由于你 cocoapods 版本过低的原因，这时候需要进行更新，跟新的过程其实就是把以上所有的从新走一遍就相当于安装遍就好了。</p>
-<h5 id="值得注意1"><a class="anchor" href="#值得注意1">#</a> 值得注意 1</h5>
-<p>经常遇到的错误比如下面这个</p>
-<p><img data-src="https://wx3.sinaimg.cn/large/006tNc79gy1fo6k2hpy06j30ej01gt8q.jpg" alt="" /></p>
-<p>通常出现在 OS X 10.11 系统上 这是由于从这个系统开始苹果开始使用无根安装，这时你再用这个方法就会报这个错，这时只需</p>
-<p><img data-src="https://wx4.sinaimg.cn/large/006tNc79gy1fo6k2pt7n9j30hy02zwev.jpg" alt="" /></p>
-<p>这个命令就可以成功升级啦</p>
-<h5 id="值得注意2"><a class="anchor" href="#值得注意2">#</a> 值得注意 2</h5>
-<p>有的时候大家在 pod search 的时候搜不到，但是明明有这个类库别人都可以都到课时就是自己搜不到，其实原因是这样的：pod search 只会搜索你本地缓存的框架，如果你想搜索到最新的第三方框架或者某个框架的最新版本，必须先使用 pod repo update（推荐）或者 pod setup 将远程仓库的框架信息更新到本地。其实，从 pod search 的响应速度飞快，也可以猜出它并没有连接服务器，仅仅是搜索了本地的框架信息 [呵呵]<br />
-    此外，如果你的框架更新比较慢，可以尝试执行下面 2 条指令更换镜像服务器<br />
- 1：pod repo remove master<br />
-2：pod repo add master <span class="exturl" data-url="aHR0cDovL2dpdC5vc2NoaW5hLm5ldC9ha3VhbmRldi9TcGVjcy5naXQ=">http://git.oschina.net/akuandev/Specs.git</span><br />
-    更换镜像完毕后，以后执行 pod repo update 的速度就会快很多。在说明一点上面两条指令如果第二条无法执行提示 403 错误像这样</p>
-<p><img data-src="https://wx3.sinaimg.cn/large/006tNc79gy1fo6k2xgrwuj30i101h3yg.jpg" alt="" /></p>
-<p>那么在执行完第一条之后直接 pod search 命令就好 这样他会自动找合适的配置了，因为第二条那个网址可能会变。</p>
-<h3 id="总结"><a class="anchor" href="#总结">#</a> 总结：</h3>
-<p>关于使用 cocoapods 在自己的项目中集成第三方就这些内容。有什么不懂的欢迎来找我交流，本人才疏学浅，如果那里写的不对请及时批评指正，免得误导新人。 新浪微博小耗子上桌子也是我，大家也可以去看下微博多多关注 谢谢！</p>
-]]></content>
-      <categories>
-        <category>iOS开发</category>
-      </categories>
-      <tags>
-        <tag>Cocoapods</tag>
-        <tag>架构</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>可能是最全的iOS端HttpDns集成方案</title>
     <url>/2018-01-24-%E5%8F%AF%E8%83%BD%E6%98%AF%E6%9C%80%E5%85%A8%E7%9A%84iOS%E7%AB%AFHttpDns%E9%9B%86%E6%88%90%E6%96%B9%E6%A1%88/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="科普片"><a class="anchor" href="#科普片">#</a> 科普片</h1>
@@ -919,9 +860,68 @@ client 在后面会有讲解。</p>
         <category>iOS开发</category>
       </categories>
       <tags>
-        <tag>底层</tag>
         <tag>网络</tag>
+        <tag>底层</tag>
         <tag>httpdns</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在iOS工程中Cocoapods的使用</title>
+    <url>/2018-01-24-%E5%9C%A8iOS%E5%B7%A5%E7%A8%8B%E4%B8%ADCocoapods%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>我们在开发 iOS 程序的时候，往往都会根据需要导入很多的第三方框架，但是不同的框架完成的功能不同，所以导入的方式也不同，并不是把它直接拖进工程中就完事了，我们需要配置各种环境，链接各种库文件等等。有的时候我们并不能一个不漏的完成导入，而一旦出了问题，尤其是那些需要框架比较多的工程 (比如早期的百度地图框架)，将很难解决，而且，如果遇到了第三方库升级，更新了方法那么我们还需要把之前的旧版本删掉，再重复一下前面的工作，这将是非常的繁琐，极大地影响了开发的效率。这个时候我们就需要用到 cocoapods 来管理我们的第三方了，在我们有了 CocoaPods 这个工具之后，只需要将用到的第三方开源库放到一个名为 Podfile 的文件中，<br />
+<span id="more"></span><br />
+ 然后在命令行执行 $ pod install 命令。CocoaPods 就会自动将这些第三方开源库的源码下载下来，并且为我的工程设置好相应的系统依赖和编译参数，不管是导入还是更新或者移除，都是一句命令就搞定的。网上也有类似的教程，但是有些很旧，有些写的不详细，导致新手在使用的时候整的一头雾水，我就来说下。<br />
+### 第一步 ：<br />
+首先安装 cocoapods 要在 ruby 环境下进行，虽然我们的 mac 系统都是自带了 ruby，但是为了保险起见我们还是要先更新一下 ruby 环境：在这里我们直接使用   sudo gem update --system   命令来更新，网上有的说使用 gem update --system 前面少了 sudo，其实加 sudo 的目的就是用管理员的权限去执行这句更新命令，不加的话容易出现这个错误</p>
+<p><img data-src="https://wx4.sinaimg.cn/large/006tNc79gy1fo6jyxwn6cj30ta06kn1a.jpg" alt="" /></p>
+<p>意思是你没有权限去执行这个命令，等出现了 RubyGems system software updated 这句话的时候就证明升级成功了。</p>
+<p>### 第二步：<br />
+安装 cocoapods 时候我们要访问 cocoapods.org 这个网站，不用想这个网站已经被墙了，所以我们可以用淘宝的 ruby 的镜像来访问该网站。首先我们输入 gem sources -l 来看一下我们现在有什么，我目前里面只有一个</p>
+<p><img data-src="https://wx3.sinaimg.cn/large/006tNc79gy1fo6jzdqmrlj30ma03ydjy.jpg" alt="" /></p>
+<p>也就是我们需要的，不过可能有些人的里面不止一个，会有其他的东西，这时候我们先用 gem sources --remove XXXXXXXXXXXXXXX 来把其他的 source 删除掉，只保留这一个，如果没有的话就手动添加用这个命令 gem sources -a <span class="exturl" data-url="aHR0cHM6Ly9ydWJ5LnRhb2Jhby5vcmcv">https://ruby.taobao.org/</span> 来将我们需要的源添加进去，最后再用那个查看命令 最后只有确保像我里面一样只有那一个就好，要注意的是 https  网上好多教程写的是 http，那个已经作废了</p>
+<p><img data-src="https://wx4.sinaimg.cn/large/006tNc79gy1fo6jzxkmf5j31kw0ask74.jpg" alt="" /></p>
+<h3 id="第三步"><a class="anchor" href="#第三步">#</a> 第三步：</h3>
+<p>安装是 cocoapods 使用 sudo gem install cocoapods 命令来安装 cocoapods，你输入完这个命令回车后会提示你输入密码，这时候是没有光标提示的，也不会移动，凭感觉输入对之后就回车吧，然后就是等，时间长短是根据你的网速来的。安装完成后终端就进入待命阶段了。<br />
+### 第四步：<br />
+使用 search 命令来搜索类库，这个是支持模糊搜索的，记不清全名，打一部分名也行，不过那样的就要从搜出来的东西里找你想要的类库了。比如我想找 afnetworking 我就输入 pod search afn 回车后就会输出所有以 afn 开头的类库名字，像这样</p>
+<p><img data-src="https://wx1.sinaimg.cn/large/006tNc79gy1fo6k0kkcjjj311u0wq4qp.jpg" alt="" /></p>
+<p>搜出很多，其中第三就是我们想要的，afnetworking，用红圈圈起来是一会编辑 podfile 时候需要用的，可以先把他复制下来省的手打，后面的小数代表的是类库的版本，一般是最新的显示在这里，下面的 version 是历史版本，如果有需要可以直接导入它的历史版本，就是把后面的版本号替换下就好。</p>
+<h6 id="值得注意的是如果你不是第一次安装cocoapods-那么之前的缓存会对你有影响search先清理下缓存-使用这个命之后就可以了-rm-~librarycachescocoapodssearch_indexjson"><a class="anchor" href="#值得注意的是如果你不是第一次安装cocoapods-那么之前的缓存会对你有影响search先清理下缓存-使用这个命之后就可以了-rm-~librarycachescocoapodssearch_indexjson">#</a> 值得注意的是如果你不是第一次安装 cocoapods， 那么之前的缓存会对你有影响 search 先清理下缓存 使用这个命之后就可以了 rm ~/Library/Caches/CocoaPods/search_index.json</h6>
+<p>### 第五步：<br />
+进入你的工程目录，这里建议直接右键你工程中.xcodeproj 文件选择在终端中打开，然后 在终端中输入命令 cd ..  就会跳到.xcodeproj 所在的目录，也就是我们需要的目录，很多新手在这个地方容易出错。然后输入命令 vim Podfile 熟悉 Linux 的用户都知道这是创建一个 Podfile 文件并打开编辑，按 “i” 进入编辑模式，将第五部粘贴的东西拷贝进来，然后依次操作 esc 键  -&gt;  &quot;:&quot;  -&gt;  输入 wq</p>
+<p><img data-src="https://wx4.sinaimg.cn/large/006tNc79gy1fo6k16wn0yj311s0wqth2.jpg" alt="" /></p>
+<p>然后输入命令来安装 pod update --verbose --no-repo-update 等待过后就安装完成啦，其实使用 pod install 也可以，只是后者需要更新一个仓库，这是相当耗时的，我们可以使用前者来避免更新仓库就好，很快就结束了。</p>
+<p><img data-src="https://wx1.sinaimg.cn/large/006tNc79gy1fo6k1nkijrj311u0wq1g6.jpg" alt="" /></p>
+<p>安装成功！以后打卡工程就直接打开这个文件就好啦</p>
+<p><img data-src="https://wx1.sinaimg.cn/large/006tNc79gy1fo6k1y1x80j306q0cb0sy.jpg" alt="" /></p>
+<p>其中 podfile 文件中显示了我们这个工程中所以集成的第三方，</p>
+<p><img data-src="https://wx2.sinaimg.cn/large/006tNc79gy1fo6k27zcbxj30ln0bfmxn.jpg" alt="" /></p>
+<p>想修改版本的话就把后面的版本号改成你所需要的版本号就好，想删除的话就把这行删掉，想添加的话就用第五部的搜索命令去搜索然后同样把搜索结果中以 pod 开头的那句话复制进来就好。注意以上所有的增删改操作完成之后需要在去终端中相应的目录下使用 pod install --verbose --no-repo-update 命令来更新，这样才会真正的生效。</p>
+<h3 id="第六步"><a class="anchor" href="#第六步">#</a> 第六步：</h3>
+<p>关于 cocoapods 的更新。有的时候在 pod install 的时候会出现 [!] The 'master' repo requires CocoaPods 0.32.1 - 这样的错误，是由于你 cocoapods 版本过低的原因，这时候需要进行更新，跟新的过程其实就是把以上所有的从新走一遍就相当于安装遍就好了。</p>
+<h5 id="值得注意1"><a class="anchor" href="#值得注意1">#</a> 值得注意 1</h5>
+<p>经常遇到的错误比如下面这个</p>
+<p><img data-src="https://wx3.sinaimg.cn/large/006tNc79gy1fo6k2hpy06j30ej01gt8q.jpg" alt="" /></p>
+<p>通常出现在 OS X 10.11 系统上 这是由于从这个系统开始苹果开始使用无根安装，这时你再用这个方法就会报这个错，这时只需</p>
+<p><img data-src="https://wx4.sinaimg.cn/large/006tNc79gy1fo6k2pt7n9j30hy02zwev.jpg" alt="" /></p>
+<p>这个命令就可以成功升级啦</p>
+<h5 id="值得注意2"><a class="anchor" href="#值得注意2">#</a> 值得注意 2</h5>
+<p>有的时候大家在 pod search 的时候搜不到，但是明明有这个类库别人都可以都到课时就是自己搜不到，其实原因是这样的：pod search 只会搜索你本地缓存的框架，如果你想搜索到最新的第三方框架或者某个框架的最新版本，必须先使用 pod repo update（推荐）或者 pod setup 将远程仓库的框架信息更新到本地。其实，从 pod search 的响应速度飞快，也可以猜出它并没有连接服务器，仅仅是搜索了本地的框架信息 [呵呵]<br />
+    此外，如果你的框架更新比较慢，可以尝试执行下面 2 条指令更换镜像服务器<br />
+ 1：pod repo remove master<br />
+2：pod repo add master <span class="exturl" data-url="aHR0cDovL2dpdC5vc2NoaW5hLm5ldC9ha3VhbmRldi9TcGVjcy5naXQ=">http://git.oschina.net/akuandev/Specs.git</span><br />
+    更换镜像完毕后，以后执行 pod repo update 的速度就会快很多。在说明一点上面两条指令如果第二条无法执行提示 403 错误像这样</p>
+<p><img data-src="https://wx3.sinaimg.cn/large/006tNc79gy1fo6k2xgrwuj30i101h3yg.jpg" alt="" /></p>
+<p>那么在执行完第一条之后直接 pod search 命令就好 这样他会自动找合适的配置了，因为第二条那个网址可能会变。</p>
+<h3 id="总结"><a class="anchor" href="#总结">#</a> 总结：</h3>
+<p>关于使用 cocoapods 在自己的项目中集成第三方就这些内容。有什么不懂的欢迎来找我交流，本人才疏学浅，如果那里写的不对请及时批评指正，免得误导新人。 新浪微博小耗子上桌子也是我，大家也可以去看下微博多多关注 谢谢！</p>
+]]></content>
+      <categories>
+        <category>iOS开发</category>
+      </categories>
+      <tags>
+        <tag>Cocoapods</tag>
+        <tag>架构</tag>
       </tags>
   </entry>
   <entry>
@@ -1374,10 +1374,10 @@ NEXT 主题本身是已经集成了 livere 评论的，只不过被注释掉了�
 <h2 id="最后"><a class="anchor" href="#最后">#</a> 最后</h2>
 <p>整篇文章只有开始一小部分在讲解如何搭建博客，后续的基本都是交给大家如何优化，调整一些细节问题如 UI、用户体验之类的，当然我们能做的远远不止这些，如果有什么问题欢迎与我探讨。下面的留言我都会看的。此外当本人对 HEXO 有新的看法或者玩法的话该文章会不断的更新，希望大家关注我的<a href="https://oliverqueen.cn/">小站</a>，感谢。</p>
 <p>
-        <div id="aplayer-jbVbEvao" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
+        <div id="aplayer-oUeyOYrF" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
 			  <script>
 				  var options = {"narrow":false,"autoplay":true,"showlrc":3,"mutex":true,"music":[{"title":"凉城","author":"任然","url":"https://molier-1256056152.cos.ap-guangzhou.myqcloud.com/liangcheng.mp3","pic":"https://y.gtimg.cn/music/photo_new/T002R300x300M0000008nl2Y1HlxUm.jpg?max_age=2592000","lrc":"https://demo.meting.api.meto.moe/action/metingapi?server=tencent&type=lrc&id=002SKEeh1VzObP"},{"title":"Love Story","author":"린 (LYn)","url":"https://molier-1256056152.cos.ap-guangzhou.myqcloud.com/%E1%84%85%E1%85%B5%E1%86%AB-Love%20Story.mp3","pic":"https://y.gtimg.cn/music/photo_new/T002R300x300M0000048KLcQ4LDbZz.jpg?max_age=2592000","lrc":"https://demo.meting.api.meto.moe/action/metingapi?server=tencent&type=lrc&id=0028RAj0187nEg"},{"title":"大鱼","author":"周深","url":"https://molier-1256056152.cos.ap-guangzhou.myqcloud.com/bigfish.mp3","pic":"https://y.gtimg.cn/music/photo_new/T002R300x300M000004Y7V4s3ug4cC.jpg?max_age=2592000","lrc":"https://demo.meting.api.meto.moe/action/metingapi?server=tencent&type=lrc&id=004OQ5Mt0EmEzv"}]};
-				  options.element = document.getElementById("aplayer-jbVbEvao");
+				  options.element = document.getElementById("aplayer-oUeyOYrF");
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);
@@ -1495,10 +1495,10 @@ NEXT 主题本身是已经集成了 livere 评论的，只不过被注释掉了�
 <h2 id="最后"><a class="anchor" href="#最后">#</a> 最后</h2>
 <p>大概就这么多，顺便祝大家新年快乐，阖家幸福！</p>
 <p>
-        <div id="aplayer-VKWSwAmD" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
+        <div id="aplayer-qwVkXiye" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
 			  <script>
 				  var options = {"narrow":false,"autoplay":true,"showlrc":3,"mutex":true,"music":[{"title":"Love Story","author":"린 (LYn)","url":"https://molier-1256056152.cos.ap-guangzhou.myqcloud.com/%E1%84%85%E1%85%B5%E1%86%AB-Love%20Story.mp3","pic":"https://y.gtimg.cn/music/photo_new/T002R300x300M0000048KLcQ4LDbZz.jpg?max_age=2592000","lrc":"https://demo.meting.api.meto.moe/action/metingapi?server=tencent&type=lrc&id=0028RAj0187nEg"}]};
-				  options.element = document.getElementById("aplayer-VKWSwAmD");
+				  options.element = document.getElementById("aplayer-qwVkXiye");
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);
@@ -1596,10 +1596,10 @@ NEXT 主题本身是已经集成了 livere 评论的，只不过被注释掉了�
 <p><strong>在这里给大家拜个早年：祝大家新年快乐，心想事成。新的一年我会与大家分享更多的东西</strong></p>
 <p>才疏学浅，文笔拙劣，于 2018.2.13 仓促执笔....</p>
 <p>
-        <div id="aplayer-mcvuIeeo" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
+        <div id="aplayer-kCmtmDqy" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
 			  <script>
 				  var options = {"narrow":false,"autoplay":true,"showlrc":0,"mutex":true,"music":[{"title":"에필로그 (Epilogue)","author":"이동준","url":"https://molier-1256056152.cos.ap-guangzhou.myqcloud.com/%E1%84%8B%E1%85%A6%E1%84%91%E1%85%B5%E1%86%AF%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3.mp3","pic":"https://y.gtimg.cn/music/photo_new/T002R300x300M000000RmZHf3qhLUL.jpg?max_age=2592000","lrc":"https://歌词.lrc"}]};
-				  options.element = document.getElementById("aplayer-mcvuIeeo");
+				  options.element = document.getElementById("aplayer-kCmtmDqy");
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);
@@ -1663,10 +1663,10 @@ NEXT 主题本身是已经集成了 livere 评论的，只不过被注释掉了�
 <h2 id="思考"><a class="anchor" href="#思考">#</a> 思考</h2>
 <p>这个方法相比较之前的 JSpatch 是非常轻量级的，而且也只是实现了简单的容错功能，并不能做一些复杂的操作，比如生成一个对象之类的，不过对于一般的控制已经可以满足了，毕竟在苹果爸爸这么严厉的管制下能有这样的方法也还不错啊。</p>
 <p>
-        <div id="aplayer-HFiWUCFG" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
+        <div id="aplayer-DAHhwXNm" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
 			  <script>
 				  var options = {"narrow":false,"autoplay":true,"showlrc":0,"mutex":true,"music":[{"title":"不知归期的故人","author":"房东的猫","url":"https://molier-1256056152.cos.ap-guangzhou.myqcloud.com/%E4%B8%8D%E7%9F%A5%E5%BD%92%E6%9C%9F%E7%9A%84%E6%95%85%E4%BA%BA.mp3","pic":"https://y.gtimg.cn/music/photo_new/T002R300x300M000004NFJ230yX0Nz.jpg?max_age=2592000","lrc":"https://demo.meting.api.meto.moe/action/metingapi?server=tencent&type=lrc&id=000zreoj2VtcID"}]};
-				  options.element = document.getElementById("aplayer-HFiWUCFG");
+				  options.element = document.getElementById("aplayer-DAHhwXNm");
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);
@@ -1736,10 +1736,10 @@ NEXT 主题本身是已经集成了 livere 评论的，只不过被注释掉了�
 <h2 id="总结"><a class="anchor" href="#总结">#</a> 总结</h2>
 <p>因为时间紧迫，暂时做了这么多，也遇到了这些问题，所以写出了总结下，本文还会继续更新，会慢慢的整个网络层分享出来。就是可能更新会慢，毕竟工作量有点饱和。多谢关注</p>
 <p>
-        <div id="aplayer-zpLdONte" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
+        <div id="aplayer-yusNEwKV" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
 			  <script>
 				  var options = {"narrow":false,"autoplay":true,"showlrc":0,"mutex":true,"music":[{"title":"Thank You Very Much","author":"Margaret","url":"https://molier-1256056152.cos.ap-guangzhou.myqcloud.com/Thankyou.mp3","pic":"https://y.gtimg.cn/music/photo_new/T002R300x300M000000VbGX83hRicw.jpg?max_age=2592000","lrc":"https://demo.meting.api.meto.moe/action/metingapi?server=tencent&type=lrc&id=001Ii3g54dIYpO"}]};
-				  options.element = document.getElementById("aplayer-zpLdONte");
+				  options.element = document.getElementById("aplayer-yusNEwKV");
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);
@@ -1980,82 +1980,6 @@ NEXT 主题本身是已经集成了 livere 评论的，只不过被注释掉了�
       </tags>
   </entry>
   <entry>
-    <title>SVN切换到Git</title>
-    <url>/2018-08-23-ChangeSvnToGit/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="背景"><a class="anchor" href="#背景">#</a> 背景：</h2>
-<p>SVN 和 Git 同样都是在特定时代下比较优秀的版本控制系统，但是随着时代的发展，SVN 越来越不能满足多人开发的需求，尤其是在多种多样，天马星空的业务场景面前，SVN 会显得力不从心。</p>
-<p><img data-src="https://wx4.sinaimg.cn/large/006tNbRwgy1fujxnf8ilhj30zk0m8gm9.jpg" alt="" /></p>
-<p><span id="more"></span></p>
-<p>最近在将公司的项目从 SVN 迁移到 git，踩了不少坑，所以来记录下:</p>
-<p>因为迁移的快慢和整个仓库的大小，电脑配置有关，所以我先说下这边的情况</p>
-<ul>
-<li>
-<p>仓库：<br />
-仓库大概是 3.5G 左右，包含了 14500 + 的提交次数，其中包含了超过 500M 的单个文件</p>
-</li>
-<li>
-<p>电脑：<br />
-电脑配置就看图吧 ：</p>
-<p><img data-src="https://image-1256056152.cos.ap-nanjing.myqcloud.com/wz0geut3a8.jpg" alt="" /></p>
-</li>
-</ul>
-<p>在以上两种情况下，排除掉采坑的时间，总耗时在 10 小时左右，当时中途我也用过一台联系 X1 的本尝试过，配置如下：</p>
-<p><img data-src="https://image-1256056152.cos.ap-nanjing.myqcloud.com/072709.jpg" alt="" /><br />
-后来联想这台电脑放弃了，因为总耗时已经超过 30 小时，</p>
-<h2 id="操作"><a class="anchor" href="#操作">#</a> 操作：</h2>
-<h4 id="1生成作者文件"><a class="anchor" href="#1生成作者文件">#</a> 1. 生成作者文件：</h4>
-<p>因为我们知道，在 SVN 上提交和在 Git 上提交对应提交者的信息展示是不同的，SVN 只会保存一个用户名，而 Git 会保存该用户的邮箱，所以我们迁移的第一步就要生成一个映射文件，将 SVN 上的用户名和其邮箱对应起来，就比如   <code>molier = molier &lt;123456@qq.com&gt;</code> , 转换的办法有很多，如果你团队里面的人不是很多的是时候，可以自己去提交记录中手动生成这样一个 TXT 文件<br />
- <figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="attribute">XXX</span> = XXX &lt;XXX<span class="variable">@XXX</span>.com&gt;XXX = XXX &lt;XXX<span class="variable">@XXX</span>.com&gt;....</span><br></pre></td></tr></table></figure><br />
- 但是如果，多人开发人数很多的时候，手动转很累，我们就需要一个 Atlassian 的工具包  <code>svn-migration-scripts.jar</code> ，通过命令拉取 SVN 仓库的用户并生成对应的开发者信息映射文件，需要 Java 运行时环境支持，大家可能还需要安装 JDK：</p>
-<p><figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">java -jar svn-migration-scripts.jar authors https:<span class="regexp">//</span>svn.example.com &gt; authors.txt</span><br></pre></td></tr></table></figure><br />
- 这样之后会在当前目录生成一个  <code>authors.txt</code>  文件</p>
-<h4 id="2转换仓库"><a class="anchor" href="#2转换仓库">#</a> 2. 转换仓库</h4>
-<ul>
-<li>
-<p>整体转换:</p>
-<p>标准的 SVN 文件布局：<br />
-如果 SVN 仓库使用标准的了 /trunk, /branches 和 /tags 的目录结构，就可在运行命令时加上参数–stdlayout，使用如下命令<br />
- <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">git svn clone --stdlayout --authors-file=authors.txt <span class="tag">&lt;<span class="name">svn-repo</span>&gt;</span>/<span class="tag">&lt;<span class="name">project</span>&gt;</span> <span class="tag">&lt;<span class="name">克隆到文件夹的名字</span>&gt;</span>非标准的的SVN文件布局:</span><br><span class="line"></span><br></pre></td></tr></table></figure><br />
- 如果 SVN 仓库是非标准的目录布局，那就需要分别显示指定参数–trunk, –branches, –tags。<br />
-<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">git svn clone <span class="attribute">--trunk</span>=/trunk <span class="attribute">--branches</span>=/branches <span class="attribute">--branches</span>=/bugfixes <span class="attribute">--tags</span>=/tags <span class="attribute">--authors-file</span>=authors.txt &lt;svn-repo&gt;/&lt;project&gt;&lt;克隆到文件夹的名字&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>部分转换:</p>
-<p>如果仓库非常庞大的话可以选择部分转换，也就只转换指定提交之后的提交，可以试用如下代码<br />
- <figure class="highlight crmsh"><table><tr><td class="code"><pre><span class="line">git svn <span class="keyword">clone</span> <span class="title">-r123456</span>:HEAD --stdlayout --<span class="attr">authors-file=</span>authors.txt <span class="tag">&lt;svn-repo&gt;</span> <span class="tag">&lt;克隆到文件夹的名字&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure><br />
- 不过这里需要注意的是如果使用这种方式来转换那么一定要指定 SVN 的代码根部，而不能指定分支，因为 SVN 的提交编号都是按照时间顺序来往下依次排列，不同的分支也可能提交编号是连续的，所以如果只关心编号的话就不能再指定分支了。</p>
-<p>以上三步中所用到的  <code>authors.txt</code>  即为上一步所生成的， <code>作者 -&gt; 作者 &lt;作者邮箱&gt;</code>  的对应关系文件.</p>
-</li>
-</ul>
-<h2 id="坑点"><a class="anchor" href="#坑点">#</a> 坑点</h2>
-<p>完成以上操作的话如果一切正常那么你就会获得一个新的 Git 仓库，然后就可以添加到远端，进行多人开发了，至于 git 的操作并不在本文的范围内，下面会讲一下遇到的坑以及解决办法。</p>
-<h4 id="坑点一时间久"><a class="anchor" href="#坑点一时间久">#</a> 坑点一：时间久</h4>
-<p>转换仓库是比较耗时的，因为他会一个提交一个提交的转换，转换的速度和你的仓库提交次数和电脑配置成正比，我当时转了十几个小时比较正常，而且转换完之后他还有个自己整理文件的过程也是很耗时的，不过如果你选择部分转换的话也可能很快，假如你一共 15000 个提交，然后你从 14999 来转换可能几分钟就够了。当然最好的办法就是下班前开始执行，第二天来了基本就差不多了。不过别高兴的太早，请看坑点二。</p>
-<h4 id="坑点二垃圾过多导致暂停"><a class="anchor" href="#坑点二垃圾过多导致暂停">#</a> 坑点二：垃圾过多导致暂停</h4>
-<p>因为是要遍历所有的历史提交，所以可能会有很多的无用文件 比如项目一开始代文件结构很乱，然后慢慢的经过重构，之类的优化步入正轨，这过程中必然会删掉大量的无用、冗余的文件，虽然这些文件已经不复存在了，但是提交记录会有，而且通过 git 的原理来看他还是会把这些东西一一保存下来，所以就会造成大量无用的文件越来越多，而 Git 是有一个缓冲区 (具体大小不确定) 当你无用文件把缓冲区沾满了，那么转换过程会停止会爆出如下错误<br />
- <figure class="highlight livecodeserver"><table><tr><td class="code"><pre><span class="line">Auto packing <span class="keyword">the</span> repository <span class="keyword">in</span> background <span class="keyword">for</span> optimum performance.</span><br><span class="line">See <span class="string">&quot;git help gc&quot;</span> <span class="keyword">for</span> manual housekeeping.error: The <span class="keyword">last</span> gc run reported <span class="keyword">the</span> following. </span><br><span class="line">Please correct <span class="keyword">the</span> root cause <span class="keyword">and</span> remove .git/gc.<span class="built_in">log</span>.</span><br><span class="line">Automatic cleanup will <span class="keyword">not</span> be performed <span class="keyword">until</span> <span class="keyword">the</span> <span class="built_in">file</span> is removed.</span><br><span class="line">warning: There are too many unreachable loose objects; </span><br><span class="line">run <span class="string">&#x27;git prune&#x27;</span> <span class="built_in">to</span> remove them.gc <span class="comment">--auto: command returned error: 255</span></span><br><span class="line"></span><br></pre></td></tr></table></figure><br />
- 大概意思是垃圾太多，转移暂停让你先清理垃圾，其实只要按照他说的 进到我们转了一半的仓库 进行  <code>git gc</code>  就可以，但是这样一来我们就需要一直守在电脑前，随时准备输入  <code>git gc</code>  而且假如你下班前开始跑结果第二天上班一看跑到一半就暂停了，白白浪费了一晚上的时间，真的会崩溃的。所以通过 google 找到了解决办法</p>
-<p><img data-src="https://image-1256056152.cos.ap-nanjing.myqcloud.com/073257.jpg" alt="" /></p>
-<p>也就是开始转换的时候先进入仓库输入  <code>git config gc.auto 0</code>  关闭 gc 功能，然后就可以一直跑到黑了，你大可以放心的运行命令然后下班回家。不过还有一点需要注意的是垃圾文件是否过多和你仓库大小没有太大关系，及时你仓库提交不多，但是每次提交都有很大改动的话也还是会出现这个问题，所以这里建议不管你仓库多大，都要先进行一下这个操作，以防万一。</p>
-<h4 id="坑点三大文件处理"><a class="anchor" href="#坑点三大文件处理">#</a> 坑点三：大文件处理</h4>
-<p>git 和 SVN 不同，在 git 上提交的单个文件是有大小限制的，超过这个大小就不允许提交到仓库中，通常我们会用 git LFS 来解决，具体的安装，添加步骤网上大把的教程，就不在这里说，不过他只会告诉你大文件的大小和限制的大小，具体的大文件是哪个他不会告诉你，这里可以用以下命令查看<br />
- <figure class="highlight excel"><table><tr><td class="code"><pre><span class="line">git ls-tree -r -<span class="built_in">t</span> -l --full-name HEAD | sort -<span class="built_in">n</span> -k <span class="number">4</span> | tail -<span class="built_in">n</span> <span class="number">10</span> //查找git 仓库中排名前十的大文件(升序)</span><br><span class="line"></span><br></pre></td></tr></table></figure><br />
- 他会输出前十个最大的文件，然后你再按需处理。但是当你把大文件添加到 LFS 中后再次推送还是会爆出同样的错误，而且还是同样的文件，也就是说你根本没添加成功，其实并不是这样的，在添加 LFS 中只要你操作没错，就是添加成功了，他还会报错的原因是因为虽然你工程中的大文件已经添加，但是你的历史提交记录中是包含大文件的代码快照的，所以你需要将历史上所有包含大文件的提交记录重写，删掉大文件相关的东西，git 中重写 commit 的命令是：<br />
-<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">filter</span>-branch --force --<span class="built_in">index</span>-<span class="built_in">filter</span> <span class="string">&#x27;git rm -rf --cached --ignore-unmatch 你大文件所在的目录&#x27;</span> --prune-<span class="built_in">empty</span> --<span class="keyword">tag</span>-name-<span class="built_in">filter</span> <span class="keyword">cat</span> -- --<span class="keyword">all</span></span><br><span class="line"></span><br></pre></td></tr></table></figure><br />
- 这个过程也比较漫长，他会便利你所有的提交记录并一一修改，不过就是漫长的等待就可以了，等到完成之后我们需要将代码 push 到远端，因为我们修改了所有的 commit 我们需要强制 push 使用如下命令<br />
- <figure class="highlight crmsh"><table><tr><td class="code"><pre><span class="line">git push origin <span class="keyword">master</span> <span class="title">--force</span></span><br></pre></td></tr></table></figure></p>
-<h4 id="坑点四-打包时间过长"><a class="anchor" href="#坑点四-打包时间过长">#</a> 坑点四：打包时间过长</h4>
-<p>再上一步我们执行完推送命令的时候，会先进行文件打包处理，这个过程也是非常漫长，而且非常消耗电脑资源的，按照我的电脑配置来说，这个过程一旦开始，电脑基本就是内存、cpu 全满的状态，鼠标也没法动，所以这个过程要有心理准备。漫长的等待之后就推送成功了。</p>
-]]></content>
-      <categories>
-        <category>通用开发</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
-        <tag>代码版本控制</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>GitFlow流程</title>
     <url>/2018-08-22-GitFlow/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="关于gitflow"><a class="anchor" href="#关于gitflow">#</a> 关于 gitflow</h1>
@@ -2173,6 +2097,82 @@ NEXT 主题本身是已经集成了 livere 评论的，只不过被注释掉了�
       </tags>
   </entry>
   <entry>
+    <title>SVN切换到Git</title>
+    <url>/2018-08-23-ChangeSvnToGit/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="背景"><a class="anchor" href="#背景">#</a> 背景：</h2>
+<p>SVN 和 Git 同样都是在特定时代下比较优秀的版本控制系统，但是随着时代的发展，SVN 越来越不能满足多人开发的需求，尤其是在多种多样，天马星空的业务场景面前，SVN 会显得力不从心。</p>
+<p><img data-src="https://wx4.sinaimg.cn/large/006tNbRwgy1fujxnf8ilhj30zk0m8gm9.jpg" alt="" /></p>
+<p><span id="more"></span></p>
+<p>最近在将公司的项目从 SVN 迁移到 git，踩了不少坑，所以来记录下:</p>
+<p>因为迁移的快慢和整个仓库的大小，电脑配置有关，所以我先说下这边的情况</p>
+<ul>
+<li>
+<p>仓库：<br />
+仓库大概是 3.5G 左右，包含了 14500 + 的提交次数，其中包含了超过 500M 的单个文件</p>
+</li>
+<li>
+<p>电脑：<br />
+电脑配置就看图吧 ：</p>
+<p><img data-src="https://image-1256056152.cos.ap-nanjing.myqcloud.com/wz0geut3a8.jpg" alt="" /></p>
+</li>
+</ul>
+<p>在以上两种情况下，排除掉采坑的时间，总耗时在 10 小时左右，当时中途我也用过一台联系 X1 的本尝试过，配置如下：</p>
+<p><img data-src="https://image-1256056152.cos.ap-nanjing.myqcloud.com/072709.jpg" alt="" /><br />
+后来联想这台电脑放弃了，因为总耗时已经超过 30 小时，</p>
+<h2 id="操作"><a class="anchor" href="#操作">#</a> 操作：</h2>
+<h4 id="1生成作者文件"><a class="anchor" href="#1生成作者文件">#</a> 1. 生成作者文件：</h4>
+<p>因为我们知道，在 SVN 上提交和在 Git 上提交对应提交者的信息展示是不同的，SVN 只会保存一个用户名，而 Git 会保存该用户的邮箱，所以我们迁移的第一步就要生成一个映射文件，将 SVN 上的用户名和其邮箱对应起来，就比如   <code>molier = molier &lt;123456@qq.com&gt;</code> , 转换的办法有很多，如果你团队里面的人不是很多的是时候，可以自己去提交记录中手动生成这样一个 TXT 文件<br />
+ <figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="attribute">XXX</span> = XXX &lt;XXX<span class="variable">@XXX</span>.com&gt;XXX = XXX &lt;XXX<span class="variable">@XXX</span>.com&gt;....</span><br></pre></td></tr></table></figure><br />
+ 但是如果，多人开发人数很多的时候，手动转很累，我们就需要一个 Atlassian 的工具包  <code>svn-migration-scripts.jar</code> ，通过命令拉取 SVN 仓库的用户并生成对应的开发者信息映射文件，需要 Java 运行时环境支持，大家可能还需要安装 JDK：</p>
+<p><figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">java -jar svn-migration-scripts.jar authors https:<span class="regexp">//</span>svn.example.com &gt; authors.txt</span><br></pre></td></tr></table></figure><br />
+ 这样之后会在当前目录生成一个  <code>authors.txt</code>  文件</p>
+<h4 id="2转换仓库"><a class="anchor" href="#2转换仓库">#</a> 2. 转换仓库</h4>
+<ul>
+<li>
+<p>整体转换:</p>
+<p>标准的 SVN 文件布局：<br />
+如果 SVN 仓库使用标准的了 /trunk, /branches 和 /tags 的目录结构，就可在运行命令时加上参数–stdlayout，使用如下命令<br />
+ <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">git svn clone --stdlayout --authors-file=authors.txt <span class="tag">&lt;<span class="name">svn-repo</span>&gt;</span>/<span class="tag">&lt;<span class="name">project</span>&gt;</span> <span class="tag">&lt;<span class="name">克隆到文件夹的名字</span>&gt;</span>非标准的的SVN文件布局:</span><br><span class="line"></span><br></pre></td></tr></table></figure><br />
+ 如果 SVN 仓库是非标准的目录布局，那就需要分别显示指定参数–trunk, –branches, –tags。<br />
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">git svn clone <span class="attribute">--trunk</span>=/trunk <span class="attribute">--branches</span>=/branches <span class="attribute">--branches</span>=/bugfixes <span class="attribute">--tags</span>=/tags <span class="attribute">--authors-file</span>=authors.txt &lt;svn-repo&gt;/&lt;project&gt;&lt;克隆到文件夹的名字&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>部分转换:</p>
+<p>如果仓库非常庞大的话可以选择部分转换，也就只转换指定提交之后的提交，可以试用如下代码<br />
+ <figure class="highlight crmsh"><table><tr><td class="code"><pre><span class="line">git svn <span class="keyword">clone</span> <span class="title">-r123456</span>:HEAD --stdlayout --<span class="attr">authors-file=</span>authors.txt <span class="tag">&lt;svn-repo&gt;</span> <span class="tag">&lt;克隆到文件夹的名字&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure><br />
+ 不过这里需要注意的是如果使用这种方式来转换那么一定要指定 SVN 的代码根部，而不能指定分支，因为 SVN 的提交编号都是按照时间顺序来往下依次排列，不同的分支也可能提交编号是连续的，所以如果只关心编号的话就不能再指定分支了。</p>
+<p>以上三步中所用到的  <code>authors.txt</code>  即为上一步所生成的， <code>作者 -&gt; 作者 &lt;作者邮箱&gt;</code>  的对应关系文件.</p>
+</li>
+</ul>
+<h2 id="坑点"><a class="anchor" href="#坑点">#</a> 坑点</h2>
+<p>完成以上操作的话如果一切正常那么你就会获得一个新的 Git 仓库，然后就可以添加到远端，进行多人开发了，至于 git 的操作并不在本文的范围内，下面会讲一下遇到的坑以及解决办法。</p>
+<h4 id="坑点一时间久"><a class="anchor" href="#坑点一时间久">#</a> 坑点一：时间久</h4>
+<p>转换仓库是比较耗时的，因为他会一个提交一个提交的转换，转换的速度和你的仓库提交次数和电脑配置成正比，我当时转了十几个小时比较正常，而且转换完之后他还有个自己整理文件的过程也是很耗时的，不过如果你选择部分转换的话也可能很快，假如你一共 15000 个提交，然后你从 14999 来转换可能几分钟就够了。当然最好的办法就是下班前开始执行，第二天来了基本就差不多了。不过别高兴的太早，请看坑点二。</p>
+<h4 id="坑点二垃圾过多导致暂停"><a class="anchor" href="#坑点二垃圾过多导致暂停">#</a> 坑点二：垃圾过多导致暂停</h4>
+<p>因为是要遍历所有的历史提交，所以可能会有很多的无用文件 比如项目一开始代文件结构很乱，然后慢慢的经过重构，之类的优化步入正轨，这过程中必然会删掉大量的无用、冗余的文件，虽然这些文件已经不复存在了，但是提交记录会有，而且通过 git 的原理来看他还是会把这些东西一一保存下来，所以就会造成大量无用的文件越来越多，而 Git 是有一个缓冲区 (具体大小不确定) 当你无用文件把缓冲区沾满了，那么转换过程会停止会爆出如下错误<br />
+ <figure class="highlight livecodeserver"><table><tr><td class="code"><pre><span class="line">Auto packing <span class="keyword">the</span> repository <span class="keyword">in</span> background <span class="keyword">for</span> optimum performance.</span><br><span class="line">See <span class="string">&quot;git help gc&quot;</span> <span class="keyword">for</span> manual housekeeping.error: The <span class="keyword">last</span> gc run reported <span class="keyword">the</span> following. </span><br><span class="line">Please correct <span class="keyword">the</span> root cause <span class="keyword">and</span> remove .git/gc.<span class="built_in">log</span>.</span><br><span class="line">Automatic cleanup will <span class="keyword">not</span> be performed <span class="keyword">until</span> <span class="keyword">the</span> <span class="built_in">file</span> is removed.</span><br><span class="line">warning: There are too many unreachable loose objects; </span><br><span class="line">run <span class="string">&#x27;git prune&#x27;</span> <span class="built_in">to</span> remove them.gc <span class="comment">--auto: command returned error: 255</span></span><br><span class="line"></span><br></pre></td></tr></table></figure><br />
+ 大概意思是垃圾太多，转移暂停让你先清理垃圾，其实只要按照他说的 进到我们转了一半的仓库 进行  <code>git gc</code>  就可以，但是这样一来我们就需要一直守在电脑前，随时准备输入  <code>git gc</code>  而且假如你下班前开始跑结果第二天上班一看跑到一半就暂停了，白白浪费了一晚上的时间，真的会崩溃的。所以通过 google 找到了解决办法</p>
+<p><img data-src="https://image-1256056152.cos.ap-nanjing.myqcloud.com/073257.jpg" alt="" /></p>
+<p>也就是开始转换的时候先进入仓库输入  <code>git config gc.auto 0</code>  关闭 gc 功能，然后就可以一直跑到黑了，你大可以放心的运行命令然后下班回家。不过还有一点需要注意的是垃圾文件是否过多和你仓库大小没有太大关系，及时你仓库提交不多，但是每次提交都有很大改动的话也还是会出现这个问题，所以这里建议不管你仓库多大，都要先进行一下这个操作，以防万一。</p>
+<h4 id="坑点三大文件处理"><a class="anchor" href="#坑点三大文件处理">#</a> 坑点三：大文件处理</h4>
+<p>git 和 SVN 不同，在 git 上提交的单个文件是有大小限制的，超过这个大小就不允许提交到仓库中，通常我们会用 git LFS 来解决，具体的安装，添加步骤网上大把的教程，就不在这里说，不过他只会告诉你大文件的大小和限制的大小，具体的大文件是哪个他不会告诉你，这里可以用以下命令查看<br />
+ <figure class="highlight excel"><table><tr><td class="code"><pre><span class="line">git ls-tree -r -<span class="built_in">t</span> -l --full-name HEAD | sort -<span class="built_in">n</span> -k <span class="number">4</span> | tail -<span class="built_in">n</span> <span class="number">10</span> //查找git 仓库中排名前十的大文件(升序)</span><br><span class="line"></span><br></pre></td></tr></table></figure><br />
+ 他会输出前十个最大的文件，然后你再按需处理。但是当你把大文件添加到 LFS 中后再次推送还是会爆出同样的错误，而且还是同样的文件，也就是说你根本没添加成功，其实并不是这样的，在添加 LFS 中只要你操作没错，就是添加成功了，他还会报错的原因是因为虽然你工程中的大文件已经添加，但是你的历史提交记录中是包含大文件的代码快照的，所以你需要将历史上所有包含大文件的提交记录重写，删掉大文件相关的东西，git 中重写 commit 的命令是：<br />
+<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">filter</span>-branch --force --<span class="built_in">index</span>-<span class="built_in">filter</span> <span class="string">&#x27;git rm -rf --cached --ignore-unmatch 你大文件所在的目录&#x27;</span> --prune-<span class="built_in">empty</span> --<span class="keyword">tag</span>-name-<span class="built_in">filter</span> <span class="keyword">cat</span> -- --<span class="keyword">all</span></span><br><span class="line"></span><br></pre></td></tr></table></figure><br />
+ 这个过程也比较漫长，他会便利你所有的提交记录并一一修改，不过就是漫长的等待就可以了，等到完成之后我们需要将代码 push 到远端，因为我们修改了所有的 commit 我们需要强制 push 使用如下命令<br />
+ <figure class="highlight crmsh"><table><tr><td class="code"><pre><span class="line">git push origin <span class="keyword">master</span> <span class="title">--force</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="坑点四-打包时间过长"><a class="anchor" href="#坑点四-打包时间过长">#</a> 坑点四：打包时间过长</h4>
+<p>再上一步我们执行完推送命令的时候，会先进行文件打包处理，这个过程也是非常漫长，而且非常消耗电脑资源的，按照我的电脑配置来说，这个过程一旦开始，电脑基本就是内存、cpu 全满的状态，鼠标也没法动，所以这个过程要有心理准备。漫长的等待之后就推送成功了。</p>
+]]></content>
+      <categories>
+        <category>通用开发</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+        <tag>代码版本控制</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>招聘iOS开发者啦！</title>
     <url>/2019-02-21-Need-People/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="岗位职责"><a class="anchor" href="#岗位职责">#</a> 岗位职责 :</h1>
@@ -2211,10 +2211,10 @@ NEXT 主题本身是已经集成了 livere 评论的，只不过被注释掉了�
 <h3 id="有意者发简历到-zhangninghao11gmailcom"><a class="anchor" href="#有意者发简历到-zhangninghao11gmailcom">#</a> 有意者发简历到 &quot;<span class="exturl" data-url="bWFpbHRvOnpoYW5nbmluZ2hhbzExQGdtYWlsLmNvbQ==">zhangninghao11@gmail.com</span>&quot;</h3>
 <h3 id="认真脸"><a class="anchor" href="#认真脸">#</a> 认真脸</h3>
 <p>
-        <div id="aplayer-RgdAIkkT" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
+        <div id="aplayer-GbuZREfU" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
 			  <script>
 				  var options = {"narrow":false,"autoplay":true,"showlrc":3,"mutex":true,"music":[{"title":"大鱼","author":"周深","url":"https://molier-1256056152.cos.ap-guangzhou.myqcloud.com/bigfish.mp3","pic":"https://y.gtimg.cn/music/photo_new/T002R300x300M000004Y7V4s3ug4cC.jpg?max_age=2592000","lrc":"https://demo.meting.api.meto.moe/action/metingapi?server=tencent&type=lrc&id=004OQ5Mt0EmEzv"}]};
-				  options.element = document.getElementById("aplayer-RgdAIkkT");
+				  options.element = document.getElementById("aplayer-GbuZREfU");
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);
@@ -3374,10 +3374,10 @@ Mach 异常，分为两种情况，第一种是本身就是硬件层面或者系
 <h1 id="0x6-最后"><a class="anchor" href="#0x6-最后">#</a> 0x6: 最后</h1>
 <p>大概这就是所有 Crash 防护的流程，通过两篇文章讲解，希望大家对 iOS 系统的 Crash 流程能有些许的了解，并没有贴太多的源码，其实还是解耦度不够，思路有了代码就很简单了。</p>
 <p>
-        <div id="aplayer-JEUdbeeS" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
+        <div id="aplayer-dfhcZmiT" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
 			  <script>
 				  var options = {"narrow":false,"autoplay":true,"showlrc":0,"mutex":true,"music":[{"title":"错位时空","author":"艾辰","url":"https://molier-1256056152.cos.ap-guangzhou.myqcloud.com/%E8%89%BE%E8%BE%B0%20-%20%E9%94%99%E4%BD%8D%E6%97%B6%E7%A9%BA.mp3","pic":"https://bkimg.cdn.bcebos.com/pic/a8ec8a13632762d0f7037ac288a71ffa513d26976830?x-bce-process=image/watermark,image_d2F0ZXIvYmFpa2UxMTY=,g_7,xp_5,yp_5/format,f_auto","lrc":"https://歌词.lrc"}]};
-				  options.element = document.getElementById("aplayer-JEUdbeeS");
+				  options.element = document.getElementById("aplayer-dfhcZmiT");
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);

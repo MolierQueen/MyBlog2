@@ -5,12 +5,12 @@
     <link href="https://oliverqueen.cn" />
     <updated>2022-08-24T07:04:39.000Z</updated>
     <category term="欢迎页" />
+    <category term="网络" />
+    <category term="底层" />
     <category term="DNS解析" />
     <category term="LocalDNS" />
     <category term="OpenGL" />
-    <category term="底层" />
     <category term="UI" />
-    <category term="网络" />
     <category term="动画" />
     <category term="性能优化" />
     <category term="xcode" />
@@ -22,9 +22,9 @@
     <category term="翻译" />
     <category term="优化" />
     <category term="国外文献" />
+    <category term="httpdns" />
     <category term="Cocoapods" />
     <category term="架构" />
-    <category term="httpdns" />
     <category term="AlertView" />
     <category term="Hook" />
     <category term="杂谈" />
@@ -46,8 +46,8 @@
     <category term="K歌" />
     <category term="AVFoundation" />
     <category term="git" />
-    <category term="代码版本控制" />
     <category term="效率工作" />
+    <category term="代码版本控制" />
     <category term="iOS" />
     <category term="Crash防护" />
     <category term="Apple登录" />
@@ -937,10 +937,10 @@ Mach 异常，分为两种情况，第一种是本身就是硬件层面或者系
 &lt;h1 id=&#34;0x6-最后&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#0x6-最后&#34;&gt;#&lt;/a&gt; 0x6: 最后&lt;/h1&gt;
 &lt;p&gt;大概这就是所有 Crash 防护的流程，通过两篇文章讲解，希望大家对 iOS 系统的 Crash 流程能有些许的了解，并没有贴太多的源码，其实还是解耦度不够，思路有了代码就很简单了。&lt;/p&gt;
 &lt;p&gt;
-        &lt;div id=&#34;aplayer-JEUdbeeS&#34; class=&#34;aplayer aplayer-tag-marker&#34; style=&#34;margin-bottom: 20px;&#34;&gt;&lt;/div&gt;
+        &lt;div id=&#34;aplayer-dfhcZmiT&#34; class=&#34;aplayer aplayer-tag-marker&#34; style=&#34;margin-bottom: 20px;&#34;&gt;&lt;/div&gt;
 			  &lt;script&gt;
 				  var options = {&#34;narrow&#34;:false,&#34;autoplay&#34;:true,&#34;showlrc&#34;:0,&#34;mutex&#34;:true,&#34;music&#34;:[{&#34;title&#34;:&#34;错位时空&#34;,&#34;author&#34;:&#34;艾辰&#34;,&#34;url&#34;:&#34;https://molier-1256056152.cos.ap-guangzhou.myqcloud.com/%E8%89%BE%E8%BE%B0%20-%20%E9%94%99%E4%BD%8D%E6%97%B6%E7%A9%BA.mp3&#34;,&#34;pic&#34;:&#34;https://bkimg.cdn.bcebos.com/pic/a8ec8a13632762d0f7037ac288a71ffa513d26976830?x-bce-process=image/watermark,image_d2F0ZXIvYmFpa2UxMTY=,g_7,xp_5,yp_5/format,f_auto&#34;,&#34;lrc&#34;:&#34;https://歌词.lrc&#34;}]};
-				  options.element = document.getElementById(&#34;aplayer-JEUdbeeS&#34;);
+				  options.element = document.getElementById(&#34;aplayer-dfhcZmiT&#34;);
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);
@@ -1839,10 +1839,10 @@ sendAction：参数（RDX）将使用选择器，而 to：参数将是 IBAction 
 &lt;h3 id=&#34;有意者发简历到-zhangninghao11gmailcom&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#有意者发简历到-zhangninghao11gmailcom&#34;&gt;#&lt;/a&gt; 有意者发简历到 &amp;quot;&lt;span class=&#34;exturl&#34; data-url=&#34;bWFpbHRvOnpoYW5nbmluZ2hhbzExQGdtYWlsLmNvbQ==&#34;&gt;zhangninghao11@gmail.com&lt;/span&gt;&amp;quot;&lt;/h3&gt;
 &lt;h3 id=&#34;认真脸&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#认真脸&#34;&gt;#&lt;/a&gt; 认真脸&lt;/h3&gt;
 &lt;p&gt;
-        &lt;div id=&#34;aplayer-RgdAIkkT&#34; class=&#34;aplayer aplayer-tag-marker&#34; style=&#34;margin-bottom: 20px;&#34;&gt;&lt;/div&gt;
+        &lt;div id=&#34;aplayer-GbuZREfU&#34; class=&#34;aplayer aplayer-tag-marker&#34; style=&#34;margin-bottom: 20px;&#34;&gt;&lt;/div&gt;
 			  &lt;script&gt;
 				  var options = {&#34;narrow&#34;:false,&#34;autoplay&#34;:true,&#34;showlrc&#34;:3,&#34;mutex&#34;:true,&#34;music&#34;:[{&#34;title&#34;:&#34;大鱼&#34;,&#34;author&#34;:&#34;周深&#34;,&#34;url&#34;:&#34;https://molier-1256056152.cos.ap-guangzhou.myqcloud.com/bigfish.mp3&#34;,&#34;pic&#34;:&#34;https://y.gtimg.cn/music/photo_new/T002R300x300M000004Y7V4s3ug4cC.jpg?max_age=2592000&#34;,&#34;lrc&#34;:&#34;https://demo.meting.api.meto.moe/action/metingapi?server=tencent&amp;type=lrc&amp;id=004OQ5Mt0EmEzv&#34;}]};
-				  options.element = document.getElementById(&#34;aplayer-RgdAIkkT&#34;);
+				  options.element = document.getElementById(&#34;aplayer-GbuZREfU&#34;);
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);
@@ -2314,10 +2314,10 @@ sendAction：参数（RDX）将使用选择器，而 to：参数将是 IBAction 
 &lt;h2 id=&#34;总结&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#总结&#34;&gt;#&lt;/a&gt; 总结&lt;/h2&gt;
 &lt;p&gt;因为时间紧迫，暂时做了这么多，也遇到了这些问题，所以写出了总结下，本文还会继续更新，会慢慢的整个网络层分享出来。就是可能更新会慢，毕竟工作量有点饱和。多谢关注&lt;/p&gt;
 &lt;p&gt;
-        &lt;div id=&#34;aplayer-zpLdONte&#34; class=&#34;aplayer aplayer-tag-marker&#34; style=&#34;margin-bottom: 20px;&#34;&gt;&lt;/div&gt;
+        &lt;div id=&#34;aplayer-yusNEwKV&#34; class=&#34;aplayer aplayer-tag-marker&#34; style=&#34;margin-bottom: 20px;&#34;&gt;&lt;/div&gt;
 			  &lt;script&gt;
 				  var options = {&#34;narrow&#34;:false,&#34;autoplay&#34;:true,&#34;showlrc&#34;:0,&#34;mutex&#34;:true,&#34;music&#34;:[{&#34;title&#34;:&#34;Thank You Very Much&#34;,&#34;author&#34;:&#34;Margaret&#34;,&#34;url&#34;:&#34;https://molier-1256056152.cos.ap-guangzhou.myqcloud.com/Thankyou.mp3&#34;,&#34;pic&#34;:&#34;https://y.gtimg.cn/music/photo_new/T002R300x300M000000VbGX83hRicw.jpg?max_age=2592000&#34;,&#34;lrc&#34;:&#34;https://demo.meting.api.meto.moe/action/metingapi?server=tencent&amp;type=lrc&amp;id=001Ii3g54dIYpO&#34;}]};
-				  options.element = document.getElementById(&#34;aplayer-zpLdONte&#34;);
+				  options.element = document.getElementById(&#34;aplayer-yusNEwKV&#34;);
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);
@@ -2378,10 +2378,10 @@ sendAction：参数（RDX）将使用选择器，而 to：参数将是 IBAction 
 &lt;h2 id=&#34;思考&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#思考&#34;&gt;#&lt;/a&gt; 思考&lt;/h2&gt;
 &lt;p&gt;这个方法相比较之前的 JSpatch 是非常轻量级的，而且也只是实现了简单的容错功能，并不能做一些复杂的操作，比如生成一个对象之类的，不过对于一般的控制已经可以满足了，毕竟在苹果爸爸这么严厉的管制下能有这样的方法也还不错啊。&lt;/p&gt;
 &lt;p&gt;
-        &lt;div id=&#34;aplayer-HFiWUCFG&#34; class=&#34;aplayer aplayer-tag-marker&#34; style=&#34;margin-bottom: 20px;&#34;&gt;&lt;/div&gt;
+        &lt;div id=&#34;aplayer-DAHhwXNm&#34; class=&#34;aplayer aplayer-tag-marker&#34; style=&#34;margin-bottom: 20px;&#34;&gt;&lt;/div&gt;
 			  &lt;script&gt;
 				  var options = {&#34;narrow&#34;:false,&#34;autoplay&#34;:true,&#34;showlrc&#34;:0,&#34;mutex&#34;:true,&#34;music&#34;:[{&#34;title&#34;:&#34;不知归期的故人&#34;,&#34;author&#34;:&#34;房东的猫&#34;,&#34;url&#34;:&#34;https://molier-1256056152.cos.ap-guangzhou.myqcloud.com/%E4%B8%8D%E7%9F%A5%E5%BD%92%E6%9C%9F%E7%9A%84%E6%95%85%E4%BA%BA.mp3&#34;,&#34;pic&#34;:&#34;https://y.gtimg.cn/music/photo_new/T002R300x300M000004NFJ230yX0Nz.jpg?max_age=2592000&#34;,&#34;lrc&#34;:&#34;https://demo.meting.api.meto.moe/action/metingapi?server=tencent&amp;type=lrc&amp;id=000zreoj2VtcID&#34;}]};
-				  options.element = document.getElementById(&#34;aplayer-HFiWUCFG&#34;);
+				  options.element = document.getElementById(&#34;aplayer-DAHhwXNm&#34;);
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);
@@ -2474,10 +2474,10 @@ sendAction：参数（RDX）将使用选择器，而 to：参数将是 IBAction 
 &lt;p&gt;&lt;strong&gt;在这里给大家拜个早年：祝大家新年快乐，心想事成。新的一年我会与大家分享更多的东西&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;才疏学浅，文笔拙劣，于 2018.2.13 仓促执笔....&lt;/p&gt;
 &lt;p&gt;
-        &lt;div id=&#34;aplayer-mcvuIeeo&#34; class=&#34;aplayer aplayer-tag-marker&#34; style=&#34;margin-bottom: 20px;&#34;&gt;&lt;/div&gt;
+        &lt;div id=&#34;aplayer-kCmtmDqy&#34; class=&#34;aplayer aplayer-tag-marker&#34; style=&#34;margin-bottom: 20px;&#34;&gt;&lt;/div&gt;
 			  &lt;script&gt;
 				  var options = {&#34;narrow&#34;:false,&#34;autoplay&#34;:true,&#34;showlrc&#34;:0,&#34;mutex&#34;:true,&#34;music&#34;:[{&#34;title&#34;:&#34;에필로그 (Epilogue)&#34;,&#34;author&#34;:&#34;이동준&#34;,&#34;url&#34;:&#34;https://molier-1256056152.cos.ap-guangzhou.myqcloud.com/%E1%84%8B%E1%85%A6%E1%84%91%E1%85%B5%E1%86%AF%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3.mp3&#34;,&#34;pic&#34;:&#34;https://y.gtimg.cn/music/photo_new/T002R300x300M000000RmZHf3qhLUL.jpg?max_age=2592000&#34;,&#34;lrc&#34;:&#34;https://歌词.lrc&#34;}]};
-				  options.element = document.getElementById(&#34;aplayer-mcvuIeeo&#34;);
+				  options.element = document.getElementById(&#34;aplayer-kCmtmDqy&#34;);
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);
@@ -2526,10 +2526,10 @@ sendAction：参数（RDX）将使用选择器，而 to：参数将是 IBAction 
 &lt;h2 id=&#34;最后&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#最后&#34;&gt;#&lt;/a&gt; 最后&lt;/h2&gt;
 &lt;p&gt;大概就这么多，顺便祝大家新年快乐，阖家幸福！&lt;/p&gt;
 &lt;p&gt;
-        &lt;div id=&#34;aplayer-VKWSwAmD&#34; class=&#34;aplayer aplayer-tag-marker&#34; style=&#34;margin-bottom: 20px;&#34;&gt;&lt;/div&gt;
+        &lt;div id=&#34;aplayer-qwVkXiye&#34; class=&#34;aplayer aplayer-tag-marker&#34; style=&#34;margin-bottom: 20px;&#34;&gt;&lt;/div&gt;
 			  &lt;script&gt;
 				  var options = {&#34;narrow&#34;:false,&#34;autoplay&#34;:true,&#34;showlrc&#34;:3,&#34;mutex&#34;:true,&#34;music&#34;:[{&#34;title&#34;:&#34;Love Story&#34;,&#34;author&#34;:&#34;린 (LYn)&#34;,&#34;url&#34;:&#34;https://molier-1256056152.cos.ap-guangzhou.myqcloud.com/%E1%84%85%E1%85%B5%E1%86%AB-Love%20Story.mp3&#34;,&#34;pic&#34;:&#34;https://y.gtimg.cn/music/photo_new/T002R300x300M0000048KLcQ4LDbZz.jpg?max_age=2592000&#34;,&#34;lrc&#34;:&#34;https://demo.meting.api.meto.moe/action/metingapi?server=tencent&amp;type=lrc&amp;id=0028RAj0187nEg&#34;}]};
-				  options.element = document.getElementById(&#34;aplayer-VKWSwAmD&#34;);
+				  options.element = document.getElementById(&#34;aplayer-qwVkXiye&#34;);
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);
@@ -2908,10 +2908,10 @@ NEXT 主题本身是已经集成了 livere 评论的，只不过被注释掉了�
 &lt;h2 id=&#34;最后&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#最后&#34;&gt;#&lt;/a&gt; 最后&lt;/h2&gt;
 &lt;p&gt;整篇文章只有开始一小部分在讲解如何搭建博客，后续的基本都是交给大家如何优化，调整一些细节问题如 UI、用户体验之类的，当然我们能做的远远不止这些，如果有什么问题欢迎与我探讨。下面的留言我都会看的。此外当本人对 HEXO 有新的看法或者玩法的话该文章会不断的更新，希望大家关注我的&lt;a href=&#34;https://oliverqueen.cn/&#34;&gt;小站&lt;/a&gt;，感谢。&lt;/p&gt;
 &lt;p&gt;
-        &lt;div id=&#34;aplayer-jbVbEvao&#34; class=&#34;aplayer aplayer-tag-marker&#34; style=&#34;margin-bottom: 20px;&#34;&gt;&lt;/div&gt;
+        &lt;div id=&#34;aplayer-oUeyOYrF&#34; class=&#34;aplayer aplayer-tag-marker&#34; style=&#34;margin-bottom: 20px;&#34;&gt;&lt;/div&gt;
 			  &lt;script&gt;
 				  var options = {&#34;narrow&#34;:false,&#34;autoplay&#34;:true,&#34;showlrc&#34;:3,&#34;mutex&#34;:true,&#34;music&#34;:[{&#34;title&#34;:&#34;凉城&#34;,&#34;author&#34;:&#34;任然&#34;,&#34;url&#34;:&#34;https://molier-1256056152.cos.ap-guangzhou.myqcloud.com/liangcheng.mp3&#34;,&#34;pic&#34;:&#34;https://y.gtimg.cn/music/photo_new/T002R300x300M0000008nl2Y1HlxUm.jpg?max_age=2592000&#34;,&#34;lrc&#34;:&#34;https://demo.meting.api.meto.moe/action/metingapi?server=tencent&amp;type=lrc&amp;id=002SKEeh1VzObP&#34;},{&#34;title&#34;:&#34;Love Story&#34;,&#34;author&#34;:&#34;린 (LYn)&#34;,&#34;url&#34;:&#34;https://molier-1256056152.cos.ap-guangzhou.myqcloud.com/%E1%84%85%E1%85%B5%E1%86%AB-Love%20Story.mp3&#34;,&#34;pic&#34;:&#34;https://y.gtimg.cn/music/photo_new/T002R300x300M0000048KLcQ4LDbZz.jpg?max_age=2592000&#34;,&#34;lrc&#34;:&#34;https://demo.meting.api.meto.moe/action/metingapi?server=tencent&amp;type=lrc&amp;id=0028RAj0187nEg&#34;},{&#34;title&#34;:&#34;大鱼&#34;,&#34;author&#34;:&#34;周深&#34;,&#34;url&#34;:&#34;https://molier-1256056152.cos.ap-guangzhou.myqcloud.com/bigfish.mp3&#34;,&#34;pic&#34;:&#34;https://y.gtimg.cn/music/photo_new/T002R300x300M000004Y7V4s3ug4cC.jpg?max_age=2592000&#34;,&#34;lrc&#34;:&#34;https://demo.meting.api.meto.moe/action/metingapi?server=tencent&amp;type=lrc&amp;id=004OQ5Mt0EmEzv&#34;}]};
-				  options.element = document.getElementById(&#34;aplayer-jbVbEvao&#34;);
+				  options.element = document.getElementById(&#34;aplayer-oUeyOYrF&#34;);
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);
@@ -3031,8 +3031,8 @@ client 在后面会有讲解。&lt;/p&gt;
 &lt;h5 id=&#34;7总结&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#7总结&#34;&gt;#&lt;/a&gt; 7：总结&lt;/h5&gt;
 &lt;p&gt;完成了以上的步骤之后你回发现在 DNS 坏掉的情况下手机里面除了微信 QQ (他们也做了 DNS 解析) 之外其他应用都不能上网了但是你的 App 依然可以正常浏览网络数据。这就是我最近在做的时候遇到的一些问题，有什么问题及时与我交流吧&lt;/p&gt;
 </content>
-        <category term="底层" />
         <category term="网络" />
+        <category term="底层" />
         <category term="httpdns" />
         <updated>2018-01-24T05:54:36.000Z</updated>
     </entry>
@@ -3518,8 +3518,8 @@ Go&lt;/p&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;figure class=&#34;highlight reasonml&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;35&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;36&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;37&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;38&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;39&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;40&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;41&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;42&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;43&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;44&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;45&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;46&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;47&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;48&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;49&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;50&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;51&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;52&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;53&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;54&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;#pragma mark -&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;#pragma mark 获取处理后的图片&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;- (UIImage *) createImage &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;built_in&#34;&gt;int&lt;/span&gt; imageY = &lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;built_in&#34;&gt;int&lt;/span&gt; imgHeight = &lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt; (isRightDirection) &amp;#123; &lt;span class=&#34;comment&#34;&gt;// 判断slider滑动方向&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        imageY = fabs(imageTop - fabs(changeHeight&lt;span class=&#34;operator&#34;&gt; * &lt;/span&gt;perOpengleseCoordinate))&lt;span class=&#34;operator&#34;&gt; * &lt;/span&gt;screenScale;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        imgHeight = fabs(imageHeight + &lt;span class=&#34;number&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;operator&#34;&gt; * &lt;/span&gt;fabs(changeHeight&lt;span class=&#34;operator&#34;&gt; * &lt;/span&gt;perOpengleseCoordinate))&lt;span class=&#34;operator&#34;&gt; * &lt;/span&gt;screenScale;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125; &lt;span class=&#34;keyword&#34;&gt;else&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        imageY = fabs(imageTop + fabs(changeHeight&lt;span class=&#34;operator&#34;&gt; * &lt;/span&gt;perOpengleseCoordinate))&lt;span class=&#34;operator&#34;&gt; * &lt;/span&gt;screenScale;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        imgHeight = fabs(imageHeight - &lt;span class=&#34;number&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;operator&#34;&gt; * &lt;/span&gt;fabs(changeHeight&lt;span class=&#34;operator&#34;&gt; * &lt;/span&gt;perOpengleseCoordinate))&lt;span class=&#34;operator&#34;&gt; * &lt;/span&gt;screenScale;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;built_in&#34;&gt;int&lt;/span&gt; imageWidth = SCREEN_WIDTH&lt;span class=&#34;operator&#34;&gt; * &lt;/span&gt;screenScale;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;built_in&#34;&gt;int&lt;/span&gt; dataLength = imageWidth&lt;span class=&#34;operator&#34;&gt; * &lt;/span&gt;imgHeight&lt;span class=&#34;operator&#34;&gt; * &lt;/span&gt;&lt;span class=&#34;number&#34;&gt;4&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    GLubyte *data = (GLubyte*)malloc(dataLength&lt;span class=&#34;operator&#34;&gt; * &lt;/span&gt;sizeof(GLubyte));&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    gl&lt;span class=&#34;constructor&#34;&gt;PixelStorei(GL_PACK_ALIGNMENT, 4)&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    gl&lt;span class=&#34;constructor&#34;&gt;ReadPixels(0, &lt;span class=&#34;params&#34;&gt;imageY&lt;/span&gt;, &lt;span class=&#34;params&#34;&gt;imageWidth&lt;/span&gt;, &lt;span class=&#34;params&#34;&gt;imgHeight&lt;/span&gt;, GL_RGBA, GL_UNSIGNED_BYTE, &lt;span class=&#34;params&#34;&gt;data&lt;/span&gt;)&lt;/span&gt;;  &lt;span class=&#34;comment&#34;&gt;//从内存中读取像素&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    CGDataProviderRef &lt;span class=&#34;built_in&#34;&gt;ref&lt;/span&gt; = &lt;span class=&#34;constructor&#34;&gt;CGDataProviderCreateWithData(NULL, &lt;span class=&#34;params&#34;&gt;data&lt;/span&gt;, &lt;span class=&#34;params&#34;&gt;dataLength&lt;/span&gt;, NULL)&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    CGColorSpaceRef colorspace = &lt;span class=&#34;constructor&#34;&gt;CGColorSpaceCreateDeviceRGB()&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    CGImageRef iref = &lt;span class=&#34;constructor&#34;&gt;CGImageCreate(&lt;span class=&#34;params&#34;&gt;imageWidth&lt;/span&gt;, &lt;span class=&#34;params&#34;&gt;imgHeight&lt;/span&gt;, 8, 32, &lt;span class=&#34;params&#34;&gt;imageWidth&lt;/span&gt; &lt;span class=&#34;operator&#34;&gt;*&lt;/span&gt; 4, &lt;span class=&#34;params&#34;&gt;colorspace&lt;/span&gt;, &lt;span class=&#34;params&#34;&gt;kCGBitmapByteOrder32Big&lt;/span&gt; | &lt;span class=&#34;params&#34;&gt;kCGImageAlphaPremultipliedLast&lt;/span&gt;,&lt;span class=&#34;params&#34;&gt;ref&lt;/span&gt;, NULL, &lt;span class=&#34;params&#34;&gt;true&lt;/span&gt;, &lt;span class=&#34;params&#34;&gt;kCGRenderingIntentDefault&lt;/span&gt;)&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;constructor&#34;&gt;UIGraphicsBeginImageContext(CGSizeMake(&lt;span class=&#34;params&#34;&gt;imageWidth&lt;/span&gt;, &lt;span class=&#34;params&#34;&gt;imgHeight&lt;/span&gt;)&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    CGContextRef cgcontext = &lt;span class=&#34;constructor&#34;&gt;UIGraphicsGetCurrentContext()&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;constructor&#34;&gt;CGContextSetBlendMode(&lt;span class=&#34;params&#34;&gt;cgcontext&lt;/span&gt;, &lt;span class=&#34;params&#34;&gt;kCGBlendModeCopy&lt;/span&gt;)&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;constructor&#34;&gt;CGContextDrawImage(&lt;span class=&#34;params&#34;&gt;cgcontext&lt;/span&gt;, CGRectMake(0, 0, &lt;span class=&#34;params&#34;&gt;imageWidth&lt;/span&gt;, &lt;span class=&#34;params&#34;&gt;imgHeight&lt;/span&gt;)&lt;/span&gt;, iref);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    CGImageRef imageMasked = &lt;span class=&#34;constructor&#34;&gt;CGBitmapContextCreateImage(&lt;span class=&#34;params&#34;&gt;cgcontext&lt;/span&gt;)&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    UIImage&lt;span class=&#34;operator&#34;&gt; * &lt;/span&gt;image = &lt;span class=&#34;literal&#34;&gt;[UII&lt;span class=&#34;identifier&#34;&gt;mage&lt;/span&gt; &lt;span class=&#34;identifier&#34;&gt;imageWithCGImage&lt;/span&gt;:&lt;span class=&#34;identifier&#34;&gt;imageMasked&lt;/span&gt; &lt;span class=&#34;identifier&#34;&gt;scale&lt;/span&gt;:&lt;span class=&#34;identifier&#34;&gt;screenScale&lt;/span&gt; &lt;span class=&#34;identifier&#34;&gt;orientation&lt;/span&gt;:UII&lt;span class=&#34;identifier&#34;&gt;mageOrientationUp&lt;/span&gt;]&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;constructor&#34;&gt;UIGraphicsEndImageContext()&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    free(data);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;constructor&#34;&gt;CFRelease(&lt;span class=&#34;params&#34;&gt;ref&lt;/span&gt;)&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;constructor&#34;&gt;CFRelease(&lt;span class=&#34;params&#34;&gt;colorspace&lt;/span&gt;)&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;constructor&#34;&gt;CGImageRelease(&lt;span class=&#34;params&#34;&gt;iref&lt;/span&gt;)&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    return image;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
 </content>
-        <category term="OpenGL" />
         <category term="底层" />
+        <category term="OpenGL" />
         <category term="UI" />
         <updated>2018-01-23T13:23:49.000Z</updated>
     </entry>
@@ -3698,8 +3698,8 @@ avatarImageView.image = UIGraphicsGetImageFromCurrentImageContext();UIGraphicsEn
  &lt;figure class=&#34;highlight objectivec&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt; &lt;span class=&#34;keyword&#34;&gt;case&lt;/span&gt; &lt;span class=&#34;built_in&#34;&gt;NSStreamEventHasBytesAvailable&lt;/span&gt;:&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;built_in&#34;&gt;UInt8&lt;/span&gt; buffer[BUFFER_SIZE]; &lt;span class=&#34;comment&#34;&gt;//设置缓存区&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;built_in&#34;&gt;NSInteger&lt;/span&gt; numBytesRead = &lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;built_in&#34;&gt;NSInputStream&lt;/span&gt; *inputstream = (&lt;span class=&#34;built_in&#34;&gt;NSInputStream&lt;/span&gt; *) aStream;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;comment&#34;&gt;// Read data&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;do&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        numBytesRead = [inputstream read:buffer maxLength:&lt;span class=&#34;keyword&#34;&gt;sizeof&lt;/span&gt;(buffer)];&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt; (numBytesRead &amp;gt; &lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            [&lt;span class=&#34;keyword&#34;&gt;self&lt;/span&gt;.resultData appendBytes:buffer length:numBytesRead];&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125; &lt;span class=&#34;keyword&#34;&gt;while&lt;/span&gt; (numBytesRead &amp;gt; &lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;break&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br /&gt;
  循环结束后我们的 resultData 就是完整的返回数据了。&lt;/p&gt;
 </content>
-        <category term="底层" />
         <category term="网络" />
+        <category term="底层" />
         <updated>2018-01-23T13:04:15.000Z</updated>
     </entry>
     <entry>

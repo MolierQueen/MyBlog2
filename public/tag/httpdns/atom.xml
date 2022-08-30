@@ -5,12 +5,12 @@
     <link href="https://oliverqueen.cn" />
     <updated>2018-01-24T05:54:36.000Z</updated>
     <category term="欢迎页" />
+    <category term="网络" />
+    <category term="底层" />
     <category term="DNS解析" />
     <category term="LocalDNS" />
     <category term="OpenGL" />
-    <category term="底层" />
     <category term="UI" />
-    <category term="网络" />
     <category term="动画" />
     <category term="性能优化" />
     <category term="xcode" />
@@ -22,9 +22,9 @@
     <category term="翻译" />
     <category term="优化" />
     <category term="国外文献" />
+    <category term="httpdns" />
     <category term="Cocoapods" />
     <category term="架构" />
-    <category term="httpdns" />
     <category term="AlertView" />
     <category term="Hook" />
     <category term="杂谈" />
@@ -46,8 +46,8 @@
     <category term="K歌" />
     <category term="AVFoundation" />
     <category term="git" />
-    <category term="代码版本控制" />
     <category term="效率工作" />
+    <category term="代码版本控制" />
     <category term="iOS" />
     <category term="Crash防护" />
     <category term="Apple登录" />
@@ -164,8 +164,8 @@ client 在后面会有讲解。&lt;/p&gt;
 &lt;h5 id=&#34;7总结&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#7总结&#34;&gt;#&lt;/a&gt; 7：总结&lt;/h5&gt;
 &lt;p&gt;完成了以上的步骤之后你回发现在 DNS 坏掉的情况下手机里面除了微信 QQ (他们也做了 DNS 解析) 之外其他应用都不能上网了但是你的 App 依然可以正常浏览网络数据。这就是我最近在做的时候遇到的一些问题，有什么问题及时与我交流吧&lt;/p&gt;
 </content>
-        <category term="底层" />
         <category term="网络" />
+        <category term="底层" />
         <category term="httpdns" />
         <updated>2018-01-24T05:54:36.000Z</updated>
     </entry>

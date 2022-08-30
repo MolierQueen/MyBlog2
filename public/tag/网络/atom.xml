@@ -5,12 +5,12 @@
     <link href="https://oliverqueen.cn" />
     <updated>2018-01-24T05:54:36.000Z</updated>
     <category term="欢迎页" />
+    <category term="网络" />
+    <category term="底层" />
     <category term="DNS解析" />
     <category term="LocalDNS" />
     <category term="OpenGL" />
-    <category term="底层" />
     <category term="UI" />
-    <category term="网络" />
     <category term="动画" />
     <category term="性能优化" />
     <category term="xcode" />
@@ -22,9 +22,9 @@
     <category term="翻译" />
     <category term="优化" />
     <category term="国外文献" />
+    <category term="httpdns" />
     <category term="Cocoapods" />
     <category term="架构" />
-    <category term="httpdns" />
     <category term="AlertView" />
     <category term="Hook" />
     <category term="杂谈" />
@@ -46,8 +46,8 @@
     <category term="K歌" />
     <category term="AVFoundation" />
     <category term="git" />
-    <category term="代码版本控制" />
     <category term="效率工作" />
+    <category term="代码版本控制" />
     <category term="iOS" />
     <category term="Crash防护" />
     <category term="Apple登录" />
@@ -164,8 +164,8 @@ client 在后面会有讲解。&lt;/p&gt;
 &lt;h5 id=&#34;7总结&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#7总结&#34;&gt;#&lt;/a&gt; 7：总结&lt;/h5&gt;
 &lt;p&gt;完成了以上的步骤之后你回发现在 DNS 坏掉的情况下手机里面除了微信 QQ (他们也做了 DNS 解析) 之外其他应用都不能上网了但是你的 App 依然可以正常浏览网络数据。这就是我最近在做的时候遇到的一些问题，有什么问题及时与我交流吧&lt;/p&gt;
 </content>
-        <category term="底层" />
         <category term="网络" />
+        <category term="底层" />
         <category term="httpdns" />
         <updated>2018-01-24T05:54:36.000Z</updated>
     </entry>
@@ -259,8 +259,8 @@ client 在后面会有讲解。&lt;/p&gt;
  &lt;figure class=&#34;highlight objectivec&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt; &lt;span class=&#34;keyword&#34;&gt;case&lt;/span&gt; &lt;span class=&#34;built_in&#34;&gt;NSStreamEventHasBytesAvailable&lt;/span&gt;:&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;built_in&#34;&gt;UInt8&lt;/span&gt; buffer[BUFFER_SIZE]; &lt;span class=&#34;comment&#34;&gt;//设置缓存区&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;built_in&#34;&gt;NSInteger&lt;/span&gt; numBytesRead = &lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;built_in&#34;&gt;NSInputStream&lt;/span&gt; *inputstream = (&lt;span class=&#34;built_in&#34;&gt;NSInputStream&lt;/span&gt; *) aStream;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;comment&#34;&gt;// Read data&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;do&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        numBytesRead = [inputstream read:buffer maxLength:&lt;span class=&#34;keyword&#34;&gt;sizeof&lt;/span&gt;(buffer)];&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt; (numBytesRead &amp;gt; &lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            [&lt;span class=&#34;keyword&#34;&gt;self&lt;/span&gt;.resultData appendBytes:buffer length:numBytesRead];&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125; &lt;span class=&#34;keyword&#34;&gt;while&lt;/span&gt; (numBytesRead &amp;gt; &lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;break&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br /&gt;
  循环结束后我们的 resultData 就是完整的返回数据了。&lt;/p&gt;
 </content>
-        <category term="底层" />
         <category term="网络" />
+        <category term="底层" />
         <updated>2018-01-23T13:04:15.000Z</updated>
     </entry>
 </feed>

@@ -8,12 +8,12 @@
         <pubDate>Wed, 24 Jan 2018 13:54:36 +0800</pubDate>
         <lastBuildDate>Wed, 24 Jan 2018 13:54:36 +0800</lastBuildDate>
         <category>欢迎页</category>
+        <category>网络</category>
+        <category>底层</category>
         <category>DNS解析</category>
         <category>LocalDNS</category>
         <category>OpenGL</category>
-        <category>底层</category>
         <category>UI</category>
-        <category>网络</category>
         <category>动画</category>
         <category>性能优化</category>
         <category>xcode</category>
@@ -25,9 +25,9 @@
         <category>翻译</category>
         <category>优化</category>
         <category>国外文献</category>
+        <category>httpdns</category>
         <category>Cocoapods</category>
         <category>架构</category>
-        <category>httpdns</category>
         <category>AlertView</category>
         <category>Hook</category>
         <category>杂谈</category>
@@ -49,8 +49,8 @@
         <category>K歌</category>
         <category>AVFoundation</category>
         <category>git</category>
-        <category>代码版本控制</category>
         <category>效率工作</category>
+        <category>代码版本控制</category>
         <category>iOS</category>
         <category>Crash防护</category>
         <category>Apple登录</category>
@@ -62,8 +62,8 @@
             <guid isPermalink="true">https://oliverqueen.cn/2018-01-24-%E5%8F%AF%E8%83%BD%E6%98%AF%E6%9C%80%E5%85%A8%E7%9A%84iOS%E7%AB%AFHttpDns%E9%9B%86%E6%88%90%E6%96%B9%E6%A1%88/</guid>
             <title>可能是最全的iOS端HttpDns集成方案</title>
             <link>https://oliverqueen.cn/2018-01-24-%E5%8F%AF%E8%83%BD%E6%98%AF%E6%9C%80%E5%85%A8%E7%9A%84iOS%E7%AB%AFHttpDns%E9%9B%86%E6%88%90%E6%96%B9%E6%A1%88/</link>
-            <category>底层</category>
             <category>网络</category>
+            <category>底层</category>
             <category>httpdns</category>
             <pubDate>Wed, 24 Jan 2018 13:54:36 +0800</pubDate>
             <description><![CDATA[ &lt;link rel=&#34;stylesheet&#34; class=&#34;aplayer-secondary-style-marker&#34; href=&#34;/assets/css/APlayer.min.css&#34;&gt;&lt;script src=&#34;/assets/js/APlayer.min.js&#34; class=&#34;aplayer-secondary-script-marker&#34;&gt;&lt;/script&gt;&lt;h1 id=&#34;科普片&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#科普片&#34;&gt;#&lt;/a&gt; 科普片&lt;/h1&gt;
@@ -314,8 +314,8 @@ typedef struct objc_category *Category;&lt;/p&gt;
             <guid isPermalink="true">https://oliverqueen.cn/2018-01-23-iOS%E4%B8%AD%E4%BD%BF%E7%94%A8OpenGL%E5%AE%9E%E7%8E%B0%E5%A2%9E%E9%AB%98%E5%8A%9F%E8%83%BD/</guid>
             <title>iOS中使用OpenGL实现增高功能</title>
             <link>https://oliverqueen.cn/2018-01-23-iOS%E4%B8%AD%E4%BD%BF%E7%94%A8OpenGL%E5%AE%9E%E7%8E%B0%E5%A2%9E%E9%AB%98%E5%8A%9F%E8%83%BD/</link>
-            <category>OpenGL</category>
             <category>底层</category>
+            <category>OpenGL</category>
             <category>UI</category>
             <pubDate>Tue, 23 Jan 2018 21:23:49 +0800</pubDate>
             <description><![CDATA[ &lt;link rel=&#34;stylesheet&#34; class=&#34;aplayer-secondary-style-marker&#34; href=&#34;/assets/css/APlayer.min.css&#34;&gt;&lt;script src=&#34;/assets/js/APlayer.min.js&#34; class=&#34;aplayer-secondary-script-marker&#34;&gt;&lt;/script&gt;&lt;h3 id=&#34;功能效果&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#功能效果&#34;&gt;#&lt;/a&gt; 功能效果&lt;/h3&gt;
@@ -374,8 +374,8 @@ typedef struct objc_category *Category;&lt;/p&gt;
             <guid isPermalink="true">https://oliverqueen.cn/2018-01-23-CFNetwork%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BD%BF%E7%94%A8/</guid>
             <title>CFNetwork的介绍和使用</title>
             <link>https://oliverqueen.cn/2018-01-23-CFNetwork%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BD%BF%E7%94%A8/</link>
-            <category>底层</category>
             <category>网络</category>
+            <category>底层</category>
             <pubDate>Tue, 23 Jan 2018 21:04:15 +0800</pubDate>
             <description><![CDATA[ &lt;link rel=&#34;stylesheet&#34; class=&#34;aplayer-secondary-style-marker&#34; href=&#34;/assets/css/APlayer.min.css&#34;&gt;&lt;script src=&#34;/assets/js/APlayer.min.js&#34; class=&#34;aplayer-secondary-script-marker&#34;&gt;&lt;/script&gt;&lt;h3 id=&#34;cfnetwork背景简介&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#cfnetwork背景简介&#34;&gt;#&lt;/a&gt; CFNetwork 背景简介&lt;/h3&gt;
 &lt;p&gt;CFNetwork 是 ISO 中一个比较底层的网络框架，C 语言编写，可以控制一些更底层的东西，如各种常用网络协议、socket 通讯等，我们通常使用的 NSURL 则更倾向于 API 数据请求等，虽然框架也提供了一些操作，但是远不如 CFNetwork 丰富。CFNetwork 已经接近于 UNIX 系统的 socket 通信了，使用 CFHttpMessageRef 进行 HTTP 连接的好处就是控制的粒度更细了，例如你可以设置 SSL 连接的 PeerName，证书验证的方式，还可以控制每个响应包的接收。不过 CFNetwork 本质上还是应用层上的封装的通用 API。使用者可以不用关心底层协议的实际细节。下图是 CFNetwork 在 iOS 系统中的位置 (图片来源于官方文档)。&lt;/p&gt;

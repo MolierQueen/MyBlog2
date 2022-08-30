@@ -8,12 +8,12 @@
         <pubDate>Wed, 24 Aug 2022 15:04:39 +0800</pubDate>
         <lastBuildDate>Wed, 24 Aug 2022 15:04:39 +0800</lastBuildDate>
         <category>欢迎页</category>
+        <category>网络</category>
+        <category>底层</category>
         <category>DNS解析</category>
         <category>LocalDNS</category>
         <category>OpenGL</category>
-        <category>底层</category>
         <category>UI</category>
-        <category>网络</category>
         <category>动画</category>
         <category>性能优化</category>
         <category>xcode</category>
@@ -25,9 +25,9 @@
         <category>翻译</category>
         <category>优化</category>
         <category>国外文献</category>
+        <category>httpdns</category>
         <category>Cocoapods</category>
         <category>架构</category>
-        <category>httpdns</category>
         <category>AlertView</category>
         <category>Hook</category>
         <category>杂谈</category>
@@ -49,8 +49,8 @@
         <category>K歌</category>
         <category>AVFoundation</category>
         <category>git</category>
-        <category>代码版本控制</category>
         <category>效率工作</category>
+        <category>代码版本控制</category>
         <category>iOS</category>
         <category>Crash防护</category>
         <category>Apple登录</category>
@@ -943,10 +943,10 @@ Mach 异常，分为两种情况，第一种是本身就是硬件层面或者系
 &lt;h1 id=&#34;0x6-最后&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#0x6-最后&#34;&gt;#&lt;/a&gt; 0x6: 最后&lt;/h1&gt;
 &lt;p&gt;大概这就是所有 Crash 防护的流程，通过两篇文章讲解，希望大家对 iOS 系统的 Crash 流程能有些许的了解，并没有贴太多的源码，其实还是解耦度不够，思路有了代码就很简单了。&lt;/p&gt;
 &lt;p&gt;
-        &lt;div id=&#34;aplayer-JEUdbeeS&#34; class=&#34;aplayer aplayer-tag-marker&#34; style=&#34;margin-bottom: 20px;&#34;&gt;&lt;/div&gt;
+        &lt;div id=&#34;aplayer-dfhcZmiT&#34; class=&#34;aplayer aplayer-tag-marker&#34; style=&#34;margin-bottom: 20px;&#34;&gt;&lt;/div&gt;
 			  &lt;script&gt;
 				  var options = {&#34;narrow&#34;:false,&#34;autoplay&#34;:true,&#34;showlrc&#34;:0,&#34;mutex&#34;:true,&#34;music&#34;:[{&#34;title&#34;:&#34;错位时空&#34;,&#34;author&#34;:&#34;艾辰&#34;,&#34;url&#34;:&#34;https://molier-1256056152.cos.ap-guangzhou.myqcloud.com/%E8%89%BE%E8%BE%B0%20-%20%E9%94%99%E4%BD%8D%E6%97%B6%E7%A9%BA.mp3&#34;,&#34;pic&#34;:&#34;https://bkimg.cdn.bcebos.com/pic/a8ec8a13632762d0f7037ac288a71ffa513d26976830?x-bce-process=image/watermark,image_d2F0ZXIvYmFpa2UxMTY=,g_7,xp_5,yp_5/format,f_auto&#34;,&#34;lrc&#34;:&#34;https://歌词.lrc&#34;}]};
-				  options.element = document.getElementById(&#34;aplayer-JEUdbeeS&#34;);
+				  options.element = document.getElementById(&#34;aplayer-dfhcZmiT&#34;);
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);
@@ -1843,10 +1843,10 @@ sendAction：参数（RDX）将使用选择器，而 to：参数将是 IBAction 
 &lt;h3 id=&#34;有意者发简历到-zhangninghao11gmailcom&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#有意者发简历到-zhangninghao11gmailcom&#34;&gt;#&lt;/a&gt; 有意者发简历到 &amp;quot;&lt;span class=&#34;exturl&#34; data-url=&#34;bWFpbHRvOnpoYW5nbmluZ2hhbzExQGdtYWlsLmNvbQ==&#34;&gt;zhangninghao11@gmail.com&lt;/span&gt;&amp;quot;&lt;/h3&gt;
 &lt;h3 id=&#34;认真脸&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#认真脸&#34;&gt;#&lt;/a&gt; 认真脸&lt;/h3&gt;
 &lt;p&gt;
-        &lt;div id=&#34;aplayer-RgdAIkkT&#34; class=&#34;aplayer aplayer-tag-marker&#34; style=&#34;margin-bottom: 20px;&#34;&gt;&lt;/div&gt;
+        &lt;div id=&#34;aplayer-GbuZREfU&#34; class=&#34;aplayer aplayer-tag-marker&#34; style=&#34;margin-bottom: 20px;&#34;&gt;&lt;/div&gt;
 			  &lt;script&gt;
 				  var options = {&#34;narrow&#34;:false,&#34;autoplay&#34;:true,&#34;showlrc&#34;:3,&#34;mutex&#34;:true,&#34;music&#34;:[{&#34;title&#34;:&#34;大鱼&#34;,&#34;author&#34;:&#34;周深&#34;,&#34;url&#34;:&#34;https://molier-1256056152.cos.ap-guangzhou.myqcloud.com/bigfish.mp3&#34;,&#34;pic&#34;:&#34;https://y.gtimg.cn/music/photo_new/T002R300x300M000004Y7V4s3ug4cC.jpg?max_age=2592000&#34;,&#34;lrc&#34;:&#34;https://demo.meting.api.meto.moe/action/metingapi?server=tencent&amp;type=lrc&amp;id=004OQ5Mt0EmEzv&#34;}]};
-				  options.element = document.getElementById(&#34;aplayer-RgdAIkkT&#34;);
+				  options.element = document.getElementById(&#34;aplayer-GbuZREfU&#34;);
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);
@@ -2162,10 +2162,10 @@ sendAction：参数（RDX）将使用选择器，而 to：参数将是 IBAction 
 &lt;h2 id=&#34;总结&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#总结&#34;&gt;#&lt;/a&gt; 总结&lt;/h2&gt;
 &lt;p&gt;因为时间紧迫，暂时做了这么多，也遇到了这些问题，所以写出了总结下，本文还会继续更新，会慢慢的整个网络层分享出来。就是可能更新会慢，毕竟工作量有点饱和。多谢关注&lt;/p&gt;
 &lt;p&gt;
-        &lt;div id=&#34;aplayer-zpLdONte&#34; class=&#34;aplayer aplayer-tag-marker&#34; style=&#34;margin-bottom: 20px;&#34;&gt;&lt;/div&gt;
+        &lt;div id=&#34;aplayer-yusNEwKV&#34; class=&#34;aplayer aplayer-tag-marker&#34; style=&#34;margin-bottom: 20px;&#34;&gt;&lt;/div&gt;
 			  &lt;script&gt;
 				  var options = {&#34;narrow&#34;:false,&#34;autoplay&#34;:true,&#34;showlrc&#34;:0,&#34;mutex&#34;:true,&#34;music&#34;:[{&#34;title&#34;:&#34;Thank You Very Much&#34;,&#34;author&#34;:&#34;Margaret&#34;,&#34;url&#34;:&#34;https://molier-1256056152.cos.ap-guangzhou.myqcloud.com/Thankyou.mp3&#34;,&#34;pic&#34;:&#34;https://y.gtimg.cn/music/photo_new/T002R300x300M000000VbGX83hRicw.jpg?max_age=2592000&#34;,&#34;lrc&#34;:&#34;https://demo.meting.api.meto.moe/action/metingapi?server=tencent&amp;type=lrc&amp;id=001Ii3g54dIYpO&#34;}]};
-				  options.element = document.getElementById(&#34;aplayer-zpLdONte&#34;);
+				  options.element = document.getElementById(&#34;aplayer-yusNEwKV&#34;);
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);
@@ -2226,10 +2226,10 @@ sendAction：参数（RDX）将使用选择器，而 to：参数将是 IBAction 
 &lt;h2 id=&#34;思考&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#思考&#34;&gt;#&lt;/a&gt; 思考&lt;/h2&gt;
 &lt;p&gt;这个方法相比较之前的 JSpatch 是非常轻量级的，而且也只是实现了简单的容错功能，并不能做一些复杂的操作，比如生成一个对象之类的，不过对于一般的控制已经可以满足了，毕竟在苹果爸爸这么严厉的管制下能有这样的方法也还不错啊。&lt;/p&gt;
 &lt;p&gt;
-        &lt;div id=&#34;aplayer-HFiWUCFG&#34; class=&#34;aplayer aplayer-tag-marker&#34; style=&#34;margin-bottom: 20px;&#34;&gt;&lt;/div&gt;
+        &lt;div id=&#34;aplayer-DAHhwXNm&#34; class=&#34;aplayer aplayer-tag-marker&#34; style=&#34;margin-bottom: 20px;&#34;&gt;&lt;/div&gt;
 			  &lt;script&gt;
 				  var options = {&#34;narrow&#34;:false,&#34;autoplay&#34;:true,&#34;showlrc&#34;:0,&#34;mutex&#34;:true,&#34;music&#34;:[{&#34;title&#34;:&#34;不知归期的故人&#34;,&#34;author&#34;:&#34;房东的猫&#34;,&#34;url&#34;:&#34;https://molier-1256056152.cos.ap-guangzhou.myqcloud.com/%E4%B8%8D%E7%9F%A5%E5%BD%92%E6%9C%9F%E7%9A%84%E6%95%85%E4%BA%BA.mp3&#34;,&#34;pic&#34;:&#34;https://y.gtimg.cn/music/photo_new/T002R300x300M000004NFJ230yX0Nz.jpg?max_age=2592000&#34;,&#34;lrc&#34;:&#34;https://demo.meting.api.meto.moe/action/metingapi?server=tencent&amp;type=lrc&amp;id=000zreoj2VtcID&#34;}]};
-				  options.element = document.getElementById(&#34;aplayer-HFiWUCFG&#34;);
+				  options.element = document.getElementById(&#34;aplayer-DAHhwXNm&#34;);
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);
@@ -2302,8 +2302,8 @@ sendAction：参数（RDX）将使用选择器，而 to：参数将是 IBAction 
             <guid isPermalink="true">https://oliverqueen.cn/2018-01-24-%E5%8F%AF%E8%83%BD%E6%98%AF%E6%9C%80%E5%85%A8%E7%9A%84iOS%E7%AB%AFHttpDns%E9%9B%86%E6%88%90%E6%96%B9%E6%A1%88/</guid>
             <title>可能是最全的iOS端HttpDns集成方案</title>
             <link>https://oliverqueen.cn/2018-01-24-%E5%8F%AF%E8%83%BD%E6%98%AF%E6%9C%80%E5%85%A8%E7%9A%84iOS%E7%AB%AFHttpDns%E9%9B%86%E6%88%90%E6%96%B9%E6%A1%88/</link>
-            <category>底层</category>
             <category>网络</category>
+            <category>底层</category>
             <category>httpdns</category>
             <pubDate>Wed, 24 Jan 2018 13:54:36 +0800</pubDate>
             <description><![CDATA[ &lt;link rel=&#34;stylesheet&#34; class=&#34;aplayer-secondary-style-marker&#34; href=&#34;/assets/css/APlayer.min.css&#34;&gt;&lt;script src=&#34;/assets/js/APlayer.min.js&#34; class=&#34;aplayer-secondary-script-marker&#34;&gt;&lt;/script&gt;&lt;h1 id=&#34;科普片&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#科普片&#34;&gt;#&lt;/a&gt; 科普片&lt;/h1&gt;
@@ -2687,8 +2687,8 @@ typedef struct objc_category *Category;&lt;/p&gt;
             <guid isPermalink="true">https://oliverqueen.cn/2018-01-23-iOS%E4%B8%AD%E4%BD%BF%E7%94%A8OpenGL%E5%AE%9E%E7%8E%B0%E5%A2%9E%E9%AB%98%E5%8A%9F%E8%83%BD/</guid>
             <title>iOS中使用OpenGL实现增高功能</title>
             <link>https://oliverqueen.cn/2018-01-23-iOS%E4%B8%AD%E4%BD%BF%E7%94%A8OpenGL%E5%AE%9E%E7%8E%B0%E5%A2%9E%E9%AB%98%E5%8A%9F%E8%83%BD/</link>
-            <category>OpenGL</category>
             <category>底层</category>
+            <category>OpenGL</category>
             <category>UI</category>
             <pubDate>Tue, 23 Jan 2018 21:23:49 +0800</pubDate>
             <description><![CDATA[ &lt;link rel=&#34;stylesheet&#34; class=&#34;aplayer-secondary-style-marker&#34; href=&#34;/assets/css/APlayer.min.css&#34;&gt;&lt;script src=&#34;/assets/js/APlayer.min.js&#34; class=&#34;aplayer-secondary-script-marker&#34;&gt;&lt;/script&gt;&lt;h3 id=&#34;功能效果&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#功能效果&#34;&gt;#&lt;/a&gt; 功能效果&lt;/h3&gt;
@@ -2832,8 +2832,8 @@ avatarImageView.image = UIGraphicsGetImageFromCurrentImageContext();UIGraphicsEn
             <guid isPermalink="true">https://oliverqueen.cn/2018-01-23-CFNetwork%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BD%BF%E7%94%A8/</guid>
             <title>CFNetwork的介绍和使用</title>
             <link>https://oliverqueen.cn/2018-01-23-CFNetwork%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BD%BF%E7%94%A8/</link>
-            <category>底层</category>
             <category>网络</category>
+            <category>底层</category>
             <pubDate>Tue, 23 Jan 2018 21:04:15 +0800</pubDate>
             <description><![CDATA[ &lt;link rel=&#34;stylesheet&#34; class=&#34;aplayer-secondary-style-marker&#34; href=&#34;/assets/css/APlayer.min.css&#34;&gt;&lt;script src=&#34;/assets/js/APlayer.min.js&#34; class=&#34;aplayer-secondary-script-marker&#34;&gt;&lt;/script&gt;&lt;h3 id=&#34;cfnetwork背景简介&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#cfnetwork背景简介&#34;&gt;#&lt;/a&gt; CFNetwork 背景简介&lt;/h3&gt;
 &lt;p&gt;CFNetwork 是 ISO 中一个比较底层的网络框架，C 语言编写，可以控制一些更底层的东西，如各种常用网络协议、socket 通讯等，我们通常使用的 NSURL 则更倾向于 API 数据请求等，虽然框架也提供了一些操作，但是远不如 CFNetwork 丰富。CFNetwork 已经接近于 UNIX 系统的 socket 通信了，使用 CFHttpMessageRef 进行 HTTP 连接的好处就是控制的粒度更细了，例如你可以设置 SSL 连接的 PeerName，证书验证的方式，还可以控制每个响应包的接收。不过 CFNetwork 本质上还是应用层上的封装的通用 API。使用者可以不用关心底层协议的实际细节。下图是 CFNetwork 在 iOS 系统中的位置 (图片来源于官方文档)。&lt;/p&gt;
