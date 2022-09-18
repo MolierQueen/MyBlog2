@@ -7,10 +7,10 @@
     <category term="欢迎页" />
     <category term="网络" />
     <category term="底层" />
-    <category term="DNS解析" />
-    <category term="LocalDNS" />
     <category term="OpenGL" />
     <category term="UI" />
+    <category term="DNS解析" />
+    <category term="LocalDNS" />
     <category term="动画" />
     <category term="性能优化" />
     <category term="xcode" />
@@ -18,21 +18,20 @@
     <category term="podfile" />
     <category term="webview" />
     <category term="hook" />
-    <category term="runtime" />
     <category term="翻译" />
     <category term="优化" />
     <category term="国外文献" />
-    <category term="httpdns" />
     <category term="Cocoapods" />
     <category term="架构" />
     <category term="AlertView" />
+    <category term="runtime" />
     <category term="Hook" />
     <category term="杂谈" />
+    <category term="屏幕适配" />
+    <category term="iOS 11" />
     <category term="Hexo" />
     <category term="个人博客" />
     <category term="网站" />
-    <category term="屏幕适配" />
-    <category term="iOS 11" />
     <category term="评论插件" />
     <category term="总结" />
     <category term="回味2017展望2018" />
@@ -41,20 +40,21 @@
     <category term="swift" />
     <category term="网络请求" />
     <category term="Swift" />
-    <category term="音频" />
-    <category term="唱吧" />
-    <category term="K歌" />
-    <category term="AVFoundation" />
     <category term="git" />
     <category term="效率工作" />
     <category term="代码版本控制" />
     <category term="iOS" />
     <category term="Crash防护" />
     <category term="Apple登录" />
-    <category term="WWDC2022" />
     <category term="算法" />
     <category term="C语言" />
     <category term="排序" />
+    <category term="httpdns" />
+    <category term="音频" />
+    <category term="唱吧" />
+    <category term="K歌" />
+    <category term="AVFoundation" />
+    <category term="WWDC2022" />
     <entry>
         <id>https://oliverqueen.cn/2018-03-30-AlamoFire/</id>
         <title>AlamoFire的使用(下载队列，断点续传)</title>
@@ -112,10 +112,10 @@
 &lt;h2 id=&#34;总结&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#总结&#34;&gt;#&lt;/a&gt; 总结&lt;/h2&gt;
 &lt;p&gt;因为时间紧迫，暂时做了这么多，也遇到了这些问题，所以写出了总结下，本文还会继续更新，会慢慢的整个网络层分享出来。就是可能更新会慢，毕竟工作量有点饱和。多谢关注&lt;/p&gt;
 &lt;p&gt;
-        &lt;div id=&#34;aplayer-yusNEwKV&#34; class=&#34;aplayer aplayer-tag-marker&#34; style=&#34;margin-bottom: 20px;&#34;&gt;&lt;/div&gt;
+        &lt;div id=&#34;aplayer-joGvQISk&#34; class=&#34;aplayer aplayer-tag-marker&#34; style=&#34;margin-bottom: 20px;&#34;&gt;&lt;/div&gt;
 			  &lt;script&gt;
 				  var options = {&#34;narrow&#34;:false,&#34;autoplay&#34;:true,&#34;showlrc&#34;:0,&#34;mutex&#34;:true,&#34;music&#34;:[{&#34;title&#34;:&#34;Thank You Very Much&#34;,&#34;author&#34;:&#34;Margaret&#34;,&#34;url&#34;:&#34;https://molier-1256056152.cos.ap-guangzhou.myqcloud.com/Thankyou.mp3&#34;,&#34;pic&#34;:&#34;https://y.gtimg.cn/music/photo_new/T002R300x300M000000VbGX83hRicw.jpg?max_age=2592000&#34;,&#34;lrc&#34;:&#34;https://demo.meting.api.meto.moe/action/metingapi?server=tencent&amp;type=lrc&amp;id=001Ii3g54dIYpO&#34;}]};
-				  options.element = document.getElementById(&#34;aplayer-yusNEwKV&#34;);
+				  options.element = document.getElementById(&#34;aplayer-joGvQISk&#34;);
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);

@@ -5,15 +5,15 @@
         <link>https://oliverqueen.cn</link>
         <description>iOS 开发 移动App 博客 杂谈 随笔 相册</description>
         <language>zh-CN</language>
-        <pubDate>Mon, 26 Jul 2021 23:49:06 +0800</pubDate>
-        <lastBuildDate>Mon, 26 Jul 2021 23:49:06 +0800</lastBuildDate>
+        <pubDate>Sun, 04 Sep 2022 00:17:52 +0800</pubDate>
+        <lastBuildDate>Sun, 04 Sep 2022 00:17:52 +0800</lastBuildDate>
         <category>欢迎页</category>
         <category>网络</category>
         <category>底层</category>
-        <category>DNS解析</category>
-        <category>LocalDNS</category>
         <category>OpenGL</category>
         <category>UI</category>
+        <category>DNS解析</category>
+        <category>LocalDNS</category>
         <category>动画</category>
         <category>性能优化</category>
         <category>xcode</category>
@@ -21,21 +21,20 @@
         <category>podfile</category>
         <category>webview</category>
         <category>hook</category>
-        <category>runtime</category>
         <category>翻译</category>
         <category>优化</category>
         <category>国外文献</category>
-        <category>httpdns</category>
         <category>Cocoapods</category>
         <category>架构</category>
         <category>AlertView</category>
+        <category>runtime</category>
         <category>Hook</category>
         <category>杂谈</category>
+        <category>屏幕适配</category>
+        <category>iOS 11</category>
         <category>Hexo</category>
         <category>个人博客</category>
         <category>网站</category>
-        <category>屏幕适配</category>
-        <category>iOS 11</category>
         <category>评论插件</category>
         <category>总结</category>
         <category>回味2017展望2018</category>
@@ -44,27 +43,28 @@
         <category>swift</category>
         <category>网络请求</category>
         <category>Swift</category>
-        <category>音频</category>
-        <category>唱吧</category>
-        <category>K歌</category>
-        <category>AVFoundation</category>
         <category>git</category>
         <category>效率工作</category>
         <category>代码版本控制</category>
         <category>iOS</category>
         <category>Crash防护</category>
         <category>Apple登录</category>
-        <category>WWDC2022</category>
         <category>算法</category>
         <category>C语言</category>
         <category>排序</category>
+        <category>httpdns</category>
+        <category>音频</category>
+        <category>唱吧</category>
+        <category>K歌</category>
+        <category>AVFoundation</category>
+        <category>WWDC2022</category>
         <item>
             <guid isPermalink="true">https://oliverqueen.cn/2021-05-03-iOS%20Crash%E9%98%B2%E6%8A%A4%E4%BD%A0%E7%9C%8B%E8%BF%99%E4%B8%AA%E5%B0%B1%E5%A4%9F%E4%BA%86-%E4%B8%8A%E7%AF%87/</guid>
             <title>iOS Crash防护你看这个就够了 - 上篇</title>
             <link>https://oliverqueen.cn/2021-05-03-iOS%20Crash%E9%98%B2%E6%8A%A4%E4%BD%A0%E7%9C%8B%E8%BF%99%E4%B8%AA%E5%B0%B1%E5%A4%9F%E4%BA%86-%E4%B8%8A%E7%AF%87/</link>
             <category>iOS</category>
             <category>Crash防护</category>
-            <pubDate>Mon, 26 Jul 2021 23:49:06 +0800</pubDate>
+            <pubDate>Sun, 04 Sep 2022 00:17:52 +0800</pubDate>
             <description><![CDATA[ &lt;link rel=&#34;stylesheet&#34; class=&#34;aplayer-secondary-style-marker&#34; href=&#34;/assets/css/APlayer.min.css&#34;&gt;&lt;script src=&#34;/assets/js/APlayer.min.js&#34; class=&#34;aplayer-secondary-script-marker&#34;&gt;&lt;/script&gt;&lt;h1 id=&#34;0x1-为什么要做crash防护&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#0x1-为什么要做crash防护&#34;&gt;#&lt;/a&gt; 0x1 为什么要做 Crash 防护&lt;/h1&gt;
 &lt;p&gt;在产品开发过程中 Crash 率是一个很重要的指标，也是一个团队中几乎所有的部门都应该关注或者去参与提升的一个指标，他不仅代表着整个产品的质量，也是一个团队整体技术能力的体现。更低的 Crash 率不但能让产品获得更好的用户口碑，在整个流程中也能让团队成员获得更多的成长，加深对 iOS 系统底层的理解，为今后的开发带了更大的帮助。&lt;/p&gt;
 &lt;p&gt;&lt;img data-src=&#34;https://image-1256056152.cos.ap-nanjing.myqcloud.com/1111111111.jpeg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
@@ -357,10 +357,10 @@ Mach 异常，分为两种情况，第一种是本身就是硬件层面或者系
 &lt;h1 id=&#34;0x6-最后&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#0x6-最后&#34;&gt;#&lt;/a&gt; 0x6: 最后&lt;/h1&gt;
 &lt;p&gt;大概这就是所有 Crash 防护的流程，通过两篇文章讲解，希望大家对 iOS 系统的 Crash 流程能有些许的了解，并没有贴太多的源码，其实还是解耦度不够，思路有了代码就很简单了。&lt;/p&gt;
 &lt;p&gt;
-        &lt;div id=&#34;aplayer-dfhcZmiT&#34; class=&#34;aplayer aplayer-tag-marker&#34; style=&#34;margin-bottom: 20px;&#34;&gt;&lt;/div&gt;
+        &lt;div id=&#34;aplayer-HIKflejk&#34; class=&#34;aplayer aplayer-tag-marker&#34; style=&#34;margin-bottom: 20px;&#34;&gt;&lt;/div&gt;
 			  &lt;script&gt;
 				  var options = {&#34;narrow&#34;:false,&#34;autoplay&#34;:true,&#34;showlrc&#34;:0,&#34;mutex&#34;:true,&#34;music&#34;:[{&#34;title&#34;:&#34;错位时空&#34;,&#34;author&#34;:&#34;艾辰&#34;,&#34;url&#34;:&#34;https://molier-1256056152.cos.ap-guangzhou.myqcloud.com/%E8%89%BE%E8%BE%B0%20-%20%E9%94%99%E4%BD%8D%E6%97%B6%E7%A9%BA.mp3&#34;,&#34;pic&#34;:&#34;https://bkimg.cdn.bcebos.com/pic/a8ec8a13632762d0f7037ac288a71ffa513d26976830?x-bce-process=image/watermark,image_d2F0ZXIvYmFpa2UxMTY=,g_7,xp_5,yp_5/format,f_auto&#34;,&#34;lrc&#34;:&#34;https://歌词.lrc&#34;}]};
-				  options.element = document.getElementById(&#34;aplayer-dfhcZmiT&#34;);
+				  options.element = document.getElementById(&#34;aplayer-HIKflejk&#34;);
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);
