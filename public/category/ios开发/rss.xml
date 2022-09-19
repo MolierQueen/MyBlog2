@@ -5,15 +5,15 @@
         <link>https://oliverqueen.cn</link>
         <description>iOS 开发 移动App 博客 杂谈 随笔 相册</description>
         <language>zh-CN</language>
-        <pubDate>Wed, 24 Aug 2022 15:04:39 +0800</pubDate>
-        <lastBuildDate>Wed, 24 Aug 2022 15:04:39 +0800</lastBuildDate>
+        <pubDate>Mon, 13 Jun 2022 17:05:31 +0800</pubDate>
+        <lastBuildDate>Mon, 13 Jun 2022 17:05:31 +0800</lastBuildDate>
+        <category>欢迎页</category>
         <category>网络</category>
         <category>底层</category>
-        <category>OpenGL</category>
-        <category>UI</category>
-        <category>欢迎页</category>
         <category>DNS解析</category>
         <category>LocalDNS</category>
+        <category>OpenGL</category>
+        <category>UI</category>
         <category>动画</category>
         <category>性能优化</category>
         <category>xcode</category>
@@ -26,173 +26,39 @@
         <category>优化</category>
         <category>国外文献</category>
         <category>httpdns</category>
-        <category>AlertView</category>
-        <category>Hook</category>
         <category>Cocoapods</category>
         <category>架构</category>
+        <category>AlertView</category>
+        <category>Hook</category>
+        <category>杂谈</category>
         <category>Hexo</category>
         <category>个人博客</category>
         <category>网站</category>
-        <category>杂谈</category>
         <category>屏幕适配</category>
         <category>iOS 11</category>
         <category>评论插件</category>
-        <category>热修复</category>
-        <category>JSPath</category>
         <category>总结</category>
         <category>回味2017展望2018</category>
+        <category>热修复</category>
+        <category>JSPath</category>
         <category>swift</category>
         <category>网络请求</category>
+        <category>Swift</category>
         <category>音频</category>
         <category>唱吧</category>
         <category>K歌</category>
         <category>AVFoundation</category>
-        <category>Swift</category>
         <category>git</category>
         <category>效率工作</category>
         <category>代码版本控制</category>
+        <category>回首2018展望2019</category>
         <category>iOS</category>
         <category>Crash防护</category>
+        <category>Apple登录</category>
+        <category>WWDC2022</category>
         <category>算法</category>
         <category>C语言</category>
         <category>排序</category>
-        <category>Apple登录</category>
-        <category>WWDC2022</category>
-        <item>
-            <guid isPermalink="true">https://oliverqueen.cn/2022-08-24-WWDC22%EF%BC%9ARuntime%E7%9A%84%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E5%92%8CApp%E5%87%8F%E5%8C%85/</guid>
-            <title>WWDC22：Runtime的性能优化和App减包</title>
-            <link>https://oliverqueen.cn/2022-08-24-WWDC22%EF%BC%9ARuntime%E7%9A%84%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E5%92%8CApp%E5%87%8F%E5%8C%85/</link>
-            <category>iOS</category>
-            <category>WWDC2022</category>
-            <pubDate>Wed, 24 Aug 2022 15:04:39 +0800</pubDate>
-            <description><![CDATA[ &lt;link rel=&#34;stylesheet&#34; class=&#34;aplayer-secondary-style-marker&#34; href=&#34;/assets/css/APlayer.min.css&#34;&gt;&lt;script src=&#34;/assets/js/APlayer.min.js&#34; class=&#34;aplayer-secondary-script-marker&#34;&gt;&lt;/script&gt;&lt;p&gt;本 Session 讲了为了让你的应用包体积更小，运行更快，启动速度更快，我们对 Swift 和 Objective-C 运行时做了怎样的优化。同时通过本 Session 你将发现如何通过高效的协议检查，更小的消息发送，以及优化后的 ARC 机制，来提高你的 App 性能。&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/e6c9d24egy1h5hvcgyqjij21400u0411.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;div class=&#34;media-container&#34;&gt;&lt;div class=&#34;player&#34; data-type=&#34;audio&#34; data-src=&#39;[&#34;https://music.163.com/#/song?id=1929370102&#34;]&#39;&gt;&lt;/div&gt;&lt;/div&gt;&lt;/p&gt;
-&lt;h2 id=&#34;前言&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#前言&#34;&gt;#&lt;/a&gt; 前言&lt;/h2&gt;
-&lt;p&gt;WWDC2022 上苹果更新了 Xcode14，里面提到了一些相关的优化。其中讲了通过对 Swift 和 Objective-C 运行时做了一些优化，达到了包体积变得更小、运行速度更快，启动速度更快的目的。如果你是用 Xcode14 来构建 App，那么会有其中三点优化&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;高效的协议检查（针对 Swift protocol check）&lt;/li&gt;
-&lt;li&gt;更快的消息发送机制（message send）&lt;/li&gt;
-&lt;li&gt;release 和 return 调用优化（release &amp;amp; retain）&lt;/li&gt;
-&lt;li&gt;Autorelease elision 的优化（自动释放省略）&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/e6c9d24egy1h5npazwav0j214g0rm75u.jpg&#34; alt=&#34;wwdc&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;当你用 Swift 或 Objective-C 编写代码时，其实是会经历三个个步骤。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;编码，通过 Xcode 编写代码&lt;/li&gt;
-&lt;li&gt;编译，使用了 Swift 和 Clang 编译器&lt;/li&gt;
-&lt;li&gt;运行，通过 Swift 和 Objective-C 运行时中完成&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/e6c9d24egy1h5gp9rcbq1j215t0u0754.jpg&#34; alt=&#34;image-20220823144936761&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;此次的这些关键优化其实就是在第三步骤运行时来完成的，运行时嵌入在我们所有平台的操作系统中。编译器在构建时不能做的事情，运行时可以做。而此次所有的修改其实对于开发者来说是无感透明的，所以任何代码都不用改动，只要你使用 Xcode14 来进行打包编译，便会享受的这些优化点。&lt;/p&gt;
-&lt;h2 id=&#34;swift协议检查protocol-checks&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#swift协议检查protocol-checks&#34;&gt;#&lt;/a&gt; Swift 协议检查（Protocol checks）&lt;/h2&gt;
-&lt;p&gt;先来看一个例子！&lt;/p&gt;
-&lt;p&gt;&lt;figure class=&#34;highlight swift&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;25&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// 定义一个协议&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;protocol&lt;/span&gt; &lt;span class=&#34;title class_&#34;&gt;CustomLoggable&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  &lt;span class=&#34;comment&#34;&gt;// 协议中定义一个属性 customString，只读属性&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;var&lt;/span&gt; customLogString: &lt;span class=&#34;type&#34;&gt;String&lt;/span&gt; &amp;#123; &lt;span class=&#34;keyword&#34;&gt;get&lt;/span&gt; &amp;#125;        &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// 定义一个log函数，参数为Any类型&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;title function_&#34;&gt;log&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;value&lt;/span&gt;: &lt;span class=&#34;keyword&#34;&gt;Any&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;//如果value遵循CustomLoggable协议，就输出字符串&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;let&lt;/span&gt; value &lt;span class=&#34;operator&#34;&gt;=&lt;/span&gt; value &lt;span class=&#34;keyword&#34;&gt;as?&lt;/span&gt; &lt;span class=&#34;type&#34;&gt;CustomLoggable&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;built_in&#34;&gt;debugPrint&lt;/span&gt;(value.customLogString)        &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125; &lt;span class=&#34;keyword&#34;&gt;else&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;operator&#34;&gt;...&lt;/span&gt;        &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125;       &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// 定义一个Event类型 遵循协议，并实现customLogString&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;title class_&#34;&gt;Event&lt;/span&gt;: &lt;span class=&#34;title class_&#34;&gt;CustomLoggable&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;var&lt;/span&gt; name: &lt;span class=&#34;type&#34;&gt;String&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;var&lt;/span&gt; date: &lt;span class=&#34;type&#34;&gt;String&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;var&lt;/span&gt; customLogString: &lt;span class=&#34;type&#34;&gt;String&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;keyword&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;string&#34;&gt;&amp;quot;&lt;span class=&#34;subst&#34;&gt;\(&lt;span class=&#34;keyword&#34;&gt;self&lt;/span&gt;.name)&lt;/span&gt;, on &lt;span class=&#34;subst&#34;&gt;\(&lt;span class=&#34;keyword&#34;&gt;self&lt;/span&gt;.date)&lt;/span&gt;&amp;quot;&lt;/span&gt;    &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125;        &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;看上面代码，因为 log 函数的参数需要输出字符串，所以在输出前要先判断这个 value 是否遵循 CustomLoggable 协议，Swift 是静态语言，所以一般来说这样的检查都是发生在编译时期。但是编译器不一定能拿到足够的协议元数据信息来完成检查。比如这里并不知道每次传入的 Any 类型是哪个确定类型，也就无法确定是否遵循  &lt;code&gt;CustomLoggable&lt;/code&gt;  协议。所以这种检查常常发生运行时，系统借助计算好的协议检查元数据 (protocol check metadata)，运行库知道这个特殊对象是否符合协议。&lt;/p&gt;
-&lt;p&gt;这些元数据的构建虽然大部分在编译期间，但是还是有一部分是要在运行时完成，比如上面的例子，而且一个项目中肯定不止有一个协议，所以随着协议越多运行时的效率就越低，对于用户来说这个时间大部分是启动时间，所以用户感知为启动时间变长。而 Xcode14 新推的的 Swift Runtime 解决了这个问题，只要你是用 Xcode14 编译且运行在 iOS16 及以上版即可。&lt;/p&gt;
-&lt;p&gt;按照苹果的说法，他们会把 &lt;code&gt;是否遵循协议&lt;/code&gt; 的这个判断前置到 build 时期，也就是把 &lt;code&gt;协议元数据计算&lt;/code&gt; 的步骤前置到 build 中，具体就是他把这些操作放在 App 可执行文件和启动时任何动态库的 dyld 闭包的一部分&lt;/p&gt;
-&lt;p&gt;为什么这样做可以节省启动时间，需要先了解下 app 启动流程，需要一个知识背景 &lt;code&gt;从iOS11开始dyld3被加入，iOS13第三方库也开始使用dyld3加载。&lt;/code&gt; 所以我们要看下 dyld3 的加载流程&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://upload-images.jianshu.io/upload_images/2438680-b5edfa4c2bcdb205.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1044/format/webp&#34; alt=&#34;img&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;dyld 3&lt;/em&gt; 主要包含了两个过程 进程外（启动前）和进程内（启动后），我们来看启动前做了那些事情&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;进程外 &lt;em&gt;Mach-O&lt;/em&gt; 分析器和编译器 （&lt;em&gt;out-of-process mach-o parser&lt;/em&gt;）&lt;br /&gt;
-&lt;em&gt;dyld 3&lt;/em&gt; 中将采用提前写入把结果数据缓存成文件的方式构成一个 &lt;em&gt;lauch closure&lt;/em&gt;（可以理解为缓存文件）&lt;/li&gt;
-&lt;li&gt;分析依赖库&lt;/li&gt;
-&lt;li&gt;执行符号查找&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;Write closure&lt;/em&gt; 缓存服务 (&lt;em&gt;launch closure cache&lt;/em&gt; )&lt;br /&gt;
- 系统程序的 &lt;em&gt;closure&lt;/em&gt; 直接内置在 &lt;em&gt;shared cache&lt;/em&gt; 中，而对于第三方 APP，将在 APP 安装或更新时生成，这样就能保证 &lt;em&gt;closure&lt;/em&gt; 总是在 APP 打开之前准备好。说白了就是把上面做的结果全都缓存起来&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;综上看来以前需要在 in-process 中做的事情，现在在 out-of-process 就可以完成，启动时或者运行时直接读取缓存数据即可，加快了启动速度和运行时的性能。其实在笔者看来当我们下载或者更新 App 的时候 App 上的进度条其实是分两部分 &lt;code&gt;正在下载&lt;/code&gt; 和 &lt;code&gt;正在安装&lt;/code&gt; ，此次的优化可能略微提高安装的时长来降低启动速度，提高运行时性能。&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;on apps that rely heavily in Swift, this could add up to half the launch time&lt;/code&gt;  如果有条件的同学可以试下是否可以提高这么多的启动耗时。&lt;/p&gt;
-&lt;h2 id=&#34;消息发送优化message-send&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#消息发送优化message-send&#34;&gt;#&lt;/a&gt; 消息发送优化（Message send）&lt;/h2&gt;
-&lt;p&gt;直接抛结果，苹果这边给到的数据是使用 Xcode14 编译打包的数据可以让 ARM64 上发送消息消耗从 12 字节降低到 8 字节，二进制大小也有 2% 的降低，也就是苹果对包大小和性能都做了优化，默认是同时开启的，由苹果来平衡两者的关系，当然也可以使用 &lt;code&gt;objc_stubs_small&lt;/code&gt;  来仅仅优化包大小。&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/e6c9d24egy1h5grqpljrej215t0u0aax.jpg&#34; alt=&#34;image-20220823161510950&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;下面我们看下是怎么优化的，同样使用官方代码举例&lt;/p&gt;
-&lt;p&gt;&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;// 声明一个日历对象&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;NScalendar *cal = [self makeCalendar];&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;// 声明一个日期对象并赋值&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;NSDateComponents *dateComponents = [[NSDateComponents alloc] init];&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;dateComponents.year = 2022;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;dateComponents.month = 2022;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;dateComponents.day = 2022;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;S&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;// 把日期转换为date&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;NSDate *theDate = [cal dateFromComponents: dateComponents];&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;// 返回date&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;return theDate;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;大家知道 OC 调用方法最终会走到 &lt;code&gt;_objc_msgSend&lt;/code&gt; ，所以上面代码不算最终的 return，会走 7 个  &lt;code&gt;_objc_msgSend&lt;/code&gt; ，其中每一个都需要一条指令来调用就是 bl 如下图&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/e6c9d24egy1h5gsa0ef9kj20n00gidgx.jpg&#34; alt=&#34;image-20220823163343886&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;该函数定义为 &lt;code&gt;Id objc_msgSend(id self, SEL _cmd, ...) &lt;/code&gt; ，参数定义为 self 是函数的调用方，SEL 为具体调用哪个函数，具体的方法查找流程就不在这里赘述。&lt;/p&gt;
-&lt;p&gt;我们拿其中具体的一个函数调用来分析&lt;/p&gt;
-&lt;p&gt;&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;NSDate *theDate = [cal dateFromComponents: dateComponents]; &lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;比如这个函数调用，转化为 mesagesend 的时候就变成这样&lt;/p&gt;
-&lt;p&gt;&lt;figure class=&#34;highlight c&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;objc_msgSend(cal, @selector(dateFromComponents))&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;为了告诉运行时调用哪个方法，我们必须传递一个 Selector 给这些 objc_msgSend 调用，就如上图的 &lt;code&gt;@selector(dateFromComponents)&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;我们再来看 &lt;code&gt;Id objc_msgSend(id self, SEL _cmd, ...)&lt;/code&gt;  执行后他是怎么执行汇编指令的。&lt;/p&gt;
-&lt;p&gt;&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;// 使用adrp找到该方法的地址   消耗4字节&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;adrp x1, [selector &amp;quot;dateFromComponents&amp;quot;]  &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;// 将 地址加载到X1寄存器中  消耗4字节&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;ldr  x1, [x1, selector &amp;quot;dateFromComponents&amp;quot;] &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;// 执行bl指令跳转到该方法并执行  消耗4字节&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;bl _objc_msgSend&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;从上面的代码看出每次执行方法调用都会 走以上三个步骤，每个步骤消耗 4 字节 一共消耗 12 字节，而前两步是准备 selector，任何一次方法调用都会执行他，目前的策略是每调一个方法都会生成上面三步，那么此时优化空间就来了。&lt;/p&gt;
-&lt;p&gt;因为这里存在相同的代码（前两步）， &lt;code&gt;我们可以考虑共享它，并且只在每个 selector 中触发它一次，而不是每次发送消息时都生成这段指令代码&lt;/code&gt; 。所以我们可以把这部分相同代码提取出来，放到一个小助手函数中 (helper function), 并调用该函数。通过使用同一 selector 进行多次调用 (通过传递参数不同，内部指令是相同的，现在封装成一个存根函数，以前是散落在各个 _objc_msgSend 调用处)，我们可以保存所有这些指令字节。所以可以理解为 &lt;code&gt;把前两步封装一下&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/e6c9d24egy1h5gvtbfnh1j20n00git9h.jpg&#34; alt=&#34;image-20220823183604633&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;所以原来的调用就变成了&lt;/p&gt;
-&lt;p&gt;&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;bl _objc_msgSend$dateFromComponents 4字节&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;bl _objc_msgSend    4字节&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;这也就是苹果说的从 12 字节优化到 8 字节，其中 &lt;code&gt;_objc_msgSend$dateFromComponents&lt;/code&gt;  也被称为 &lt;code&gt;selector stub 存根函数&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;同样 &lt;code&gt;_objc_msgSend&lt;/code&gt;  本身也有一个存根函数写法&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/e6c9d24egy1h5gw1kpzuzj20n00giwfd.jpg&#34; alt=&#34;image-20220823184401200&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;这样一来我们现在就有两个存根函数&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;_objc_msgSend$dateFromComponents:&lt;/li&gt;
-&lt;li&gt;_objc_msgSend:&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;这两个函数封装了一些通用的东西，共享了最多的代码，使代码尽可能的小，但是这样带来的不足是我需要连着两个 bl 跳转，这对操作系统来说开销较大。所以为了平衡包体积和性能，我们可以使用下面这种方法来提升这一点。我们可以把前面调用的两个存根函数封装成一个 (都封装成_objc_msgSend$dateFromComponents)，这样，我们可以使代码更紧凑，不需要那么多调用。如下图这样&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/e6c9d24egy1h5gwei63esj20bo07u74l.jpg&#34; alt=&#34;image-20220823185626349&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;这就回到了之前的问题，你可以通过 &lt;code&gt;_objc_stubs_small&lt;/code&gt;  标记了只降低包大小，或者采用默认的方式让系统自动平衡，两者的区别在汇编层面就体现在如下图&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/e6c9d24egy1h5gwg7hnugj20n00gidhc.jpg&#34; alt=&#34;image-20220823185804687&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;综上：这就是 Meesage send 占用从 12 bytes 降低到 8 bytes 和二进制大小下降 12% 的原因&lt;/p&gt;
-&lt;h2 id=&#34;retain-and-release&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#retain-and-release&#34;&gt;#&lt;/a&gt; Retain and release&lt;/h2&gt;
-&lt;p&gt;这个优化是苹果这边使 Retain and release 的开销更小，苹果的说法是 Retain and release 的调用开销从 8 字节降低到 4 字节，同时包体积也会有 2% 的优化&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/e6c9d24egy1h5gwkqxaenj20n00gidg9.jpg&#34; alt=&#34;image-20220823190226429&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;我们知道 ARC 相比于 MRC 是开发者不需要再写 retain、release 这些代码，其实并不是不需要，而是编译器帮我们自动在需要的位置插入了这些代码，所以换句话说他们还是存在的，只是你看不到也不用在关心他们。&lt;/p&gt;
-&lt;p&gt;还是拿之前的例子来说&lt;/p&gt;
-&lt;p&gt;&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;// Retain/release calls inserted by ARC&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;NScalendar *cal = [self makeCalendar]; // bl    _objc_retain&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;NSDateComponents *dateComponents = [[NSDateComponents alloc] init]; // bl    _objc_retain&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;dateComponents.year = 2022; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;dateComponents.month = 2022;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;dateComponents.day = 2022;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;NSDate *theDate = [cal dateFromComponents: dateComponents]; // bl    _objc_retain&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;return theDate;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;// bl    _objc_release &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;// bl    _objc_release &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;// bl    _objc_release &lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;在变量创建的时候我们使用 retain 来增加的他的引用计数不被销毁，在方法结束后我们使用 release 来销毁不需要的变量，这也是 iOS 的内存管理机制。在 ARC 下这些都是编译器我们插入的代码，我们无需关心。&lt;/p&gt;
-&lt;p&gt;retain 和 release 都是 C 语言的函数，他们携带一个参数就是被操作的对象，同时他遵循 C 语言的 ABI，所以当你调用这些方法的时候系统还会为你做一些额外的事情，比如下图中的 mov 操作，而这些操正是我们优化的用武之地，通过自定义调用重新约定 retain/release 接口，我们可以根据对象指针的位置，适当的使用正确的变量，这样就可以不用移动它。简单的说， &lt;code&gt;就是修改了底层 ABI&lt;/code&gt; 。&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/e6c9d24egy1h5gwylzjkuj20n00giab1.jpg&#34; alt=&#34;image-20220823191546398&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;我们是怎么做的优化呢？看下之前的流程，我们用下面这行代码举例&lt;/p&gt;
-&lt;p&gt;&lt;figure class=&#34;highlight c&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;objc_release(dateComponents); &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// mov  x0, x20                    消耗4 字节                                                                                                                                                           &lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// bl    _objc_release         消耗4字节&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;流程为&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;先执行 mov 把副本地址（X20, 也就是对象的地址）存到寄存器 x0&lt;/li&gt;
-&lt;li&gt;然后 bl 跳转到 &lt;code&gt;_objc_release&lt;/code&gt;  函数进行释放&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;根据之前讲的每个指令消耗 4 字节，所以这里消耗 8 字节&lt;/p&gt;
-&lt;p&gt;我们修改 ABI 之后其省掉调用 mov 指令 然后原本跳转到_objc_release 函数 改为跳转到 &lt;code&gt;_objc_release_x20&lt;/code&gt;  函数，而 mov 的指令放到 C 语言更底层的 ABI 里面去做，你可以理解为 &lt;code&gt;我们封装了一个新的retain、release函数，你只要传入一个寄存器地址我就去更底层的地方完成mov操作，所以效率更高了&lt;/code&gt; 。现在因为只用执行一条指令，所以内存消耗为 4 字节。现在的流程看起来为&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/e6c9d24egy1h5gx83ebs8j20n00giab9.jpg&#34; alt=&#34;image-20220823192452605&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;这么看来我们代码里大量的 release 和 retain 都经过这样的样的优化所以整体的二进制包降低 2% 同时调用内存消耗游 8 字节变为 4 字节，同时 ABI 接口修改，去除冗余 mov 指令调用，下沉到 ABI。 &lt;code&gt;由于 ABI 是内嵌系统&lt;/code&gt; ，这里新增 mov 指令占用可以忽略不计。&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;Apple 果然是坚持用户体验优先，为了更好体验不惜修改 c 的 ABI&lt;/code&gt;&lt;/p&gt;
-&lt;h2 id=&#34;autorelease-elision自动释放省略优化&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#autorelease-elision自动释放省略优化&#34;&gt;#&lt;/a&gt; Autorelease elision（自动释放省略优化）&lt;/h2&gt;
-&lt;p&gt;iOS 中除了使用 release 之外还有另一个 就是 autorelease 自动释放机制，同样在这个地方苹果也做了自动释放省略的优化让自动释放机制效率更高。我们来看下面这个例子&lt;/p&gt;
-&lt;p&gt;&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;// Return Value Autoreleases &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;theWWDCDate = [event getWWDCDate];&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-(NSDate*)getWWDCDate &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    ...&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    return theDate;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;创建一个临时对象 (theDate)，并将其返回给调用方 (event)。 &lt;code&gt;getWWDCDate()&lt;/code&gt;  方法中返回临时的 theDate，然后调用完成 (返回 theDate 之后，getWWDCDate 就调用完成)。这时调用方（event）将其保存到自己的变量中（theWWDCDate 中）。&lt;/p&gt;
-&lt;p&gt;根据系统插入 retain 和 release 的机制来说应该是这样的，但是明显 retain 处不能进行 release，因为我需要吧 theDate 返回回去，如果这里释放了我就没办法呢返回了。&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/e6c9d24egy1h5gy19928nj20n00gi3yz.jpg&#34; alt=&#34;image-20220823195254398&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;因此，为了解决上述问题，需要使用一个特殊的约定用来返回这个临时返回值。这就引入了 Autorelease，这样调用者能够 retain 它。autorelease 在这里保证在调用方可以正常返回该值，而不被提前释放，延长释放生命周期。你之前可能看到过 autorelease 和 autoreleasePools：其实这是一种将 release 操作推迟到稍后某个时间的方法。所以上面的代码改为 Autorelease&lt;/p&gt;
-&lt;p&gt;&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;// Return Value Autoreleases &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;theWWDCDate = [[event getWWDCDate] retain];&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-(NSDate*)getWWDCDate &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    ...&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    return [theDate autorelease]; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;系统并不知道他在什么时候会被释放，反正只要不在 retain 的时候释放就行，所以我在 retain 的时候先打个标记，标记他之后可能会被释放。但是这样的操作目前会带来一些开销，其实就是 &lt;code&gt;我虽然打了release标记，但是我明明一会还要retain，没必要多此一举&lt;/code&gt; ，所以基于此我们之前引入了 &lt;code&gt;Autorelease elision&lt;/code&gt;  来减少这部分开销（ &lt;code&gt;如果Autorelease后紧接一个retain我就都不做了&lt;/code&gt; ）。我们先从汇编层面看下 Autorelease elision 做了什么&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/e6c9d24egy1h5gy8n9wnzj20n00giwf7.jpg&#34; alt=&#34;image-20220823195959365&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;提炼出以下代码&lt;/p&gt;
-&lt;p&gt;&lt;figure class=&#34;highlight c&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// What the compiler emits&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; bl    _getWWDCDate &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; mov   x29, x29&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; bl    _objc_retainAutoreleasedReturnValue&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; b    _objc_autoreleaseReturnValue   &lt;span class=&#34;comment&#34;&gt;// autorelease -&amp;gt; runtime -&amp;gt; _objc_autoreleaseReturnValue&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;其实就是以下步骤&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;当我们返回值调用 Autorelease 时候系统会调用 &lt;code&gt;_objc_autoreleaseReturnValue&lt;/code&gt;  来返回一个 &lt;code&gt;autoreleased value&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;执行 Autorelease 后编译器会添加个标记 &lt;code&gt;mov x29, x29&lt;/code&gt;   而这句指令在实际运行中这个指令会变为二进制的形式变为 &lt;code&gt;0xAA1D03FD&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;后续的操作就运行时会先判断是否有对应的标记 &lt;code&gt;0xAA1D03FD&lt;/code&gt; ，如果有，这意味着编译器告诉 runtime, 我们将返回一个已经被标记，但是将立即被持有（retain） 的临时变量，后面就不需要再 retain 操作了&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/e6c9d24egy1h5h056kleej20n00gigm5.jpg&#34; alt=&#34;image-20220823210550374&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;static ALWAYS_INLINE bool &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;callerAcceptsOptimizedReturn(const void *ra)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    // fd 03 1d aa    mov fp, fp&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    // arm64 instructions are well-aligned&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    if (*(uint32_t *)ra == 0xaa1d03fd) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        return true;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        // 返回true 需要优化 把release、rentain删掉&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    return false;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;说白了就是在返回值身上调用 &lt;code&gt;objc_autoreleaseReturnValue&lt;/code&gt;  方法时，runtime 将这个返回值 object 标记（储存在 TLS 中），然后直接返回这个 object（不调用 autorelease）；同时，在外部接收这个返回值的 &lt;code&gt;objc_retainAutoreleasedReturnValue&lt;/code&gt;  里，发现有之前的标记（TLS 中正好存了这个对象），那么直接返回这个 object（清楚之前的标记且不再调用 retain）。&lt;/p&gt;
-&lt;p&gt;注意：TLS 相关的含义可以参考 [这里](&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovL3NlYW5jaGVuc2UuZ2l0aHViLmlvLzIwMTgvMDkvMjAvZWFybGdyZXktc291cmNlLWNvZGUtcmVhZC0xLyNUTFM=&#34;&gt;EarlGrey 源码阅读（一） | SeanChense&lt;/span&gt;)&lt;/p&gt;
-&lt;p&gt;但是这里有一个问题，以二进制的形式来加载代码并不是很常见，而且我们不但要加载它还要比较他尤其在 CPU 上并不是最优策略，所以这里还是有开销的，因此我们看下如何优化。&lt;/p&gt;
-&lt;p&gt;同样执行流程，当执行完 &lt;code&gt; _objc_autoreleaseReturnValue&lt;/code&gt;  函数时候我们会获得一个返回地址，这个地址是一个指针，指向了被标记为 Autorelease 的对象。然后代码继续执行到 &lt;code&gt;_objc_retainAutoreleasedReturnValue&lt;/code&gt;  这里要进行 reatin，而被 reatain 的变量地址我们也可以拿到，所以只要比较这两个指针即可，这样一来我们也不再需要 mov 操作&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/e6c9d24egy1h5h0ws62g0j20n00gidg3.jpg&#34; alt=&#34;image-20220823213224122&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;优化点&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;把原来的比较二进制数据改为比较指针。速度更快效率更高&lt;/li&gt;
-&lt;li&gt;减少 mov 指令 减少 4 字节，二进制大小预计降低 2%&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;总结&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#总结&#34;&gt;#&lt;/a&gt; 总结&lt;/h2&gt;
-&lt;p&gt;这就是 Xcode14+iOS16 的编译期间优化，可以看出苹果也在帮我们完成 OKR 减少包体积，提高启动速度，增加代码执行效率，同时也能看出苹果在追求极致用户体验道路上所做的事情。本文部分翻译自&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9kZXZlbG9wZXIuYXBwbGUuY29tL3ZpZGVvcy9wbGF5L3d3ZGMyMDIyLzExMDM2My8=&#34;&gt; Improve app size and runtime performance&lt;/span&gt;，同时也添加了自己的思考。&lt;/p&gt;
- ]]></description>
-        </item>
         <item>
             <guid isPermalink="true">https://oliverqueen.cn/2022-06-13-WWDC2022-iOS%E7%AF%87%E5%AE%8C%E5%85%A8%E8%A7%A3%E6%9E%90/</guid>
             <title>WWDC2022-iOS篇完全解析</title>
@@ -944,10 +810,10 @@ Mach 异常，分为两种情况，第一种是本身就是硬件层面或者系
 &lt;h1 id=&#34;0x6-最后&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#0x6-最后&#34;&gt;#&lt;/a&gt; 0x6: 最后&lt;/h1&gt;
 &lt;p&gt;大概这就是所有 Crash 防护的流程，通过两篇文章讲解，希望大家对 iOS 系统的 Crash 流程能有些许的了解，并没有贴太多的源码，其实还是解耦度不够，思路有了代码就很简单了。&lt;/p&gt;
 &lt;p&gt;
-        &lt;div id=&#34;aplayer-uPSRqugE&#34; class=&#34;aplayer aplayer-tag-marker&#34; style=&#34;margin-bottom: 20px;&#34;&gt;&lt;/div&gt;
+        &lt;div id=&#34;aplayer-mwecNoNc&#34; class=&#34;aplayer aplayer-tag-marker&#34; style=&#34;margin-bottom: 20px;&#34;&gt;&lt;/div&gt;
 			  &lt;script&gt;
 				  var options = {&#34;narrow&#34;:false,&#34;autoplay&#34;:true,&#34;showlrc&#34;:0,&#34;mutex&#34;:true,&#34;music&#34;:[{&#34;title&#34;:&#34;错位时空&#34;,&#34;author&#34;:&#34;艾辰&#34;,&#34;url&#34;:&#34;https://molier-1256056152.cos.ap-guangzhou.myqcloud.com/%E8%89%BE%E8%BE%B0%20-%20%E9%94%99%E4%BD%8D%E6%97%B6%E7%A9%BA.mp3&#34;,&#34;pic&#34;:&#34;https://bkimg.cdn.bcebos.com/pic/a8ec8a13632762d0f7037ac288a71ffa513d26976830?x-bce-process=image/watermark,image_d2F0ZXIvYmFpa2UxMTY=,g_7,xp_5,yp_5/format,f_auto&#34;,&#34;lrc&#34;:&#34;https://歌词.lrc&#34;}]};
-				  options.element = document.getElementById(&#34;aplayer-uPSRqugE&#34;);
+				  options.element = document.getElementById(&#34;aplayer-mwecNoNc&#34;);
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);
@@ -1844,10 +1710,10 @@ sendAction：参数（RDX）将使用选择器，而 to：参数将是 IBAction 
 &lt;h3 id=&#34;有意者发简历到-zhangninghao11gmailcom&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#有意者发简历到-zhangninghao11gmailcom&#34;&gt;#&lt;/a&gt; 有意者发简历到 &amp;quot;&lt;span class=&#34;exturl&#34; data-url=&#34;bWFpbHRvOnpoYW5nbmluZ2hhbzExQGdtYWlsLmNvbQ==&#34;&gt;zhangninghao11@gmail.com&lt;/span&gt;&amp;quot;&lt;/h3&gt;
 &lt;h3 id=&#34;认真脸&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#认真脸&#34;&gt;#&lt;/a&gt; 认真脸&lt;/h3&gt;
 &lt;p&gt;
-        &lt;div id=&#34;aplayer-GOvgpjlI&#34; class=&#34;aplayer aplayer-tag-marker&#34; style=&#34;margin-bottom: 20px;&#34;&gt;&lt;/div&gt;
+        &lt;div id=&#34;aplayer-OyPzIYLo&#34; class=&#34;aplayer aplayer-tag-marker&#34; style=&#34;margin-bottom: 20px;&#34;&gt;&lt;/div&gt;
 			  &lt;script&gt;
 				  var options = {&#34;narrow&#34;:false,&#34;autoplay&#34;:true,&#34;showlrc&#34;:3,&#34;mutex&#34;:true,&#34;music&#34;:[{&#34;title&#34;:&#34;大鱼&#34;,&#34;author&#34;:&#34;周深&#34;,&#34;url&#34;:&#34;https://molier-1256056152.cos.ap-guangzhou.myqcloud.com/bigfish.mp3&#34;,&#34;pic&#34;:&#34;https://y.gtimg.cn/music/photo_new/T002R300x300M000004Y7V4s3ug4cC.jpg?max_age=2592000&#34;,&#34;lrc&#34;:&#34;https://demo.meting.api.meto.moe/action/metingapi?server=tencent&amp;type=lrc&amp;id=004OQ5Mt0EmEzv&#34;}]};
-				  options.element = document.getElementById(&#34;aplayer-GOvgpjlI&#34;);
+				  options.element = document.getElementById(&#34;aplayer-OyPzIYLo&#34;);
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);
@@ -2163,10 +2029,10 @@ sendAction：参数（RDX）将使用选择器，而 to：参数将是 IBAction 
 &lt;h2 id=&#34;总结&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#总结&#34;&gt;#&lt;/a&gt; 总结&lt;/h2&gt;
 &lt;p&gt;因为时间紧迫，暂时做了这么多，也遇到了这些问题，所以写出了总结下，本文还会继续更新，会慢慢的整个网络层分享出来。就是可能更新会慢，毕竟工作量有点饱和。多谢关注&lt;/p&gt;
 &lt;p&gt;
-        &lt;div id=&#34;aplayer-SJvWpCYU&#34; class=&#34;aplayer aplayer-tag-marker&#34; style=&#34;margin-bottom: 20px;&#34;&gt;&lt;/div&gt;
+        &lt;div id=&#34;aplayer-nyBKjZCn&#34; class=&#34;aplayer aplayer-tag-marker&#34; style=&#34;margin-bottom: 20px;&#34;&gt;&lt;/div&gt;
 			  &lt;script&gt;
 				  var options = {&#34;narrow&#34;:false,&#34;autoplay&#34;:true,&#34;showlrc&#34;:0,&#34;mutex&#34;:true,&#34;music&#34;:[{&#34;title&#34;:&#34;Thank You Very Much&#34;,&#34;author&#34;:&#34;Margaret&#34;,&#34;url&#34;:&#34;https://molier-1256056152.cos.ap-guangzhou.myqcloud.com/Thankyou.mp3&#34;,&#34;pic&#34;:&#34;https://y.gtimg.cn/music/photo_new/T002R300x300M000000VbGX83hRicw.jpg?max_age=2592000&#34;,&#34;lrc&#34;:&#34;https://demo.meting.api.meto.moe/action/metingapi?server=tencent&amp;type=lrc&amp;id=001Ii3g54dIYpO&#34;}]};
-				  options.element = document.getElementById(&#34;aplayer-SJvWpCYU&#34;);
+				  options.element = document.getElementById(&#34;aplayer-nyBKjZCn&#34;);
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);
@@ -2227,10 +2093,10 @@ sendAction：参数（RDX）将使用选择器，而 to：参数将是 IBAction 
 &lt;h2 id=&#34;思考&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#思考&#34;&gt;#&lt;/a&gt; 思考&lt;/h2&gt;
 &lt;p&gt;这个方法相比较之前的 JSpatch 是非常轻量级的，而且也只是实现了简单的容错功能，并不能做一些复杂的操作，比如生成一个对象之类的，不过对于一般的控制已经可以满足了，毕竟在苹果爸爸这么严厉的管制下能有这样的方法也还不错啊。&lt;/p&gt;
 &lt;p&gt;
-        &lt;div id=&#34;aplayer-gYcKVUic&#34; class=&#34;aplayer aplayer-tag-marker&#34; style=&#34;margin-bottom: 20px;&#34;&gt;&lt;/div&gt;
+        &lt;div id=&#34;aplayer-CENWGHXt&#34; class=&#34;aplayer aplayer-tag-marker&#34; style=&#34;margin-bottom: 20px;&#34;&gt;&lt;/div&gt;
 			  &lt;script&gt;
 				  var options = {&#34;narrow&#34;:false,&#34;autoplay&#34;:true,&#34;showlrc&#34;:0,&#34;mutex&#34;:true,&#34;music&#34;:[{&#34;title&#34;:&#34;不知归期的故人&#34;,&#34;author&#34;:&#34;房东的猫&#34;,&#34;url&#34;:&#34;https://molier-1256056152.cos.ap-guangzhou.myqcloud.com/%E4%B8%8D%E7%9F%A5%E5%BD%92%E6%9C%9F%E7%9A%84%E6%95%85%E4%BA%BA.mp3&#34;,&#34;pic&#34;:&#34;https://y.gtimg.cn/music/photo_new/T002R300x300M000004NFJ230yX0Nz.jpg?max_age=2592000&#34;,&#34;lrc&#34;:&#34;https://demo.meting.api.meto.moe/action/metingapi?server=tencent&amp;type=lrc&amp;id=000zreoj2VtcID&#34;}]};
-				  options.element = document.getElementById(&#34;aplayer-gYcKVUic&#34;);
+				  options.element = document.getElementById(&#34;aplayer-CENWGHXt&#34;);
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);

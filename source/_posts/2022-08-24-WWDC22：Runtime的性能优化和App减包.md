@@ -1,7 +1,7 @@
 ---
 title: WWDC22：Runtime的性能优化和App减包
 sticky: true
-categories: iOS开发
+categories: 译文
 date: 2022-08-24 15:04:39
 tags:
     - iOS

@@ -276,10 +276,12 @@ prismjs:
 # Category & Tag
 default_category: uncategorized
 category_map: # edit for Theme.shoka
-  iOS: ios
+  iOS开发: ios
   计算机基础: computer-science
   杂谈: note
   情感: qinggan
+  译文: translate
+  通用开发: common
 tag_map:
 
 # Date / Time format
