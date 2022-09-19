@@ -1,17 +1,23 @@
 ---
 title: WWDC22：Runtime的性能优化和App减包
+sticky: true
 categories: iOS开发
 date: 2022-08-24 15:04:39
 tags:
     - iOS
     - WWDC2022
-comments:
+comment:
+cover: https://tva1.sinaimg.cn/large/e6c9d24egy1h5q2kjo3j2j21400u0411.jpg
 ---
 本Session讲了为了让你的应用包体积更小，运行更快，启动速度更快，我们对Swift和Objective-C运行时做了怎样的优化。同时通过本Session你将发现如何通过高效的协议检查，更小的消息发送，以及优化后的ARC机制，来提高你的App性能。
 
 ![](https://tva1.sinaimg.cn/large/e6c9d24egy1h5hvcgyqjij21400u0411.jpg)
 
 <!-- more -->
+	
+{% media audio %}
+    - https://music.163.com/#/song?id=1929370102
+{% endmedia %}
 
 
 ## 前言
@@ -20,7 +26,7 @@ WWDC2022 上苹果更新了Xcode14，里面提到了一些相关的优化。其�
 
 * 高效的协议检查（针对Swift protocol check）
 * 更快的消息发送机制（message send）
-* release 和return调用优化（release & return）
+* release 和return调用优化（release & retain）
 * Autorelease elision的优化（自动释放省略）
 
 ![wwdc](https://tva1.sinaimg.cn/large/e6c9d24egy1h5npazwav0j214g0rm75u.jpg)

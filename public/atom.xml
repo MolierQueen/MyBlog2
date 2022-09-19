@@ -3,14 +3,14 @@
     <id>https://oliverqueen.cn</id>
     <title>Molier</title>
     <link href="https://oliverqueen.cn" />
-    <updated>2022-09-03T16:17:52.783Z</updated>
+    <updated>2022-08-24T07:04:39.000Z</updated>
     <category term="欢迎页" />
     <category term="网络" />
     <category term="底层" />
-    <category term="OpenGL" />
-    <category term="UI" />
     <category term="DNS解析" />
     <category term="LocalDNS" />
+    <category term="OpenGL" />
+    <category term="UI" />
     <category term="动画" />
     <category term="性能优化" />
     <category term="xcode" />
@@ -18,20 +18,21 @@
     <category term="podfile" />
     <category term="webview" />
     <category term="hook" />
+    <category term="runtime" />
     <category term="翻译" />
     <category term="优化" />
     <category term="国外文献" />
+    <category term="httpdns" />
     <category term="Cocoapods" />
     <category term="架构" />
     <category term="AlertView" />
-    <category term="runtime" />
     <category term="Hook" />
     <category term="杂谈" />
-    <category term="屏幕适配" />
-    <category term="iOS 11" />
     <category term="Hexo" />
     <category term="个人博客" />
     <category term="网站" />
+    <category term="屏幕适配" />
+    <category term="iOS 11" />
     <category term="评论插件" />
     <category term="总结" />
     <category term="回味2017展望2018" />
@@ -40,139 +41,20 @@
     <category term="swift" />
     <category term="网络请求" />
     <category term="Swift" />
+    <category term="音频" />
+    <category term="唱吧" />
+    <category term="K歌" />
+    <category term="AVFoundation" />
     <category term="git" />
     <category term="效率工作" />
     <category term="代码版本控制" />
     <category term="iOS" />
     <category term="Crash防护" />
     <category term="Apple登录" />
+    <category term="WWDC2022" />
     <category term="算法" />
     <category term="C语言" />
     <category term="排序" />
-    <category term="httpdns" />
-    <category term="音频" />
-    <category term="唱吧" />
-    <category term="K歌" />
-    <category term="AVFoundation" />
-    <category term="WWDC2022" />
-    <entry>
-        <id>https://oliverqueen.cn/2021-05-03-iOS%20Crash%E9%98%B2%E6%8A%A4%E4%BD%A0%E7%9C%8B%E8%BF%99%E4%B8%AA%E5%B0%B1%E5%A4%9F%E4%BA%86-%E4%B8%8A%E7%AF%87/</id>
-        <title>iOS Crash防护你看这个就够了 - 上篇</title>
-        <link rel="alternate" href="https://oliverqueen.cn/2021-05-03-iOS%20Crash%E9%98%B2%E6%8A%A4%E4%BD%A0%E7%9C%8B%E8%BF%99%E4%B8%AA%E5%B0%B1%E5%A4%9F%E4%BA%86-%E4%B8%8A%E7%AF%87/"/>
-        <content type="html">&lt;link rel=&#34;stylesheet&#34; class=&#34;aplayer-secondary-style-marker&#34; href=&#34;/assets/css/APlayer.min.css&#34;&gt;&lt;script src=&#34;/assets/js/APlayer.min.js&#34; class=&#34;aplayer-secondary-script-marker&#34;&gt;&lt;/script&gt;&lt;h1 id=&#34;0x1-为什么要做crash防护&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#0x1-为什么要做crash防护&#34;&gt;#&lt;/a&gt; 0x1 为什么要做 Crash 防护&lt;/h1&gt;
-&lt;p&gt;在产品开发过程中 Crash 率是一个很重要的指标，也是一个团队中几乎所有的部门都应该关注或者去参与提升的一个指标，他不仅代表着整个产品的质量，也是一个团队整体技术能力的体现。更低的 Crash 率不但能让产品获得更好的用户口碑，在整个流程中也能让团队成员获得更多的成长，加深对 iOS 系统底层的理解，为今后的开发带了更大的帮助。&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://image-1256056152.cos.ap-nanjing.myqcloud.com/1111111111.jpeg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;&lt;/p&gt;
-&lt;h1 id=&#34;0x2-为什么要写这篇文章&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#0x2-为什么要写这篇文章&#34;&gt;#&lt;/a&gt; 0x2 为什么要写这篇文章&lt;/h1&gt;
-&lt;p&gt;起因也是因为自己的项目踩了 FB 的 SDK 的坑：2020.7.10，FB 后台下发数据错误，导致大量使用 FB SDK 的 App 发生启动 Crash，影响用户之多，范围之大，再加上当时包括我们的大部分 App 也缺乏相关的防护或者是容错处理，Crash 率瞬间飙升，重新发版又要走发布流程，只能依赖 FB 后台的修复，当时束手无策十分被动，所以决定自己做一套较为完整的 Crash 防护体系，来避免这样的场景再次发生。第二个目的就是，发生问题后我也第一之间查阅了网上的一些资料和其他团队的做法，发现大家的方式各有千秋，方法不同，效果不同，所以我也决定把市面上能找到的好的思路和方法再结合自己的一些想法和经验记录下来。最后也是因为知识是要沉淀、积累和分享的，也算是巩固和加深自己的理解吧。&lt;/p&gt;
-&lt;h1 id=&#34;0x3-怎么做&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#0x3-怎么做&#34;&gt;#&lt;/a&gt; 0x3 怎么做&lt;/h1&gt;
-&lt;p&gt;其实当时 Crash 的场景很简单，本来一个 Dictionary 参数 FB 后台却下发了个 String 类型的数据，这样一来解析时候必然会 Crash，解决的话其实只要做一层参数安全校验即可。&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gq58dki0g7j31ai0u01fd.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gq58c923pfj31020t8k5g.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;但是这么简单的问题，大部分 App 都没处理好，证明在流程上一定有大家注意不到的地方，暴露出来的只是冰山一角，我们机制一定存在着某种问题，或者存在可以优化的地方。&lt;/p&gt;
-&lt;p&gt;要想避免这种情况，就要先梳理出处理 Crash 的流程：&lt;/p&gt;
-&lt;h2 id=&#34;icrash处理流程&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#icrash处理流程&#34;&gt;#&lt;/a&gt; I：Crash 处理流程&lt;/h2&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gq6lcsxy6jj31bw0u0n1w.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;在 iOS 系统中基本可以总结出这四个步骤，&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;Crash 防护 - 通过 Hook 等手段，对一些类似容器类进行入参校验等措施，来进来避免 Crash 的发生&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Crash 拦截 - 如果第一步防护失败，那么在 Crash 走到这一步就要进行拦截，要让我们发现异常&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Crash 上报 - 对防护的、捕获的 Crash 进行防护，生成有效的日志进行上报，尽可能的还原堆栈。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Crash 后续流程 - Crash 发生后如何做才能最大限度的保护用户体验，如何优雅的 Crash&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;iicrash防护&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#iicrash防护&#34;&gt;#&lt;/a&gt; II：Crash 防护&lt;/h2&gt;
-&lt;p&gt;Crash 防护方式主要分两种：针对非内存问题通常采用 AOP 方式，内存问题采用 zombie 对象的方式，&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gq6lrlbl0vj30qi07mdg5.jpg&#34; alt=&#34;&#34; /&gt;&lt;br /&gt;
-&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gq6ls764zyj30qm06cjrq.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-&lt;h3 id=&#34;aopbr&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#aopbr&#34;&gt;#&lt;/a&gt; AOP：&amp;lt;br&amp;gt;&lt;/h3&gt;
-&lt;p&gt;iOS 中 AOP 的相关知识网上线程的代码也很多，这里就不在赘述，但是在 AOP 这种频繁调用的场景中就需要注意的地方和坑点比较多。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;AOP 的影响范围问题：当时用了普通的方式对数组相关的方法进行了 Hook，结果上线后发现大量的类似 Crash。 &lt;code&gt;[UIKeyboardLayoutStar release]: message sent to deallocated instance UIKeyboardLayoutStar&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gq6m6njbm8j30o40d0q8q.jpg&#34; alt=&#34;&#34; /&gt;&lt;br /&gt;
-在通过一些其他场景可以判断出是因为 HookNSMutableArr 的相关方法，导致系统类的调用受到了影响。&lt;/p&gt;
-&lt;p&gt;通过 Xcode 调试发现，因为 Hook 的本质就是在原有的系统调用前插入一个用户自定义的函数进行方法交换，那么在某种极端情况下（比如多线程），传入该函数的变量被释放，这样一来再走到原本系统调用的时候正常释放时就会出现重复释放的情况。大概的流程为&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gq6mhmeprhj31hm0fu75v.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;该场景在测试过程中很难复现，但是一旦到了线上，用户量覆盖够大后该问题就会显现出来。解决方式很简单，Hook 尽量在 MRC 下进行，使用 autorelease pool 进行包装。保证内部变量在当前的 runloop 结束时候进行释放。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;AOP 的性能问题：上面说了 AOP 的原理是会多一层方法调用，那么再结合 iOS 的方法转发流程可想而知，AOP 必定会造成性能的损耗，而且在 Crash 防护场景下频繁调用，性能问题一定不能忽略。&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gq6mswloauj310o0u0jx8.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;通过上图看出，方法调用流程最终会返回出对应的 IMP 指针供外部调用，作为动态语言，OC 无法确定开发者会再什么时候插入或者交换哪个函数，所以必须通过这一套流程进行类似校验的逻辑。&lt;/p&gt;
-&lt;p&gt;使用过 AOP 的同学一定知道在 AOP 前会先做一层校验&lt;/p&gt;
-&lt;p&gt;&lt;figure class=&#34;highlight reasonml&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;+(void)hookClass:(Class)classObject isClassMetohd:(BOOL)classMethod fromSelector:(SEL)fromSelector toSelector:(SEL)toSelector &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    Class &lt;span class=&#34;keyword&#34;&gt;class&lt;/span&gt; = classObject;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    Method fromMethod = &lt;span class=&#34;keyword&#34;&gt;class&lt;/span&gt;&lt;span class=&#34;constructor&#34;&gt;_getInstanceMethod(&lt;span class=&#34;params&#34;&gt;class&lt;/span&gt;, &lt;span class=&#34;params&#34;&gt;fromSelector&lt;/span&gt;)&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    Method toMethod = &lt;span class=&#34;keyword&#34;&gt;class&lt;/span&gt;&lt;span class=&#34;constructor&#34;&gt;_getInstanceMethod(&lt;span class=&#34;params&#34;&gt;class&lt;/span&gt;, &lt;span class=&#34;params&#34;&gt;toSelector&lt;/span&gt;)&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;comment&#34;&gt;//  添加前进行检测&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt; (classMethod) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;keyword&#34;&gt;class&lt;/span&gt; = &lt;span class=&#34;keyword&#34;&gt;object&lt;/span&gt;&lt;span class=&#34;constructor&#34;&gt;_getClass(&lt;span class=&#34;params&#34;&gt;classObject&lt;/span&gt;)&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        fromMethod = &lt;span class=&#34;keyword&#34;&gt;class&lt;/span&gt;&lt;span class=&#34;constructor&#34;&gt;_getClassMethod(&lt;span class=&#34;params&#34;&gt;class&lt;/span&gt;, &lt;span class=&#34;params&#34;&gt;fromSelector&lt;/span&gt;)&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        toMethod = &lt;span class=&#34;keyword&#34;&gt;class&lt;/span&gt;&lt;span class=&#34;constructor&#34;&gt;_getClassMethod(&lt;span class=&#34;params&#34;&gt;class&lt;/span&gt;, &lt;span class=&#34;params&#34;&gt;toSelector&lt;/span&gt;)&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt;(&lt;span class=&#34;keyword&#34;&gt;class&lt;/span&gt;&lt;span class=&#34;constructor&#34;&gt;_addMethod(&lt;span class=&#34;params&#34;&gt;class&lt;/span&gt;, &lt;span class=&#34;params&#34;&gt;fromSelector&lt;/span&gt;, &lt;span class=&#34;params&#34;&gt;method_getImplementation&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;toMethod&lt;/span&gt;)&lt;/span&gt;, &lt;span class=&#34;keyword&#34;&gt;method&lt;/span&gt;&lt;span class=&#34;constructor&#34;&gt;_getTypeEncoding(&lt;span class=&#34;params&#34;&gt;toMethod&lt;/span&gt;)&lt;/span&gt;)) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;keyword&#34;&gt;class&lt;/span&gt;&lt;span class=&#34;constructor&#34;&gt;_replaceMethod(&lt;span class=&#34;params&#34;&gt;class&lt;/span&gt;, &lt;span class=&#34;params&#34;&gt;toSelector&lt;/span&gt;, &lt;span class=&#34;params&#34;&gt;method_getImplementation&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;fromMethod&lt;/span&gt;)&lt;/span&gt;, &lt;span class=&#34;keyword&#34;&gt;method&lt;/span&gt;&lt;span class=&#34;constructor&#34;&gt;_getTypeEncoding(&lt;span class=&#34;params&#34;&gt;fromMethod&lt;/span&gt;)&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125; &lt;span class=&#34;keyword&#34;&gt;else&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;keyword&#34;&gt;method&lt;/span&gt;&lt;span class=&#34;constructor&#34;&gt;_exchangeImplementations(&lt;span class=&#34;params&#34;&gt;fromMethod&lt;/span&gt;, &lt;span class=&#34;params&#34;&gt;toMethod&lt;/span&gt;)&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br /&gt;
- 所以在方法我们在上面代码中的 toSelector 中 当我们需要调用回原方法时直接调用对应的函数指针即可&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gq6rm11f7dj30nm05a74e.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;最终我对直接调用 IMP 的方法做了测试，分别是 Demo 中和 App 中的某一个场景，测试数据如下，对比结果还是较为明显。这也就是为什么 Swift 或者一些其他静态语言比 OC 快的原因。&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gq6rw5k68mj313c0r6n13.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;zombiebr&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#zombiebr&#34;&gt;#&lt;/a&gt; Zombie：&amp;lt;br&amp;gt;&lt;/h3&gt;
-&lt;p&gt;使用僵尸对象来解决内存问题一直是苹果主推的方式，Xcode 也有相关设置，在 Debug 下打开相应开关，但是一旦把该功能放到线上做防护或监控就要考虑很多的问题。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;zombie 入口问题：换句话说就是在哪个地方生成 zombie 对象，看了一些相关的 SDK 都是采用 Dealloc 作为入口函数，不是不行，只是不是最优。原因有两点:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;1: 苹果已经不建议在 ARC 下主动调用 dealloc，目前只能采用 performSelector 或者其他动态调用的方式。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;2: 容易漏掉  &lt;code&gt;Objc_destructInstance&lt;/code&gt; ，所有的成员变量、属性都会在这个函数中释放，如果漏掉这个函数就会生成一个并不干净的僵尸对象，内存占用过高，白白浪费内存空间。&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;综上两点我最终选择在 Free 函数中生成僵尸对象&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gq6sr4ebj5j30vx0u0dhq.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;zombie 内存阈值问题：僵尸对象会占用内存空间，然而在线上环境操作内存一定要小心且一定要有一套完整的逻辑，当超过某一个内存阈值后需要及时清空僵尸对象。内存阈值的确定便成了关键，这里会遇到两个问题：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&amp;lt;font color=&#39;red&#39;&amp;gt; 1：内存问题一定会和机型强相关，如何根据不同的机型调整不同的阈值？ &amp;lt;/font&amp;gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&amp;lt;font color=&#39;red&#39;&amp;gt; 2：如何做到根据线上情况灵活动态调整？&amp;lt;/font&amp;gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;我们的底线是在加入 zombie 后不能触发 memorywarning，所以我先对大部分机型做了 memorywarning 阈值测试：&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gq6t2xweqcj312g0sg0xq.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;从上图可以看出当 App 占用内存达到总内存的 57%~69% 时候会触发内存警告，而且由于 iphone 中有一部分内存是系统保留内存并不会给到开发者，所以我们可用的也就 50% 左右，我总结出如下公式：&lt;/p&gt;
-&lt;p&gt;公式 1：不能触发内存警告  &lt;code&gt;Y = 0.5 * deviceMem – currentAppMem&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;公式 2: 僵尸对象的内存占用再大也不会超过 App 本身的内存  &lt;code&gt;Y = min ( ( 0.5 * deviceMem – currentAppMem ) , currentAppMem)&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;上面两个公式看似完美，但是还是有优化的地方，因为并不是 APP 中所有的变量都有可能成为僵尸对象，可能只是其中的某一部分需要被监控，所以得到最终的内存阈值计算公式：&lt;/p&gt;
-&lt;p&gt;&amp;lt;font color=red size=5 face=&amp;quot;黑体&amp;quot;&amp;gt;Y = min ( ( 0.5 * deviceMem – currentAppMem ) , currentAppMem / N )&amp;lt;/font&amp;gt;&lt;/p&gt;
-&lt;p&gt;因为 app 占用内存随时在变，所以可以加一个定时器每隔一定时间去更新该值。&lt;/p&gt;
-&lt;p&gt;上面公式的 N 还有一个好处就是我们可以后台动态下发，根据线上内存引起 Crash 量，如果 Crash 量大，那可能就需要更大的内存阈值去保存僵尸对象，就可以把 N 调小，反正调大，这样就可以无视机型的差异根据 Crash 的情况进行远程配置。&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gq6tozx4odj316l0u079c.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;通过如图的线上数据可以看出 随着 N 的减小，zombie 的内存阈值在增加，但是并不会超过内存警告阈值，确保了内存健康。&lt;/p&gt;
-&lt;p&gt;下图表示了不同的 N 值对应不同的捕获野指针问题的数量，各自 App 可以根据自己的业务情况进行调整。&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gq6tse6e79j31zo0kkk0x.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;zombie 更新策略问题：目前大家的做法都是在加入新的 zombie 对象时候检查是否超过阈值，达到阈值后删掉之前的 zombie 对象再加入新的对象，这样的清理逻辑是依赖于新 zombie 对象的加入，如果没有新对象的加入那么缓存空间也不会有变化，zombie 空间一旦生成就无法删掉，无法做到缓存的自清理，等于 App 无故增大了内存占用。&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gq6u18gh6cj30wa0saad2.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;同样借鉴 LRU 最近最久未使用的逻辑，每隔 30s 会检测下缓存情况，超过 30s 还未被使用的 zombie 对象将被删除，30s 是一个经验值，通过大量测试发现，内存问题一般会发生在对象被销毁的 30s 内，超过 30s 再出现的概率及小。这样可以做到缓存自清理的逻辑。&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gq6u92wzy3j30n00si41c.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;通过 Instrument 测试发现该 zombie 逻辑并不会对 App 本身的内存造成太大的影响。&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gq6ucxjfn5j31c60u078q.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;
-			&lt;script&gt;
-				console.error(&#34;Error: [hexo-tag-aplayer] Specified asset file not found ( https://molier-1256056152.cos.ap-guangzhou.myqcloud.com/%E5%B0%B9%E6%98%94%E7%9C%A0%20-%20%E5%A5%94%E8%B5%B4%E6%98%9F%E7%A9%BA.mp3)&#34;);
-			&lt;/script&gt;&lt;/p&gt;
-</content>
-        <category term="iOS" />
-        <category term="Crash防护" />
-        <updated>2022-09-03T16:17:52.783Z</updated>
-    </entry>
     <entry>
         <id>https://oliverqueen.cn/2022-08-24-WWDC22%EF%BC%9ARuntime%E7%9A%84%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E5%92%8CApp%E5%87%8F%E5%8C%85/</id>
         <title>WWDC22：Runtime的性能优化和App减包</title>
@@ -180,12 +62,13 @@
         <content type="html">&lt;link rel=&#34;stylesheet&#34; class=&#34;aplayer-secondary-style-marker&#34; href=&#34;/assets/css/APlayer.min.css&#34;&gt;&lt;script src=&#34;/assets/js/APlayer.min.js&#34; class=&#34;aplayer-secondary-script-marker&#34;&gt;&lt;/script&gt;&lt;p&gt;本 Session 讲了为了让你的应用包体积更小，运行更快，启动速度更快，我们对 Swift 和 Objective-C 运行时做了怎样的优化。同时通过本 Session 你将发现如何通过高效的协议检查，更小的消息发送，以及优化后的 ARC 机制，来提高你的 App 性能。&lt;/p&gt;
 &lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/e6c9d24egy1h5hvcgyqjij21400u0411.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;div class=&#34;media-container&#34;&gt;&lt;div class=&#34;player&#34; data-type=&#34;audio&#34; data-src=&#39;[&#34;https://music.163.com/#/song?id=1929370102&#34;]&#39;&gt;&lt;/div&gt;&lt;/div&gt;&lt;/p&gt;
 &lt;h2 id=&#34;前言&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#前言&#34;&gt;#&lt;/a&gt; 前言&lt;/h2&gt;
 &lt;p&gt;WWDC2022 上苹果更新了 Xcode14，里面提到了一些相关的优化。其中讲了通过对 Swift 和 Objective-C 运行时做了一些优化，达到了包体积变得更小、运行速度更快，启动速度更快的目的。如果你是用 Xcode14 来构建 App，那么会有其中三点优化&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;高效的协议检查（针对 Swift protocol check）&lt;/li&gt;
 &lt;li&gt;更快的消息发送机制（message send）&lt;/li&gt;
-&lt;li&gt;release 和 return 调用优化（release &amp;amp; return）&lt;/li&gt;
+&lt;li&gt;release 和 return 调用优化（release &amp;amp; retain）&lt;/li&gt;
 &lt;li&gt;Autorelease elision 的优化（自动释放省略）&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/e6c9d24egy1h5npazwav0j214g0rm75u.jpg&#34; alt=&#34;wwdc&#34; /&gt;&lt;/p&gt;
@@ -760,6 +643,124 @@ token 被解密后分为三个部分&lt;/p&gt;
         <updated>2021-07-26T16:14:53.000Z</updated>
     </entry>
     <entry>
+        <id>https://oliverqueen.cn/2021-05-03-iOS%20Crash%E9%98%B2%E6%8A%A4%E4%BD%A0%E7%9C%8B%E8%BF%99%E4%B8%AA%E5%B0%B1%E5%A4%9F%E4%BA%86-%E4%B8%8A%E7%AF%87/</id>
+        <title>iOS Crash防护你看这个就够了 - 上篇</title>
+        <link rel="alternate" href="https://oliverqueen.cn/2021-05-03-iOS%20Crash%E9%98%B2%E6%8A%A4%E4%BD%A0%E7%9C%8B%E8%BF%99%E4%B8%AA%E5%B0%B1%E5%A4%9F%E4%BA%86-%E4%B8%8A%E7%AF%87/"/>
+        <content type="html">&lt;link rel=&#34;stylesheet&#34; class=&#34;aplayer-secondary-style-marker&#34; href=&#34;/assets/css/APlayer.min.css&#34;&gt;&lt;script src=&#34;/assets/js/APlayer.min.js&#34; class=&#34;aplayer-secondary-script-marker&#34;&gt;&lt;/script&gt;&lt;h1 id=&#34;0x1-为什么要做crash防护&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#0x1-为什么要做crash防护&#34;&gt;#&lt;/a&gt; 0x1 为什么要做 Crash 防护&lt;/h1&gt;
+&lt;p&gt;在产品开发过程中 Crash 率是一个很重要的指标，也是一个团队中几乎所有的部门都应该关注或者去参与提升的一个指标，他不仅代表着整个产品的质量，也是一个团队整体技术能力的体现。更低的 Crash 率不但能让产品获得更好的用户口碑，在整个流程中也能让团队成员获得更多的成长，加深对 iOS 系统底层的理解，为今后的开发带了更大的帮助。&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://image-1256056152.cos.ap-nanjing.myqcloud.com/1111111111.jpeg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;h1 id=&#34;0x2-为什么要写这篇文章&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#0x2-为什么要写这篇文章&#34;&gt;#&lt;/a&gt; 0x2 为什么要写这篇文章&lt;/h1&gt;
+&lt;p&gt;起因也是因为自己的项目踩了 FB 的 SDK 的坑：2020.7.10，FB 后台下发数据错误，导致大量使用 FB SDK 的 App 发生启动 Crash，影响用户之多，范围之大，再加上当时包括我们的大部分 App 也缺乏相关的防护或者是容错处理，Crash 率瞬间飙升，重新发版又要走发布流程，只能依赖 FB 后台的修复，当时束手无策十分被动，所以决定自己做一套较为完整的 Crash 防护体系，来避免这样的场景再次发生。第二个目的就是，发生问题后我也第一之间查阅了网上的一些资料和其他团队的做法，发现大家的方式各有千秋，方法不同，效果不同，所以我也决定把市面上能找到的好的思路和方法再结合自己的一些想法和经验记录下来。最后也是因为知识是要沉淀、积累和分享的，也算是巩固和加深自己的理解吧。&lt;/p&gt;
+&lt;h1 id=&#34;0x3-怎么做&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#0x3-怎么做&#34;&gt;#&lt;/a&gt; 0x3 怎么做&lt;/h1&gt;
+&lt;p&gt;其实当时 Crash 的场景很简单，本来一个 Dictionary 参数 FB 后台却下发了个 String 类型的数据，这样一来解析时候必然会 Crash，解决的话其实只要做一层参数安全校验即可。&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gq58dki0g7j31ai0u01fd.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gq58c923pfj31020t8k5g.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;但是这么简单的问题，大部分 App 都没处理好，证明在流程上一定有大家注意不到的地方，暴露出来的只是冰山一角，我们机制一定存在着某种问题，或者存在可以优化的地方。&lt;/p&gt;
+&lt;p&gt;要想避免这种情况，就要先梳理出处理 Crash 的流程：&lt;/p&gt;
+&lt;h2 id=&#34;icrash处理流程&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#icrash处理流程&#34;&gt;#&lt;/a&gt; I：Crash 处理流程&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gq6lcsxy6jj31bw0u0n1w.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;在 iOS 系统中基本可以总结出这四个步骤，&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Crash 防护 - 通过 Hook 等手段，对一些类似容器类进行入参校验等措施，来进来避免 Crash 的发生&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Crash 拦截 - 如果第一步防护失败，那么在 Crash 走到这一步就要进行拦截，要让我们发现异常&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Crash 上报 - 对防护的、捕获的 Crash 进行防护，生成有效的日志进行上报，尽可能的还原堆栈。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Crash 后续流程 - Crash 发生后如何做才能最大限度的保护用户体验，如何优雅的 Crash&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;iicrash防护&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#iicrash防护&#34;&gt;#&lt;/a&gt; II：Crash 防护&lt;/h2&gt;
+&lt;p&gt;Crash 防护方式主要分两种：针对非内存问题通常采用 AOP 方式，内存问题采用 zombie 对象的方式，&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gq6lrlbl0vj30qi07mdg5.jpg&#34; alt=&#34;&#34; /&gt;&lt;br /&gt;
+&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gq6ls764zyj30qm06cjrq.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;h3 id=&#34;aopbr&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#aopbr&#34;&gt;#&lt;/a&gt; AOP：&amp;lt;br&amp;gt;&lt;/h3&gt;
+&lt;p&gt;iOS 中 AOP 的相关知识网上线程的代码也很多，这里就不在赘述，但是在 AOP 这种频繁调用的场景中就需要注意的地方和坑点比较多。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;AOP 的影响范围问题：当时用了普通的方式对数组相关的方法进行了 Hook，结果上线后发现大量的类似 Crash。 &lt;code&gt;[UIKeyboardLayoutStar release]: message sent to deallocated instance UIKeyboardLayoutStar&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gq6m6njbm8j30o40d0q8q.jpg&#34; alt=&#34;&#34; /&gt;&lt;br /&gt;
+在通过一些其他场景可以判断出是因为 HookNSMutableArr 的相关方法，导致系统类的调用受到了影响。&lt;/p&gt;
+&lt;p&gt;通过 Xcode 调试发现，因为 Hook 的本质就是在原有的系统调用前插入一个用户自定义的函数进行方法交换，那么在某种极端情况下（比如多线程），传入该函数的变量被释放，这样一来再走到原本系统调用的时候正常释放时就会出现重复释放的情况。大概的流程为&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gq6mhmeprhj31hm0fu75v.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;该场景在测试过程中很难复现，但是一旦到了线上，用户量覆盖够大后该问题就会显现出来。解决方式很简单，Hook 尽量在 MRC 下进行，使用 autorelease pool 进行包装。保证内部变量在当前的 runloop 结束时候进行释放。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;AOP 的性能问题：上面说了 AOP 的原理是会多一层方法调用，那么再结合 iOS 的方法转发流程可想而知，AOP 必定会造成性能的损耗，而且在 Crash 防护场景下频繁调用，性能问题一定不能忽略。&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gq6mswloauj310o0u0jx8.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;通过上图看出，方法调用流程最终会返回出对应的 IMP 指针供外部调用，作为动态语言，OC 无法确定开发者会再什么时候插入或者交换哪个函数，所以必须通过这一套流程进行类似校验的逻辑。&lt;/p&gt;
+&lt;p&gt;使用过 AOP 的同学一定知道在 AOP 前会先做一层校验&lt;/p&gt;
+&lt;p&gt;&lt;figure class=&#34;highlight reasonml&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;+(void)hookClass:(Class)classObject isClassMetohd:(BOOL)classMethod fromSelector:(SEL)fromSelector toSelector:(SEL)toSelector &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    Class &lt;span class=&#34;keyword&#34;&gt;class&lt;/span&gt; = classObject;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    Method fromMethod = &lt;span class=&#34;keyword&#34;&gt;class&lt;/span&gt;&lt;span class=&#34;constructor&#34;&gt;_getInstanceMethod(&lt;span class=&#34;params&#34;&gt;class&lt;/span&gt;, &lt;span class=&#34;params&#34;&gt;fromSelector&lt;/span&gt;)&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    Method toMethod = &lt;span class=&#34;keyword&#34;&gt;class&lt;/span&gt;&lt;span class=&#34;constructor&#34;&gt;_getInstanceMethod(&lt;span class=&#34;params&#34;&gt;class&lt;/span&gt;, &lt;span class=&#34;params&#34;&gt;toSelector&lt;/span&gt;)&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;comment&#34;&gt;//  添加前进行检测&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt; (classMethod) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;keyword&#34;&gt;class&lt;/span&gt; = &lt;span class=&#34;keyword&#34;&gt;object&lt;/span&gt;&lt;span class=&#34;constructor&#34;&gt;_getClass(&lt;span class=&#34;params&#34;&gt;classObject&lt;/span&gt;)&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        fromMethod = &lt;span class=&#34;keyword&#34;&gt;class&lt;/span&gt;&lt;span class=&#34;constructor&#34;&gt;_getClassMethod(&lt;span class=&#34;params&#34;&gt;class&lt;/span&gt;, &lt;span class=&#34;params&#34;&gt;fromSelector&lt;/span&gt;)&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        toMethod = &lt;span class=&#34;keyword&#34;&gt;class&lt;/span&gt;&lt;span class=&#34;constructor&#34;&gt;_getClassMethod(&lt;span class=&#34;params&#34;&gt;class&lt;/span&gt;, &lt;span class=&#34;params&#34;&gt;toSelector&lt;/span&gt;)&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt;(&lt;span class=&#34;keyword&#34;&gt;class&lt;/span&gt;&lt;span class=&#34;constructor&#34;&gt;_addMethod(&lt;span class=&#34;params&#34;&gt;class&lt;/span&gt;, &lt;span class=&#34;params&#34;&gt;fromSelector&lt;/span&gt;, &lt;span class=&#34;params&#34;&gt;method_getImplementation&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;toMethod&lt;/span&gt;)&lt;/span&gt;, &lt;span class=&#34;keyword&#34;&gt;method&lt;/span&gt;&lt;span class=&#34;constructor&#34;&gt;_getTypeEncoding(&lt;span class=&#34;params&#34;&gt;toMethod&lt;/span&gt;)&lt;/span&gt;)) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;keyword&#34;&gt;class&lt;/span&gt;&lt;span class=&#34;constructor&#34;&gt;_replaceMethod(&lt;span class=&#34;params&#34;&gt;class&lt;/span&gt;, &lt;span class=&#34;params&#34;&gt;toSelector&lt;/span&gt;, &lt;span class=&#34;params&#34;&gt;method_getImplementation&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;fromMethod&lt;/span&gt;)&lt;/span&gt;, &lt;span class=&#34;keyword&#34;&gt;method&lt;/span&gt;&lt;span class=&#34;constructor&#34;&gt;_getTypeEncoding(&lt;span class=&#34;params&#34;&gt;fromMethod&lt;/span&gt;)&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125; &lt;span class=&#34;keyword&#34;&gt;else&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;keyword&#34;&gt;method&lt;/span&gt;&lt;span class=&#34;constructor&#34;&gt;_exchangeImplementations(&lt;span class=&#34;params&#34;&gt;fromMethod&lt;/span&gt;, &lt;span class=&#34;params&#34;&gt;toMethod&lt;/span&gt;)&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br /&gt;
+ 所以在方法我们在上面代码中的 toSelector 中 当我们需要调用回原方法时直接调用对应的函数指针即可&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gq6rm11f7dj30nm05a74e.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;最终我对直接调用 IMP 的方法做了测试，分别是 Demo 中和 App 中的某一个场景，测试数据如下，对比结果还是较为明显。这也就是为什么 Swift 或者一些其他静态语言比 OC 快的原因。&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gq6rw5k68mj313c0r6n13.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;zombiebr&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#zombiebr&#34;&gt;#&lt;/a&gt; Zombie：&amp;lt;br&amp;gt;&lt;/h3&gt;
+&lt;p&gt;使用僵尸对象来解决内存问题一直是苹果主推的方式，Xcode 也有相关设置，在 Debug 下打开相应开关，但是一旦把该功能放到线上做防护或监控就要考虑很多的问题。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;zombie 入口问题：换句话说就是在哪个地方生成 zombie 对象，看了一些相关的 SDK 都是采用 Dealloc 作为入口函数，不是不行，只是不是最优。原因有两点:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;1: 苹果已经不建议在 ARC 下主动调用 dealloc，目前只能采用 performSelector 或者其他动态调用的方式。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;2: 容易漏掉  &lt;code&gt;Objc_destructInstance&lt;/code&gt; ，所有的成员变量、属性都会在这个函数中释放，如果漏掉这个函数就会生成一个并不干净的僵尸对象，内存占用过高，白白浪费内存空间。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;综上两点我最终选择在 Free 函数中生成僵尸对象&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gq6sr4ebj5j30vx0u0dhq.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;zombie 内存阈值问题：僵尸对象会占用内存空间，然而在线上环境操作内存一定要小心且一定要有一套完整的逻辑，当超过某一个内存阈值后需要及时清空僵尸对象。内存阈值的确定便成了关键，这里会遇到两个问题：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&amp;lt;font color=&#39;red&#39;&amp;gt; 1：内存问题一定会和机型强相关，如何根据不同的机型调整不同的阈值？ &amp;lt;/font&amp;gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&amp;lt;font color=&#39;red&#39;&amp;gt; 2：如何做到根据线上情况灵活动态调整？&amp;lt;/font&amp;gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;我们的底线是在加入 zombie 后不能触发 memorywarning，所以我先对大部分机型做了 memorywarning 阈值测试：&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gq6t2xweqcj312g0sg0xq.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;从上图可以看出当 App 占用内存达到总内存的 57%~69% 时候会触发内存警告，而且由于 iphone 中有一部分内存是系统保留内存并不会给到开发者，所以我们可用的也就 50% 左右，我总结出如下公式：&lt;/p&gt;
+&lt;p&gt;公式 1：不能触发内存警告  &lt;code&gt;Y = 0.5 * deviceMem – currentAppMem&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;公式 2: 僵尸对象的内存占用再大也不会超过 App 本身的内存  &lt;code&gt;Y = min ( ( 0.5 * deviceMem – currentAppMem ) , currentAppMem)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;上面两个公式看似完美，但是还是有优化的地方，因为并不是 APP 中所有的变量都有可能成为僵尸对象，可能只是其中的某一部分需要被监控，所以得到最终的内存阈值计算公式：&lt;/p&gt;
+&lt;p&gt;&amp;lt;font color=red size=5 face=&amp;quot;黑体&amp;quot;&amp;gt;Y = min ( ( 0.5 * deviceMem – currentAppMem ) , currentAppMem / N )&amp;lt;/font&amp;gt;&lt;/p&gt;
+&lt;p&gt;因为 app 占用内存随时在变，所以可以加一个定时器每隔一定时间去更新该值。&lt;/p&gt;
+&lt;p&gt;上面公式的 N 还有一个好处就是我们可以后台动态下发，根据线上内存引起 Crash 量，如果 Crash 量大，那可能就需要更大的内存阈值去保存僵尸对象，就可以把 N 调小，反正调大，这样就可以无视机型的差异根据 Crash 的情况进行远程配置。&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gq6tozx4odj316l0u079c.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;通过如图的线上数据可以看出 随着 N 的减小，zombie 的内存阈值在增加，但是并不会超过内存警告阈值，确保了内存健康。&lt;/p&gt;
+&lt;p&gt;下图表示了不同的 N 值对应不同的捕获野指针问题的数量，各自 App 可以根据自己的业务情况进行调整。&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gq6tse6e79j31zo0kkk0x.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;zombie 更新策略问题：目前大家的做法都是在加入新的 zombie 对象时候检查是否超过阈值，达到阈值后删掉之前的 zombie 对象再加入新的对象，这样的清理逻辑是依赖于新 zombie 对象的加入，如果没有新对象的加入那么缓存空间也不会有变化，zombie 空间一旦生成就无法删掉，无法做到缓存的自清理，等于 App 无故增大了内存占用。&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gq6u18gh6cj30wa0saad2.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;同样借鉴 LRU 最近最久未使用的逻辑，每隔 30s 会检测下缓存情况，超过 30s 还未被使用的 zombie 对象将被删除，30s 是一个经验值，通过大量测试发现，内存问题一般会发生在对象被销毁的 30s 内，超过 30s 再出现的概率及小。这样可以做到缓存自清理的逻辑。&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gq6u92wzy3j30n00si41c.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;通过 Instrument 测试发现该 zombie 逻辑并不会对 App 本身的内存造成太大的影响。&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gq6ucxjfn5j31c60u078q.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+			&lt;script&gt;
+				console.error(&#34;Error: [hexo-tag-aplayer] Specified asset file not found ( https://molier-1256056152.cos.ap-guangzhou.myqcloud.com/%E5%B0%B9%E6%98%94%E7%9C%A0%20-%20%E5%A5%94%E8%B5%B4%E6%98%9F%E7%A9%BA.mp3)&#34;);
+			&lt;/script&gt;&lt;/p&gt;
+</content>
+        <category term="iOS" />
+        <category term="Crash防护" />
+        <updated>2021-07-26T15:49:06.000Z</updated>
+    </entry>
+    <entry>
         <id>https://oliverqueen.cn/2021-05-05-iOS-Crash%E9%98%B2%E6%8A%A4%E4%BD%A0%E7%9C%8B%E8%BF%99%E4%B8%AA%E5%B0%B1%E5%A4%9F%E4%BA%86-%E4%B8%8B%E7%AF%87/</id>
         <title>iOS Crash防护你看这个就够了-下篇</title>
         <link rel="alternate" href="https://oliverqueen.cn/2021-05-05-iOS-Crash%E9%98%B2%E6%8A%A4%E4%BD%A0%E7%9C%8B%E8%BF%99%E4%B8%AA%E5%B0%B1%E5%A4%9F%E4%BA%86-%E4%B8%8B%E7%AF%87/"/>
@@ -937,10 +938,10 @@ Mach 异常，分为两种情况，第一种是本身就是硬件层面或者系
 &lt;h1 id=&#34;0x6-最后&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#0x6-最后&#34;&gt;#&lt;/a&gt; 0x6: 最后&lt;/h1&gt;
 &lt;p&gt;大概这就是所有 Crash 防护的流程，通过两篇文章讲解，希望大家对 iOS 系统的 Crash 流程能有些许的了解，并没有贴太多的源码，其实还是解耦度不够，思路有了代码就很简单了。&lt;/p&gt;
 &lt;p&gt;
-        &lt;div id=&#34;aplayer-HIKflejk&#34; class=&#34;aplayer aplayer-tag-marker&#34; style=&#34;margin-bottom: 20px;&#34;&gt;&lt;/div&gt;
+        &lt;div id=&#34;aplayer-tWdrasSs&#34; class=&#34;aplayer aplayer-tag-marker&#34; style=&#34;margin-bottom: 20px;&#34;&gt;&lt;/div&gt;
 			  &lt;script&gt;
 				  var options = {&#34;narrow&#34;:false,&#34;autoplay&#34;:true,&#34;showlrc&#34;:0,&#34;mutex&#34;:true,&#34;music&#34;:[{&#34;title&#34;:&#34;错位时空&#34;,&#34;author&#34;:&#34;艾辰&#34;,&#34;url&#34;:&#34;https://molier-1256056152.cos.ap-guangzhou.myqcloud.com/%E8%89%BE%E8%BE%B0%20-%20%E9%94%99%E4%BD%8D%E6%97%B6%E7%A9%BA.mp3&#34;,&#34;pic&#34;:&#34;https://bkimg.cdn.bcebos.com/pic/a8ec8a13632762d0f7037ac288a71ffa513d26976830?x-bce-process=image/watermark,image_d2F0ZXIvYmFpa2UxMTY=,g_7,xp_5,yp_5/format,f_auto&#34;,&#34;lrc&#34;:&#34;https://歌词.lrc&#34;}]};
-				  options.element = document.getElementById(&#34;aplayer-HIKflejk&#34;);
+				  options.element = document.getElementById(&#34;aplayer-tWdrasSs&#34;);
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);
@@ -1839,10 +1840,10 @@ sendAction：参数（RDX）将使用选择器，而 to：参数将是 IBAction 
 &lt;h3 id=&#34;有意者发简历到-zhangninghao11gmailcom&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#有意者发简历到-zhangninghao11gmailcom&#34;&gt;#&lt;/a&gt; 有意者发简历到 &amp;quot;&lt;span class=&#34;exturl&#34; data-url=&#34;bWFpbHRvOnpoYW5nbmluZ2hhbzExQGdtYWlsLmNvbQ==&#34;&gt;zhangninghao11@gmail.com&lt;/span&gt;&amp;quot;&lt;/h3&gt;
 &lt;h3 id=&#34;认真脸&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#认真脸&#34;&gt;#&lt;/a&gt; 认真脸&lt;/h3&gt;
 &lt;p&gt;
-        &lt;div id=&#34;aplayer-jSrtoSKi&#34; class=&#34;aplayer aplayer-tag-marker&#34; style=&#34;margin-bottom: 20px;&#34;&gt;&lt;/div&gt;
+        &lt;div id=&#34;aplayer-jswSWBJK&#34; class=&#34;aplayer aplayer-tag-marker&#34; style=&#34;margin-bottom: 20px;&#34;&gt;&lt;/div&gt;
 			  &lt;script&gt;
 				  var options = {&#34;narrow&#34;:false,&#34;autoplay&#34;:true,&#34;showlrc&#34;:3,&#34;mutex&#34;:true,&#34;music&#34;:[{&#34;title&#34;:&#34;大鱼&#34;,&#34;author&#34;:&#34;周深&#34;,&#34;url&#34;:&#34;https://molier-1256056152.cos.ap-guangzhou.myqcloud.com/bigfish.mp3&#34;,&#34;pic&#34;:&#34;https://y.gtimg.cn/music/photo_new/T002R300x300M000004Y7V4s3ug4cC.jpg?max_age=2592000&#34;,&#34;lrc&#34;:&#34;https://demo.meting.api.meto.moe/action/metingapi?server=tencent&amp;type=lrc&amp;id=004OQ5Mt0EmEzv&#34;}]};
-				  options.element = document.getElementById(&#34;aplayer-jSrtoSKi&#34;);
+				  options.element = document.getElementById(&#34;aplayer-jswSWBJK&#34;);
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);
@@ -2314,10 +2315,10 @@ sendAction：参数（RDX）将使用选择器，而 to：参数将是 IBAction 
 &lt;h2 id=&#34;总结&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#总结&#34;&gt;#&lt;/a&gt; 总结&lt;/h2&gt;
 &lt;p&gt;因为时间紧迫，暂时做了这么多，也遇到了这些问题，所以写出了总结下，本文还会继续更新，会慢慢的整个网络层分享出来。就是可能更新会慢，毕竟工作量有点饱和。多谢关注&lt;/p&gt;
 &lt;p&gt;
-        &lt;div id=&#34;aplayer-joGvQISk&#34; class=&#34;aplayer aplayer-tag-marker&#34; style=&#34;margin-bottom: 20px;&#34;&gt;&lt;/div&gt;
+        &lt;div id=&#34;aplayer-upbafeqm&#34; class=&#34;aplayer aplayer-tag-marker&#34; style=&#34;margin-bottom: 20px;&#34;&gt;&lt;/div&gt;
 			  &lt;script&gt;
 				  var options = {&#34;narrow&#34;:false,&#34;autoplay&#34;:true,&#34;showlrc&#34;:0,&#34;mutex&#34;:true,&#34;music&#34;:[{&#34;title&#34;:&#34;Thank You Very Much&#34;,&#34;author&#34;:&#34;Margaret&#34;,&#34;url&#34;:&#34;https://molier-1256056152.cos.ap-guangzhou.myqcloud.com/Thankyou.mp3&#34;,&#34;pic&#34;:&#34;https://y.gtimg.cn/music/photo_new/T002R300x300M000000VbGX83hRicw.jpg?max_age=2592000&#34;,&#34;lrc&#34;:&#34;https://demo.meting.api.meto.moe/action/metingapi?server=tencent&amp;type=lrc&amp;id=001Ii3g54dIYpO&#34;}]};
-				  options.element = document.getElementById(&#34;aplayer-joGvQISk&#34;);
+				  options.element = document.getElementById(&#34;aplayer-upbafeqm&#34;);
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);
@@ -2378,10 +2379,10 @@ sendAction：参数（RDX）将使用选择器，而 to：参数将是 IBAction 
 &lt;h2 id=&#34;思考&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#思考&#34;&gt;#&lt;/a&gt; 思考&lt;/h2&gt;
 &lt;p&gt;这个方法相比较之前的 JSpatch 是非常轻量级的，而且也只是实现了简单的容错功能，并不能做一些复杂的操作，比如生成一个对象之类的，不过对于一般的控制已经可以满足了，毕竟在苹果爸爸这么严厉的管制下能有这样的方法也还不错啊。&lt;/p&gt;
 &lt;p&gt;
-        &lt;div id=&#34;aplayer-AeoHuAgH&#34; class=&#34;aplayer aplayer-tag-marker&#34; style=&#34;margin-bottom: 20px;&#34;&gt;&lt;/div&gt;
+        &lt;div id=&#34;aplayer-fvUfQuPt&#34; class=&#34;aplayer aplayer-tag-marker&#34; style=&#34;margin-bottom: 20px;&#34;&gt;&lt;/div&gt;
 			  &lt;script&gt;
 				  var options = {&#34;narrow&#34;:false,&#34;autoplay&#34;:true,&#34;showlrc&#34;:0,&#34;mutex&#34;:true,&#34;music&#34;:[{&#34;title&#34;:&#34;不知归期的故人&#34;,&#34;author&#34;:&#34;房东的猫&#34;,&#34;url&#34;:&#34;https://molier-1256056152.cos.ap-guangzhou.myqcloud.com/%E4%B8%8D%E7%9F%A5%E5%BD%92%E6%9C%9F%E7%9A%84%E6%95%85%E4%BA%BA.mp3&#34;,&#34;pic&#34;:&#34;https://y.gtimg.cn/music/photo_new/T002R300x300M000004NFJ230yX0Nz.jpg?max_age=2592000&#34;,&#34;lrc&#34;:&#34;https://demo.meting.api.meto.moe/action/metingapi?server=tencent&amp;type=lrc&amp;id=000zreoj2VtcID&#34;}]};
-				  options.element = document.getElementById(&#34;aplayer-AeoHuAgH&#34;);
+				  options.element = document.getElementById(&#34;aplayer-fvUfQuPt&#34;);
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);
@@ -2474,10 +2475,10 @@ sendAction：参数（RDX）将使用选择器，而 to：参数将是 IBAction 
 &lt;p&gt;&lt;strong&gt;在这里给大家拜个早年：祝大家新年快乐，心想事成。新的一年我会与大家分享更多的东西&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;才疏学浅，文笔拙劣，于 2018.2.13 仓促执笔....&lt;/p&gt;
 &lt;p&gt;
-        &lt;div id=&#34;aplayer-InZphTav&#34; class=&#34;aplayer aplayer-tag-marker&#34; style=&#34;margin-bottom: 20px;&#34;&gt;&lt;/div&gt;
+        &lt;div id=&#34;aplayer-FdcUqSCe&#34; class=&#34;aplayer aplayer-tag-marker&#34; style=&#34;margin-bottom: 20px;&#34;&gt;&lt;/div&gt;
 			  &lt;script&gt;
 				  var options = {&#34;narrow&#34;:false,&#34;autoplay&#34;:true,&#34;showlrc&#34;:0,&#34;mutex&#34;:true,&#34;music&#34;:[{&#34;title&#34;:&#34;에필로그 (Epilogue)&#34;,&#34;author&#34;:&#34;이동준&#34;,&#34;url&#34;:&#34;https://molier-1256056152.cos.ap-guangzhou.myqcloud.com/%E1%84%8B%E1%85%A6%E1%84%91%E1%85%B5%E1%86%AF%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3.mp3&#34;,&#34;pic&#34;:&#34;https://y.gtimg.cn/music/photo_new/T002R300x300M000000RmZHf3qhLUL.jpg?max_age=2592000&#34;,&#34;lrc&#34;:&#34;https://歌词.lrc&#34;}]};
-				  options.element = document.getElementById(&#34;aplayer-InZphTav&#34;);
+				  options.element = document.getElementById(&#34;aplayer-FdcUqSCe&#34;);
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);
@@ -2526,10 +2527,10 @@ sendAction：参数（RDX）将使用选择器，而 to：参数将是 IBAction 
 &lt;h2 id=&#34;最后&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#最后&#34;&gt;#&lt;/a&gt; 最后&lt;/h2&gt;
 &lt;p&gt;大概就这么多，顺便祝大家新年快乐，阖家幸福！&lt;/p&gt;
 &lt;p&gt;
-        &lt;div id=&#34;aplayer-zdqNZhnJ&#34; class=&#34;aplayer aplayer-tag-marker&#34; style=&#34;margin-bottom: 20px;&#34;&gt;&lt;/div&gt;
+        &lt;div id=&#34;aplayer-QGmZBIhd&#34; class=&#34;aplayer aplayer-tag-marker&#34; style=&#34;margin-bottom: 20px;&#34;&gt;&lt;/div&gt;
 			  &lt;script&gt;
 				  var options = {&#34;narrow&#34;:false,&#34;autoplay&#34;:true,&#34;showlrc&#34;:3,&#34;mutex&#34;:true,&#34;music&#34;:[{&#34;title&#34;:&#34;Love Story&#34;,&#34;author&#34;:&#34;린 (LYn)&#34;,&#34;url&#34;:&#34;https://molier-1256056152.cos.ap-guangzhou.myqcloud.com/%E1%84%85%E1%85%B5%E1%86%AB-Love%20Story.mp3&#34;,&#34;pic&#34;:&#34;https://y.gtimg.cn/music/photo_new/T002R300x300M0000048KLcQ4LDbZz.jpg?max_age=2592000&#34;,&#34;lrc&#34;:&#34;https://demo.meting.api.meto.moe/action/metingapi?server=tencent&amp;type=lrc&amp;id=0028RAj0187nEg&#34;}]};
-				  options.element = document.getElementById(&#34;aplayer-zdqNZhnJ&#34;);
+				  options.element = document.getElementById(&#34;aplayer-QGmZBIhd&#34;);
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);
@@ -2908,10 +2909,10 @@ NEXT 主题本身是已经集成了 livere 评论的，只不过被注释掉了�
 &lt;h2 id=&#34;最后&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#最后&#34;&gt;#&lt;/a&gt; 最后&lt;/h2&gt;
 &lt;p&gt;整篇文章只有开始一小部分在讲解如何搭建博客，后续的基本都是交给大家如何优化，调整一些细节问题如 UI、用户体验之类的，当然我们能做的远远不止这些，如果有什么问题欢迎与我探讨。下面的留言我都会看的。此外当本人对 HEXO 有新的看法或者玩法的话该文章会不断的更新，希望大家关注我的&lt;a href=&#34;https://oliverqueen.cn/&#34;&gt;小站&lt;/a&gt;，感谢。&lt;/p&gt;
 &lt;p&gt;
-        &lt;div id=&#34;aplayer-vKrOpgLy&#34; class=&#34;aplayer aplayer-tag-marker&#34; style=&#34;margin-bottom: 20px;&#34;&gt;&lt;/div&gt;
+        &lt;div id=&#34;aplayer-peevtldf&#34; class=&#34;aplayer aplayer-tag-marker&#34; style=&#34;margin-bottom: 20px;&#34;&gt;&lt;/div&gt;
 			  &lt;script&gt;
 				  var options = {&#34;narrow&#34;:false,&#34;autoplay&#34;:true,&#34;showlrc&#34;:3,&#34;mutex&#34;:true,&#34;music&#34;:[{&#34;title&#34;:&#34;凉城&#34;,&#34;author&#34;:&#34;任然&#34;,&#34;url&#34;:&#34;https://molier-1256056152.cos.ap-guangzhou.myqcloud.com/liangcheng.mp3&#34;,&#34;pic&#34;:&#34;https://y.gtimg.cn/music/photo_new/T002R300x300M0000008nl2Y1HlxUm.jpg?max_age=2592000&#34;,&#34;lrc&#34;:&#34;https://demo.meting.api.meto.moe/action/metingapi?server=tencent&amp;type=lrc&amp;id=002SKEeh1VzObP&#34;},{&#34;title&#34;:&#34;Love Story&#34;,&#34;author&#34;:&#34;린 (LYn)&#34;,&#34;url&#34;:&#34;https://molier-1256056152.cos.ap-guangzhou.myqcloud.com/%E1%84%85%E1%85%B5%E1%86%AB-Love%20Story.mp3&#34;,&#34;pic&#34;:&#34;https://y.gtimg.cn/music/photo_new/T002R300x300M0000048KLcQ4LDbZz.jpg?max_age=2592000&#34;,&#34;lrc&#34;:&#34;https://demo.meting.api.meto.moe/action/metingapi?server=tencent&amp;type=lrc&amp;id=0028RAj0187nEg&#34;},{&#34;title&#34;:&#34;大鱼&#34;,&#34;author&#34;:&#34;周深&#34;,&#34;url&#34;:&#34;https://molier-1256056152.cos.ap-guangzhou.myqcloud.com/bigfish.mp3&#34;,&#34;pic&#34;:&#34;https://y.gtimg.cn/music/photo_new/T002R300x300M000004Y7V4s3ug4cC.jpg?max_age=2592000&#34;,&#34;lrc&#34;:&#34;https://demo.meting.api.meto.moe/action/metingapi?server=tencent&amp;type=lrc&amp;id=004OQ5Mt0EmEzv&#34;}]};
-				  options.element = document.getElementById(&#34;aplayer-vKrOpgLy&#34;);
+				  options.element = document.getElementById(&#34;aplayer-peevtldf&#34;);
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);

@@ -1,3 +1,25 @@
+# 主题配置：https://shoka.lostyu.me/computer-science/note/theme-shoka-doc/special/
+
+
+
+# {% media audio %}
+# - title: 列表 1
+#   list:
+#     - https://music.163.com/#/playlist?id=2943811283
+#     - https://music.163.com/#/playlist?id=2297706586
+# - title: 列表 2
+#   list:
+#     - https://music.163.com/#/playlist?id=2031842656
+# {% endmedia %}
+
+# {% media video %}
+# - name: "测试 1"
+#   url: https://cdn.kastatic.org/ka-youtube-converted/O_nY1TM2RZM.mp4/O_nY1TM2RZM.mp4#t=0
+# - name: "测试 2"
+#   url: https://cdn.kastatic.org/ka-youtube-converted/O_nY1TM2RZM.mp4/O_nY1TM2RZM.mp4#t=0
+# {% endmedia %}
+
+
 # Alternate site name
 alternate: Molier
 
@@ -99,19 +121,30 @@ iconfont: "1832207_igi8uaupcus"
 #   friends: /friends/ || heart
 #   links: /links/ || magic
 
+menu:
+  home: / || home
+  posts:
+    default: / || feather
+    archives: /archives/ || list-alt
+    categories: /categories/ || th
+    tags: /tags/ || tags
+  friends: /friends/ || heart
+
 # Social Links
 # Usage: `Key: permalink || icon || color`
 # Key is the link label showing to end users.
 # Value before `||` delimiter is the target permalink,
 # secend value is the name of Font icon.
 social:
-  #github: https://github.com/yourname || github || "#191717"
+  新浪微博: https://weibo.com/zhangninghao?refer_flag=1005055010_ || weibo
+  jianshu: https://www.jianshu.com/u/fd21f41fb522 || superpowers
+  github: https://github.com/MolierQueen || github || "#191717"
   #google: https://plus.google.com/yourname || google
-  #twitter: https://twitter.com/yourname || twitter || "#00aff0"
-  #zhihu: https://www.zhihu.com/people/yourname || zhihu || "#1e88e5"
-  #music: https://music.163.com/#/user/home?id=yourid || cloud-music || "#e60026"
-  #weibo: https://weibo.com/yourname || weibo || "#ea716e"
-  #about: https://about.me/yourname || address-card || "#3b5998"
+  juejin: https://juejin.im/user/586c624bac502e12d631545f || juejin || "#00aff0"
+  # zhihu: https://www.zhihu.com/people/rurismzk || zhihu || "#1e88e5"
+  # music: https://music.163.com/#/user/home?id=12886823 || cloud-music || "#e60026"
+  # weibo: https://weibo.com/amehime || weibo || "#ea716e"
+  # about: https://about.me/amehime || address-card || "#3b5998"
   #email: mailto:yourname@mail.com || envelope || "#55acd5"
   #facebook: https://www.facebook.com/yourname || facebook
   #stackoverflow: https://stackoverflow.com/yourname || stack-overflow
@@ -131,22 +164,32 @@ widgets:
   # if true, will show random posts
   random_posts: true
   # if true, will show recent comments
-  recent_comments: true
+  recent_comments: false
 
+# footer:
+#   # Specify the date when the site was setup. If not defined, current year will be used.
+#   since: 2010
+#   icon:
+#     name: sakura rotate
+#     # Change the color of icon, using Hex Code.
+#     color: "#ffc0cb"
+#   # Dependencies: https://github.com/theme-next/hexo-symbols-count-time
+#   count: false
+#   powered: true
+
+# post:
+#   # Dependencies: https://github.com/theme-next/hexo-symbols-count-time
+#   count: false
+
+# 页尾全站统计
 footer:
   # Specify the date when the site was setup. If not defined, current year will be used.
-  since: 2010
-  icon:
-    name: sakura rotate
-    # Change the color of icon, using Hex Code.
-    color: "#ffc0cb"
-  # Dependencies: https://github.com/theme-next/hexo-symbols-count-time
-  count: false
-  powered: true
+  since: 1992
+  count: true
 
+# 文章界面统计
 post:
-  # Dependencies: https://github.com/theme-next/hexo-symbols-count-time
-  count: false
+  count: true
 
 # Reward (Donate)
 reward:
@@ -156,6 +199,7 @@ reward:
     wechatpay: /wechatpay.png
     alipay: /alipay.png
     # paypal: /paypal.png
+
 
 # TagCloud settings for tags page.
 tagcloud:
@@ -184,9 +228,9 @@ creative_commons:
 # Valine
 # For more information: https://github.com/amehime/MiniValine
 valine:
-  appId: #Your_appId
-  appKey: #Your_appkey
-  placeholder: ヽ(○´∀`)ﾉ♪ # Comment box placeholder
+  appId: ZUpaHweWdLepCgg1QBhyPKlU-9Nh9j0Va
+  appKey: e8cTAxnUEPjdal2p3tahtm1D
+  placeholder: 说点什么
   avatar: mp # Gravatar style : mp, identicon, monsterid, wavatar, robohash, retro
   pageSize: 10 # Pagination size
   lang: en
@@ -214,14 +258,28 @@ valine:
       # - hash of investor1@email.com
 
 # bgm
+# audio:
+#   # - title: 列表1
+#   #   list:
+#   #    - https://music.163.com/#/playlist?id=2943811283
+#   #    - https://music.163.com/#/playlist?id=2297706586
+#   # - title: 列表2
+#   #   list:
+#   #    - https://music.163.com/#/playlist?id=2031842656
+
+# bgm
 audio:
-  # - title: 列表1
-  #   list:
-  #    - https://music.163.com/#/playlist?id=2943811283
-  #    - https://music.163.com/#/playlist?id=2297706586
-  # - title: 列表2
-  #   list:
-  #    - https://music.163.com/#/playlist?id=2031842656
+  - https://music.163.com/song?id=1387098940
+  #  - title: 列表1
+  #     list:
+  #       - https://music.163.com/#/playlist?id=2943811283
+  #       - https://music.163.com/#/playlist?id=2297706586
+  #  - title: 列表2
+  #     list:
+  #       - https://music.163.com/#/playlist?id=2031842656
+
+# Dependencies: https://github.com/amehime/hexo-renderer-multi-markdown-it
+pangu: true
 
 # random image api
 image_server: # "https://acg.xydwz.cn/api/api.php"
@@ -233,7 +291,7 @@ search:
     per_page: 10
 
 # Dependencies: https://github.com/amehime/hexo-renderer-multi-markdown-it
-pangu: false
+# pangu: false
 
 # Quicklink Support
 # For more information: https://github.com/GoogleChromeLabs/quicklink

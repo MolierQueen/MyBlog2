@@ -24,11 +24,10 @@ menu:
 # secend value is the name of Font icon.
 social:
   新浪微博: https://weibo.com/zhangninghao?refer_flag=1005055010_ || weibo
-  简书: https://www.jianshu.com/u/fd21f41fb522 || superpowers
-  掘金: https://juejin.im/user/586c624bac502e12d631545f || juejin
+  jianshu: https://www.jianshu.com/u/fd21f41fb522 || superpowers
   github: https://github.com/MolierQueen || github || "#191717"
   #google: https://plus.google.com/yourname || google
-  # juejin: https://juejin.cn/user/1574156379629310 || juejin || "#00aff0"
+  juejin: https://juejin.im/user/586c624bac502e12d631545f || juejin || "#00aff0"
   # zhihu: https://www.zhihu.com/people/rurismzk || zhihu || "#1e88e5"
   # music: https://music.163.com/#/user/home?id=12886823 || cloud-music || "#e60026"
   # weibo: https://weibo.com/amehime || weibo || "#ea716e"

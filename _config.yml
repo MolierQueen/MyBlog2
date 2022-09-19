@@ -276,11 +276,10 @@ prismjs:
 # Category & Tag
 default_category: uncategorized
 category_map: # edit for Theme.shoka
-  计算机科学: computer-science
-  Java: java
-  二进制杂谈: note
-  零基础学Java语言-浙江大学-翁恺: course-1
-  Theme Shoka Documentation: theme-shoka-doc
+  iOS: ios
+  计算机基础: computer-science
+  杂谈: note
+  情感: qinggan
 tag_map:
 
 # Date / Time format

@@ -10,10 +10,10 @@
         <category>欢迎页</category>
         <category>网络</category>
         <category>底层</category>
-        <category>OpenGL</category>
-        <category>UI</category>
         <category>DNS解析</category>
         <category>LocalDNS</category>
+        <category>OpenGL</category>
+        <category>UI</category>
         <category>动画</category>
         <category>性能优化</category>
         <category>xcode</category>
@@ -21,20 +21,21 @@
         <category>podfile</category>
         <category>webview</category>
         <category>hook</category>
+        <category>runtime</category>
         <category>翻译</category>
         <category>优化</category>
         <category>国外文献</category>
+        <category>httpdns</category>
         <category>Cocoapods</category>
         <category>架构</category>
         <category>AlertView</category>
-        <category>runtime</category>
         <category>Hook</category>
         <category>杂谈</category>
-        <category>屏幕适配</category>
-        <category>iOS 11</category>
         <category>Hexo</category>
         <category>个人博客</category>
         <category>网站</category>
+        <category>屏幕适配</category>
+        <category>iOS 11</category>
         <category>评论插件</category>
         <category>总结</category>
         <category>回味2017展望2018</category>
@@ -43,21 +44,20 @@
         <category>swift</category>
         <category>网络请求</category>
         <category>Swift</category>
+        <category>音频</category>
+        <category>唱吧</category>
+        <category>K歌</category>
+        <category>AVFoundation</category>
         <category>git</category>
         <category>效率工作</category>
         <category>代码版本控制</category>
         <category>iOS</category>
         <category>Crash防护</category>
         <category>Apple登录</category>
+        <category>WWDC2022</category>
         <category>算法</category>
         <category>C语言</category>
         <category>排序</category>
-        <category>httpdns</category>
-        <category>音频</category>
-        <category>唱吧</category>
-        <category>K歌</category>
-        <category>AVFoundation</category>
-        <category>WWDC2022</category>
         <item>
             <guid isPermalink="true">https://oliverqueen.cn/2018-08-23-ChangeSvnToGit/</guid>
             <title>SVN切换到Git</title>
@@ -175,10 +175,10 @@
 &lt;h2 id=&#34;最后&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#最后&#34;&gt;#&lt;/a&gt; 最后&lt;/h2&gt;
 &lt;p&gt;大概就这么多，顺便祝大家新年快乐，阖家幸福！&lt;/p&gt;
 &lt;p&gt;
-        &lt;div id=&#34;aplayer-zdqNZhnJ&#34; class=&#34;aplayer aplayer-tag-marker&#34; style=&#34;margin-bottom: 20px;&#34;&gt;&lt;/div&gt;
+        &lt;div id=&#34;aplayer-QGmZBIhd&#34; class=&#34;aplayer aplayer-tag-marker&#34; style=&#34;margin-bottom: 20px;&#34;&gt;&lt;/div&gt;
 			  &lt;script&gt;
 				  var options = {&#34;narrow&#34;:false,&#34;autoplay&#34;:true,&#34;showlrc&#34;:3,&#34;mutex&#34;:true,&#34;music&#34;:[{&#34;title&#34;:&#34;Love Story&#34;,&#34;author&#34;:&#34;린 (LYn)&#34;,&#34;url&#34;:&#34;https://molier-1256056152.cos.ap-guangzhou.myqcloud.com/%E1%84%85%E1%85%B5%E1%86%AB-Love%20Story.mp3&#34;,&#34;pic&#34;:&#34;https://y.gtimg.cn/music/photo_new/T002R300x300M0000048KLcQ4LDbZz.jpg?max_age=2592000&#34;,&#34;lrc&#34;:&#34;https://demo.meting.api.meto.moe/action/metingapi?server=tencent&amp;type=lrc&amp;id=0028RAj0187nEg&#34;}]};
-				  options.element = document.getElementById(&#34;aplayer-zdqNZhnJ&#34;);
+				  options.element = document.getElementById(&#34;aplayer-QGmZBIhd&#34;);
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);
@@ -494,10 +494,10 @@ NEXT 主题本身是已经集成了 livere 评论的，只不过被注释掉了�
 &lt;h2 id=&#34;最后&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#最后&#34;&gt;#&lt;/a&gt; 最后&lt;/h2&gt;
 &lt;p&gt;整篇文章只有开始一小部分在讲解如何搭建博客，后续的基本都是交给大家如何优化，调整一些细节问题如 UI、用户体验之类的，当然我们能做的远远不止这些，如果有什么问题欢迎与我探讨。下面的留言我都会看的。此外当本人对 HEXO 有新的看法或者玩法的话该文章会不断的更新，希望大家关注我的&lt;a href=&#34;https://oliverqueen.cn/&#34;&gt;小站&lt;/a&gt;，感谢。&lt;/p&gt;
 &lt;p&gt;
-        &lt;div id=&#34;aplayer-vKrOpgLy&#34; class=&#34;aplayer aplayer-tag-marker&#34; style=&#34;margin-bottom: 20px;&#34;&gt;&lt;/div&gt;
+        &lt;div id=&#34;aplayer-peevtldf&#34; class=&#34;aplayer aplayer-tag-marker&#34; style=&#34;margin-bottom: 20px;&#34;&gt;&lt;/div&gt;
 			  &lt;script&gt;
 				  var options = {&#34;narrow&#34;:false,&#34;autoplay&#34;:true,&#34;showlrc&#34;:3,&#34;mutex&#34;:true,&#34;music&#34;:[{&#34;title&#34;:&#34;凉城&#34;,&#34;author&#34;:&#34;任然&#34;,&#34;url&#34;:&#34;https://molier-1256056152.cos.ap-guangzhou.myqcloud.com/liangcheng.mp3&#34;,&#34;pic&#34;:&#34;https://y.gtimg.cn/music/photo_new/T002R300x300M0000008nl2Y1HlxUm.jpg?max_age=2592000&#34;,&#34;lrc&#34;:&#34;https://demo.meting.api.meto.moe/action/metingapi?server=tencent&amp;type=lrc&amp;id=002SKEeh1VzObP&#34;},{&#34;title&#34;:&#34;Love Story&#34;,&#34;author&#34;:&#34;린 (LYn)&#34;,&#34;url&#34;:&#34;https://molier-1256056152.cos.ap-guangzhou.myqcloud.com/%E1%84%85%E1%85%B5%E1%86%AB-Love%20Story.mp3&#34;,&#34;pic&#34;:&#34;https://y.gtimg.cn/music/photo_new/T002R300x300M0000048KLcQ4LDbZz.jpg?max_age=2592000&#34;,&#34;lrc&#34;:&#34;https://demo.meting.api.meto.moe/action/metingapi?server=tencent&amp;type=lrc&amp;id=0028RAj0187nEg&#34;},{&#34;title&#34;:&#34;大鱼&#34;,&#34;author&#34;:&#34;周深&#34;,&#34;url&#34;:&#34;https://molier-1256056152.cos.ap-guangzhou.myqcloud.com/bigfish.mp3&#34;,&#34;pic&#34;:&#34;https://y.gtimg.cn/music/photo_new/T002R300x300M000004Y7V4s3ug4cC.jpg?max_age=2592000&#34;,&#34;lrc&#34;:&#34;https://demo.meting.api.meto.moe/action/metingapi?server=tencent&amp;type=lrc&amp;id=004OQ5Mt0EmEzv&#34;}]};
-				  options.element = document.getElementById(&#34;aplayer-vKrOpgLy&#34;);
+				  options.element = document.getElementById(&#34;aplayer-peevtldf&#34;);
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);
