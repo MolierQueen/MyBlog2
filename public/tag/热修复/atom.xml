@@ -4,13 +4,13 @@
     <title>Molier • Posts by &#34;热修复&#34; tag</title>
     <link href="https://oliverqueen.cn" />
     <updated>2018-03-14T06:04:46.000Z</updated>
-    <category term="欢迎页" />
     <category term="网络" />
     <category term="底层" />
-    <category term="DNS解析" />
-    <category term="LocalDNS" />
     <category term="OpenGL" />
     <category term="UI" />
+    <category term="欢迎页" />
+    <category term="DNS解析" />
+    <category term="LocalDNS" />
     <category term="动画" />
     <category term="性能优化" />
     <category term="xcode" />
@@ -23,38 +23,38 @@
     <category term="优化" />
     <category term="国外文献" />
     <category term="httpdns" />
-    <category term="Cocoapods" />
-    <category term="架构" />
     <category term="AlertView" />
     <category term="Hook" />
-    <category term="杂谈" />
+    <category term="Cocoapods" />
+    <category term="架构" />
     <category term="Hexo" />
     <category term="个人博客" />
     <category term="网站" />
+    <category term="杂谈" />
     <category term="屏幕适配" />
     <category term="iOS 11" />
     <category term="评论插件" />
-    <category term="总结" />
-    <category term="回味2017展望2018" />
     <category term="热修复" />
     <category term="JSPath" />
+    <category term="总结" />
+    <category term="回味2017展望2018" />
     <category term="swift" />
     <category term="网络请求" />
-    <category term="Swift" />
     <category term="音频" />
     <category term="唱吧" />
     <category term="K歌" />
     <category term="AVFoundation" />
+    <category term="Swift" />
     <category term="git" />
     <category term="效率工作" />
     <category term="代码版本控制" />
     <category term="iOS" />
     <category term="Crash防护" />
-    <category term="Apple登录" />
-    <category term="WWDC2022" />
     <category term="算法" />
     <category term="C语言" />
     <category term="排序" />
+    <category term="Apple登录" />
+    <category term="WWDC2022" />
     <entry>
         <id>https://oliverqueen.cn/2018-03-14-Simple-HotFix-Mtehod/</id>
         <title>简单的iOS线上热修复方案</title>
@@ -106,10 +106,10 @@
 &lt;h2 id=&#34;思考&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#思考&#34;&gt;#&lt;/a&gt; 思考&lt;/h2&gt;
 &lt;p&gt;这个方法相比较之前的 JSpatch 是非常轻量级的，而且也只是实现了简单的容错功能，并不能做一些复杂的操作，比如生成一个对象之类的，不过对于一般的控制已经可以满足了，毕竟在苹果爸爸这么严厉的管制下能有这样的方法也还不错啊。&lt;/p&gt;
 &lt;p&gt;
-        &lt;div id=&#34;aplayer-fvUfQuPt&#34; class=&#34;aplayer aplayer-tag-marker&#34; style=&#34;margin-bottom: 20px;&#34;&gt;&lt;/div&gt;
+        &lt;div id=&#34;aplayer-gYcKVUic&#34; class=&#34;aplayer aplayer-tag-marker&#34; style=&#34;margin-bottom: 20px;&#34;&gt;&lt;/div&gt;
 			  &lt;script&gt;
 				  var options = {&#34;narrow&#34;:false,&#34;autoplay&#34;:true,&#34;showlrc&#34;:0,&#34;mutex&#34;:true,&#34;music&#34;:[{&#34;title&#34;:&#34;不知归期的故人&#34;,&#34;author&#34;:&#34;房东的猫&#34;,&#34;url&#34;:&#34;https://molier-1256056152.cos.ap-guangzhou.myqcloud.com/%E4%B8%8D%E7%9F%A5%E5%BD%92%E6%9C%9F%E7%9A%84%E6%95%85%E4%BA%BA.mp3&#34;,&#34;pic&#34;:&#34;https://y.gtimg.cn/music/photo_new/T002R300x300M000004NFJ230yX0Nz.jpg?max_age=2592000&#34;,&#34;lrc&#34;:&#34;https://demo.meting.api.meto.moe/action/metingapi?server=tencent&amp;type=lrc&amp;id=000zreoj2VtcID&#34;}]};
-				  options.element = document.getElementById(&#34;aplayer-fvUfQuPt&#34;);
+				  options.element = document.getElementById(&#34;aplayer-gYcKVUic&#34;);
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);

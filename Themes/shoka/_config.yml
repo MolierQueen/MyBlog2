@@ -124,12 +124,17 @@ iconfont: "1832207_igi8uaupcus"
 menu:
   home: / || home
   posts:
-    default: / || feather
+    # default: / || feather
     archives: /archives/ || list-alt
     categories: /categories/ || th
     tags: /tags/ || tags
   friends: /friends/ || heart
 
+links:
+  reuixiy: https://reuixiy.github.io/
+  CMB: http://billchan.me/
+  Mashiro_Sorata: http://mashirosorata.vicp.io/
+  saitjr <br>(iOS大神，持续集成，几乎全栈): http://www.saitjr.com/
 # Social Links
 # Usage: `Key: permalink || icon || color`
 # Key is the link label showing to end users.
@@ -137,15 +142,14 @@ menu:
 # secend value is the name of Font icon.
 social:
   新浪微博: https://weibo.com/zhangninghao?refer_flag=1005055010_ || weibo
-  jianshu: https://www.jianshu.com/u/fd21f41fb522 || superpowers
-  github: https://github.com/MolierQueen || github || "#191717"
+  jianshu: https://www.jianshu.com/u/fd21f41fb522 || link
+  github: https://github.com/MolierQueen || github 
   #google: https://plus.google.com/yourname || google
-  juejin: https://juejin.im/user/586c624bac502e12d631545f || juejin || "#00aff0"
+  juejin: https://juejin.im/user/586c624bac502e12d631545f || link
   # zhihu: https://www.zhihu.com/people/rurismzk || zhihu || "#1e88e5"
   # music: https://music.163.com/#/user/home?id=12886823 || cloud-music || "#e60026"
-  # weibo: https://weibo.com/amehime || weibo || "#ea716e"
   # about: https://about.me/amehime || address-card || "#3b5998"
-  #email: mailto:yourname@mail.com || envelope || "#55acd5"
+  email: mailto:371099694@qq.com || envelope
   #facebook: https://www.facebook.com/yourname || facebook
   #stackoverflow: https://stackoverflow.com/yourname || stack-overflow
   #youtube: https://youtube.com/yourname || youtube

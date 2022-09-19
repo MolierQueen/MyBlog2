@@ -7,13 +7,13 @@
         <language>zh-CN</language>
         <pubDate>Mon, 12 Feb 2018 15:47:45 +0800</pubDate>
         <lastBuildDate>Mon, 12 Feb 2018 15:47:45 +0800</lastBuildDate>
-        <category>欢迎页</category>
         <category>网络</category>
         <category>底层</category>
-        <category>DNS解析</category>
-        <category>LocalDNS</category>
         <category>OpenGL</category>
         <category>UI</category>
+        <category>欢迎页</category>
+        <category>DNS解析</category>
+        <category>LocalDNS</category>
         <category>动画</category>
         <category>性能优化</category>
         <category>xcode</category>
@@ -26,38 +26,38 @@
         <category>优化</category>
         <category>国外文献</category>
         <category>httpdns</category>
-        <category>Cocoapods</category>
-        <category>架构</category>
         <category>AlertView</category>
         <category>Hook</category>
-        <category>杂谈</category>
+        <category>Cocoapods</category>
+        <category>架构</category>
         <category>Hexo</category>
         <category>个人博客</category>
         <category>网站</category>
+        <category>杂谈</category>
         <category>屏幕适配</category>
         <category>iOS 11</category>
         <category>评论插件</category>
-        <category>总结</category>
-        <category>回味2017展望2018</category>
         <category>热修复</category>
         <category>JSPath</category>
+        <category>总结</category>
+        <category>回味2017展望2018</category>
         <category>swift</category>
         <category>网络请求</category>
-        <category>Swift</category>
         <category>音频</category>
         <category>唱吧</category>
         <category>K歌</category>
         <category>AVFoundation</category>
+        <category>Swift</category>
         <category>git</category>
         <category>效率工作</category>
         <category>代码版本控制</category>
         <category>iOS</category>
         <category>Crash防护</category>
-        <category>Apple登录</category>
-        <category>WWDC2022</category>
         <category>算法</category>
         <category>C语言</category>
         <category>排序</category>
+        <category>Apple登录</category>
+        <category>WWDC2022</category>
         <item>
             <guid isPermalink="true">https://oliverqueen.cn/2018-02-12-At-The-End-Of-2017/</guid>
             <title>At The End Of 2017</title>
@@ -144,10 +144,10 @@
 &lt;p&gt;&lt;strong&gt;在这里给大家拜个早年：祝大家新年快乐，心想事成。新的一年我会与大家分享更多的东西&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;才疏学浅，文笔拙劣，于 2018.2.13 仓促执笔....&lt;/p&gt;
 &lt;p&gt;
-        &lt;div id=&#34;aplayer-FdcUqSCe&#34; class=&#34;aplayer aplayer-tag-marker&#34; style=&#34;margin-bottom: 20px;&#34;&gt;&lt;/div&gt;
+        &lt;div id=&#34;aplayer-DsvSzUro&#34; class=&#34;aplayer aplayer-tag-marker&#34; style=&#34;margin-bottom: 20px;&#34;&gt;&lt;/div&gt;
 			  &lt;script&gt;
 				  var options = {&#34;narrow&#34;:false,&#34;autoplay&#34;:true,&#34;showlrc&#34;:0,&#34;mutex&#34;:true,&#34;music&#34;:[{&#34;title&#34;:&#34;에필로그 (Epilogue)&#34;,&#34;author&#34;:&#34;이동준&#34;,&#34;url&#34;:&#34;https://molier-1256056152.cos.ap-guangzhou.myqcloud.com/%E1%84%8B%E1%85%A6%E1%84%91%E1%85%B5%E1%86%AF%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3.mp3&#34;,&#34;pic&#34;:&#34;https://y.gtimg.cn/music/photo_new/T002R300x300M000000RmZHf3qhLUL.jpg?max_age=2592000&#34;,&#34;lrc&#34;:&#34;https://歌词.lrc&#34;}]};
-				  options.element = document.getElementById(&#34;aplayer-FdcUqSCe&#34;);
+				  options.element = document.getElementById(&#34;aplayer-DsvSzUro&#34;);
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);

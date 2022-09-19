@@ -7,13 +7,13 @@
         <language>zh-CN</language>
         <pubDate>Tue, 08 May 2018 10:12:00 +0800</pubDate>
         <lastBuildDate>Tue, 08 May 2018 10:12:00 +0800</lastBuildDate>
-        <category>欢迎页</category>
         <category>网络</category>
         <category>底层</category>
-        <category>DNS解析</category>
-        <category>LocalDNS</category>
         <category>OpenGL</category>
         <category>UI</category>
+        <category>欢迎页</category>
+        <category>DNS解析</category>
+        <category>LocalDNS</category>
         <category>动画</category>
         <category>性能优化</category>
         <category>xcode</category>
@@ -26,38 +26,38 @@
         <category>优化</category>
         <category>国外文献</category>
         <category>httpdns</category>
-        <category>Cocoapods</category>
-        <category>架构</category>
         <category>AlertView</category>
         <category>Hook</category>
-        <category>杂谈</category>
+        <category>Cocoapods</category>
+        <category>架构</category>
         <category>Hexo</category>
         <category>个人博客</category>
         <category>网站</category>
+        <category>杂谈</category>
         <category>屏幕适配</category>
         <category>iOS 11</category>
         <category>评论插件</category>
-        <category>总结</category>
-        <category>回味2017展望2018</category>
         <category>热修复</category>
         <category>JSPath</category>
+        <category>总结</category>
+        <category>回味2017展望2018</category>
         <category>swift</category>
         <category>网络请求</category>
-        <category>Swift</category>
         <category>音频</category>
         <category>唱吧</category>
         <category>K歌</category>
         <category>AVFoundation</category>
+        <category>Swift</category>
         <category>git</category>
         <category>效率工作</category>
         <category>代码版本控制</category>
         <category>iOS</category>
         <category>Crash防护</category>
-        <category>Apple登录</category>
-        <category>WWDC2022</category>
         <category>算法</category>
         <category>C语言</category>
         <category>排序</category>
+        <category>Apple登录</category>
+        <category>WWDC2022</category>
         <item>
             <guid isPermalink="true">https://oliverqueen.cn/2018-05-08-RX-Swift-Study-One/</guid>
             <title>关于RxSwift的一点理解</title>
@@ -203,10 +203,10 @@
 &lt;h2 id=&#34;总结&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#总结&#34;&gt;#&lt;/a&gt; 总结&lt;/h2&gt;
 &lt;p&gt;因为时间紧迫，暂时做了这么多，也遇到了这些问题，所以写出了总结下，本文还会继续更新，会慢慢的整个网络层分享出来。就是可能更新会慢，毕竟工作量有点饱和。多谢关注&lt;/p&gt;
 &lt;p&gt;
-        &lt;div id=&#34;aplayer-upbafeqm&#34; class=&#34;aplayer aplayer-tag-marker&#34; style=&#34;margin-bottom: 20px;&#34;&gt;&lt;/div&gt;
+        &lt;div id=&#34;aplayer-SJvWpCYU&#34; class=&#34;aplayer aplayer-tag-marker&#34; style=&#34;margin-bottom: 20px;&#34;&gt;&lt;/div&gt;
 			  &lt;script&gt;
 				  var options = {&#34;narrow&#34;:false,&#34;autoplay&#34;:true,&#34;showlrc&#34;:0,&#34;mutex&#34;:true,&#34;music&#34;:[{&#34;title&#34;:&#34;Thank You Very Much&#34;,&#34;author&#34;:&#34;Margaret&#34;,&#34;url&#34;:&#34;https://molier-1256056152.cos.ap-guangzhou.myqcloud.com/Thankyou.mp3&#34;,&#34;pic&#34;:&#34;https://y.gtimg.cn/music/photo_new/T002R300x300M000000VbGX83hRicw.jpg?max_age=2592000&#34;,&#34;lrc&#34;:&#34;https://demo.meting.api.meto.moe/action/metingapi?server=tencent&amp;type=lrc&amp;id=001Ii3g54dIYpO&#34;}]};
-				  options.element = document.getElementById(&#34;aplayer-upbafeqm&#34;);
+				  options.element = document.getElementById(&#34;aplayer-SJvWpCYU&#34;);
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);

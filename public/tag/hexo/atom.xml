@@ -4,13 +4,13 @@
     <title>Molier • Posts by &#34;hexo&#34; tag</title>
     <link href="https://oliverqueen.cn" />
     <updated>2018-02-11T07:19:31.000Z</updated>
-    <category term="欢迎页" />
     <category term="网络" />
     <category term="底层" />
-    <category term="DNS解析" />
-    <category term="LocalDNS" />
     <category term="OpenGL" />
     <category term="UI" />
+    <category term="欢迎页" />
+    <category term="DNS解析" />
+    <category term="LocalDNS" />
     <category term="动画" />
     <category term="性能优化" />
     <category term="xcode" />
@@ -23,38 +23,38 @@
     <category term="优化" />
     <category term="国外文献" />
     <category term="httpdns" />
-    <category term="Cocoapods" />
-    <category term="架构" />
     <category term="AlertView" />
     <category term="Hook" />
-    <category term="杂谈" />
+    <category term="Cocoapods" />
+    <category term="架构" />
     <category term="Hexo" />
     <category term="个人博客" />
     <category term="网站" />
+    <category term="杂谈" />
     <category term="屏幕适配" />
     <category term="iOS 11" />
     <category term="评论插件" />
-    <category term="总结" />
-    <category term="回味2017展望2018" />
     <category term="热修复" />
     <category term="JSPath" />
+    <category term="总结" />
+    <category term="回味2017展望2018" />
     <category term="swift" />
     <category term="网络请求" />
-    <category term="Swift" />
     <category term="音频" />
     <category term="唱吧" />
     <category term="K歌" />
     <category term="AVFoundation" />
+    <category term="Swift" />
     <category term="git" />
     <category term="效率工作" />
     <category term="代码版本控制" />
     <category term="iOS" />
     <category term="Crash防护" />
-    <category term="Apple登录" />
-    <category term="WWDC2022" />
     <category term="算法" />
     <category term="C语言" />
     <category term="排序" />
+    <category term="Apple登录" />
+    <category term="WWDC2022" />
     <entry>
         <id>https://oliverqueen.cn/2018-02-11-%E5%85%B3%E4%BA%8E%E5%8D%9A%E5%AE%A2%E8%AF%84%E8%AE%BA%E6%8F%92%E4%BB%B6%E7%9A%84%E9%97%AE%E9%A2%98/</id>
         <title>关于博客评论插件的讨论</title>
@@ -94,10 +94,10 @@
 &lt;h2 id=&#34;最后&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#最后&#34;&gt;#&lt;/a&gt; 最后&lt;/h2&gt;
 &lt;p&gt;大概就这么多，顺便祝大家新年快乐，阖家幸福！&lt;/p&gt;
 &lt;p&gt;
-        &lt;div id=&#34;aplayer-QGmZBIhd&#34; class=&#34;aplayer aplayer-tag-marker&#34; style=&#34;margin-bottom: 20px;&#34;&gt;&lt;/div&gt;
+        &lt;div id=&#34;aplayer-IbTDFoRk&#34; class=&#34;aplayer aplayer-tag-marker&#34; style=&#34;margin-bottom: 20px;&#34;&gt;&lt;/div&gt;
 			  &lt;script&gt;
 				  var options = {&#34;narrow&#34;:false,&#34;autoplay&#34;:true,&#34;showlrc&#34;:3,&#34;mutex&#34;:true,&#34;music&#34;:[{&#34;title&#34;:&#34;Love Story&#34;,&#34;author&#34;:&#34;린 (LYn)&#34;,&#34;url&#34;:&#34;https://molier-1256056152.cos.ap-guangzhou.myqcloud.com/%E1%84%85%E1%85%B5%E1%86%AB-Love%20Story.mp3&#34;,&#34;pic&#34;:&#34;https://y.gtimg.cn/music/photo_new/T002R300x300M0000048KLcQ4LDbZz.jpg?max_age=2592000&#34;,&#34;lrc&#34;:&#34;https://demo.meting.api.meto.moe/action/metingapi?server=tencent&amp;type=lrc&amp;id=0028RAj0187nEg&#34;}]};
-				  options.element = document.getElementById(&#34;aplayer-QGmZBIhd&#34;);
+				  options.element = document.getElementById(&#34;aplayer-IbTDFoRk&#34;);
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);
@@ -414,10 +414,10 @@ NEXT 主题本身是已经集成了 livere 评论的，只不过被注释掉了�
 &lt;h2 id=&#34;最后&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#最后&#34;&gt;#&lt;/a&gt; 最后&lt;/h2&gt;
 &lt;p&gt;整篇文章只有开始一小部分在讲解如何搭建博客，后续的基本都是交给大家如何优化，调整一些细节问题如 UI、用户体验之类的，当然我们能做的远远不止这些，如果有什么问题欢迎与我探讨。下面的留言我都会看的。此外当本人对 HEXO 有新的看法或者玩法的话该文章会不断的更新，希望大家关注我的&lt;a href=&#34;https://oliverqueen.cn/&#34;&gt;小站&lt;/a&gt;，感谢。&lt;/p&gt;
 &lt;p&gt;
-        &lt;div id=&#34;aplayer-peevtldf&#34; class=&#34;aplayer aplayer-tag-marker&#34; style=&#34;margin-bottom: 20px;&#34;&gt;&lt;/div&gt;
+        &lt;div id=&#34;aplayer-zVZEMUgR&#34; class=&#34;aplayer aplayer-tag-marker&#34; style=&#34;margin-bottom: 20px;&#34;&gt;&lt;/div&gt;
 			  &lt;script&gt;
 				  var options = {&#34;narrow&#34;:false,&#34;autoplay&#34;:true,&#34;showlrc&#34;:3,&#34;mutex&#34;:true,&#34;music&#34;:[{&#34;title&#34;:&#34;凉城&#34;,&#34;author&#34;:&#34;任然&#34;,&#34;url&#34;:&#34;https://molier-1256056152.cos.ap-guangzhou.myqcloud.com/liangcheng.mp3&#34;,&#34;pic&#34;:&#34;https://y.gtimg.cn/music/photo_new/T002R300x300M0000008nl2Y1HlxUm.jpg?max_age=2592000&#34;,&#34;lrc&#34;:&#34;https://demo.meting.api.meto.moe/action/metingapi?server=tencent&amp;type=lrc&amp;id=002SKEeh1VzObP&#34;},{&#34;title&#34;:&#34;Love Story&#34;,&#34;author&#34;:&#34;린 (LYn)&#34;,&#34;url&#34;:&#34;https://molier-1256056152.cos.ap-guangzhou.myqcloud.com/%E1%84%85%E1%85%B5%E1%86%AB-Love%20Story.mp3&#34;,&#34;pic&#34;:&#34;https://y.gtimg.cn/music/photo_new/T002R300x300M0000048KLcQ4LDbZz.jpg?max_age=2592000&#34;,&#34;lrc&#34;:&#34;https://demo.meting.api.meto.moe/action/metingapi?server=tencent&amp;type=lrc&amp;id=0028RAj0187nEg&#34;},{&#34;title&#34;:&#34;大鱼&#34;,&#34;author&#34;:&#34;周深&#34;,&#34;url&#34;:&#34;https://molier-1256056152.cos.ap-guangzhou.myqcloud.com/bigfish.mp3&#34;,&#34;pic&#34;:&#34;https://y.gtimg.cn/music/photo_new/T002R300x300M000004Y7V4s3ug4cC.jpg?max_age=2592000&#34;,&#34;lrc&#34;:&#34;https://demo.meting.api.meto.moe/action/metingapi?server=tencent&amp;type=lrc&amp;id=004OQ5Mt0EmEzv&#34;}]};
-				  options.element = document.getElementById(&#34;aplayer-peevtldf&#34;);
+				  options.element = document.getElementById(&#34;aplayer-zVZEMUgR&#34;);
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);
