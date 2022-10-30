@@ -22,9 +22,9 @@
     <category term="翻译" />
     <category term="优化" />
     <category term="国外文献" />
-    <category term="httpdns" />
     <category term="Cocoapods" />
     <category term="架构" />
+    <category term="httpdns" />
     <category term="AlertView" />
     <category term="Hook" />
     <category term="杂谈" />
@@ -40,11 +40,11 @@
     <category term="JSPath" />
     <category term="swift" />
     <category term="网络请求" />
-    <category term="Swift" />
     <category term="音频" />
     <category term="唱吧" />
     <category term="K歌" />
     <category term="AVFoundation" />
+    <category term="Swift" />
     <category term="git" />
     <category term="效率工作" />
     <category term="代码版本控制" />
@@ -69,7 +69,7 @@
 &lt;ul&gt;
 &lt;li&gt;高效的协议检查（针对 Swift protocol check）&lt;/li&gt;
 &lt;li&gt;更快的消息发送机制（message send）&lt;/li&gt;
-&lt;li&gt;release 和 return 调用优化（release &amp;amp; retain）&lt;/li&gt;
+&lt;li&gt;release 和 retain 调用优化（release &amp;amp; retain）&lt;/li&gt;
 &lt;li&gt;Autorelease elision 的优化（自动释放省略）&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/e6c9d24egy1h5npazwav0j214g0rm75u.jpg&#34; alt=&#34;wwdc&#34; /&gt;&lt;/p&gt;

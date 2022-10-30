@@ -749,6 +749,65 @@ Facebook 的 iOS 端有许多的地方都共享着一块内存，如果任何一
       </tags>
   </entry>
   <entry>
+    <title>在iOS工程中Cocoapods的使用</title>
+    <url>/2018-01-24-%E5%9C%A8iOS%E5%B7%A5%E7%A8%8B%E4%B8%ADCocoapods%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>我们在开发 iOS 程序的时候，往往都会根据需要导入很多的第三方框架，但是不同的框架完成的功能不同，所以导入的方式也不同，并不是把它直接拖进工程中就完事了，我们需要配置各种环境，链接各种库文件等等。有的时候我们并不能一个不漏的完成导入，而一旦出了问题，尤其是那些需要框架比较多的工程 (比如早期的百度地图框架)，将很难解决，而且，如果遇到了第三方库升级，更新了方法那么我们还需要把之前的旧版本删掉，再重复一下前面的工作，这将是非常的繁琐，极大地影响了开发的效率。这个时候我们就需要用到 cocoapods 来管理我们的第三方了，在我们有了 CocoaPods 这个工具之后，只需要将用到的第三方开源库放到一个名为 Podfile 的文件中，<br />
+<span id="more"></span><br />
+ 然后在命令行执行 $ pod install 命令。CocoaPods 就会自动将这些第三方开源库的源码下载下来，并且为我的工程设置好相应的系统依赖和编译参数，不管是导入还是更新或者移除，都是一句命令就搞定的。网上也有类似的教程，但是有些很旧，有些写的不详细，导致新手在使用的时候整的一头雾水，我就来说下。<br />
+### 第一步 ：<br />
+首先安装 cocoapods 要在 ruby 环境下进行，虽然我们的 mac 系统都是自带了 ruby，但是为了保险起见我们还是要先更新一下 ruby 环境：在这里我们直接使用   sudo gem update --system   命令来更新，网上有的说使用 gem update --system 前面少了 sudo，其实加 sudo 的目的就是用管理员的权限去执行这句更新命令，不加的话容易出现这个错误</p>
+<p><img data-src="https://wx4.sinaimg.cn/large/006tNc79gy1fo6jyxwn6cj30ta06kn1a.jpg" alt="" /></p>
+<p>意思是你没有权限去执行这个命令，等出现了 RubyGems system software updated 这句话的时候就证明升级成功了。</p>
+<p>### 第二步：<br />
+安装 cocoapods 时候我们要访问 cocoapods.org 这个网站，不用想这个网站已经被墙了，所以我们可以用淘宝的 ruby 的镜像来访问该网站。首先我们输入 gem sources -l 来看一下我们现在有什么，我目前里面只有一个</p>
+<p><img data-src="https://wx3.sinaimg.cn/large/006tNc79gy1fo6jzdqmrlj30ma03ydjy.jpg" alt="" /></p>
+<p>也就是我们需要的，不过可能有些人的里面不止一个，会有其他的东西，这时候我们先用 gem sources --remove XXXXXXXXXXXXXXX 来把其他的 source 删除掉，只保留这一个，如果没有的话就手动添加用这个命令 gem sources -a <span class="exturl" data-url="aHR0cHM6Ly9ydWJ5LnRhb2Jhby5vcmcv">https://ruby.taobao.org/</span> 来将我们需要的源添加进去，最后再用那个查看命令 最后只有确保像我里面一样只有那一个就好，要注意的是 https  网上好多教程写的是 http，那个已经作废了</p>
+<p><img data-src="https://wx4.sinaimg.cn/large/006tNc79gy1fo6jzxkmf5j31kw0ask74.jpg" alt="" /></p>
+<h3 id="第三步"><a class="anchor" href="#第三步">#</a> 第三步：</h3>
+<p>安装是 cocoapods 使用 sudo gem install cocoapods 命令来安装 cocoapods，你输入完这个命令回车后会提示你输入密码，这时候是没有光标提示的，也不会移动，凭感觉输入对之后就回车吧，然后就是等，时间长短是根据你的网速来的。安装完成后终端就进入待命阶段了。<br />
+### 第四步：<br />
+使用 search 命令来搜索类库，这个是支持模糊搜索的，记不清全名，打一部分名也行，不过那样的就要从搜出来的东西里找你想要的类库了。比如我想找 afnetworking 我就输入 pod search afn 回车后就会输出所有以 afn 开头的类库名字，像这样</p>
+<p><img data-src="https://wx1.sinaimg.cn/large/006tNc79gy1fo6k0kkcjjj311u0wq4qp.jpg" alt="" /></p>
+<p>搜出很多，其中第三就是我们想要的，afnetworking，用红圈圈起来是一会编辑 podfile 时候需要用的，可以先把他复制下来省的手打，后面的小数代表的是类库的版本，一般是最新的显示在这里，下面的 version 是历史版本，如果有需要可以直接导入它的历史版本，就是把后面的版本号替换下就好。</p>
+<h6 id="值得注意的是如果你不是第一次安装cocoapods-那么之前的缓存会对你有影响search先清理下缓存-使用这个命之后就可以了-rm-~librarycachescocoapodssearch_indexjson"><a class="anchor" href="#值得注意的是如果你不是第一次安装cocoapods-那么之前的缓存会对你有影响search先清理下缓存-使用这个命之后就可以了-rm-~librarycachescocoapodssearch_indexjson">#</a> 值得注意的是如果你不是第一次安装 cocoapods， 那么之前的缓存会对你有影响 search 先清理下缓存 使用这个命之后就可以了 rm ~/Library/Caches/CocoaPods/search_index.json</h6>
+<p>### 第五步：<br />
+进入你的工程目录，这里建议直接右键你工程中.xcodeproj 文件选择在终端中打开，然后 在终端中输入命令 cd ..  就会跳到.xcodeproj 所在的目录，也就是我们需要的目录，很多新手在这个地方容易出错。然后输入命令 vim Podfile 熟悉 Linux 的用户都知道这是创建一个 Podfile 文件并打开编辑，按 “i” 进入编辑模式，将第五部粘贴的东西拷贝进来，然后依次操作 esc 键  -&gt;  &quot;:&quot;  -&gt;  输入 wq</p>
+<p><img data-src="https://wx4.sinaimg.cn/large/006tNc79gy1fo6k16wn0yj311s0wqth2.jpg" alt="" /></p>
+<p>然后输入命令来安装 pod update --verbose --no-repo-update 等待过后就安装完成啦，其实使用 pod install 也可以，只是后者需要更新一个仓库，这是相当耗时的，我们可以使用前者来避免更新仓库就好，很快就结束了。</p>
+<p><img data-src="https://wx1.sinaimg.cn/large/006tNc79gy1fo6k1nkijrj311u0wq1g6.jpg" alt="" /></p>
+<p>安装成功！以后打卡工程就直接打开这个文件就好啦</p>
+<p><img data-src="https://wx1.sinaimg.cn/large/006tNc79gy1fo6k1y1x80j306q0cb0sy.jpg" alt="" /></p>
+<p>其中 podfile 文件中显示了我们这个工程中所以集成的第三方，</p>
+<p><img data-src="https://wx2.sinaimg.cn/large/006tNc79gy1fo6k27zcbxj30ln0bfmxn.jpg" alt="" /></p>
+<p>想修改版本的话就把后面的版本号改成你所需要的版本号就好，想删除的话就把这行删掉，想添加的话就用第五部的搜索命令去搜索然后同样把搜索结果中以 pod 开头的那句话复制进来就好。注意以上所有的增删改操作完成之后需要在去终端中相应的目录下使用 pod install --verbose --no-repo-update 命令来更新，这样才会真正的生效。</p>
+<h3 id="第六步"><a class="anchor" href="#第六步">#</a> 第六步：</h3>
+<p>关于 cocoapods 的更新。有的时候在 pod install 的时候会出现 [!] The 'master' repo requires CocoaPods 0.32.1 - 这样的错误，是由于你 cocoapods 版本过低的原因，这时候需要进行更新，跟新的过程其实就是把以上所有的从新走一遍就相当于安装遍就好了。</p>
+<h5 id="值得注意1"><a class="anchor" href="#值得注意1">#</a> 值得注意 1</h5>
+<p>经常遇到的错误比如下面这个</p>
+<p><img data-src="https://wx3.sinaimg.cn/large/006tNc79gy1fo6k2hpy06j30ej01gt8q.jpg" alt="" /></p>
+<p>通常出现在 OS X 10.11 系统上 这是由于从这个系统开始苹果开始使用无根安装，这时你再用这个方法就会报这个错，这时只需</p>
+<p><img data-src="https://wx4.sinaimg.cn/large/006tNc79gy1fo6k2pt7n9j30hy02zwev.jpg" alt="" /></p>
+<p>这个命令就可以成功升级啦</p>
+<h5 id="值得注意2"><a class="anchor" href="#值得注意2">#</a> 值得注意 2</h5>
+<p>有的时候大家在 pod search 的时候搜不到，但是明明有这个类库别人都可以都到课时就是自己搜不到，其实原因是这样的：pod search 只会搜索你本地缓存的框架，如果你想搜索到最新的第三方框架或者某个框架的最新版本，必须先使用 pod repo update（推荐）或者 pod setup 将远程仓库的框架信息更新到本地。其实，从 pod search 的响应速度飞快，也可以猜出它并没有连接服务器，仅仅是搜索了本地的框架信息 [呵呵]<br />
+    此外，如果你的框架更新比较慢，可以尝试执行下面 2 条指令更换镜像服务器<br />
+ 1：pod repo remove master<br />
+2：pod repo add master <span class="exturl" data-url="aHR0cDovL2dpdC5vc2NoaW5hLm5ldC9ha3VhbmRldi9TcGVjcy5naXQ=">http://git.oschina.net/akuandev/Specs.git</span><br />
+    更换镜像完毕后，以后执行 pod repo update 的速度就会快很多。在说明一点上面两条指令如果第二条无法执行提示 403 错误像这样</p>
+<p><img data-src="https://wx3.sinaimg.cn/large/006tNc79gy1fo6k2xgrwuj30i101h3yg.jpg" alt="" /></p>
+<p>那么在执行完第一条之后直接 pod search 命令就好 这样他会自动找合适的配置了，因为第二条那个网址可能会变。</p>
+<h3 id="总结"><a class="anchor" href="#总结">#</a> 总结：</h3>
+<p>关于使用 cocoapods 在自己的项目中集成第三方就这些内容。有什么不懂的欢迎来找我交流，本人才疏学浅，如果那里写的不对请及时批评指正，免得误导新人。 新浪微博小耗子上桌子也是我，大家也可以去看下微博多多关注 谢谢！</p>
+]]></content>
+      <categories>
+        <category>iOS开发</category>
+      </categories>
+      <tags>
+        <tag>Cocoapods</tag>
+        <tag>架构</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>可能是最全的iOS端HttpDns集成方案</title>
     <url>/2018-01-24-%E5%8F%AF%E8%83%BD%E6%98%AF%E6%9C%80%E5%85%A8%E7%9A%84iOS%E7%AB%AFHttpDns%E9%9B%86%E6%88%90%E6%96%B9%E6%A1%88/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="科普片"><a class="anchor" href="#科普片">#</a> 科普片</h1>
@@ -863,65 +922,6 @@ client 在后面会有讲解。</p>
         <tag>网络</tag>
         <tag>底层</tag>
         <tag>httpdns</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>在iOS工程中Cocoapods的使用</title>
-    <url>/2018-01-24-%E5%9C%A8iOS%E5%B7%A5%E7%A8%8B%E4%B8%ADCocoapods%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>我们在开发 iOS 程序的时候，往往都会根据需要导入很多的第三方框架，但是不同的框架完成的功能不同，所以导入的方式也不同，并不是把它直接拖进工程中就完事了，我们需要配置各种环境，链接各种库文件等等。有的时候我们并不能一个不漏的完成导入，而一旦出了问题，尤其是那些需要框架比较多的工程 (比如早期的百度地图框架)，将很难解决，而且，如果遇到了第三方库升级，更新了方法那么我们还需要把之前的旧版本删掉，再重复一下前面的工作，这将是非常的繁琐，极大地影响了开发的效率。这个时候我们就需要用到 cocoapods 来管理我们的第三方了，在我们有了 CocoaPods 这个工具之后，只需要将用到的第三方开源库放到一个名为 Podfile 的文件中，<br />
-<span id="more"></span><br />
- 然后在命令行执行 $ pod install 命令。CocoaPods 就会自动将这些第三方开源库的源码下载下来，并且为我的工程设置好相应的系统依赖和编译参数，不管是导入还是更新或者移除，都是一句命令就搞定的。网上也有类似的教程，但是有些很旧，有些写的不详细，导致新手在使用的时候整的一头雾水，我就来说下。<br />
-### 第一步 ：<br />
-首先安装 cocoapods 要在 ruby 环境下进行，虽然我们的 mac 系统都是自带了 ruby，但是为了保险起见我们还是要先更新一下 ruby 环境：在这里我们直接使用   sudo gem update --system   命令来更新，网上有的说使用 gem update --system 前面少了 sudo，其实加 sudo 的目的就是用管理员的权限去执行这句更新命令，不加的话容易出现这个错误</p>
-<p><img data-src="https://wx4.sinaimg.cn/large/006tNc79gy1fo6jyxwn6cj30ta06kn1a.jpg" alt="" /></p>
-<p>意思是你没有权限去执行这个命令，等出现了 RubyGems system software updated 这句话的时候就证明升级成功了。</p>
-<p>### 第二步：<br />
-安装 cocoapods 时候我们要访问 cocoapods.org 这个网站，不用想这个网站已经被墙了，所以我们可以用淘宝的 ruby 的镜像来访问该网站。首先我们输入 gem sources -l 来看一下我们现在有什么，我目前里面只有一个</p>
-<p><img data-src="https://wx3.sinaimg.cn/large/006tNc79gy1fo6jzdqmrlj30ma03ydjy.jpg" alt="" /></p>
-<p>也就是我们需要的，不过可能有些人的里面不止一个，会有其他的东西，这时候我们先用 gem sources --remove XXXXXXXXXXXXXXX 来把其他的 source 删除掉，只保留这一个，如果没有的话就手动添加用这个命令 gem sources -a <span class="exturl" data-url="aHR0cHM6Ly9ydWJ5LnRhb2Jhby5vcmcv">https://ruby.taobao.org/</span> 来将我们需要的源添加进去，最后再用那个查看命令 最后只有确保像我里面一样只有那一个就好，要注意的是 https  网上好多教程写的是 http，那个已经作废了</p>
-<p><img data-src="https://wx4.sinaimg.cn/large/006tNc79gy1fo6jzxkmf5j31kw0ask74.jpg" alt="" /></p>
-<h3 id="第三步"><a class="anchor" href="#第三步">#</a> 第三步：</h3>
-<p>安装是 cocoapods 使用 sudo gem install cocoapods 命令来安装 cocoapods，你输入完这个命令回车后会提示你输入密码，这时候是没有光标提示的，也不会移动，凭感觉输入对之后就回车吧，然后就是等，时间长短是根据你的网速来的。安装完成后终端就进入待命阶段了。<br />
-### 第四步：<br />
-使用 search 命令来搜索类库，这个是支持模糊搜索的，记不清全名，打一部分名也行，不过那样的就要从搜出来的东西里找你想要的类库了。比如我想找 afnetworking 我就输入 pod search afn 回车后就会输出所有以 afn 开头的类库名字，像这样</p>
-<p><img data-src="https://wx1.sinaimg.cn/large/006tNc79gy1fo6k0kkcjjj311u0wq4qp.jpg" alt="" /></p>
-<p>搜出很多，其中第三就是我们想要的，afnetworking，用红圈圈起来是一会编辑 podfile 时候需要用的，可以先把他复制下来省的手打，后面的小数代表的是类库的版本，一般是最新的显示在这里，下面的 version 是历史版本，如果有需要可以直接导入它的历史版本，就是把后面的版本号替换下就好。</p>
-<h6 id="值得注意的是如果你不是第一次安装cocoapods-那么之前的缓存会对你有影响search先清理下缓存-使用这个命之后就可以了-rm-~librarycachescocoapodssearch_indexjson"><a class="anchor" href="#值得注意的是如果你不是第一次安装cocoapods-那么之前的缓存会对你有影响search先清理下缓存-使用这个命之后就可以了-rm-~librarycachescocoapodssearch_indexjson">#</a> 值得注意的是如果你不是第一次安装 cocoapods， 那么之前的缓存会对你有影响 search 先清理下缓存 使用这个命之后就可以了 rm ~/Library/Caches/CocoaPods/search_index.json</h6>
-<p>### 第五步：<br />
-进入你的工程目录，这里建议直接右键你工程中.xcodeproj 文件选择在终端中打开，然后 在终端中输入命令 cd ..  就会跳到.xcodeproj 所在的目录，也就是我们需要的目录，很多新手在这个地方容易出错。然后输入命令 vim Podfile 熟悉 Linux 的用户都知道这是创建一个 Podfile 文件并打开编辑，按 “i” 进入编辑模式，将第五部粘贴的东西拷贝进来，然后依次操作 esc 键  -&gt;  &quot;:&quot;  -&gt;  输入 wq</p>
-<p><img data-src="https://wx4.sinaimg.cn/large/006tNc79gy1fo6k16wn0yj311s0wqth2.jpg" alt="" /></p>
-<p>然后输入命令来安装 pod update --verbose --no-repo-update 等待过后就安装完成啦，其实使用 pod install 也可以，只是后者需要更新一个仓库，这是相当耗时的，我们可以使用前者来避免更新仓库就好，很快就结束了。</p>
-<p><img data-src="https://wx1.sinaimg.cn/large/006tNc79gy1fo6k1nkijrj311u0wq1g6.jpg" alt="" /></p>
-<p>安装成功！以后打卡工程就直接打开这个文件就好啦</p>
-<p><img data-src="https://wx1.sinaimg.cn/large/006tNc79gy1fo6k1y1x80j306q0cb0sy.jpg" alt="" /></p>
-<p>其中 podfile 文件中显示了我们这个工程中所以集成的第三方，</p>
-<p><img data-src="https://wx2.sinaimg.cn/large/006tNc79gy1fo6k27zcbxj30ln0bfmxn.jpg" alt="" /></p>
-<p>想修改版本的话就把后面的版本号改成你所需要的版本号就好，想删除的话就把这行删掉，想添加的话就用第五部的搜索命令去搜索然后同样把搜索结果中以 pod 开头的那句话复制进来就好。注意以上所有的增删改操作完成之后需要在去终端中相应的目录下使用 pod install --verbose --no-repo-update 命令来更新，这样才会真正的生效。</p>
-<h3 id="第六步"><a class="anchor" href="#第六步">#</a> 第六步：</h3>
-<p>关于 cocoapods 的更新。有的时候在 pod install 的时候会出现 [!] The 'master' repo requires CocoaPods 0.32.1 - 这样的错误，是由于你 cocoapods 版本过低的原因，这时候需要进行更新，跟新的过程其实就是把以上所有的从新走一遍就相当于安装遍就好了。</p>
-<h5 id="值得注意1"><a class="anchor" href="#值得注意1">#</a> 值得注意 1</h5>
-<p>经常遇到的错误比如下面这个</p>
-<p><img data-src="https://wx3.sinaimg.cn/large/006tNc79gy1fo6k2hpy06j30ej01gt8q.jpg" alt="" /></p>
-<p>通常出现在 OS X 10.11 系统上 这是由于从这个系统开始苹果开始使用无根安装，这时你再用这个方法就会报这个错，这时只需</p>
-<p><img data-src="https://wx4.sinaimg.cn/large/006tNc79gy1fo6k2pt7n9j30hy02zwev.jpg" alt="" /></p>
-<p>这个命令就可以成功升级啦</p>
-<h5 id="值得注意2"><a class="anchor" href="#值得注意2">#</a> 值得注意 2</h5>
-<p>有的时候大家在 pod search 的时候搜不到，但是明明有这个类库别人都可以都到课时就是自己搜不到，其实原因是这样的：pod search 只会搜索你本地缓存的框架，如果你想搜索到最新的第三方框架或者某个框架的最新版本，必须先使用 pod repo update（推荐）或者 pod setup 将远程仓库的框架信息更新到本地。其实，从 pod search 的响应速度飞快，也可以猜出它并没有连接服务器，仅仅是搜索了本地的框架信息 [呵呵]<br />
-    此外，如果你的框架更新比较慢，可以尝试执行下面 2 条指令更换镜像服务器<br />
- 1：pod repo remove master<br />
-2：pod repo add master <span class="exturl" data-url="aHR0cDovL2dpdC5vc2NoaW5hLm5ldC9ha3VhbmRldi9TcGVjcy5naXQ=">http://git.oschina.net/akuandev/Specs.git</span><br />
-    更换镜像完毕后，以后执行 pod repo update 的速度就会快很多。在说明一点上面两条指令如果第二条无法执行提示 403 错误像这样</p>
-<p><img data-src="https://wx3.sinaimg.cn/large/006tNc79gy1fo6k2xgrwuj30i101h3yg.jpg" alt="" /></p>
-<p>那么在执行完第一条之后直接 pod search 命令就好 这样他会自动找合适的配置了，因为第二条那个网址可能会变。</p>
-<h3 id="总结"><a class="anchor" href="#总结">#</a> 总结：</h3>
-<p>关于使用 cocoapods 在自己的项目中集成第三方就这些内容。有什么不懂的欢迎来找我交流，本人才疏学浅，如果那里写的不对请及时批评指正，免得误导新人。 新浪微博小耗子上桌子也是我，大家也可以去看下微博多多关注 谢谢！</p>
-]]></content>
-      <categories>
-        <category>iOS开发</category>
-      </categories>
-      <tags>
-        <tag>Cocoapods</tag>
-        <tag>架构</tag>
       </tags>
   </entry>
   <entry>
@@ -1374,10 +1374,10 @@ NEXT 主题本身是已经集成了 livere 评论的，只不过被注释掉了�
 <h2 id="最后"><a class="anchor" href="#最后">#</a> 最后</h2>
 <p>整篇文章只有开始一小部分在讲解如何搭建博客，后续的基本都是交给大家如何优化，调整一些细节问题如 UI、用户体验之类的，当然我们能做的远远不止这些，如果有什么问题欢迎与我探讨。下面的留言我都会看的。此外当本人对 HEXO 有新的看法或者玩法的话该文章会不断的更新，希望大家关注我的<a href="https://oliverqueen.cn/">小站</a>，感谢。</p>
 <p>
-        <div id="aplayer-tDduCnas" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
+        <div id="aplayer-IoFhVdaA" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
 			  <script>
 				  var options = {"narrow":false,"autoplay":true,"showlrc":3,"mutex":true,"music":[{"title":"凉城","author":"任然","url":"https://molier-1256056152.cos.ap-guangzhou.myqcloud.com/liangcheng.mp3","pic":"https://y.gtimg.cn/music/photo_new/T002R300x300M0000008nl2Y1HlxUm.jpg?max_age=2592000","lrc":"https://demo.meting.api.meto.moe/action/metingapi?server=tencent&type=lrc&id=002SKEeh1VzObP"},{"title":"Love Story","author":"린 (LYn)","url":"https://molier-1256056152.cos.ap-guangzhou.myqcloud.com/%E1%84%85%E1%85%B5%E1%86%AB-Love%20Story.mp3","pic":"https://y.gtimg.cn/music/photo_new/T002R300x300M0000048KLcQ4LDbZz.jpg?max_age=2592000","lrc":"https://demo.meting.api.meto.moe/action/metingapi?server=tencent&type=lrc&id=0028RAj0187nEg"},{"title":"大鱼","author":"周深","url":"https://molier-1256056152.cos.ap-guangzhou.myqcloud.com/bigfish.mp3","pic":"https://y.gtimg.cn/music/photo_new/T002R300x300M000004Y7V4s3ug4cC.jpg?max_age=2592000","lrc":"https://demo.meting.api.meto.moe/action/metingapi?server=tencent&type=lrc&id=004OQ5Mt0EmEzv"}]};
-				  options.element = document.getElementById("aplayer-tDduCnas");
+				  options.element = document.getElementById("aplayer-IoFhVdaA");
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);
@@ -1495,10 +1495,10 @@ NEXT 主题本身是已经集成了 livere 评论的，只不过被注释掉了�
 <h2 id="最后"><a class="anchor" href="#最后">#</a> 最后</h2>
 <p>大概就这么多，顺便祝大家新年快乐，阖家幸福！</p>
 <p>
-        <div id="aplayer-slPLrlCL" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
+        <div id="aplayer-piMHjFmK" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
 			  <script>
 				  var options = {"narrow":false,"autoplay":true,"showlrc":3,"mutex":true,"music":[{"title":"Love Story","author":"린 (LYn)","url":"https://molier-1256056152.cos.ap-guangzhou.myqcloud.com/%E1%84%85%E1%85%B5%E1%86%AB-Love%20Story.mp3","pic":"https://y.gtimg.cn/music/photo_new/T002R300x300M0000048KLcQ4LDbZz.jpg?max_age=2592000","lrc":"https://demo.meting.api.meto.moe/action/metingapi?server=tencent&type=lrc&id=0028RAj0187nEg"}]};
-				  options.element = document.getElementById("aplayer-slPLrlCL");
+				  options.element = document.getElementById("aplayer-piMHjFmK");
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);
@@ -1596,10 +1596,10 @@ NEXT 主题本身是已经集成了 livere 评论的，只不过被注释掉了�
 <p><strong>在这里给大家拜个早年：祝大家新年快乐，心想事成。新的一年我会与大家分享更多的东西</strong></p>
 <p>才疏学浅，文笔拙劣，于 2018.2.13 仓促执笔....</p>
 <p>
-        <div id="aplayer-ETWpGrvO" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
+        <div id="aplayer-IDmIdTwE" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
 			  <script>
 				  var options = {"narrow":false,"autoplay":true,"showlrc":0,"mutex":true,"music":[{"title":"에필로그 (Epilogue)","author":"이동준","url":"https://molier-1256056152.cos.ap-guangzhou.myqcloud.com/%E1%84%8B%E1%85%A6%E1%84%91%E1%85%B5%E1%86%AF%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3.mp3","pic":"https://y.gtimg.cn/music/photo_new/T002R300x300M000000RmZHf3qhLUL.jpg?max_age=2592000","lrc":"https://歌词.lrc"}]};
-				  options.element = document.getElementById("aplayer-ETWpGrvO");
+				  options.element = document.getElementById("aplayer-IDmIdTwE");
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);
@@ -1663,10 +1663,10 @@ NEXT 主题本身是已经集成了 livere 评论的，只不过被注释掉了�
 <h2 id="思考"><a class="anchor" href="#思考">#</a> 思考</h2>
 <p>这个方法相比较之前的 JSpatch 是非常轻量级的，而且也只是实现了简单的容错功能，并不能做一些复杂的操作，比如生成一个对象之类的，不过对于一般的控制已经可以满足了，毕竟在苹果爸爸这么严厉的管制下能有这样的方法也还不错啊。</p>
 <p>
-        <div id="aplayer-CENWGHXt" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
+        <div id="aplayer-CgifSujS" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
 			  <script>
 				  var options = {"narrow":false,"autoplay":true,"showlrc":0,"mutex":true,"music":[{"title":"不知归期的故人","author":"房东的猫","url":"https://molier-1256056152.cos.ap-guangzhou.myqcloud.com/%E4%B8%8D%E7%9F%A5%E5%BD%92%E6%9C%9F%E7%9A%84%E6%95%85%E4%BA%BA.mp3","pic":"https://y.gtimg.cn/music/photo_new/T002R300x300M000004NFJ230yX0Nz.jpg?max_age=2592000","lrc":"https://demo.meting.api.meto.moe/action/metingapi?server=tencent&type=lrc&id=000zreoj2VtcID"}]};
-				  options.element = document.getElementById("aplayer-CENWGHXt");
+				  options.element = document.getElementById("aplayer-CgifSujS");
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);
@@ -1736,10 +1736,10 @@ NEXT 主题本身是已经集成了 livere 评论的，只不过被注释掉了�
 <h2 id="总结"><a class="anchor" href="#总结">#</a> 总结</h2>
 <p>因为时间紧迫，暂时做了这么多，也遇到了这些问题，所以写出了总结下，本文还会继续更新，会慢慢的整个网络层分享出来。就是可能更新会慢，毕竟工作量有点饱和。多谢关注</p>
 <p>
-        <div id="aplayer-nyBKjZCn" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
+        <div id="aplayer-sXkKfZNr" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
 			  <script>
 				  var options = {"narrow":false,"autoplay":true,"showlrc":0,"mutex":true,"music":[{"title":"Thank You Very Much","author":"Margaret","url":"https://molier-1256056152.cos.ap-guangzhou.myqcloud.com/Thankyou.mp3","pic":"https://y.gtimg.cn/music/photo_new/T002R300x300M000000VbGX83hRicw.jpg?max_age=2592000","lrc":"https://demo.meting.api.meto.moe/action/metingapi?server=tencent&type=lrc&id=001Ii3g54dIYpO"}]};
-				  options.element = document.getElementById("aplayer-nyBKjZCn");
+				  options.element = document.getElementById("aplayer-sXkKfZNr");
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);
@@ -1751,94 +1751,6 @@ NEXT 主题本身是已经集成了 livere 评论的，只不过被注释掉了�
       <tags>
         <tag>swift</tag>
         <tag>网络请求</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>关于RxSwift的一点理解</title>
-    <url>/2018-05-08-RX-Swift-Study-One/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="hello-rxswift"><a class="anchor" href="#hello-rxswift">#</a> Hello RxSwift!</h2>
-<p>这本书可以让你用 Swift 来编写响应式编程代码。但是到底什么是 RxSwift, 这里有很好的定义：</p>
-<p>&lt;font color=orange&gt;RxSwift 是由可被观察的事件的异步队列和可操作的功能性的运算符组成的库，并且他可以由调度者通过参数的方式进行调度。&lt;/font&gt; &lt;br&gt;</p>
-<p><img data-src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1525870736284&amp;di=9f373001bac8687d5fe11b3d7b40016f&amp;imgtype=0&amp;src=http%3A%2F%2Fcode4app.com%2Fdata%2Fattachment%2Fforum%2F201703%2F21%2F210007p6wy7buzq6hqhhdu.png" alt="" /></p>
-<p>听起来很复杂？其实不用担心，因为无论是你编写响应式编程，还是理解他们背后的思想和一些相关的东西，官方通常都是用一些很吓人的术语来解释。尤其是当你第一次接触，或者是之前从未有人向你介绍过这些的时候，你就会觉得很可怕。</p>
-<p><span id="more"></span></p>
-<p>本书的目标就是带你逐步的去理解 RxSwift 的 API，并且去运用每一个 API，然后把它们运用到实际的 iOSApp 中。</p>
-<p>你将会从 RxSwift 中最基本的功能开始，然后循序渐进的由中级到高级。花一些时间去广泛的理解里面的概念，这样以来读完本书后你就会精通 RxSwift 额思想和使用。其实 Rx 是非常广的话题，以至于不能单单通过这一本书来讲完，因此我们通过这本书让你对 RX 有一个坚实的了解，这样你就能继续提高自己的 Rx 水平了</p>
-<p>其实我们并没有非常确信 RxSwift 的思想是什么，让我们在这个章节里面通过几个简单的例子来帮助我们理解响应式编程。</p>
-<p>&lt;font color=orange&gt;RxSwift 本质其实就是当你的数据或者对象发生变化时候他会把这个变化放在一个单独的管道 (队列) 里面，以此来达到简化异步并发的过程的目的 &lt;/font&gt;&lt;br&gt;</p>
-<p>这里打个比方一个按钮我点击了就会触发一个时间 那么我每点击一次就会生成一个 Action 我们用一个管道去装在这些 Action，每加一个 Action 就会把他放管道里面，我们可以理解为管道里面流动的 Actions，且管道与管道之间相互独立。同理我们可以吧 Button 改成一个 UITExtField，Action 就是每一次输入事件。</p>
-<p>作为一个 iOS 的开发者我相信这已经很好帮你去理解什么是 RxSwift 了吧，这应该是比你在一开始看到的那些专业术语好理解的多。</p>
-<p>如果你还是不清楚，那么你至少应该理解，RxSwift 可以很轻松的帮你编写异步操作的代码，你要知道编写异步操作的代码是比较难的，所以所任何一点点的帮助都是受大家所欢迎的。</p>
-<h3 id="异步编程的介绍"><a class="anchor" href="#异步编程的介绍">#</a> 异步编程的介绍</h3>
-<p>如果你想用一种通俗简单的语言来描述异步编程，比如你在做一个 iSO 的 App，那么你一定想到如下几个东西：</p>
-<ul>
-<li>
-<p>接受 Button 的点击事件</p>
-</li>
-<li>
-<p>当 text field 的 Action 和键盘的弹出和收起动画之间的关系</p>
-</li>
-<li>
-<p>从网上下载大图片</p>
-</li>
-<li>
-<p>往硬盘里面存数据</p>
-</li>
-<li>
-<p>播放视频</p>
-</li>
-</ul>
-<p>以上的所有东西看似是发生在同一时刻其实真的是吗？我们思考一个问题：比如你在看视频，这时候你点击了 textfield 弹出键盘，大家都知道键盘由下往上弹出是有一个动画的，就算键盘已经出现到了屏幕上，只要动画没有做完你的视频就不会暂停，真的是这样吗，内部又是如何实现的？如下图:</p>
-<p><img data-src="https://wx3.sinaimg.cn/large/006tKfTcgy1fr41y6xhkij31kw0q0h80.jpg" alt="" /></p>
-<p>程序里面不同的部分不会阻塞彼此的执行，iOS 提供了几种 API，通过多核 CPU 来在不同的线程上进行不同的工作。</p>
-<p>其实编写真正并行的代码其实是很复杂的，打个比方假如两个线程同时访问同一个资源，就会产生资源争夺的问题，比如谁先访问，谁后访问。</p>
-<h3 id="uikit中的一些异步的api"><a class="anchor" href="#uikit中的一些异步的api">#</a> UIKit 中的一些异步的 API</h3>
-<p>苹果在 iOS SDK 中提供了很多 api，帮助你编写异步代码。你在你的项目中使用过这些但是可能还没有考虑过它们，因为它们是编写移动应用程序的基础。毕竟苹果爸爸封装好的，我们拿来用就好了，干嘛想那么多。</p>
-<p>你一定用过以下几点</p>
-<ul>
-<li>
-<p>NotificationCenter</p>
-</li>
-<li>
-<p>delegate</p>
-</li>
-<li>
-<p>Grand Central Dispatch(GCD)</p>
-</li>
-<li>
-<p>Closures（Block）</p>
-</li>
-</ul>
-<p>由于大部分的类都是异步的，并且 UI 在内部也是异步的，所以很难去猜测整个程序的执行顺序，因此你的 APp 会因为一些外部的原因而表现不同，比如用户的输入不同、网络环境的不同、或者一些其他的东西。用户每次在打开你的 APp 其实代码的执行顺序都是不同的 (当然除了一些自动化测试的场景，那些条件都是预先设置好的。)</p>
-<p>其实写好异步代码并不是绝对不可能的，毕竟苹果给我提供了非常强大的 API，相比较于其他平台这要好很多。不过问题在于编写复杂的异步代码很难，部分原因是因为苹果给我们提供了大量的 SDK，而且他们并不统一。如果使用 delegate 我们需要遵循特制的格式，block，NotificationCenter 等等都是这样的，所以并没有一种通用的、贯穿所有异步方法的 API，这样就导致读懂并且书写这样的异步代码很难。可以看下下图:</p>
-<p><img data-src="https://wx3.sinaimg.cn/large/006tKfTcgy1fr4342v718j31kw0nlgzj.jpg" alt="" /></p>
-<p>我们来比较两个代码片段来总结下这章。一个是异步一个是同步。</p>
-<h4 id="同步代码"><a class="anchor" href="#同步代码">#</a> 同步代码</h4>
-<p>对数组的每个元素进行操作你应该很熟悉了吧，其实就是循环遍历嘛。这是一个非常简单而又坚实的功能，因为它保证了两件事:</p>
-<ul>
-<li>
-<p>它是同步执行的。</p>
-</li>
-<li>
-<p>在循环遍历时候他是不可变的</p>
-</li>
-</ul>
-<p>花点时间想想这意味着什么。当你遍历一个数组的时候，你不需要检查所有的元素是否仍然存在，并且您不需要重新返回，以防另一个线程在集合的开始插入一个元素。您假定您总是在循环的开始时遍历整个集合。试试以下代码:</p>
-<p><figure class="highlight smali"><table><tr><td class="code"><pre><span class="line">var<span class="built_in"> array </span>= [1, 2, 3]</span><br><span class="line">for number in<span class="built_in"> array </span>&#123;</span><br><span class="line">  print(number)</span><br><span class="line"> <span class="built_in"> array </span>= [4, 5, 6]</span><br><span class="line">&#125;</span><br><span class="line">print(array)</span><br><span class="line"></span><br></pre></td></tr></table></figure><br />
- 最后的输出结果：</p>
-<p><img data-src="https://wx3.sinaimg.cn/large/006tKfTcgy1fr43rz56omj304p02at8i.jpg" alt="" /></p>
-<p>数组在 for 循环中是不可变的吗？执行顺序是什么？</p>
-<h4 id="异步代码"><a class="anchor" href="#异步代码">#</a> 异步代码</h4>
-<p>再考虑一个类似的代码，如下用户通过点击事件触发下面代码，每次点击都会输出数组下一个元素，然后用户重复点击直到把数组所有的元素输出完成：<br />
-<figure class="highlight smali"><table><tr><td class="code"><pre><span class="line">var<span class="built_in"> array </span>= [1, 2, 3]</span><br><span class="line">var currentIndex = 0</span><br><span class="line"></span><br><span class="line">//this method is connected in IB to a button</span><br><span class="line">@IBAction func printNext(_ sender: Any) &#123;</span><br><span class="line">  print(array[currentIndex])</span><br><span class="line"></span><br><span class="line"> <span class="built_in"> if </span>currentIndex != array.count-1 &#123;</span><br><span class="line">    currentIndex += 1</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br />
- 试想一下如果放在我们现实的 App 中真的可以这么执行吗？这个可说不准，因为如果在用户的两次点击之间又有其他的线程对这个数组进行了操作 (增加、删除元素) 那么数据就会发生错乱。而且如果 currentIndex 被另一个线程改变了那么你也不会得到预期的结果。</p>
-<p>其实多线程最重要的就是数据争夺的问题，然而 RxSwift 很好的解决了这个问题</p>
-]]></content>
-      <categories>
-        <category>译文</category>
-      </categories>
-      <tags>
-        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -1977,6 +1889,94 @@ NEXT 主题本身是已经集成了 livere 评论的，只不过被注释掉了�
         <tag>唱吧</tag>
         <tag>K歌</tag>
         <tag>AVFoundation</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>关于RxSwift的一点理解</title>
+    <url>/2018-05-08-RX-Swift-Study-One/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="hello-rxswift"><a class="anchor" href="#hello-rxswift">#</a> Hello RxSwift!</h2>
+<p>这本书可以让你用 Swift 来编写响应式编程代码。但是到底什么是 RxSwift, 这里有很好的定义：</p>
+<p>&lt;font color=orange&gt;RxSwift 是由可被观察的事件的异步队列和可操作的功能性的运算符组成的库，并且他可以由调度者通过参数的方式进行调度。&lt;/font&gt; &lt;br&gt;</p>
+<p><img data-src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1525870736284&amp;di=9f373001bac8687d5fe11b3d7b40016f&amp;imgtype=0&amp;src=http%3A%2F%2Fcode4app.com%2Fdata%2Fattachment%2Fforum%2F201703%2F21%2F210007p6wy7buzq6hqhhdu.png" alt="" /></p>
+<p>听起来很复杂？其实不用担心，因为无论是你编写响应式编程，还是理解他们背后的思想和一些相关的东西，官方通常都是用一些很吓人的术语来解释。尤其是当你第一次接触，或者是之前从未有人向你介绍过这些的时候，你就会觉得很可怕。</p>
+<p><span id="more"></span></p>
+<p>本书的目标就是带你逐步的去理解 RxSwift 的 API，并且去运用每一个 API，然后把它们运用到实际的 iOSApp 中。</p>
+<p>你将会从 RxSwift 中最基本的功能开始，然后循序渐进的由中级到高级。花一些时间去广泛的理解里面的概念，这样以来读完本书后你就会精通 RxSwift 额思想和使用。其实 Rx 是非常广的话题，以至于不能单单通过这一本书来讲完，因此我们通过这本书让你对 RX 有一个坚实的了解，这样你就能继续提高自己的 Rx 水平了</p>
+<p>其实我们并没有非常确信 RxSwift 的思想是什么，让我们在这个章节里面通过几个简单的例子来帮助我们理解响应式编程。</p>
+<p>&lt;font color=orange&gt;RxSwift 本质其实就是当你的数据或者对象发生变化时候他会把这个变化放在一个单独的管道 (队列) 里面，以此来达到简化异步并发的过程的目的 &lt;/font&gt;&lt;br&gt;</p>
+<p>这里打个比方一个按钮我点击了就会触发一个时间 那么我每点击一次就会生成一个 Action 我们用一个管道去装在这些 Action，每加一个 Action 就会把他放管道里面，我们可以理解为管道里面流动的 Actions，且管道与管道之间相互独立。同理我们可以吧 Button 改成一个 UITExtField，Action 就是每一次输入事件。</p>
+<p>作为一个 iOS 的开发者我相信这已经很好帮你去理解什么是 RxSwift 了吧，这应该是比你在一开始看到的那些专业术语好理解的多。</p>
+<p>如果你还是不清楚，那么你至少应该理解，RxSwift 可以很轻松的帮你编写异步操作的代码，你要知道编写异步操作的代码是比较难的，所以所任何一点点的帮助都是受大家所欢迎的。</p>
+<h3 id="异步编程的介绍"><a class="anchor" href="#异步编程的介绍">#</a> 异步编程的介绍</h3>
+<p>如果你想用一种通俗简单的语言来描述异步编程，比如你在做一个 iSO 的 App，那么你一定想到如下几个东西：</p>
+<ul>
+<li>
+<p>接受 Button 的点击事件</p>
+</li>
+<li>
+<p>当 text field 的 Action 和键盘的弹出和收起动画之间的关系</p>
+</li>
+<li>
+<p>从网上下载大图片</p>
+</li>
+<li>
+<p>往硬盘里面存数据</p>
+</li>
+<li>
+<p>播放视频</p>
+</li>
+</ul>
+<p>以上的所有东西看似是发生在同一时刻其实真的是吗？我们思考一个问题：比如你在看视频，这时候你点击了 textfield 弹出键盘，大家都知道键盘由下往上弹出是有一个动画的，就算键盘已经出现到了屏幕上，只要动画没有做完你的视频就不会暂停，真的是这样吗，内部又是如何实现的？如下图:</p>
+<p><img data-src="https://wx3.sinaimg.cn/large/006tKfTcgy1fr41y6xhkij31kw0q0h80.jpg" alt="" /></p>
+<p>程序里面不同的部分不会阻塞彼此的执行，iOS 提供了几种 API，通过多核 CPU 来在不同的线程上进行不同的工作。</p>
+<p>其实编写真正并行的代码其实是很复杂的，打个比方假如两个线程同时访问同一个资源，就会产生资源争夺的问题，比如谁先访问，谁后访问。</p>
+<h3 id="uikit中的一些异步的api"><a class="anchor" href="#uikit中的一些异步的api">#</a> UIKit 中的一些异步的 API</h3>
+<p>苹果在 iOS SDK 中提供了很多 api，帮助你编写异步代码。你在你的项目中使用过这些但是可能还没有考虑过它们，因为它们是编写移动应用程序的基础。毕竟苹果爸爸封装好的，我们拿来用就好了，干嘛想那么多。</p>
+<p>你一定用过以下几点</p>
+<ul>
+<li>
+<p>NotificationCenter</p>
+</li>
+<li>
+<p>delegate</p>
+</li>
+<li>
+<p>Grand Central Dispatch(GCD)</p>
+</li>
+<li>
+<p>Closures（Block）</p>
+</li>
+</ul>
+<p>由于大部分的类都是异步的，并且 UI 在内部也是异步的，所以很难去猜测整个程序的执行顺序，因此你的 APp 会因为一些外部的原因而表现不同，比如用户的输入不同、网络环境的不同、或者一些其他的东西。用户每次在打开你的 APp 其实代码的执行顺序都是不同的 (当然除了一些自动化测试的场景，那些条件都是预先设置好的。)</p>
+<p>其实写好异步代码并不是绝对不可能的，毕竟苹果给我提供了非常强大的 API，相比较于其他平台这要好很多。不过问题在于编写复杂的异步代码很难，部分原因是因为苹果给我们提供了大量的 SDK，而且他们并不统一。如果使用 delegate 我们需要遵循特制的格式，block，NotificationCenter 等等都是这样的，所以并没有一种通用的、贯穿所有异步方法的 API，这样就导致读懂并且书写这样的异步代码很难。可以看下下图:</p>
+<p><img data-src="https://wx3.sinaimg.cn/large/006tKfTcgy1fr4342v718j31kw0nlgzj.jpg" alt="" /></p>
+<p>我们来比较两个代码片段来总结下这章。一个是异步一个是同步。</p>
+<h4 id="同步代码"><a class="anchor" href="#同步代码">#</a> 同步代码</h4>
+<p>对数组的每个元素进行操作你应该很熟悉了吧，其实就是循环遍历嘛。这是一个非常简单而又坚实的功能，因为它保证了两件事:</p>
+<ul>
+<li>
+<p>它是同步执行的。</p>
+</li>
+<li>
+<p>在循环遍历时候他是不可变的</p>
+</li>
+</ul>
+<p>花点时间想想这意味着什么。当你遍历一个数组的时候，你不需要检查所有的元素是否仍然存在，并且您不需要重新返回，以防另一个线程在集合的开始插入一个元素。您假定您总是在循环的开始时遍历整个集合。试试以下代码:</p>
+<p><figure class="highlight smali"><table><tr><td class="code"><pre><span class="line">var<span class="built_in"> array </span>= [1, 2, 3]</span><br><span class="line">for number in<span class="built_in"> array </span>&#123;</span><br><span class="line">  print(number)</span><br><span class="line"> <span class="built_in"> array </span>= [4, 5, 6]</span><br><span class="line">&#125;</span><br><span class="line">print(array)</span><br><span class="line"></span><br></pre></td></tr></table></figure><br />
+ 最后的输出结果：</p>
+<p><img data-src="https://wx3.sinaimg.cn/large/006tKfTcgy1fr43rz56omj304p02at8i.jpg" alt="" /></p>
+<p>数组在 for 循环中是不可变的吗？执行顺序是什么？</p>
+<h4 id="异步代码"><a class="anchor" href="#异步代码">#</a> 异步代码</h4>
+<p>再考虑一个类似的代码，如下用户通过点击事件触发下面代码，每次点击都会输出数组下一个元素，然后用户重复点击直到把数组所有的元素输出完成：<br />
+<figure class="highlight smali"><table><tr><td class="code"><pre><span class="line">var<span class="built_in"> array </span>= [1, 2, 3]</span><br><span class="line">var currentIndex = 0</span><br><span class="line"></span><br><span class="line">//this method is connected in IB to a button</span><br><span class="line">@IBAction func printNext(_ sender: Any) &#123;</span><br><span class="line">  print(array[currentIndex])</span><br><span class="line"></span><br><span class="line"> <span class="built_in"> if </span>currentIndex != array.count-1 &#123;</span><br><span class="line">    currentIndex += 1</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br />
+ 试想一下如果放在我们现实的 App 中真的可以这么执行吗？这个可说不准，因为如果在用户的两次点击之间又有其他的线程对这个数组进行了操作 (增加、删除元素) 那么数据就会发生错乱。而且如果 currentIndex 被另一个线程改变了那么你也不会得到预期的结果。</p>
+<p>其实多线程最重要的就是数据争夺的问题，然而 RxSwift 很好的解决了这个问题</p>
+]]></content>
+      <categories>
+        <category>译文</category>
+      </categories>
+      <tags>
+        <tag>Swift</tag>
       </tags>
   </entry>
   <entry>
@@ -2232,10 +2232,10 @@ NEXT 主题本身是已经集成了 livere 评论的，只不过被注释掉了�
 <p>最后希望每人看到我这篇文章的人都能不忘初心，我们明年再见...</p>
 <p>才疏学浅，文笔拙劣，于 2019.2.14 仓促执笔….</p>
 <p>
-        <div id="aplayer-lyiqKMDM" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
+        <div id="aplayer-uetSMvoA" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
 			  <script>
 				  var options = {"narrow":false,"autoplay":true,"showlrc":3,"mutex":true,"music":[{"title":"大鱼","author":"周深","url":"https://molier-1256056152.cos.ap-guangzhou.myqcloud.com/bigfish.mp3","pic":"https://y.gtimg.cn/music/photo_new/T002R300x300M000004Y7V4s3ug4cC.jpg?max_age=2592000","lrc":"https://demo.meting.api.meto.moe/action/metingapi?server=tencent&type=lrc&id=004OQ5Mt0EmEzv"}]};
-				  options.element = document.getElementById("aplayer-lyiqKMDM");
+				  options.element = document.getElementById("aplayer-uetSMvoA");
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);
@@ -2288,10 +2288,10 @@ NEXT 主题本身是已经集成了 livere 评论的，只不过被注释掉了�
 <h3 id="有意者发简历到-zhangninghao11gmailcom"><a class="anchor" href="#有意者发简历到-zhangninghao11gmailcom">#</a> 有意者发简历到 &quot;<span class="exturl" data-url="bWFpbHRvOnpoYW5nbmluZ2hhbzExQGdtYWlsLmNvbQ==">zhangninghao11@gmail.com</span>&quot;</h3>
 <h3 id="认真脸"><a class="anchor" href="#认真脸">#</a> 认真脸</h3>
 <p>
-        <div id="aplayer-OyPzIYLo" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
+        <div id="aplayer-FroJlxId" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
 			  <script>
 				  var options = {"narrow":false,"autoplay":true,"showlrc":3,"mutex":true,"music":[{"title":"大鱼","author":"周深","url":"https://molier-1256056152.cos.ap-guangzhou.myqcloud.com/bigfish.mp3","pic":"https://y.gtimg.cn/music/photo_new/T002R300x300M000004Y7V4s3ug4cC.jpg?max_age=2592000","lrc":"https://demo.meting.api.meto.moe/action/metingapi?server=tencent&type=lrc&id=004OQ5Mt0EmEzv"}]};
-				  options.element = document.getElementById("aplayer-OyPzIYLo");
+				  options.element = document.getElementById("aplayer-FroJlxId");
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);
@@ -3451,10 +3451,10 @@ Mach 异常，分为两种情况，第一种是本身就是硬件层面或者系
 <h1 id="0x6-最后"><a class="anchor" href="#0x6-最后">#</a> 0x6: 最后</h1>
 <p>大概这就是所有 Crash 防护的流程，通过两篇文章讲解，希望大家对 iOS 系统的 Crash 流程能有些许的了解，并没有贴太多的源码，其实还是解耦度不够，思路有了代码就很简单了。</p>
 <p>
-        <div id="aplayer-mwecNoNc" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
+        <div id="aplayer-TuDqfXXc" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
 			  <script>
 				  var options = {"narrow":false,"autoplay":true,"showlrc":0,"mutex":true,"music":[{"title":"错位时空","author":"艾辰","url":"https://molier-1256056152.cos.ap-guangzhou.myqcloud.com/%E8%89%BE%E8%BE%B0%20-%20%E9%94%99%E4%BD%8D%E6%97%B6%E7%A9%BA.mp3","pic":"https://bkimg.cdn.bcebos.com/pic/a8ec8a13632762d0f7037ac288a71ffa513d26976830?x-bce-process=image/watermark,image_d2F0ZXIvYmFpa2UxMTY=,g_7,xp_5,yp_5/format,f_auto","lrc":"https://歌词.lrc"}]};
-				  options.element = document.getElementById("aplayer-mwecNoNc");
+				  options.element = document.getElementById("aplayer-TuDqfXXc");
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);
@@ -3467,136 +3467,6 @@ Mach 异常，分为两种情况，第一种是本身就是硬件层面或者系
         <tag>iOS</tag>
         <tag>Crash防护</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>如何做好一场Presentation</title>
-    <url>/2021-07-27-%E5%A6%82%E4%BD%95%E5%81%9A%E5%A5%BD%E4%B8%80%E5%9C%BAPresentation/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="0x1-前言"><a class="anchor" href="#0x1-前言">#</a> 0X1 前言：</h2>
-<p>其实很早就想写这篇文章了，当时晋级答辩之后本想趁热打铁，把自己的一些经历和想法分享出来和大家一起探讨，但是工作上的事情七七八八，再加上拖延症犯了，所以导致直到今天大家才能看到这篇文章。不奢求大家看过文章后晋级答辩就能一路绿灯，只是希望能在答辩季这关键时期给需要的人些许的启发或者能与大家产生一些共鸣，更主要的是希望本文能起到抛砖引玉的作用，大家都可以将自己的经历和想法分享出来。</p>
-<p><img data-src="https://tva1.sinaimg.cn/large/008i3skNgy1gsvni8ogskj31ts0u00zc.jpg" alt="" /></p>
-<p><span id="more"></span></p>
-<p>对于大部分开发同学来说，Presentation 一直都是短板，因为答辩不仅仅是技术能力本身的体现，还涉及到包括但不限于以下几个方面：</p>
-<ul>
-<li>
-<p>信息分类检索聚合能力。</p>
-</li>
-<li>
-<p>PPT 的书写能力。</p>
-</li>
-<li>
-<p>临场发挥、表达能力。</p>
-</li>
-</ul>
-<h2 id="0x2-如何选取素材"><a class="anchor" href="#0x2-如何选取素材">#</a> 0x2 如何选取素材？</h2>
-<p>想要解决问题就要知道都有哪些问题，以及这些问题是怎么来的，然后再对症下药。在答辩前也跟不少同事聊过，总结了几个大家都会提到的问题，其中被提到次数最多的就是 “不知道要答什么”。每个人都会说，这半年没做过什么 &lt; font color=&quot;#dd0000&quot;&gt; 有技术含量 &lt;/font &gt; 的事情，&lt;font color=&quot;#dd0000&quot;&gt; 业务需求 &lt;/font &gt; 都忙不过来。关键字已经标红，可以看出来这两个因素是阻挠我们的真凶。</p>
-<h4 id="21技术含量"><a class="anchor" href="#21技术含量">#</a> 2.1：技术含量？</h4>
-<p>对于一个技术答辩来说什么样的事情算是有技术含量？其实并不一定是那种前无古人后无来者的高精尖技术突破，也不是多么高深莫测的技术点。其实做移动端，或者大前端开发的人都知道，互联网在我国也有几十年的发展史，能挖的技术点早已经被挖透了，各种知识随便 google 一下就一大堆，想在这种环境下研究新技术出来实在是难于登天。所以大家有这样的疑问也是情理之中的。</p>
-<p>既然这样我们何不换一个思路去思考问题，稍稍改变一下 <code>技术含量</code> 这个词的定义。我个人的理解是 <code>在技术方面能对现有项目起到正向优化效果，或者能提高现有工作的效率的工作</code> ，凡是这样的工作，都值得被用来答辩或者作为 Presentation 的素材，这样一来，是不是感觉能答辩的东西就很多了，可选的范围变广了。</p>
-<p><img data-src="https://tva1.sinaimg.cn/large/008i3skNgy1gsuruavcq7j30u00k40uw.jpg" alt="" /></p>
-<h4 id="22业务需求"><a class="anchor" href="#22业务需求">#</a> 2.2：业务需求？</h4>
-<p>这是这里面临第二个 “难题”。的确大部分的同事的大部分时间都跟业务需求打交道，需求的点子是产品同学想的，代码也是按照需求单里面的写的，乍一看确实没什么可说的。但是大家都是在公司上班的人，业务需求肯定躲不过。其实现代技术的发展一开始都是由人类需求来驱动的。比如音视频编码技术，流媒体技术，各种加解密、排序算法等，都是先有需求再有技术产出，而针对同一个需求的不同技术方案也有 <code>优劣差异</code> ，比如 H264,H265；比如各种排序算法的复杂度等。所以我们答辩的内容最好是要从平时各种需求去挖掘，而实现需求时方案的 <code>优劣差异</code> 正是我们需要展示出的亮点。这一套做完后我们再通过业务需求本身的一些数据来佐证我们论点。</p>
-<p>这样一来形成一个完整的闭环，让 <code>业务需求</code> 从绊脚石变成促成我们一次答辩或者 Presentation 成功的一个助推剂。有业务需求作为支撑，可以使我们的内容更加有说服力，不至于让我们的 presentation 变成纸上谈兵。换句话来说，过多的业务需求未必是一件坏事，不过这就需要我们在做每个需求时都要有认真的思考，我们不仅仅是要完成需求本事，而是要考虑同样的工作如何做的更好。</p>
-<p><img data-src="https://tva1.sinaimg.cn/large/008i3skNgy1gsurso7t1lj30xc0huaau.jpg" alt="" /></p>
-<p>这时候一定会有人说，技术需求大多简单没什么值得说的地方。其实对于移动端来说，目前的编程语言都已经是非常高级的语言，我们在平时的开发中几乎接触不到底层的东西，比如汇编，或者硬件之类的。安卓和苹果都通过层层封装为开发者屏蔽了底层的实现，但是我们真的明白当我调用一个高级接口的时候底层都做了哪些事情吗？打个很简单的比方：大家都知道圆角或者透明图层会导致离屏渲染，会影响性能，但是有多少人能说出为什么会离屏渲染？离屏渲染时候 CPU 在做什么、GPU 在做什么？切圆角触发了哪些 GPU 的指令？GPU 和 CPU 以及各种显示管线是如何交互的？其实我们并不是缺少素材，而是缺乏透过问题看本质的能力。对于大前端来说我们接触到的都只是冰山一角，而冰山下面的东西是值得我们去细细挖掘的。</p>
-<h4 id="23兜底策略"><a class="anchor" href="#23兜底策略">#</a> 2.3：兜底策略！</h4>
-<p>如果看了上面两段还是不知道说什么那兜底策略就是： <code>能报就报，先报再说</code> ，人都是有惰性的，不逼自己一把永远不知道自己的潜力，而且对自己个人成长有益事情要学会争取，答辩或者 presentation 的意义不仅仅是升职加薪，其中的过程也能学到很多东西，对自己各方面能力都是很大的提高，之前基本所有参与过的同学都说过：“答辩掉层皮，但是能学到很多东西”。对于这种好事我们怎么能拒绝呢？</p>
-<h2 id="0x3-开始ppt之前要做什么"><a class="anchor" href="#0x3-开始ppt之前要做什么">#</a> 0x3 开始 PPT 之前要做什么</h2>
-<p>PPT 是答辩中必不可少的一个部分，但是 PPT 只是一个辅助工具，他的作用是把自己的想法更加具象的表达出来。所以最重要的是我们的想法和思路，以及我们的内容，在这里笔者建议 &lt;font color=&quot;#dd0000&quot;&gt; 不要着急写 PPT！&lt;/font&gt;，因为过早的写 PPT 就避免不了后期大量的修改，很容易导致前功尽弃。而且过早的写也容易禁锢自己的思路。</p>
-<p>对于什么时候开始写，这个可能要取决于每个人内容的积累程度，当你相关的知识储备到达一定量级的时候你自然就会感觉” 下笔如有神 “，这个时候就可以开始了。这里还是建议最晚开始时间要在答辩前一个月左右。关于如何做知识积累，我这边有个方法：在平时工作时候，将答辩相关的知识点全部都记录在一个文档里，不需要记录多详细，可能是一行网址、一个截图、一个书名 + 页数，甚至是一行 API。在 PPT 开始前必须保证这个文档已经形成了一套较为完整的知识体系，这样之后才能快速高质量的完成 PPT。</p>
-<p><img data-src="https://tva1.sinaimg.cn/large/008i3skNgy1gsvme0203eg30f80gonpr.gif" alt="" /></p>
-<p>这里用笔者的亲身经历举例，第一次答辩时候没有经验，很早就把重心放到了 PPT 书写上，导致在该做技术积累的时候时间都花在构思 PPT 上。最终的结果就是 PPT 改了无数版，面目全非，而且最后发现技术深度不够，信息密度不够，才开始后期恶补。第二次答辩吸取了教训，早早地就把各种相关知识点沉淀到文档中，确定了大方向和提纲。然后最后一个月左右的时间，从该文档中进行信息提取整合，写 PPT 的效率翻倍，而且自始至终基本不会有结构上太大的修改。</p>
-<h2 id="0x4-如何写ppt"><a class="anchor" href="#0x4-如何写ppt">#</a> 0x4 如何写 PPT</h2>
-<p>知道了要讲什么东西，那这节来看看如何把一件事情清晰的描述出来。就像写代码一样，任何事情都要有条理，要有先后顺序，先讲什么后讲什么，都必须遵循一定的规律，虽说不上要引人入胜，但是至少让听众或者评委能顺着你的思路走。所以在写 PPT 或者演讲稿之前要从上帝视角来审视整个流程，整理出一个大概的提纲，之后的工作才是细化内容，挖掘深度等。根据事物发展的客观规律，并以时间线为依托，一个好的描述手法基本可以分为以下几个部分。</p>
-<p><img data-src="https://tva1.sinaimg.cn/large/008i3skNgy1gsuv69e6bkg30xc0ioql2.gif" alt="" /></p>
-<h4 id="41背景"><a class="anchor" href="#41背景">#</a> 4.1：背景</h4>
-<p>做任何事情都有原因，在开始一切之前反问一下自己 <code>我为什么要做这个事情？</code> 。但是这里的原因并不是” 因为有这个产品需求所以我做了 “，因为 presentation 的素材绝对不是需求本身，而是由需求引出的更高层次的思考，来源于需求，高于需求。因此 &lt; font color=&quot;#dd0000&quot;&gt; 背景是建立在你对现状清晰的认识的基础上，指出现阶段存在的问题，并表达出要迫切优化的诉求 &lt;/font&gt;。换句话说 <code>背景</code> 就是让听众带着问题听下去，你也可以通过不同的问题来主导听众的思考方向。</p>
-<ul>
-<li>描述方式：背景的描述方式尽量采用 &lt;font color=&quot;#dd0000&quot;&gt;1. 2. 3.  ... 点来列出来 &lt;/font&gt;，这样不仅清晰明了，而且也方便后面的针对性解答，起到点题的作用。</li>
-</ul>
-<h4 id="42竞品对比"><a class="anchor" href="#42竞品对比">#</a> 4.2：竞品对比</h4>
-<p>之前也讲过，互联网发展这么久，任何问题都有现成的解决方案，所以你能想到的问题其他人也一定会想到，说不定别人已经有了一套成熟的体系，所以要体现自己的价值就一定要找到我们比他强的地方，或者是我们不能用他人的只能用你的原因。这点很重要，前期不做好功课，不然等评委问道了 <code>用XXX一样可以解决问题，你为什么还重复造轮子?</code>  的时候哑口无言，那就很尴尬了。</p>
-<p>竞品对比要尽量找些知名度较高的竞品，这样更有说服力，也更能衬托出你所做内容的优势。同时要思考全面，让听众能感受到你对行业的敏感性和思考问题的全面性。</p>
-<ul>
-<li>描述方式：该模块尽量采用 &lt;font color=&quot;#dd0000&quot;&gt; 表格 &lt;/font &gt; 描述，通过不同维度的对比来突出自己的优势。但是有一点要注意，不要一味的贬低竞品，可以在一些无关痛痒或者跟本次演讲内容无关的地方去肯定他人的做法，不然会让人觉得你做的东西也比较廉价。</li>
-</ul>
-<h4 id="43工作内容描述"><a class="anchor" href="#43工作内容描述">#</a> 4.3：工作内容描述</h4>
-<p>这个环节就是真正开始描述自己所做的事情，有以下几点要注意</p>
-<ul>
-<li>
-<p>不要写流水账，要突出亮点。</p>
-</li>
-<li>
-<p>尽量不要贴代码，除非你的代码很优秀没有破绽，或者是官方 API，不然非常容易被挑战。</p>
-</li>
-<li>
-<p>文字一定要越少越好，不然很容易变成照着读 (那样评委就会自己读而不去听你讲的了)，把你想写的话尽量通过图表达出来。</p>
-</li>
-<li>
-<p>每一页的内容不要过多，一页不能出现两个主题。</p>
-</li>
-<li>
-<p>合理使用动画和转场效果，避免花里胡哨。</p>
-</li>
-<li>
-<p>描述顺序最好跟照前面背景中提到的问题顺序一致，这样可以保证和背景中的问题要一一对应起来。</p>
-</li>
-</ul>
-<p><img data-src="https://tva1.sinaimg.cn/large/008i3skNgy1gsvkt02wfaj30hi0b7q47.jpg" alt="" /></p>
-<h4 id="44数据佐证"><a class="anchor" href="#44数据佐证">#</a> 4.4：数据佐证</h4>
-<p>对于任何的工作，数据是最有说服力的证明，尽量选择线上数据，进行纵向、横向对比</p>
-<ul>
-<li>
-<p>纵向对比：同一个项目中，在你所做工作介入前和介入后 对于项目某项指标的提升做对比。</p>
-</li>
-<li>
-<p>横向对比：同市面上的其他相似方案在对于项目的某项指标上的提升进行对比，类似于上文提到的竞品对比。</p>
-</li>
-<li>
-<p>描述方式：尽量采用表格，饼图、折线图等数据图表并配以少量的文字描述来进行展示。</p>
-</li>
-</ul>
-<h4 id="45后续优化点"><a class="anchor" href="#45后续优化点">#</a> 4.5：后续优化点</h4>
-<p>对于在计划中但还没有完成或开始的工作可以写到该模块下，但是要注意的是该处不要写 <code>过于简单或者很容易实现</code> 的内容，不然很容易被挑战：” 为什么不一起做完再来讲？“。该模块还有一个重要的功能就是对上面所讲内容的一个补充，体现出自己考虑问题的广度和深度。对于该模块所涉及到的知识点可以理解的不那么细，毕竟是预研阶段，但是要让评委或者是听众知道你在有计划的执行下去，同时后续方案已经具备了一定的可行性。</p>
-<h4 id="46关于口水稿"><a class="anchor" href="#46关于口水稿">#</a> 4.6：关于口水稿</h4>
-<p>口水稿就是把自己要说的一字不漏的直接写在 PPT 备注里面，包含一些白话和口语。可能大多数同学会认为，对于一些不善于表达的同学可以添加口水稿。但是个人觉得对于每个人来说口水稿都是必要的，不仅仅是在答辩过程中能给你相应的提示，更重要的是写口水稿的过程其实就是模拟答辩的过程，你可以梳理自己的思路，对于 PPT 查漏补缺。这一点是非常重要的。一般在最后一到两版的 PPT 开始写口水稿，笔者在这个期间也发现了很多问题，其中不乏一些逻辑错误，或者表达错误。</p>
-<h4 id="47其他建议"><a class="anchor" href="#47其他建议">#</a> 4.7：其他建议</h4>
-<ul>
-<li>
-<p>关于主题</p>
-<p>尽量选择一个主题来表述，如果一定要选择多个项目，一定要分清主次，最好 1：9 或者 2：8 来讲，同时非主要内容要先讲，然后再开始最重要的内容。因为大部分评委或者听众会对你最后讲的内容记忆深刻，而且 Q&amp;A 环节也是在最后。</p>
-</li>
-<li>
-<p>关于篇幅</p>
-<p>答辩总时长 30 分钟，PPT 最终有效页数要控制在 35 页内，如果超了这个页数说明你的内容不够精简，要做适当的调整，&lt;font color=&quot;#dd0000&quot;&gt; 确保每一个字都不是废话，都要有自己的使命。&lt;/font&gt;</p>
-</li>
-</ul>
-<h2 id="0x5-答辩前如何准备"><a class="anchor" href="#0x5-答辩前如何准备">#</a> 0x5 答辩前如何准备</h2>
-<p>&lt;/br&gt;<br />
-&lt;img src=&quot;<span class="exturl" data-url="aHR0cHM6Ly90dmExLnNpbmFpbWcuY24vbGFyZ2UvMDA4aTNza05neTFnc3ZtcXc3ZG5rajMwdTAwdzZqdHYuanBn">https://tva1.sinaimg.cn/large/008i3skNgy1gsvmqw7dnkj30u00w6jtv.jpg</span>&quot;width =&quot;300&quot;height =&quot;300&quot;alt=&quot; 图片名称 &quot; align=center /&gt;</p>
-<p>&lt;/br&gt;</p>
-<p>很多同学会担心紧张，个人认为其实紧张分两种，一种是正常的生理反应，这个谁都避免不了，但是这样的紧张基本不会影响到临场的发挥。另一种就是由于自己准备不充分而带来的慌张、自我怀疑、没有安全感的状态，这个就比较可怕，他会极大的影响到你的发挥表现，而且准备不充分本身就是致命的错误。</p>
-<p>其实第二种紧张的状态也比较好解决，这里提供几个方法：</p>
-<ul>
-<li>
-<p>自己在家或者会议室多进行模拟答辩 (要卡时间 30 分钟)，对自己要求高的可以进行脱稿。</p>
-</li>
-<li>
-<p>多找资深的同事或者 leader 帮你过 PTT。</p>
-</li>
-<li>
-<p>积极参加团队内的预答辩，争取一切表现自己的机会。</p>
-</li>
-<li>
-<p>尽可能的考虑周全，把评委可能挑战的点都想到，同时要有兜底策略，如果评委真的问道没有准备的或者不会的问题要怎么办 (这个可以找过来人分享他们的经验)。</p>
-</li>
-</ul>
-<p>真正的胸有成竹的时候你会有一种急于展示自我的跃跃欲试的感觉，与其说紧张倒不如说激动，当你有这种感觉的时候说明你离成功不远了。自信的人才最有可能发挥自己的全部实力。</p>
-<h2 id="0x6-最后"><a class="anchor" href="#0x6-最后">#</a> 0x6 最后</h2>
-<p>如果你都已经按照上面做了，那么其实最后的结果已经不重要了，我相信每个公司设立答辩机制的初衷一定都是提高员工的综合能力，提高公司整体竞争力，增进员工间的良性竞争氛围，提升技术产品敏感度等。这些都与职级和薪酬无关。全力以赴准备一次答辩，你就基本已经具备了这些优秀的特质。当然从结果导向的理论来说，还是希望大家顺利通过！</p>
-]]></content>
-      <categories>
-        <category>iOS开发</category>
-      </categories>
   </entry>
   <entry>
     <title>Apple登录流程详解</title>
@@ -3759,6 +3629,136 @@ token 被解密后分为三个部分</p>
         <tag>iOS</tag>
         <tag>Apple登录</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>如何做好一场Presentation</title>
+    <url>/2021-07-27-%E5%A6%82%E4%BD%95%E5%81%9A%E5%A5%BD%E4%B8%80%E5%9C%BAPresentation/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="0x1-前言"><a class="anchor" href="#0x1-前言">#</a> 0X1 前言：</h2>
+<p>其实很早就想写这篇文章了，当时晋级答辩之后本想趁热打铁，把自己的一些经历和想法分享出来和大家一起探讨，但是工作上的事情七七八八，再加上拖延症犯了，所以导致直到今天大家才能看到这篇文章。不奢求大家看过文章后晋级答辩就能一路绿灯，只是希望能在答辩季这关键时期给需要的人些许的启发或者能与大家产生一些共鸣，更主要的是希望本文能起到抛砖引玉的作用，大家都可以将自己的经历和想法分享出来。</p>
+<p><img data-src="https://tva1.sinaimg.cn/large/008i3skNgy1gsvni8ogskj31ts0u00zc.jpg" alt="" /></p>
+<p><span id="more"></span></p>
+<p>对于大部分开发同学来说，Presentation 一直都是短板，因为答辩不仅仅是技术能力本身的体现，还涉及到包括但不限于以下几个方面：</p>
+<ul>
+<li>
+<p>信息分类检索聚合能力。</p>
+</li>
+<li>
+<p>PPT 的书写能力。</p>
+</li>
+<li>
+<p>临场发挥、表达能力。</p>
+</li>
+</ul>
+<h2 id="0x2-如何选取素材"><a class="anchor" href="#0x2-如何选取素材">#</a> 0x2 如何选取素材？</h2>
+<p>想要解决问题就要知道都有哪些问题，以及这些问题是怎么来的，然后再对症下药。在答辩前也跟不少同事聊过，总结了几个大家都会提到的问题，其中被提到次数最多的就是 “不知道要答什么”。每个人都会说，这半年没做过什么 &lt; font color=&quot;#dd0000&quot;&gt; 有技术含量 &lt;/font &gt; 的事情，&lt;font color=&quot;#dd0000&quot;&gt; 业务需求 &lt;/font &gt; 都忙不过来。关键字已经标红，可以看出来这两个因素是阻挠我们的真凶。</p>
+<h4 id="21技术含量"><a class="anchor" href="#21技术含量">#</a> 2.1：技术含量？</h4>
+<p>对于一个技术答辩来说什么样的事情算是有技术含量？其实并不一定是那种前无古人后无来者的高精尖技术突破，也不是多么高深莫测的技术点。其实做移动端，或者大前端开发的人都知道，互联网在我国也有几十年的发展史，能挖的技术点早已经被挖透了，各种知识随便 google 一下就一大堆，想在这种环境下研究新技术出来实在是难于登天。所以大家有这样的疑问也是情理之中的。</p>
+<p>既然这样我们何不换一个思路去思考问题，稍稍改变一下 <code>技术含量</code> 这个词的定义。我个人的理解是 <code>在技术方面能对现有项目起到正向优化效果，或者能提高现有工作的效率的工作</code> ，凡是这样的工作，都值得被用来答辩或者作为 Presentation 的素材，这样一来，是不是感觉能答辩的东西就很多了，可选的范围变广了。</p>
+<p><img data-src="https://tva1.sinaimg.cn/large/008i3skNgy1gsuruavcq7j30u00k40uw.jpg" alt="" /></p>
+<h4 id="22业务需求"><a class="anchor" href="#22业务需求">#</a> 2.2：业务需求？</h4>
+<p>这是这里面临第二个 “难题”。的确大部分的同事的大部分时间都跟业务需求打交道，需求的点子是产品同学想的，代码也是按照需求单里面的写的，乍一看确实没什么可说的。但是大家都是在公司上班的人，业务需求肯定躲不过。其实现代技术的发展一开始都是由人类需求来驱动的。比如音视频编码技术，流媒体技术，各种加解密、排序算法等，都是先有需求再有技术产出，而针对同一个需求的不同技术方案也有 <code>优劣差异</code> ，比如 H264,H265；比如各种排序算法的复杂度等。所以我们答辩的内容最好是要从平时各种需求去挖掘，而实现需求时方案的 <code>优劣差异</code> 正是我们需要展示出的亮点。这一套做完后我们再通过业务需求本身的一些数据来佐证我们论点。</p>
+<p>这样一来形成一个完整的闭环，让 <code>业务需求</code> 从绊脚石变成促成我们一次答辩或者 Presentation 成功的一个助推剂。有业务需求作为支撑，可以使我们的内容更加有说服力，不至于让我们的 presentation 变成纸上谈兵。换句话来说，过多的业务需求未必是一件坏事，不过这就需要我们在做每个需求时都要有认真的思考，我们不仅仅是要完成需求本事，而是要考虑同样的工作如何做的更好。</p>
+<p><img data-src="https://tva1.sinaimg.cn/large/008i3skNgy1gsurso7t1lj30xc0huaau.jpg" alt="" /></p>
+<p>这时候一定会有人说，技术需求大多简单没什么值得说的地方。其实对于移动端来说，目前的编程语言都已经是非常高级的语言，我们在平时的开发中几乎接触不到底层的东西，比如汇编，或者硬件之类的。安卓和苹果都通过层层封装为开发者屏蔽了底层的实现，但是我们真的明白当我调用一个高级接口的时候底层都做了哪些事情吗？打个很简单的比方：大家都知道圆角或者透明图层会导致离屏渲染，会影响性能，但是有多少人能说出为什么会离屏渲染？离屏渲染时候 CPU 在做什么、GPU 在做什么？切圆角触发了哪些 GPU 的指令？GPU 和 CPU 以及各种显示管线是如何交互的？其实我们并不是缺少素材，而是缺乏透过问题看本质的能力。对于大前端来说我们接触到的都只是冰山一角，而冰山下面的东西是值得我们去细细挖掘的。</p>
+<h4 id="23兜底策略"><a class="anchor" href="#23兜底策略">#</a> 2.3：兜底策略！</h4>
+<p>如果看了上面两段还是不知道说什么那兜底策略就是： <code>能报就报，先报再说</code> ，人都是有惰性的，不逼自己一把永远不知道自己的潜力，而且对自己个人成长有益事情要学会争取，答辩或者 presentation 的意义不仅仅是升职加薪，其中的过程也能学到很多东西，对自己各方面能力都是很大的提高，之前基本所有参与过的同学都说过：“答辩掉层皮，但是能学到很多东西”。对于这种好事我们怎么能拒绝呢？</p>
+<h2 id="0x3-开始ppt之前要做什么"><a class="anchor" href="#0x3-开始ppt之前要做什么">#</a> 0x3 开始 PPT 之前要做什么</h2>
+<p>PPT 是答辩中必不可少的一个部分，但是 PPT 只是一个辅助工具，他的作用是把自己的想法更加具象的表达出来。所以最重要的是我们的想法和思路，以及我们的内容，在这里笔者建议 &lt;font color=&quot;#dd0000&quot;&gt; 不要着急写 PPT！&lt;/font&gt;，因为过早的写 PPT 就避免不了后期大量的修改，很容易导致前功尽弃。而且过早的写也容易禁锢自己的思路。</p>
+<p>对于什么时候开始写，这个可能要取决于每个人内容的积累程度，当你相关的知识储备到达一定量级的时候你自然就会感觉” 下笔如有神 “，这个时候就可以开始了。这里还是建议最晚开始时间要在答辩前一个月左右。关于如何做知识积累，我这边有个方法：在平时工作时候，将答辩相关的知识点全部都记录在一个文档里，不需要记录多详细，可能是一行网址、一个截图、一个书名 + 页数，甚至是一行 API。在 PPT 开始前必须保证这个文档已经形成了一套较为完整的知识体系，这样之后才能快速高质量的完成 PPT。</p>
+<p><img data-src="https://tva1.sinaimg.cn/large/008i3skNgy1gsvme0203eg30f80gonpr.gif" alt="" /></p>
+<p>这里用笔者的亲身经历举例，第一次答辩时候没有经验，很早就把重心放到了 PPT 书写上，导致在该做技术积累的时候时间都花在构思 PPT 上。最终的结果就是 PPT 改了无数版，面目全非，而且最后发现技术深度不够，信息密度不够，才开始后期恶补。第二次答辩吸取了教训，早早地就把各种相关知识点沉淀到文档中，确定了大方向和提纲。然后最后一个月左右的时间，从该文档中进行信息提取整合，写 PPT 的效率翻倍，而且自始至终基本不会有结构上太大的修改。</p>
+<h2 id="0x4-如何写ppt"><a class="anchor" href="#0x4-如何写ppt">#</a> 0x4 如何写 PPT</h2>
+<p>知道了要讲什么东西，那这节来看看如何把一件事情清晰的描述出来。就像写代码一样，任何事情都要有条理，要有先后顺序，先讲什么后讲什么，都必须遵循一定的规律，虽说不上要引人入胜，但是至少让听众或者评委能顺着你的思路走。所以在写 PPT 或者演讲稿之前要从上帝视角来审视整个流程，整理出一个大概的提纲，之后的工作才是细化内容，挖掘深度等。根据事物发展的客观规律，并以时间线为依托，一个好的描述手法基本可以分为以下几个部分。</p>
+<p><img data-src="https://tva1.sinaimg.cn/large/008i3skNgy1gsuv69e6bkg30xc0ioql2.gif" alt="" /></p>
+<h4 id="41背景"><a class="anchor" href="#41背景">#</a> 4.1：背景</h4>
+<p>做任何事情都有原因，在开始一切之前反问一下自己 <code>我为什么要做这个事情？</code> 。但是这里的原因并不是” 因为有这个产品需求所以我做了 “，因为 presentation 的素材绝对不是需求本身，而是由需求引出的更高层次的思考，来源于需求，高于需求。因此 &lt; font color=&quot;#dd0000&quot;&gt; 背景是建立在你对现状清晰的认识的基础上，指出现阶段存在的问题，并表达出要迫切优化的诉求 &lt;/font&gt;。换句话说 <code>背景</code> 就是让听众带着问题听下去，你也可以通过不同的问题来主导听众的思考方向。</p>
+<ul>
+<li>描述方式：背景的描述方式尽量采用 &lt;font color=&quot;#dd0000&quot;&gt;1. 2. 3.  ... 点来列出来 &lt;/font&gt;，这样不仅清晰明了，而且也方便后面的针对性解答，起到点题的作用。</li>
+</ul>
+<h4 id="42竞品对比"><a class="anchor" href="#42竞品对比">#</a> 4.2：竞品对比</h4>
+<p>之前也讲过，互联网发展这么久，任何问题都有现成的解决方案，所以你能想到的问题其他人也一定会想到，说不定别人已经有了一套成熟的体系，所以要体现自己的价值就一定要找到我们比他强的地方，或者是我们不能用他人的只能用你的原因。这点很重要，前期不做好功课，不然等评委问道了 <code>用XXX一样可以解决问题，你为什么还重复造轮子?</code>  的时候哑口无言，那就很尴尬了。</p>
+<p>竞品对比要尽量找些知名度较高的竞品，这样更有说服力，也更能衬托出你所做内容的优势。同时要思考全面，让听众能感受到你对行业的敏感性和思考问题的全面性。</p>
+<ul>
+<li>描述方式：该模块尽量采用 &lt;font color=&quot;#dd0000&quot;&gt; 表格 &lt;/font &gt; 描述，通过不同维度的对比来突出自己的优势。但是有一点要注意，不要一味的贬低竞品，可以在一些无关痛痒或者跟本次演讲内容无关的地方去肯定他人的做法，不然会让人觉得你做的东西也比较廉价。</li>
+</ul>
+<h4 id="43工作内容描述"><a class="anchor" href="#43工作内容描述">#</a> 4.3：工作内容描述</h4>
+<p>这个环节就是真正开始描述自己所做的事情，有以下几点要注意</p>
+<ul>
+<li>
+<p>不要写流水账，要突出亮点。</p>
+</li>
+<li>
+<p>尽量不要贴代码，除非你的代码很优秀没有破绽，或者是官方 API，不然非常容易被挑战。</p>
+</li>
+<li>
+<p>文字一定要越少越好，不然很容易变成照着读 (那样评委就会自己读而不去听你讲的了)，把你想写的话尽量通过图表达出来。</p>
+</li>
+<li>
+<p>每一页的内容不要过多，一页不能出现两个主题。</p>
+</li>
+<li>
+<p>合理使用动画和转场效果，避免花里胡哨。</p>
+</li>
+<li>
+<p>描述顺序最好跟照前面背景中提到的问题顺序一致，这样可以保证和背景中的问题要一一对应起来。</p>
+</li>
+</ul>
+<p><img data-src="https://tva1.sinaimg.cn/large/008i3skNgy1gsvkt02wfaj30hi0b7q47.jpg" alt="" /></p>
+<h4 id="44数据佐证"><a class="anchor" href="#44数据佐证">#</a> 4.4：数据佐证</h4>
+<p>对于任何的工作，数据是最有说服力的证明，尽量选择线上数据，进行纵向、横向对比</p>
+<ul>
+<li>
+<p>纵向对比：同一个项目中，在你所做工作介入前和介入后 对于项目某项指标的提升做对比。</p>
+</li>
+<li>
+<p>横向对比：同市面上的其他相似方案在对于项目的某项指标上的提升进行对比，类似于上文提到的竞品对比。</p>
+</li>
+<li>
+<p>描述方式：尽量采用表格，饼图、折线图等数据图表并配以少量的文字描述来进行展示。</p>
+</li>
+</ul>
+<h4 id="45后续优化点"><a class="anchor" href="#45后续优化点">#</a> 4.5：后续优化点</h4>
+<p>对于在计划中但还没有完成或开始的工作可以写到该模块下，但是要注意的是该处不要写 <code>过于简单或者很容易实现</code> 的内容，不然很容易被挑战：” 为什么不一起做完再来讲？“。该模块还有一个重要的功能就是对上面所讲内容的一个补充，体现出自己考虑问题的广度和深度。对于该模块所涉及到的知识点可以理解的不那么细，毕竟是预研阶段，但是要让评委或者是听众知道你在有计划的执行下去，同时后续方案已经具备了一定的可行性。</p>
+<h4 id="46关于口水稿"><a class="anchor" href="#46关于口水稿">#</a> 4.6：关于口水稿</h4>
+<p>口水稿就是把自己要说的一字不漏的直接写在 PPT 备注里面，包含一些白话和口语。可能大多数同学会认为，对于一些不善于表达的同学可以添加口水稿。但是个人觉得对于每个人来说口水稿都是必要的，不仅仅是在答辩过程中能给你相应的提示，更重要的是写口水稿的过程其实就是模拟答辩的过程，你可以梳理自己的思路，对于 PPT 查漏补缺。这一点是非常重要的。一般在最后一到两版的 PPT 开始写口水稿，笔者在这个期间也发现了很多问题，其中不乏一些逻辑错误，或者表达错误。</p>
+<h4 id="47其他建议"><a class="anchor" href="#47其他建议">#</a> 4.7：其他建议</h4>
+<ul>
+<li>
+<p>关于主题</p>
+<p>尽量选择一个主题来表述，如果一定要选择多个项目，一定要分清主次，最好 1：9 或者 2：8 来讲，同时非主要内容要先讲，然后再开始最重要的内容。因为大部分评委或者听众会对你最后讲的内容记忆深刻，而且 Q&amp;A 环节也是在最后。</p>
+</li>
+<li>
+<p>关于篇幅</p>
+<p>答辩总时长 30 分钟，PPT 最终有效页数要控制在 35 页内，如果超了这个页数说明你的内容不够精简，要做适当的调整，&lt;font color=&quot;#dd0000&quot;&gt; 确保每一个字都不是废话，都要有自己的使命。&lt;/font&gt;</p>
+</li>
+</ul>
+<h2 id="0x5-答辩前如何准备"><a class="anchor" href="#0x5-答辩前如何准备">#</a> 0x5 答辩前如何准备</h2>
+<p>&lt;/br&gt;<br />
+&lt;img src=&quot;<span class="exturl" data-url="aHR0cHM6Ly90dmExLnNpbmFpbWcuY24vbGFyZ2UvMDA4aTNza05neTFnc3ZtcXc3ZG5rajMwdTAwdzZqdHYuanBn">https://tva1.sinaimg.cn/large/008i3skNgy1gsvmqw7dnkj30u00w6jtv.jpg</span>&quot;width =&quot;300&quot;height =&quot;300&quot;alt=&quot; 图片名称 &quot; align=center /&gt;</p>
+<p>&lt;/br&gt;</p>
+<p>很多同学会担心紧张，个人认为其实紧张分两种，一种是正常的生理反应，这个谁都避免不了，但是这样的紧张基本不会影响到临场的发挥。另一种就是由于自己准备不充分而带来的慌张、自我怀疑、没有安全感的状态，这个就比较可怕，他会极大的影响到你的发挥表现，而且准备不充分本身就是致命的错误。</p>
+<p>其实第二种紧张的状态也比较好解决，这里提供几个方法：</p>
+<ul>
+<li>
+<p>自己在家或者会议室多进行模拟答辩 (要卡时间 30 分钟)，对自己要求高的可以进行脱稿。</p>
+</li>
+<li>
+<p>多找资深的同事或者 leader 帮你过 PTT。</p>
+</li>
+<li>
+<p>积极参加团队内的预答辩，争取一切表现自己的机会。</p>
+</li>
+<li>
+<p>尽可能的考虑周全，把评委可能挑战的点都想到，同时要有兜底策略，如果评委真的问道没有准备的或者不会的问题要怎么办 (这个可以找过来人分享他们的经验)。</p>
+</li>
+</ul>
+<p>真正的胸有成竹的时候你会有一种急于展示自我的跃跃欲试的感觉，与其说紧张倒不如说激动，当你有这种感觉的时候说明你离成功不远了。自信的人才最有可能发挥自己的全部实力。</p>
+<h2 id="0x6-最后"><a class="anchor" href="#0x6-最后">#</a> 0x6 最后</h2>
+<p>如果你都已经按照上面做了，那么其实最后的结果已经不重要了，我相信每个公司设立答辩机制的初衷一定都是提高员工的综合能力，提高公司整体竞争力，增进员工间的良性竞争氛围，提升技术产品敏感度等。这些都与职级和薪酬无关。全力以赴准备一次答辩，你就基本已经具备了这些优秀的特质。当然从结果导向的理论来说，还是希望大家顺利通过！</p>
+]]></content>
+      <categories>
+        <category>iOS开发</category>
+      </categories>
   </entry>
   <entry>
     <title>WWDC2022-iOS篇完全解析</title>
@@ -3928,144 +3928,6 @@ token 被解密后分为三个部分</p>
       </tags>
   </entry>
   <entry>
-    <title>WWDC22：Runtime的性能优化和App减包</title>
-    <url>/2022-08-24-WWDC22%EF%BC%9ARuntime%E7%9A%84%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E5%92%8CApp%E5%87%8F%E5%8C%85/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>本 Session 讲了为了让你的应用包体积更小，运行更快，启动速度更快，我们对 Swift 和 Objective-C 运行时做了怎样的优化。同时通过本 Session 你将发现如何通过高效的协议检查，更小的消息发送，以及优化后的 ARC 机制，来提高你的 App 性能。</p>
-<p><img data-src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5hvcgyqjij21400u0411.jpg" alt="" /></p>
-<p><span id="more"></span></p>
-<p><div class="media-container"><div class="player" data-type="audio" data-src='["https://music.163.com/#/song?id=1929370102"]'></div></div></p>
-<h2 id="前言"><a class="anchor" href="#前言">#</a> 前言</h2>
-<p>WWDC2022 上苹果更新了 Xcode14，里面提到了一些相关的优化。其中讲了通过对 Swift 和 Objective-C 运行时做了一些优化，达到了包体积变得更小、运行速度更快，启动速度更快的目的。如果你是用 Xcode14 来构建 App，那么会有其中三点优化</p>
-<ul>
-<li>高效的协议检查（针对 Swift protocol check）</li>
-<li>更快的消息发送机制（message send）</li>
-<li>release 和 return 调用优化（release &amp; retain）</li>
-<li>Autorelease elision 的优化（自动释放省略）</li>
-</ul>
-<p><img data-src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5npazwav0j214g0rm75u.jpg" alt="wwdc" /></p>
-<p>当你用 Swift 或 Objective-C 编写代码时，其实是会经历三个个步骤。</p>
-<ul>
-<li>编码，通过 Xcode 编写代码</li>
-<li>编译，使用了 Swift 和 Clang 编译器</li>
-<li>运行，通过 Swift 和 Objective-C 运行时中完成</li>
-</ul>
-<p><img data-src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5gp9rcbq1j215t0u0754.jpg" alt="image-20220823144936761" /></p>
-<p>此次的这些关键优化其实就是在第三步骤运行时来完成的，运行时嵌入在我们所有平台的操作系统中。编译器在构建时不能做的事情，运行时可以做。而此次所有的修改其实对于开发者来说是无感透明的，所以任何代码都不用改动，只要你使用 Xcode14 来进行打包编译，便会享受的这些优化点。</p>
-<h2 id="swift协议检查protocol-checks"><a class="anchor" href="#swift协议检查protocol-checks">#</a> Swift 协议检查（Protocol checks）</h2>
-<p>先来看一个例子！</p>
-<p><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 定义一个协议</span></span><br><span class="line"><span class="keyword">protocol</span> <span class="title class_">CustomLoggable</span> &#123;</span><br><span class="line">  <span class="comment">// 协议中定义一个属性 customString，只读属性</span></span><br><span class="line">    <span class="keyword">var</span> customLogString: <span class="type">String</span> &#123; <span class="keyword">get</span> &#125;        </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义一个log函数，参数为Any类型</span></span><br><span class="line"><span class="keyword">func</span> <span class="title function_">log</span>(<span class="params">value</span>: <span class="keyword">Any</span>) &#123;</span><br><span class="line"><span class="comment">//如果value遵循CustomLoggable协议，就输出字符串</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">let</span> value <span class="operator">=</span> value <span class="keyword">as?</span> <span class="type">CustomLoggable</span> &#123;</span><br><span class="line">        <span class="built_in">debugPrint</span>(value.customLogString)        </span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="operator">...</span>        </span><br><span class="line">    &#125;       </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义一个Event类型 遵循协议，并实现customLogString</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Event</span>: <span class="title class_">CustomLoggable</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> name: <span class="type">String</span></span><br><span class="line">    <span class="keyword">var</span> date: <span class="type">String</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> customLogString: <span class="type">String</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;<span class="subst">\(<span class="keyword">self</span>.name)</span>, on <span class="subst">\(<span class="keyword">self</span>.date)</span>&quot;</span>    </span><br><span class="line">    &#125;        </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>看上面代码，因为 log 函数的参数需要输出字符串，所以在输出前要先判断这个 value 是否遵循 CustomLoggable 协议，Swift 是静态语言，所以一般来说这样的检查都是发生在编译时期。但是编译器不一定能拿到足够的协议元数据信息来完成检查。比如这里并不知道每次传入的 Any 类型是哪个确定类型，也就无法确定是否遵循  <code>CustomLoggable</code>  协议。所以这种检查常常发生运行时，系统借助计算好的协议检查元数据 (protocol check metadata)，运行库知道这个特殊对象是否符合协议。</p>
-<p>这些元数据的构建虽然大部分在编译期间，但是还是有一部分是要在运行时完成，比如上面的例子，而且一个项目中肯定不止有一个协议，所以随着协议越多运行时的效率就越低，对于用户来说这个时间大部分是启动时间，所以用户感知为启动时间变长。而 Xcode14 新推的的 Swift Runtime 解决了这个问题，只要你是用 Xcode14 编译且运行在 iOS16 及以上版即可。</p>
-<p>按照苹果的说法，他们会把 <code>是否遵循协议</code> 的这个判断前置到 build 时期，也就是把 <code>协议元数据计算</code> 的步骤前置到 build 中，具体就是他把这些操作放在 App 可执行文件和启动时任何动态库的 dyld 闭包的一部分</p>
-<p>为什么这样做可以节省启动时间，需要先了解下 app 启动流程，需要一个知识背景 <code>从iOS11开始dyld3被加入，iOS13第三方库也开始使用dyld3加载。</code> 所以我们要看下 dyld3 的加载流程</p>
-<p><img data-src="https://upload-images.jianshu.io/upload_images/2438680-b5edfa4c2bcdb205.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1044/format/webp" alt="img" /></p>
-<p><em>dyld 3</em> 主要包含了两个过程 进程外（启动前）和进程内（启动后），我们来看启动前做了那些事情</p>
-<ul>
-<li>进程外 <em>Mach-O</em> 分析器和编译器 （<em>out-of-process mach-o parser</em>）<br />
-<em>dyld 3</em> 中将采用提前写入把结果数据缓存成文件的方式构成一个 <em>lauch closure</em>（可以理解为缓存文件）</li>
-<li>分析依赖库</li>
-<li>执行符号查找</li>
-<li><em>Write closure</em> 缓存服务 (<em>launch closure cache</em> )<br />
- 系统程序的 <em>closure</em> 直接内置在 <em>shared cache</em> 中，而对于第三方 APP，将在 APP 安装或更新时生成，这样就能保证 <em>closure</em> 总是在 APP 打开之前准备好。说白了就是把上面做的结果全都缓存起来</li>
-</ul>
-<p>综上看来以前需要在 in-process 中做的事情，现在在 out-of-process 就可以完成，启动时或者运行时直接读取缓存数据即可，加快了启动速度和运行时的性能。其实在笔者看来当我们下载或者更新 App 的时候 App 上的进度条其实是分两部分 <code>正在下载</code> 和 <code>正在安装</code> ，此次的优化可能略微提高安装的时长来降低启动速度，提高运行时性能。</p>
-<p><code>on apps that rely heavily in Swift, this could add up to half the launch time</code>  如果有条件的同学可以试下是否可以提高这么多的启动耗时。</p>
-<h2 id="消息发送优化message-send"><a class="anchor" href="#消息发送优化message-send">#</a> 消息发送优化（Message send）</h2>
-<p>直接抛结果，苹果这边给到的数据是使用 Xcode14 编译打包的数据可以让 ARM64 上发送消息消耗从 12 字节降低到 8 字节，二进制大小也有 2% 的降低，也就是苹果对包大小和性能都做了优化，默认是同时开启的，由苹果来平衡两者的关系，当然也可以使用 <code>objc_stubs_small</code>  来仅仅优化包大小。</p>
-<p><img data-src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5grqpljrej215t0u0aax.jpg" alt="image-20220823161510950" /></p>
-<p>下面我们看下是怎么优化的，同样使用官方代码举例</p>
-<p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 声明一个日历对象</span><br><span class="line">NScalendar *cal = [self makeCalendar];</span><br><span class="line"></span><br><span class="line">// 声明一个日期对象并赋值</span><br><span class="line">NSDateComponents *dateComponents = [[NSDateComponents alloc] init];</span><br><span class="line">dateComponents.year = 2022;</span><br><span class="line">dateComponents.month = 2022;</span><br><span class="line">dateComponents.day = 2022;</span><br><span class="line">S</span><br><span class="line">// 把日期转换为date</span><br><span class="line">NSDate *theDate = [cal dateFromComponents: dateComponents];</span><br><span class="line"></span><br><span class="line">// 返回date</span><br><span class="line">return theDate;</span><br></pre></td></tr></table></figure></p>
-<p>大家知道 OC 调用方法最终会走到 <code>_objc_msgSend</code> ，所以上面代码不算最终的 return，会走 7 个  <code>_objc_msgSend</code> ，其中每一个都需要一条指令来调用就是 bl 如下图</p>
-<p><img data-src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5gsa0ef9kj20n00gidgx.jpg" alt="image-20220823163343886" /></p>
-<p>该函数定义为 <code>Id objc_msgSend(id self, SEL _cmd, ...) </code> ，参数定义为 self 是函数的调用方，SEL 为具体调用哪个函数，具体的方法查找流程就不在这里赘述。</p>
-<p>我们拿其中具体的一个函数调用来分析</p>
-<p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">NSDate *theDate = [cal dateFromComponents: dateComponents]; </span><br></pre></td></tr></table></figure></p>
-<p>比如这个函数调用，转化为 mesagesend 的时候就变成这样</p>
-<p><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">objc_msgSend(cal, @selector(dateFromComponents))</span><br></pre></td></tr></table></figure></p>
-<p>为了告诉运行时调用哪个方法，我们必须传递一个 Selector 给这些 objc_msgSend 调用，就如上图的 <code>@selector(dateFromComponents)</code></p>
-<p>我们再来看 <code>Id objc_msgSend(id self, SEL _cmd, ...)</code>  执行后他是怎么执行汇编指令的。</p>
-<p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 使用adrp找到该方法的地址   消耗4字节</span><br><span class="line">adrp x1, [selector &quot;dateFromComponents&quot;]  </span><br><span class="line"></span><br><span class="line">// 将 地址加载到X1寄存器中  消耗4字节</span><br><span class="line">ldr  x1, [x1, selector &quot;dateFromComponents&quot;] </span><br><span class="line"></span><br><span class="line">// 执行bl指令跳转到该方法并执行  消耗4字节</span><br><span class="line">bl _objc_msgSend</span><br></pre></td></tr></table></figure></p>
-<p>从上面的代码看出每次执行方法调用都会 走以上三个步骤，每个步骤消耗 4 字节 一共消耗 12 字节，而前两步是准备 selector，任何一次方法调用都会执行他，目前的策略是每调一个方法都会生成上面三步，那么此时优化空间就来了。</p>
-<p>因为这里存在相同的代码（前两步）， <code>我们可以考虑共享它，并且只在每个 selector 中触发它一次，而不是每次发送消息时都生成这段指令代码</code> 。所以我们可以把这部分相同代码提取出来，放到一个小助手函数中 (helper function), 并调用该函数。通过使用同一 selector 进行多次调用 (通过传递参数不同，内部指令是相同的，现在封装成一个存根函数，以前是散落在各个 _objc_msgSend 调用处)，我们可以保存所有这些指令字节。所以可以理解为 <code>把前两步封装一下</code></p>
-<p><img data-src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5gvtbfnh1j20n00git9h.jpg" alt="image-20220823183604633" /></p>
-<p>所以原来的调用就变成了</p>
-<p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bl _objc_msgSend$dateFromComponents 4字节</span><br><span class="line">bl _objc_msgSend    4字节</span><br></pre></td></tr></table></figure></p>
-<p>这也就是苹果说的从 12 字节优化到 8 字节，其中 <code>_objc_msgSend$dateFromComponents</code>  也被称为 <code>selector stub 存根函数</code></p>
-<p>同样 <code>_objc_msgSend</code>  本身也有一个存根函数写法</p>
-<p><img data-src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5gw1kpzuzj20n00giwfd.jpg" alt="image-20220823184401200" /></p>
-<p>这样一来我们现在就有两个存根函数</p>
-<ul>
-<li>_objc_msgSend$dateFromComponents:</li>
-<li>_objc_msgSend:</li>
-</ul>
-<p>这两个函数封装了一些通用的东西，共享了最多的代码，使代码尽可能的小，但是这样带来的不足是我需要连着两个 bl 跳转，这对操作系统来说开销较大。所以为了平衡包体积和性能，我们可以使用下面这种方法来提升这一点。我们可以把前面调用的两个存根函数封装成一个 (都封装成_objc_msgSend$dateFromComponents)，这样，我们可以使代码更紧凑，不需要那么多调用。如下图这样</p>
-<p><img data-src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5gwei63esj20bo07u74l.jpg" alt="image-20220823185626349" /></p>
-<p>这就回到了之前的问题，你可以通过 <code>_objc_stubs_small</code>  标记了只降低包大小，或者采用默认的方式让系统自动平衡，两者的区别在汇编层面就体现在如下图</p>
-<p><img data-src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5gwg7hnugj20n00gidhc.jpg" alt="image-20220823185804687" /></p>
-<p>综上：这就是 Meesage send 占用从 12 bytes 降低到 8 bytes 和二进制大小下降 12% 的原因</p>
-<h2 id="retain-and-release"><a class="anchor" href="#retain-and-release">#</a> Retain and release</h2>
-<p>这个优化是苹果这边使 Retain and release 的开销更小，苹果的说法是 Retain and release 的调用开销从 8 字节降低到 4 字节，同时包体积也会有 2% 的优化</p>
-<p><img data-src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5gwkqxaenj20n00gidg9.jpg" alt="image-20220823190226429" /></p>
-<p>我们知道 ARC 相比于 MRC 是开发者不需要再写 retain、release 这些代码，其实并不是不需要，而是编译器帮我们自动在需要的位置插入了这些代码，所以换句话说他们还是存在的，只是你看不到也不用在关心他们。</p>
-<p>还是拿之前的例子来说</p>
-<p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// Retain/release calls inserted by ARC</span><br><span class="line">NScalendar *cal = [self makeCalendar]; // bl    _objc_retain</span><br><span class="line"></span><br><span class="line">NSDateComponents *dateComponents = [[NSDateComponents alloc] init]; // bl    _objc_retain</span><br><span class="line">dateComponents.year = 2022; </span><br><span class="line">dateComponents.month = 2022;</span><br><span class="line">dateComponents.day = 2022;</span><br><span class="line"></span><br><span class="line">NSDate *theDate = [cal dateFromComponents: dateComponents]; // bl    _objc_retain</span><br><span class="line">return theDate;</span><br><span class="line">// bl    _objc_release </span><br><span class="line">// bl    _objc_release </span><br><span class="line">// bl    _objc_release </span><br></pre></td></tr></table></figure></p>
-<p>在变量创建的时候我们使用 retain 来增加的他的引用计数不被销毁，在方法结束后我们使用 release 来销毁不需要的变量，这也是 iOS 的内存管理机制。在 ARC 下这些都是编译器我们插入的代码，我们无需关心。</p>
-<p>retain 和 release 都是 C 语言的函数，他们携带一个参数就是被操作的对象，同时他遵循 C 语言的 ABI，所以当你调用这些方法的时候系统还会为你做一些额外的事情，比如下图中的 mov 操作，而这些操正是我们优化的用武之地，通过自定义调用重新约定 retain/release 接口，我们可以根据对象指针的位置，适当的使用正确的变量，这样就可以不用移动它。简单的说， <code>就是修改了底层 ABI</code> 。</p>
-<p><img data-src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5gwylzjkuj20n00giab1.jpg" alt="image-20220823191546398" /></p>
-<p>我们是怎么做的优化呢？看下之前的流程，我们用下面这行代码举例</p>
-<p><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">objc_release(dateComponents); </span><br><span class="line"><span class="comment">// mov  x0, x20                    消耗4 字节                                                                                                                                                           </span></span><br><span class="line"><span class="comment">// bl    _objc_release         消耗4字节</span></span><br></pre></td></tr></table></figure></p>
-<p>流程为</p>
-<ul>
-<li>先执行 mov 把副本地址（X20, 也就是对象的地址）存到寄存器 x0</li>
-<li>然后 bl 跳转到 <code>_objc_release</code>  函数进行释放</li>
-</ul>
-<p>根据之前讲的每个指令消耗 4 字节，所以这里消耗 8 字节</p>
-<p>我们修改 ABI 之后其省掉调用 mov 指令 然后原本跳转到_objc_release 函数 改为跳转到 <code>_objc_release_x20</code>  函数，而 mov 的指令放到 C 语言更底层的 ABI 里面去做，你可以理解为 <code>我们封装了一个新的retain、release函数，你只要传入一个寄存器地址我就去更底层的地方完成mov操作，所以效率更高了</code> 。现在因为只用执行一条指令，所以内存消耗为 4 字节。现在的流程看起来为</p>
-<p><img data-src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5gx83ebs8j20n00giab9.jpg" alt="image-20220823192452605" /></p>
-<p>这么看来我们代码里大量的 release 和 retain 都经过这样的样的优化所以整体的二进制包降低 2% 同时调用内存消耗游 8 字节变为 4 字节，同时 ABI 接口修改，去除冗余 mov 指令调用，下沉到 ABI。 <code>由于 ABI 是内嵌系统</code> ，这里新增 mov 指令占用可以忽略不计。</p>
-<p><code>Apple 果然是坚持用户体验优先，为了更好体验不惜修改 c 的 ABI</code></p>
-<h2 id="autorelease-elision自动释放省略优化"><a class="anchor" href="#autorelease-elision自动释放省略优化">#</a> Autorelease elision（自动释放省略优化）</h2>
-<p>iOS 中除了使用 release 之外还有另一个 就是 autorelease 自动释放机制，同样在这个地方苹果也做了自动释放省略的优化让自动释放机制效率更高。我们来看下面这个例子</p>
-<p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// Return Value Autoreleases </span><br><span class="line"></span><br><span class="line">theWWDCDate = [event getWWDCDate];</span><br><span class="line"></span><br><span class="line">-(NSDate*)getWWDCDate &#123;</span><br><span class="line">    ...</span><br><span class="line">    return theDate;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>创建一个临时对象 (theDate)，并将其返回给调用方 (event)。 <code>getWWDCDate()</code>  方法中返回临时的 theDate，然后调用完成 (返回 theDate 之后，getWWDCDate 就调用完成)。这时调用方（event）将其保存到自己的变量中（theWWDCDate 中）。</p>
-<p>根据系统插入 retain 和 release 的机制来说应该是这样的，但是明显 retain 处不能进行 release，因为我需要吧 theDate 返回回去，如果这里释放了我就没办法呢返回了。</p>
-<p><img data-src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5gy19928nj20n00gi3yz.jpg" alt="image-20220823195254398" /></p>
-<p>因此，为了解决上述问题，需要使用一个特殊的约定用来返回这个临时返回值。这就引入了 Autorelease，这样调用者能够 retain 它。autorelease 在这里保证在调用方可以正常返回该值，而不被提前释放，延长释放生命周期。你之前可能看到过 autorelease 和 autoreleasePools：其实这是一种将 release 操作推迟到稍后某个时间的方法。所以上面的代码改为 Autorelease</p>
-<p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// Return Value Autoreleases </span><br><span class="line"></span><br><span class="line">theWWDCDate = [[event getWWDCDate] retain];</span><br><span class="line"></span><br><span class="line">-(NSDate*)getWWDCDate &#123;</span><br><span class="line">    ...</span><br><span class="line">    return [theDate autorelease]; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>系统并不知道他在什么时候会被释放，反正只要不在 retain 的时候释放就行，所以我在 retain 的时候先打个标记，标记他之后可能会被释放。但是这样的操作目前会带来一些开销，其实就是 <code>我虽然打了release标记，但是我明明一会还要retain，没必要多此一举</code> ，所以基于此我们之前引入了 <code>Autorelease elision</code>  来减少这部分开销（ <code>如果Autorelease后紧接一个retain我就都不做了</code> ）。我们先从汇编层面看下 Autorelease elision 做了什么</p>
-<p><img data-src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5gy8n9wnzj20n00giwf7.jpg" alt="image-20220823195959365" /></p>
-<p>提炼出以下代码</p>
-<p><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// What the compiler emits</span></span><br><span class="line"> bl    _getWWDCDate </span><br><span class="line"> mov   x29, x29</span><br><span class="line"> bl    _objc_retainAutoreleasedReturnValue</span><br><span class="line"></span><br><span class="line"> b    _objc_autoreleaseReturnValue   <span class="comment">// autorelease -&gt; runtime -&gt; _objc_autoreleaseReturnValue</span></span><br></pre></td></tr></table></figure></p>
-<p>其实就是以下步骤</p>
-<ul>
-<li>当我们返回值调用 Autorelease 时候系统会调用 <code>_objc_autoreleaseReturnValue</code>  来返回一个 <code>autoreleased value</code></li>
-<li>执行 Autorelease 后编译器会添加个标记 <code>mov x29, x29</code>   而这句指令在实际运行中这个指令会变为二进制的形式变为 <code>0xAA1D03FD</code></li>
-<li>后续的操作就运行时会先判断是否有对应的标记 <code>0xAA1D03FD</code> ，如果有，这意味着编译器告诉 runtime, 我们将返回一个已经被标记，但是将立即被持有（retain） 的临时变量，后面就不需要再 retain 操作了</li>
-</ul>
-<p><img data-src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5h056kleej20n00gigm5.jpg" alt="image-20220823210550374" /></p>
-<p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">static ALWAYS_INLINE bool </span><br><span class="line">callerAcceptsOptimizedReturn(const void *ra)</span><br><span class="line">&#123;</span><br><span class="line">    // fd 03 1d aa    mov fp, fp</span><br><span class="line">    // arm64 instructions are well-aligned</span><br><span class="line">    if (*(uint32_t *)ra == 0xaa1d03fd) &#123;</span><br><span class="line">        return true;</span><br><span class="line">        // 返回true 需要优化 把release、rentain删掉</span><br><span class="line">    &#125;</span><br><span class="line">    return false;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>说白了就是在返回值身上调用 <code>objc_autoreleaseReturnValue</code>  方法时，runtime 将这个返回值 object 标记（储存在 TLS 中），然后直接返回这个 object（不调用 autorelease）；同时，在外部接收这个返回值的 <code>objc_retainAutoreleasedReturnValue</code>  里，发现有之前的标记（TLS 中正好存了这个对象），那么直接返回这个 object（清楚之前的标记且不再调用 retain）。</p>
-<p>注意：TLS 相关的含义可以参考 [这里](<span class="exturl" data-url="aHR0cDovL3NlYW5jaGVuc2UuZ2l0aHViLmlvLzIwMTgvMDkvMjAvZWFybGdyZXktc291cmNlLWNvZGUtcmVhZC0xLyNUTFM=">EarlGrey 源码阅读（一） | SeanChense</span>)</p>
-<p>但是这里有一个问题，以二进制的形式来加载代码并不是很常见，而且我们不但要加载它还要比较他尤其在 CPU 上并不是最优策略，所以这里还是有开销的，因此我们看下如何优化。</p>
-<p>同样执行流程，当执行完 <code> _objc_autoreleaseReturnValue</code>  函数时候我们会获得一个返回地址，这个地址是一个指针，指向了被标记为 Autorelease 的对象。然后代码继续执行到 <code>_objc_retainAutoreleasedReturnValue</code>  这里要进行 reatin，而被 reatain 的变量地址我们也可以拿到，所以只要比较这两个指针即可，这样一来我们也不再需要 mov 操作</p>
-<p><img data-src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5h0ws62g0j20n00gidg3.jpg" alt="image-20220823213224122" /></p>
-<p>优化点</p>
-<ul>
-<li>把原来的比较二进制数据改为比较指针。速度更快效率更高</li>
-<li>减少 mov 指令 减少 4 字节，二进制大小预计降低 2%</li>
-</ul>
-<h2 id="总结"><a class="anchor" href="#总结">#</a> 总结</h2>
-<p>这就是 Xcode14+iOS16 的编译期间优化，可以看出苹果也在帮我们完成 OKR 减少包体积，提高启动速度，增加代码执行效率，同时也能看出苹果在追求极致用户体验道路上所做的事情。本文部分翻译自<span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYXBwbGUuY29tL3ZpZGVvcy9wbGF5L3d3ZGMyMDIyLzExMDM2My8="> Improve app size and runtime performance</span>，同时也添加了自己的思考。</p>
-]]></content>
-      <categories>
-        <category>译文</category>
-      </categories>
-      <tags>
-        <tag>iOS</tag>
-        <tag>WWDC2022</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>位运算的简单理解😊</title>
     <url>/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E7%AE%80%E5%8D%95%E7%90%86%E8%A7%A3%F0%9F%98%8A/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="1背景"><a class="anchor" href="#1背景">#</a> 1：背景</h2>
@@ -4216,6 +4078,144 @@ token 被解密后分为三个部分</p>
         <tag>算法</tag>
         <tag>C语言</tag>
         <tag>排序</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>WWDC22：Runtime的性能优化和App减包</title>
+    <url>/2022-08-24-WWDC22%EF%BC%9ARuntime%E7%9A%84%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E5%92%8CApp%E5%87%8F%E5%8C%85/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>本 Session 讲了为了让你的应用包体积更小，运行更快，启动速度更快，我们对 Swift 和 Objective-C 运行时做了怎样的优化。同时通过本 Session 你将发现如何通过高效的协议检查，更小的消息发送，以及优化后的 ARC 机制，来提高你的 App 性能。</p>
+<p><img data-src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5hvcgyqjij21400u0411.jpg" alt="" /></p>
+<p><span id="more"></span></p>
+<p><div class="media-container"><div class="player" data-type="audio" data-src='["https://music.163.com/#/song?id=1929370102"]'></div></div></p>
+<h2 id="前言"><a class="anchor" href="#前言">#</a> 前言</h2>
+<p>WWDC2022 上苹果更新了 Xcode14，里面提到了一些相关的优化。其中讲了通过对 Swift 和 Objective-C 运行时做了一些优化，达到了包体积变得更小、运行速度更快，启动速度更快的目的。如果你是用 Xcode14 来构建 App，那么会有其中三点优化</p>
+<ul>
+<li>高效的协议检查（针对 Swift protocol check）</li>
+<li>更快的消息发送机制（message send）</li>
+<li>release 和 retain 调用优化（release &amp; retain）</li>
+<li>Autorelease elision 的优化（自动释放省略）</li>
+</ul>
+<p><img data-src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5npazwav0j214g0rm75u.jpg" alt="wwdc" /></p>
+<p>当你用 Swift 或 Objective-C 编写代码时，其实是会经历三个个步骤。</p>
+<ul>
+<li>编码，通过 Xcode 编写代码</li>
+<li>编译，使用了 Swift 和 Clang 编译器</li>
+<li>运行，通过 Swift 和 Objective-C 运行时中完成</li>
+</ul>
+<p><img data-src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5gp9rcbq1j215t0u0754.jpg" alt="image-20220823144936761" /></p>
+<p>此次的这些关键优化其实就是在第三步骤运行时来完成的，运行时嵌入在我们所有平台的操作系统中。编译器在构建时不能做的事情，运行时可以做。而此次所有的修改其实对于开发者来说是无感透明的，所以任何代码都不用改动，只要你使用 Xcode14 来进行打包编译，便会享受的这些优化点。</p>
+<h2 id="swift协议检查protocol-checks"><a class="anchor" href="#swift协议检查protocol-checks">#</a> Swift 协议检查（Protocol checks）</h2>
+<p>先来看一个例子！</p>
+<p><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 定义一个协议</span></span><br><span class="line"><span class="keyword">protocol</span> <span class="title class_">CustomLoggable</span> &#123;</span><br><span class="line">  <span class="comment">// 协议中定义一个属性 customString，只读属性</span></span><br><span class="line">    <span class="keyword">var</span> customLogString: <span class="type">String</span> &#123; <span class="keyword">get</span> &#125;        </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义一个log函数，参数为Any类型</span></span><br><span class="line"><span class="keyword">func</span> <span class="title function_">log</span>(<span class="params">value</span>: <span class="keyword">Any</span>) &#123;</span><br><span class="line"><span class="comment">//如果value遵循CustomLoggable协议，就输出字符串</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">let</span> value <span class="operator">=</span> value <span class="keyword">as?</span> <span class="type">CustomLoggable</span> &#123;</span><br><span class="line">        <span class="built_in">debugPrint</span>(value.customLogString)        </span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="operator">...</span>        </span><br><span class="line">    &#125;       </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义一个Event类型 遵循协议，并实现customLogString</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Event</span>: <span class="title class_">CustomLoggable</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> name: <span class="type">String</span></span><br><span class="line">    <span class="keyword">var</span> date: <span class="type">String</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> customLogString: <span class="type">String</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;<span class="subst">\(<span class="keyword">self</span>.name)</span>, on <span class="subst">\(<span class="keyword">self</span>.date)</span>&quot;</span>    </span><br><span class="line">    &#125;        </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>看上面代码，因为 log 函数的参数需要输出字符串，所以在输出前要先判断这个 value 是否遵循 CustomLoggable 协议，Swift 是静态语言，所以一般来说这样的检查都是发生在编译时期。但是编译器不一定能拿到足够的协议元数据信息来完成检查。比如这里并不知道每次传入的 Any 类型是哪个确定类型，也就无法确定是否遵循  <code>CustomLoggable</code>  协议。所以这种检查常常发生运行时，系统借助计算好的协议检查元数据 (protocol check metadata)，运行库知道这个特殊对象是否符合协议。</p>
+<p>这些元数据的构建虽然大部分在编译期间，但是还是有一部分是要在运行时完成，比如上面的例子，而且一个项目中肯定不止有一个协议，所以随着协议越多运行时的效率就越低，对于用户来说这个时间大部分是启动时间，所以用户感知为启动时间变长。而 Xcode14 新推的的 Swift Runtime 解决了这个问题，只要你是用 Xcode14 编译且运行在 iOS16 及以上版即可。</p>
+<p>按照苹果的说法，他们会把 <code>是否遵循协议</code> 的这个判断前置到 build 时期，也就是把 <code>协议元数据计算</code> 的步骤前置到 build 中，具体就是他把这些操作放在 App 可执行文件和启动时任何动态库的 dyld 闭包的一部分</p>
+<p>为什么这样做可以节省启动时间，需要先了解下 app 启动流程，需要一个知识背景 <code>从iOS11开始dyld3被加入，iOS13第三方库也开始使用dyld3加载。</code> 所以我们要看下 dyld3 的加载流程</p>
+<p><img data-src="https://upload-images.jianshu.io/upload_images/2438680-b5edfa4c2bcdb205.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1044/format/webp" alt="img" /></p>
+<p><em>dyld 3</em> 主要包含了两个过程 进程外（启动前）和进程内（启动后），我们来看启动前做了那些事情</p>
+<ul>
+<li>进程外 <em>Mach-O</em> 分析器和编译器 （<em>out-of-process mach-o parser</em>）<br />
+<em>dyld 3</em> 中将采用提前写入把结果数据缓存成文件的方式构成一个 <em>lauch closure</em>（可以理解为缓存文件）</li>
+<li>分析依赖库</li>
+<li>执行符号查找</li>
+<li><em>Write closure</em> 缓存服务 (<em>launch closure cache</em> )<br />
+ 系统程序的 <em>closure</em> 直接内置在 <em>shared cache</em> 中，而对于第三方 APP，将在 APP 安装或更新时生成，这样就能保证 <em>closure</em> 总是在 APP 打开之前准备好。说白了就是把上面做的结果全都缓存起来</li>
+</ul>
+<p>综上看来以前需要在 in-process 中做的事情，现在在 out-of-process 就可以完成，启动时或者运行时直接读取缓存数据即可，加快了启动速度和运行时的性能。其实在笔者看来当我们下载或者更新 App 的时候 App 上的进度条其实是分两部分 <code>正在下载</code> 和 <code>正在安装</code> ，此次的优化可能略微提高安装的时长来降低启动速度，提高运行时性能。</p>
+<p><code>on apps that rely heavily in Swift, this could add up to half the launch time</code>  如果有条件的同学可以试下是否可以提高这么多的启动耗时。</p>
+<h2 id="消息发送优化message-send"><a class="anchor" href="#消息发送优化message-send">#</a> 消息发送优化（Message send）</h2>
+<p>直接抛结果，苹果这边给到的数据是使用 Xcode14 编译打包的数据可以让 ARM64 上发送消息消耗从 12 字节降低到 8 字节，二进制大小也有 2% 的降低，也就是苹果对包大小和性能都做了优化，默认是同时开启的，由苹果来平衡两者的关系，当然也可以使用 <code>objc_stubs_small</code>  来仅仅优化包大小。</p>
+<p><img data-src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5grqpljrej215t0u0aax.jpg" alt="image-20220823161510950" /></p>
+<p>下面我们看下是怎么优化的，同样使用官方代码举例</p>
+<p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 声明一个日历对象</span><br><span class="line">NScalendar *cal = [self makeCalendar];</span><br><span class="line"></span><br><span class="line">// 声明一个日期对象并赋值</span><br><span class="line">NSDateComponents *dateComponents = [[NSDateComponents alloc] init];</span><br><span class="line">dateComponents.year = 2022;</span><br><span class="line">dateComponents.month = 2022;</span><br><span class="line">dateComponents.day = 2022;</span><br><span class="line">S</span><br><span class="line">// 把日期转换为date</span><br><span class="line">NSDate *theDate = [cal dateFromComponents: dateComponents];</span><br><span class="line"></span><br><span class="line">// 返回date</span><br><span class="line">return theDate;</span><br></pre></td></tr></table></figure></p>
+<p>大家知道 OC 调用方法最终会走到 <code>_objc_msgSend</code> ，所以上面代码不算最终的 return，会走 7 个  <code>_objc_msgSend</code> ，其中每一个都需要一条指令来调用就是 bl 如下图</p>
+<p><img data-src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5gsa0ef9kj20n00gidgx.jpg" alt="image-20220823163343886" /></p>
+<p>该函数定义为 <code>Id objc_msgSend(id self, SEL _cmd, ...) </code> ，参数定义为 self 是函数的调用方，SEL 为具体调用哪个函数，具体的方法查找流程就不在这里赘述。</p>
+<p>我们拿其中具体的一个函数调用来分析</p>
+<p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">NSDate *theDate = [cal dateFromComponents: dateComponents]; </span><br></pre></td></tr></table></figure></p>
+<p>比如这个函数调用，转化为 mesagesend 的时候就变成这样</p>
+<p><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">objc_msgSend(cal, @selector(dateFromComponents))</span><br></pre></td></tr></table></figure></p>
+<p>为了告诉运行时调用哪个方法，我们必须传递一个 Selector 给这些 objc_msgSend 调用，就如上图的 <code>@selector(dateFromComponents)</code></p>
+<p>我们再来看 <code>Id objc_msgSend(id self, SEL _cmd, ...)</code>  执行后他是怎么执行汇编指令的。</p>
+<p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 使用adrp找到该方法的地址   消耗4字节</span><br><span class="line">adrp x1, [selector &quot;dateFromComponents&quot;]  </span><br><span class="line"></span><br><span class="line">// 将 地址加载到X1寄存器中  消耗4字节</span><br><span class="line">ldr  x1, [x1, selector &quot;dateFromComponents&quot;] </span><br><span class="line"></span><br><span class="line">// 执行bl指令跳转到该方法并执行  消耗4字节</span><br><span class="line">bl _objc_msgSend</span><br></pre></td></tr></table></figure></p>
+<p>从上面的代码看出每次执行方法调用都会 走以上三个步骤，每个步骤消耗 4 字节 一共消耗 12 字节，而前两步是准备 selector，任何一次方法调用都会执行他，目前的策略是每调一个方法都会生成上面三步，那么此时优化空间就来了。</p>
+<p>因为这里存在相同的代码（前两步）， <code>我们可以考虑共享它，并且只在每个 selector 中触发它一次，而不是每次发送消息时都生成这段指令代码</code> 。所以我们可以把这部分相同代码提取出来，放到一个小助手函数中 (helper function), 并调用该函数。通过使用同一 selector 进行多次调用 (通过传递参数不同，内部指令是相同的，现在封装成一个存根函数，以前是散落在各个 _objc_msgSend 调用处)，我们可以保存所有这些指令字节。所以可以理解为 <code>把前两步封装一下</code></p>
+<p><img data-src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5gvtbfnh1j20n00git9h.jpg" alt="image-20220823183604633" /></p>
+<p>所以原来的调用就变成了</p>
+<p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bl _objc_msgSend$dateFromComponents 4字节</span><br><span class="line">bl _objc_msgSend    4字节</span><br></pre></td></tr></table></figure></p>
+<p>这也就是苹果说的从 12 字节优化到 8 字节，其中 <code>_objc_msgSend$dateFromComponents</code>  也被称为 <code>selector stub 存根函数</code></p>
+<p>同样 <code>_objc_msgSend</code>  本身也有一个存根函数写法</p>
+<p><img data-src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5gw1kpzuzj20n00giwfd.jpg" alt="image-20220823184401200" /></p>
+<p>这样一来我们现在就有两个存根函数</p>
+<ul>
+<li>_objc_msgSend$dateFromComponents:</li>
+<li>_objc_msgSend:</li>
+</ul>
+<p>这两个函数封装了一些通用的东西，共享了最多的代码，使代码尽可能的小，但是这样带来的不足是我需要连着两个 bl 跳转，这对操作系统来说开销较大。所以为了平衡包体积和性能，我们可以使用下面这种方法来提升这一点。我们可以把前面调用的两个存根函数封装成一个 (都封装成_objc_msgSend$dateFromComponents)，这样，我们可以使代码更紧凑，不需要那么多调用。如下图这样</p>
+<p><img data-src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5gwei63esj20bo07u74l.jpg" alt="image-20220823185626349" /></p>
+<p>这就回到了之前的问题，你可以通过 <code>_objc_stubs_small</code>  标记了只降低包大小，或者采用默认的方式让系统自动平衡，两者的区别在汇编层面就体现在如下图</p>
+<p><img data-src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5gwg7hnugj20n00gidhc.jpg" alt="image-20220823185804687" /></p>
+<p>综上：这就是 Meesage send 占用从 12 bytes 降低到 8 bytes 和二进制大小下降 12% 的原因</p>
+<h2 id="retain-and-release"><a class="anchor" href="#retain-and-release">#</a> Retain and release</h2>
+<p>这个优化是苹果这边使 Retain and release 的开销更小，苹果的说法是 Retain and release 的调用开销从 8 字节降低到 4 字节，同时包体积也会有 2% 的优化</p>
+<p><img data-src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5gwkqxaenj20n00gidg9.jpg" alt="image-20220823190226429" /></p>
+<p>我们知道 ARC 相比于 MRC 是开发者不需要再写 retain、release 这些代码，其实并不是不需要，而是编译器帮我们自动在需要的位置插入了这些代码，所以换句话说他们还是存在的，只是你看不到也不用在关心他们。</p>
+<p>还是拿之前的例子来说</p>
+<p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// Retain/release calls inserted by ARC</span><br><span class="line">NScalendar *cal = [self makeCalendar]; // bl    _objc_retain</span><br><span class="line"></span><br><span class="line">NSDateComponents *dateComponents = [[NSDateComponents alloc] init]; // bl    _objc_retain</span><br><span class="line">dateComponents.year = 2022; </span><br><span class="line">dateComponents.month = 2022;</span><br><span class="line">dateComponents.day = 2022;</span><br><span class="line"></span><br><span class="line">NSDate *theDate = [cal dateFromComponents: dateComponents]; // bl    _objc_retain</span><br><span class="line">return theDate;</span><br><span class="line">// bl    _objc_release </span><br><span class="line">// bl    _objc_release </span><br><span class="line">// bl    _objc_release </span><br></pre></td></tr></table></figure></p>
+<p>在变量创建的时候我们使用 retain 来增加的他的引用计数不被销毁，在方法结束后我们使用 release 来销毁不需要的变量，这也是 iOS 的内存管理机制。在 ARC 下这些都是编译器我们插入的代码，我们无需关心。</p>
+<p>retain 和 release 都是 C 语言的函数，他们携带一个参数就是被操作的对象，同时他遵循 C 语言的 ABI，所以当你调用这些方法的时候系统还会为你做一些额外的事情，比如下图中的 mov 操作，而这些操正是我们优化的用武之地，通过自定义调用重新约定 retain/release 接口，我们可以根据对象指针的位置，适当的使用正确的变量，这样就可以不用移动它。简单的说， <code>就是修改了底层 ABI</code> 。</p>
+<p><img data-src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5gwylzjkuj20n00giab1.jpg" alt="image-20220823191546398" /></p>
+<p>我们是怎么做的优化呢？看下之前的流程，我们用下面这行代码举例</p>
+<p><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">objc_release(dateComponents); </span><br><span class="line"><span class="comment">// mov  x0, x20                    消耗4 字节                                                                                                                                                           </span></span><br><span class="line"><span class="comment">// bl    _objc_release         消耗4字节</span></span><br></pre></td></tr></table></figure></p>
+<p>流程为</p>
+<ul>
+<li>先执行 mov 把副本地址（X20, 也就是对象的地址）存到寄存器 x0</li>
+<li>然后 bl 跳转到 <code>_objc_release</code>  函数进行释放</li>
+</ul>
+<p>根据之前讲的每个指令消耗 4 字节，所以这里消耗 8 字节</p>
+<p>我们修改 ABI 之后其省掉调用 mov 指令 然后原本跳转到_objc_release 函数 改为跳转到 <code>_objc_release_x20</code>  函数，而 mov 的指令放到 C 语言更底层的 ABI 里面去做，你可以理解为 <code>我们封装了一个新的retain、release函数，你只要传入一个寄存器地址我就去更底层的地方完成mov操作，所以效率更高了</code> 。现在因为只用执行一条指令，所以内存消耗为 4 字节。现在的流程看起来为</p>
+<p><img data-src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5gx83ebs8j20n00giab9.jpg" alt="image-20220823192452605" /></p>
+<p>这么看来我们代码里大量的 release 和 retain 都经过这样的样的优化所以整体的二进制包降低 2% 同时调用内存消耗游 8 字节变为 4 字节，同时 ABI 接口修改，去除冗余 mov 指令调用，下沉到 ABI。 <code>由于 ABI 是内嵌系统</code> ，这里新增 mov 指令占用可以忽略不计。</p>
+<p><code>Apple 果然是坚持用户体验优先，为了更好体验不惜修改 c 的 ABI</code></p>
+<h2 id="autorelease-elision自动释放省略优化"><a class="anchor" href="#autorelease-elision自动释放省略优化">#</a> Autorelease elision（自动释放省略优化）</h2>
+<p>iOS 中除了使用 release 之外还有另一个 就是 autorelease 自动释放机制，同样在这个地方苹果也做了自动释放省略的优化让自动释放机制效率更高。我们来看下面这个例子</p>
+<p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// Return Value Autoreleases </span><br><span class="line"></span><br><span class="line">theWWDCDate = [event getWWDCDate];</span><br><span class="line"></span><br><span class="line">-(NSDate*)getWWDCDate &#123;</span><br><span class="line">    ...</span><br><span class="line">    return theDate;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>创建一个临时对象 (theDate)，并将其返回给调用方 (event)。 <code>getWWDCDate()</code>  方法中返回临时的 theDate，然后调用完成 (返回 theDate 之后，getWWDCDate 就调用完成)。这时调用方（event）将其保存到自己的变量中（theWWDCDate 中）。</p>
+<p>根据系统插入 retain 和 release 的机制来说应该是这样的，但是明显 retain 处不能进行 release，因为我需要吧 theDate 返回回去，如果这里释放了我就没办法呢返回了。</p>
+<p><img data-src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5gy19928nj20n00gi3yz.jpg" alt="image-20220823195254398" /></p>
+<p>因此，为了解决上述问题，需要使用一个特殊的约定用来返回这个临时返回值。这就引入了 Autorelease，这样调用者能够 retain 它。autorelease 在这里保证在调用方可以正常返回该值，而不被提前释放，延长释放生命周期。你之前可能看到过 autorelease 和 autoreleasePools：其实这是一种将 release 操作推迟到稍后某个时间的方法。所以上面的代码改为 Autorelease</p>
+<p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// Return Value Autoreleases </span><br><span class="line"></span><br><span class="line">theWWDCDate = [[event getWWDCDate] retain];</span><br><span class="line"></span><br><span class="line">-(NSDate*)getWWDCDate &#123;</span><br><span class="line">    ...</span><br><span class="line">    return [theDate autorelease]; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>系统并不知道他在什么时候会被释放，反正只要不在 retain 的时候释放就行，所以我在 retain 的时候先打个标记，标记他之后可能会被释放。但是这样的操作目前会带来一些开销，其实就是 <code>我虽然打了release标记，但是我明明一会还要retain，没必要多此一举</code> ，所以基于此我们之前引入了 <code>Autorelease elision</code>  来减少这部分开销（ <code>如果Autorelease后紧接一个retain我就都不做了</code> ）。我们先从汇编层面看下 Autorelease elision 做了什么</p>
+<p><img data-src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5gy8n9wnzj20n00giwf7.jpg" alt="image-20220823195959365" /></p>
+<p>提炼出以下代码</p>
+<p><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// What the compiler emits</span></span><br><span class="line"> bl    _getWWDCDate </span><br><span class="line"> mov   x29, x29</span><br><span class="line"> bl    _objc_retainAutoreleasedReturnValue</span><br><span class="line"></span><br><span class="line"> b    _objc_autoreleaseReturnValue   <span class="comment">// autorelease -&gt; runtime -&gt; _objc_autoreleaseReturnValue</span></span><br></pre></td></tr></table></figure></p>
+<p>其实就是以下步骤</p>
+<ul>
+<li>当我们返回值调用 Autorelease 时候系统会调用 <code>_objc_autoreleaseReturnValue</code>  来返回一个 <code>autoreleased value</code></li>
+<li>执行 Autorelease 后编译器会添加个标记 <code>mov x29, x29</code>   而这句指令在实际运行中这个指令会变为二进制的形式变为 <code>0xAA1D03FD</code></li>
+<li>后续的操作就运行时会先判断是否有对应的标记 <code>0xAA1D03FD</code> ，如果有，这意味着编译器告诉 runtime, 我们将返回一个已经被标记，但是将立即被持有（retain） 的临时变量，后面就不需要再 retain 操作了</li>
+</ul>
+<p><img data-src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5h056kleej20n00gigm5.jpg" alt="image-20220823210550374" /></p>
+<p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">static ALWAYS_INLINE bool </span><br><span class="line">callerAcceptsOptimizedReturn(const void *ra)</span><br><span class="line">&#123;</span><br><span class="line">    // fd 03 1d aa    mov fp, fp</span><br><span class="line">    // arm64 instructions are well-aligned</span><br><span class="line">    if (*(uint32_t *)ra == 0xaa1d03fd) &#123;</span><br><span class="line">        return true;</span><br><span class="line">        // 返回true 需要优化 把release、rentain删掉</span><br><span class="line">    &#125;</span><br><span class="line">    return false;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>说白了就是在返回值身上调用 <code>objc_autoreleaseReturnValue</code>  方法时，runtime 将这个返回值 object 标记（储存在 TLS 中），然后直接返回这个 object（不调用 autorelease）；同时，在外部接收这个返回值的 <code>objc_retainAutoreleasedReturnValue</code>  里，发现有之前的标记（TLS 中正好存了这个对象），那么直接返回这个 object（清楚之前的标记且不再调用 retain）。</p>
+<p>注意：TLS 相关的含义可以参考 [这里](<span class="exturl" data-url="aHR0cDovL3NlYW5jaGVuc2UuZ2l0aHViLmlvLzIwMTgvMDkvMjAvZWFybGdyZXktc291cmNlLWNvZGUtcmVhZC0xLyNUTFM=">EarlGrey 源码阅读（一） | SeanChense</span>)</p>
+<p>但是这里有一个问题，以二进制的形式来加载代码并不是很常见，而且我们不但要加载它还要比较他尤其在 CPU 上并不是最优策略，所以这里还是有开销的，因此我们看下如何优化。</p>
+<p>同样执行流程，当执行完 <code> _objc_autoreleaseReturnValue</code>  函数时候我们会获得一个返回地址，这个地址是一个指针，指向了被标记为 Autorelease 的对象。然后代码继续执行到 <code>_objc_retainAutoreleasedReturnValue</code>  这里要进行 reatin，而被 reatain 的变量地址我们也可以拿到，所以只要比较这两个指针即可，这样一来我们也不再需要 mov 操作</p>
+<p><img data-src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5h0ws62g0j20n00gidg3.jpg" alt="image-20220823213224122" /></p>
+<p>优化点</p>
+<ul>
+<li>把原来的比较二进制数据改为比较指针。速度更快效率更高</li>
+<li>减少 mov 指令 减少 4 字节，二进制大小预计降低 2%</li>
+</ul>
+<h2 id="总结"><a class="anchor" href="#总结">#</a> 总结</h2>
+<p>这就是 Xcode14+iOS16 的编译期间优化，可以看出苹果也在帮我们完成 OKR 减少包体积，提高启动速度，增加代码执行效率，同时也能看出苹果在追求极致用户体验道路上所做的事情。本文部分翻译自<span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYXBwbGUuY29tL3ZpZGVvcy9wbGF5L3d3ZGMyMDIyLzExMDM2My8="> Improve app size and runtime performance</span>，同时也添加了自己的思考。</p>
+]]></content>
+      <categories>
+        <category>译文</category>
+      </categories>
+      <tags>
+        <tag>iOS</tag>
+        <tag>WWDC2022</tag>
       </tags>
   </entry>
 </search>

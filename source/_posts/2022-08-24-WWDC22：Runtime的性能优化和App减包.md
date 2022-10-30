@@ -26,7 +26,7 @@ WWDC2022 上苹果更新了Xcode14，里面提到了一些相关的优化。其�
 
 * 高效的协议检查（针对Swift protocol check）
 * 更快的消息发送机制（message send）
-* release 和return调用优化（release & retain）
+* release 和retain调用优化（release & retain）
 * Autorelease elision的优化（自动释放省略）
 
 ![wwdc](https://tva1.sinaimg.cn/large/e6c9d24egy1h5npazwav0j214g0rm75u.jpg)
