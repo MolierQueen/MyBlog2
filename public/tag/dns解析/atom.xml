@@ -7,10 +7,10 @@
     <category term="欢迎页" />
     <category term="网络" />
     <category term="底层" />
-    <category term="DNS解析" />
-    <category term="LocalDNS" />
     <category term="OpenGL" />
     <category term="UI" />
+    <category term="DNS解析" />
+    <category term="LocalDNS" />
     <category term="动画" />
     <category term="性能优化" />
     <category term="xcode" />
@@ -22,9 +22,9 @@
     <category term="翻译" />
     <category term="优化" />
     <category term="国外文献" />
+    <category term="httpdns" />
     <category term="Cocoapods" />
     <category term="架构" />
-    <category term="httpdns" />
     <category term="AlertView" />
     <category term="Hook" />
     <category term="杂谈" />
@@ -40,11 +40,11 @@
     <category term="JSPath" />
     <category term="swift" />
     <category term="网络请求" />
+    <category term="Swift" />
     <category term="音频" />
     <category term="唱吧" />
     <category term="K歌" />
     <category term="AVFoundation" />
-    <category term="Swift" />
     <category term="git" />
     <category term="效率工作" />
     <category term="代码版本控制" />
@@ -53,6 +53,7 @@
     <category term="Crash防护" />
     <category term="Apple登录" />
     <category term="WWDC2022" />
+    <category term="逆向" />
     <category term="算法" />
     <category term="C语言" />
     <category term="排序" />

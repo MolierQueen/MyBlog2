@@ -5,15 +5,15 @@
         <link>https://oliverqueen.cn</link>
         <description>iOS 开发 移动App 博客 杂谈 随笔 相册</description>
         <language>zh-CN</language>
-        <pubDate>Tue, 20 Sep 2022 01:44:45 +0800</pubDate>
-        <lastBuildDate>Tue, 20 Sep 2022 01:44:45 +0800</lastBuildDate>
+        <pubDate>Tue, 15 Nov 2022 19:40:49 +0800</pubDate>
+        <lastBuildDate>Tue, 15 Nov 2022 19:40:49 +0800</lastBuildDate>
         <category>欢迎页</category>
         <category>网络</category>
         <category>底层</category>
-        <category>DNS解析</category>
-        <category>LocalDNS</category>
         <category>OpenGL</category>
         <category>UI</category>
+        <category>DNS解析</category>
+        <category>LocalDNS</category>
         <category>动画</category>
         <category>性能优化</category>
         <category>xcode</category>
@@ -25,9 +25,9 @@
         <category>翻译</category>
         <category>优化</category>
         <category>国外文献</category>
+        <category>httpdns</category>
         <category>Cocoapods</category>
         <category>架构</category>
-        <category>httpdns</category>
         <category>AlertView</category>
         <category>Hook</category>
         <category>杂谈</category>
@@ -43,11 +43,11 @@
         <category>JSPath</category>
         <category>swift</category>
         <category>网络请求</category>
+        <category>Swift</category>
         <category>音频</category>
         <category>唱吧</category>
         <category>K歌</category>
         <category>AVFoundation</category>
-        <category>Swift</category>
         <category>git</category>
         <category>效率工作</category>
         <category>代码版本控制</category>
@@ -56,125 +56,274 @@
         <category>Crash防护</category>
         <category>Apple登录</category>
         <category>WWDC2022</category>
+        <category>逆向</category>
         <category>算法</category>
         <category>C语言</category>
         <category>排序</category>
         <item>
-            <guid isPermalink="true">https://oliverqueen.cn/2021-05-03-iOS%20Crash%E9%98%B2%E6%8A%A4%E4%BD%A0%E7%9C%8B%E8%BF%99%E4%B8%AA%E5%B0%B1%E5%A4%9F%E4%BA%86-%E4%B8%8A%E7%AF%87/</guid>
-            <title>iOS Crash防护你看这个就够了 - 上篇</title>
-            <link>https://oliverqueen.cn/2021-05-03-iOS%20Crash%E9%98%B2%E6%8A%A4%E4%BD%A0%E7%9C%8B%E8%BF%99%E4%B8%AA%E5%B0%B1%E5%A4%9F%E4%BA%86-%E4%B8%8A%E7%AF%87/</link>
+            <guid isPermalink="true">https://oliverqueen.cn/iPa%E9%80%86%E5%90%91%E4%B9%8B%E8%B7%AF/</guid>
+            <title>iPa逆向之路</title>
+            <link>https://oliverqueen.cn/iPa%E9%80%86%E5%90%91%E4%B9%8B%E8%B7%AF/</link>
             <category>iOS</category>
-            <category>Crash防护</category>
-            <pubDate>Tue, 20 Sep 2022 01:44:45 +0800</pubDate>
-            <description><![CDATA[ &lt;link rel=&#34;stylesheet&#34; class=&#34;aplayer-secondary-style-marker&#34; href=&#34;/assets/css/APlayer.min.css&#34;&gt;&lt;script src=&#34;/assets/js/APlayer.min.js&#34; class=&#34;aplayer-secondary-script-marker&#34;&gt;&lt;/script&gt;&lt;h1 id=&#34;0x1-为什么要做crash防护&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#0x1-为什么要做crash防护&#34;&gt;#&lt;/a&gt; 0x1 为什么要做 Crash 防护&lt;/h1&gt;
-&lt;p&gt;在产品开发过程中 Crash 率是一个很重要的指标，也是一个团队中几乎所有的部门都应该关注或者去参与提升的一个指标，他不仅代表着整个产品的质量，也是一个团队整体技术能力的体现。更低的 Crash 率不但能让产品获得更好的用户口碑，在整个流程中也能让团队成员获得更多的成长，加深对 iOS 系统底层的理解，为今后的开发带了更大的帮助。&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://image-1256056152.cos.ap-nanjing.myqcloud.com/1111111111.jpeg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;&lt;/p&gt;
-&lt;h1 id=&#34;0x2-为什么要写这篇文章&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#0x2-为什么要写这篇文章&#34;&gt;#&lt;/a&gt; 0x2 为什么要写这篇文章&lt;/h1&gt;
-&lt;p&gt;起因也是因为自己的项目踩了 FB 的 SDK 的坑：2020.7.10，FB 后台下发数据错误，导致大量使用 FB SDK 的 App 发生启动 Crash，影响用户之多，范围之大，再加上当时包括我们的大部分 App 也缺乏相关的防护或者是容错处理，Crash 率瞬间飙升，重新发版又要走发布流程，只能依赖 FB 后台的修复，当时束手无策十分被动，所以决定自己做一套较为完整的 Crash 防护体系，来避免这样的场景再次发生。第二个目的就是，发生问题后我也第一之间查阅了网上的一些资料和其他团队的做法，发现大家的方式各有千秋，方法不同，效果不同，所以我也决定把市面上能找到的好的思路和方法再结合自己的一些想法和经验记录下来。最后也是因为知识是要沉淀、积累和分享的，也算是巩固和加深自己的理解吧。&lt;/p&gt;
-&lt;h1 id=&#34;0x3-怎么做&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#0x3-怎么做&#34;&gt;#&lt;/a&gt; 0x3 怎么做&lt;/h1&gt;
-&lt;p&gt;其实当时 Crash 的场景很简单，本来一个 Dictionary 参数 FB 后台却下发了个 String 类型的数据，这样一来解析时候必然会 Crash，解决的话其实只要做一层参数安全校验即可。&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gq58dki0g7j31ai0u01fd.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gq58c923pfj31020t8k5g.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;但是这么简单的问题，大部分 App 都没处理好，证明在流程上一定有大家注意不到的地方，暴露出来的只是冰山一角，我们机制一定存在着某种问题，或者存在可以优化的地方。&lt;/p&gt;
-&lt;p&gt;要想避免这种情况，就要先梳理出处理 Crash 的流程：&lt;/p&gt;
-&lt;h2 id=&#34;icrash处理流程&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#icrash处理流程&#34;&gt;#&lt;/a&gt; I：Crash 处理流程&lt;/h2&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gq6lcsxy6jj31bw0u0n1w.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;在 iOS 系统中基本可以总结出这四个步骤，&lt;/p&gt;
+            <category>逆向</category>
+            <pubDate>Tue, 15 Nov 2022 19:40:49 +0800</pubDate>
+            <description><![CDATA[ &lt;link rel=&#34;stylesheet&#34; class=&#34;aplayer-secondary-style-marker&#34; href=&#34;/assets/css/APlayer.min.css&#34;&gt;&lt;script src=&#34;/assets/js/APlayer.min.js&#34; class=&#34;aplayer-secondary-script-marker&#34;&gt;&lt;/script&gt;&lt;h2 id=&#34;背景&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#背景&#34;&gt;#&lt;/a&gt; 背景&lt;/h2&gt;
+&lt;p&gt;逆向工程相对于正向的开发，可能关注的没有那么高，尤其是相比于安卓或者其他平台，苹果的安全机制更严格，逆向的流程也会更繁琐，除了有 ASLR（地址空间布局随机化），还有 FairPlay DRM 的 iPA 加密方式，也就是我们俗称的壳。这个给逆向工作带来了更多的挑战。但是 &lt;code&gt;更好更安全的加密方式也只是增加破解的成本，并不是绝对的安全&lt;/code&gt; ，这也是逆向的前提。&lt;/p&gt;
+&lt;p&gt;最近也正在做一些调研的工作，需要从技术层面去分析其他 App 的一些底层逻辑，要用到 iOS 的逆向相关的技术，但是由于笔者做这些工作的时候正处于 MacOS、iOS、Xcode 三个系统的大版本更新期间，一些系统的运行方式和逻辑发生变化，所以导致网上能找到的资料基本都失效了，所以写文档记录下。&lt;/p&gt;
+&lt;h2 id=&#34;前置工作&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#前置工作&#34;&gt;#&lt;/a&gt; 前置工作&lt;/h2&gt;
+&lt;h3 id=&#34;环境&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#环境&#34;&gt;#&lt;/a&gt; 环境&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;Crash 防护 - 通过 Hook 等手段，对一些类似容器类进行入参校验等措施，来进来避免 Crash 的发生&lt;/p&gt;
+&lt;li&gt;Mac 架构： Intel 架构&lt;/li&gt;
+&lt;li&gt;MacOS： 13.0.1 (22A400)&lt;/li&gt;
+&lt;li&gt;Xcode 版本：Version 14.1 (14B47b)&lt;/li&gt;
+&lt;li&gt;iOS 系统版本：iOS 16.0&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;相关工具&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#相关工具&#34;&gt;#&lt;/a&gt; 相关工具&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9zb3VyY2Vmb3JnZS5uZXQvcHJvamVjdHMvbWFjaG92aWV3Lw==&#34;&gt;MachOView&lt;/span&gt;
+&lt;ul&gt;
+&lt;li&gt;用来查看 Mach-o 的文件结构，以及各个部分的信息&lt;/li&gt;
+&lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Crash 拦截 - 如果第一步防护失败，那么在 Crash 走到这一步就要进行拦截，要让我们发现异常&lt;/p&gt;
+&lt;li&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovL3N0ZXZlbnlnYXJkLmNvbS9wcm9qZWN0cy9jbGFzcy1kdW1wLw==&#34;&gt;class-dump&lt;/span&gt;
+&lt;ul&gt;
+&lt;li&gt;class-dump，顾名思义，就是用来 dump 目标对象 的 class 信息的工具。它利用 Objective-C 语言的 runtime 特性，将存储在 Mach-O 文件中的头文件信息提取出 来，并生成对应的.h 文件。&lt;/li&gt;
+&lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Crash 上报 - 对防护的、捕获的 Crash 进行防护，生成有效的日志进行上报，尽可能的还原堆栈。&lt;/p&gt;
+&lt;li&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9naXRodWIuY29tL0Fsb25lTW9ua2V5L01vbmtleURldg==&#34;&gt;MonkeyDev&lt;/span&gt;
+&lt;ul&gt;
+&lt;li&gt;非越狱开发插件，可以进行动态库注入，hook 相关操作&lt;/li&gt;
+&lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Crash 后续流程 - Crash 发生后如何做才能最大限度的保护用户体验，如何优雅的 Crash&lt;/p&gt;
+&lt;li&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly93d3cuaG9wcGVyYXBwLmNvbS8=&#34;&gt;Hopper Disassembler&lt;/span&gt;
+&lt;ul&gt;
+&lt;li&gt;Hopper Disassembler 是 Mac 上的一款二进制反汇编器，基本上满足了工作上的反汇编的需要，包括伪代码以及控制流图 (Control Flow Graph)，支持 ARM 指令集并针对 Objective-C 的做了优化。&lt;/li&gt;
+&lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;iicrash防护&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#iicrash防护&#34;&gt;#&lt;/a&gt; II：Crash 防护&lt;/h2&gt;
-&lt;p&gt;Crash 防护方式主要分两种：针对非内存问题通常采用 AOP 方式，内存问题采用 zombie 对象的方式，&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gq6lrlbl0vj30qi07mdg5.jpg&#34; alt=&#34;&#34; /&gt;&lt;br /&gt;
-&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gq6ls764zyj30qm06cjrq.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-&lt;h3 id=&#34;aopbr&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#aopbr&#34;&gt;#&lt;/a&gt; AOP：&amp;lt;br&amp;gt;&lt;/h3&gt;
-&lt;p&gt;iOS 中 AOP 的相关知识网上线程的代码也很多，这里就不在赘述，但是在 AOP 这种频繁调用的场景中就需要注意的地方和坑点比较多。&lt;/p&gt;
+&lt;h2 id=&#34;ipa下载&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#ipa下载&#34;&gt;#&lt;/a&gt; iPa 下载&lt;/h2&gt;
+&lt;p&gt;iOS App 的逆向的所有操作都是基于 iPa 的操作，所以大前提是要有目标 iPa，这里提供三种方式来进行 iPa 下载，大家可以选择适合自己的方式下载。&lt;/p&gt;
+&lt;h3 id=&#34;方式1三方应用市场&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#方式1三方应用市场&#34;&gt;#&lt;/a&gt; 方式 1：三方应用市场&lt;/h3&gt;
+&lt;p&gt;现在这样的应用市场比较多，多是平替 iTunes 的一些软件&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly93d3cuaTQuY24v&#34;&gt;爱思助手&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly93d3cuaXRvb2xzLmNuLw==&#34;&gt;iTools&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;使用如上的三方软件可以很快的下载对应的 ipa 包，但是由于上述市场都是镜像自 AppStore 的内容，并且自己重签名，所以更新的及时性可能没有那么快，也没有那么全，而且因为是被第三方进行了修改重签，所以内容也不一定保证和官方的一致。如果不在乎这些的话还是可以采取这类的方式下载。&lt;/p&gt;
+&lt;h3 id=&#34;方式2apple-configuration&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#方式2apple-configuration&#34;&gt;#&lt;/a&gt; 方式 2：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9zdXBwb3J0LmFwcGxlLmNvbS9hcHBsZS1jb25maWd1cmF0b3I=&#34;&gt;Apple Configuration&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;可以直接从 Mac 上的 Apple Store 上下载，官方出品，原本是给手机上安装 app 的。用此方式其实是利用了该 App 的 App 下载机制来进行 ipa 导出的&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008vxvgGgy1h84np4us32j310y0io75z.jpg&#34; alt=&#34;image-20221114144926709&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;选择添加 App，然后在弹出的弹窗中选择 App 并且下载&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008vxvgGgy1h84nq4zkpwj30ys0na0vm.jpg&#34; alt=&#34;image-20221114145027227&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;这个时候如果你手机上没有安装该 App，则直接会安装成功，此时我们再点击安装下载，然后就会收到 &lt;code&gt;设备上已经存在相同的App，是否覆盖安装的提示&lt;/code&gt; 的弹窗，此时我们 &amp;lt;font color=&#39;red&#39;&amp;gt; 不要理会 &amp;lt;/font &amp;gt; 这个弹窗。&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008vxvgGgy1h84nvzsytmj30u00y6mz0.jpg&#34; alt=&#34;image-20221114145604307&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;然后到如下路径就可以取到对应的 ipa&lt;/p&gt;
+&lt;p&gt;&lt;figure class=&#34;highlight awk&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;~&lt;span class=&#34;regexp&#34;&gt;/Library/&lt;/span&gt;Group Containers&lt;span class=&#34;regexp&#34;&gt;/K36BKF7T3D.group.com.apple.configurator/&lt;/span&gt;Library&lt;span class=&#34;regexp&#34;&gt;/Caches/&lt;/span&gt;Assets&lt;span class=&#34;regexp&#34;&gt;/TemporaryItems/&lt;/span&gt;MobileApps/&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h3 id=&#34;方式3-dumpapp&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#方式3-dumpapp&#34;&gt;#&lt;/a&gt; 方式 3 &lt;a href=&#34;%5Bhttps://dumpapp.com%5D(https://dumpapp.com/)&#34;&gt;DumpApp&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;是一个第三的网站，同在线砸壳 + ipa 下载的服务，因为我们最终想要的就是一个砸壳之后的 ipa，所以这个网站直接帮我们做好了，只不过是收费的，每个 app 是 9 元，但是有多个境外的 App 市场，比较全面。&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008vxvgGgy1h84par73tqj30be07saa1.jpg&#34; alt=&#34;image-20221114154450405&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;ipa砸壳&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#ipa砸壳&#34;&gt;#&lt;/a&gt; iPa 砸壳&lt;/h2&gt;
+&lt;p&gt;如果 iPa 的获取方式选择方式 3，则可以略过砸壳步骤&lt;/p&gt;
+&lt;p&gt;app 上传到 AppStore 后   苹果使用 fairplay DRM 来加密，就是我们所说的壳 DRM 全称 Digital Rights Management，即数字版权保护。苹果为了保护 App Store 分发的音乐 / 视频 / 书籍 / App 免于盗版，开发了 Fairplay DRM 技术。&lt;/p&gt;
+&lt;p&gt;所有逆向都是建立在砸壳的前提下，砸壳的方式有两种：&lt;/p&gt;
+&lt;h3 id=&#34;静态砸壳&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#静态砸壳&#34;&gt;#&lt;/a&gt; 静态砸壳&lt;/h3&gt;
+&lt;p&gt;就是不依赖程序运行，直接用 ipa 包就可以进行砸壳解密，比如说我已经知道了他的加密算法，或者我通过暴力破解了他的加密算法，然后对 ipa 进行解密，但是这样的方法难度较大，而且如果人家一旦换了加密方式或者有其他的改动，那解密方式就不生效了，常见的静态砸壳工具有以下&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;[fouldecrypt](&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9naXRodWIuY29tL055YU1pc3R5L2ZvdWxkZWNyeXB0&#34;&gt;NyaMisty/fouldecrypt: A lightweight and simpling iOS binary decryptor (github.com)&lt;/span&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9naXRodWIuY29tL0xha3IyMzMvSXJpZGl1bQ==&#34;&gt;Iridium&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;动态砸壳&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#动态砸壳&#34;&gt;#&lt;/a&gt; 动态砸壳&lt;/h3&gt;
+&lt;p&gt;与静态相反，动态砸壳就是依赖运行时的原理来进行解密，不过与其说是解密，倒不如说是内存提取，因为无论 ipa 包用什么加密方式，最终都是解密后运行到内存里面的，所以我们可以认为 &lt;code&gt;一个ipa在内存上的数据是未加密的&lt;/code&gt; ，所以此时我们只要把内存上的数据提取出来即可，整个过程也不涉及到解密操作，及时后面 Apple 更换加密方式，也不影响动态砸壳的过程。&lt;/p&gt;
+&lt;p&gt;动态砸壳的方式和工具有很多，现在基本已经流水线化了，可以使用以下方式和工具来进行处理，前提是要有一个越狱的手机。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;AOP 的影响范围问题：当时用了普通的方式对数组相关的方法进行了 Hook，结果上线后发现大量的类似 Crash。 &lt;code&gt;[UIKeyboardLayoutStar release]: message sent to deallocated instance UIKeyboardLayoutStar&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gq6m6njbm8j30o40d0q8q.jpg&#34; alt=&#34;&#34; /&gt;&lt;br /&gt;
-在通过一些其他场景可以判断出是因为 HookNSMutableArr 的相关方法，导致系统类的调用受到了影响。&lt;/p&gt;
-&lt;p&gt;通过 Xcode 调试发现，因为 Hook 的本质就是在原有的系统调用前插入一个用户自定义的函数进行方法交换，那么在某种极端情况下（比如多线程），传入该函数的变量被释放，这样一来再走到原本系统调用的时候正常释放时就会出现重复释放的情况。大概的流程为&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gq6mhmeprhj31hm0fu75v.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;该场景在测试过程中很难复现，但是一旦到了线上，用户量覆盖够大后该问题就会显现出来。解决方式很简单，Hook 尽量在 MRC 下进行，使用 autorelease pool 进行包装。保证内部变量在当前的 runloop 结束时候进行释放。&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9qdWVqaW4uY24vcG9zdC82ODQ0OTAzODkzNDk5OTA0MDA4&#34;&gt;dumpdecrypted&lt;/span&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;AOP 的性能问题：上面说了 AOP 的原理是会多一层方法调用，那么再结合 iOS 的方法转发流程可想而知，AOP 必定会造成性能的损耗，而且在 Crash 防护场景下频繁调用，性能问题一定不能忽略。&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gq6mswloauj310o0u0jx8.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;通过上图看出，方法调用流程最终会返回出对应的 IMP 指针供外部调用，作为动态语言，OC 无法确定开发者会再什么时候插入或者交换哪个函数，所以必须通过这一套流程进行类似校验的逻辑。&lt;/p&gt;
-&lt;p&gt;使用过 AOP 的同学一定知道在 AOP 前会先做一层校验&lt;/p&gt;
-&lt;p&gt;&lt;figure class=&#34;highlight reasonml&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;+(void)hookClass:(Class)classObject isClassMetohd:(BOOL)classMethod fromSelector:(SEL)fromSelector toSelector:(SEL)toSelector &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    Class &lt;span class=&#34;keyword&#34;&gt;class&lt;/span&gt; = classObject;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    Method fromMethod = &lt;span class=&#34;keyword&#34;&gt;class&lt;/span&gt;&lt;span class=&#34;constructor&#34;&gt;_getInstanceMethod(&lt;span class=&#34;params&#34;&gt;class&lt;/span&gt;, &lt;span class=&#34;params&#34;&gt;fromSelector&lt;/span&gt;)&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    Method toMethod = &lt;span class=&#34;keyword&#34;&gt;class&lt;/span&gt;&lt;span class=&#34;constructor&#34;&gt;_getInstanceMethod(&lt;span class=&#34;params&#34;&gt;class&lt;/span&gt;, &lt;span class=&#34;params&#34;&gt;toSelector&lt;/span&gt;)&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;comment&#34;&gt;//  添加前进行检测&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt; (classMethod) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;keyword&#34;&gt;class&lt;/span&gt; = &lt;span class=&#34;keyword&#34;&gt;object&lt;/span&gt;&lt;span class=&#34;constructor&#34;&gt;_getClass(&lt;span class=&#34;params&#34;&gt;classObject&lt;/span&gt;)&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        fromMethod = &lt;span class=&#34;keyword&#34;&gt;class&lt;/span&gt;&lt;span class=&#34;constructor&#34;&gt;_getClassMethod(&lt;span class=&#34;params&#34;&gt;class&lt;/span&gt;, &lt;span class=&#34;params&#34;&gt;fromSelector&lt;/span&gt;)&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        toMethod = &lt;span class=&#34;keyword&#34;&gt;class&lt;/span&gt;&lt;span class=&#34;constructor&#34;&gt;_getClassMethod(&lt;span class=&#34;params&#34;&gt;class&lt;/span&gt;, &lt;span class=&#34;params&#34;&gt;toSelector&lt;/span&gt;)&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt;(&lt;span class=&#34;keyword&#34;&gt;class&lt;/span&gt;&lt;span class=&#34;constructor&#34;&gt;_addMethod(&lt;span class=&#34;params&#34;&gt;class&lt;/span&gt;, &lt;span class=&#34;params&#34;&gt;fromSelector&lt;/span&gt;, &lt;span class=&#34;params&#34;&gt;method_getImplementation&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;toMethod&lt;/span&gt;)&lt;/span&gt;, &lt;span class=&#34;keyword&#34;&gt;method&lt;/span&gt;&lt;span class=&#34;constructor&#34;&gt;_getTypeEncoding(&lt;span class=&#34;params&#34;&gt;toMethod&lt;/span&gt;)&lt;/span&gt;)) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;keyword&#34;&gt;class&lt;/span&gt;&lt;span class=&#34;constructor&#34;&gt;_replaceMethod(&lt;span class=&#34;params&#34;&gt;class&lt;/span&gt;, &lt;span class=&#34;params&#34;&gt;toSelector&lt;/span&gt;, &lt;span class=&#34;params&#34;&gt;method_getImplementation&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;fromMethod&lt;/span&gt;)&lt;/span&gt;, &lt;span class=&#34;keyword&#34;&gt;method&lt;/span&gt;&lt;span class=&#34;constructor&#34;&gt;_getTypeEncoding(&lt;span class=&#34;params&#34;&gt;fromMethod&lt;/span&gt;)&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125; &lt;span class=&#34;keyword&#34;&gt;else&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;keyword&#34;&gt;method&lt;/span&gt;&lt;span class=&#34;constructor&#34;&gt;_exchangeImplementations(&lt;span class=&#34;params&#34;&gt;fromMethod&lt;/span&gt;, &lt;span class=&#34;params&#34;&gt;toMethod&lt;/span&gt;)&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br /&gt;
- 所以在方法我们在上面代码中的 toSelector 中 当我们需要调用回原方法时直接调用对应的函数指针即可&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gq6rm11f7dj30nm05a74e.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;最终我对直接调用 IMP 的方法做了测试，分别是 Demo 中和 App 中的某一个场景，测试数据如下，对比结果还是较为明显。这也就是为什么 Swift 或者一些其他静态语言比 OC 快的原因。&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gq6rw5k68mj313c0r6n13.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9qdWVqaW4uY24vcG9zdC82ODQ0OTAzODkzNDk5OTA0MDE0&#34;&gt;Clutch&lt;/span&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;zombiebr&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#zombiebr&#34;&gt;#&lt;/a&gt; Zombie：&amp;lt;br&amp;gt;&lt;/h3&gt;
-&lt;p&gt;使用僵尸对象来解决内存问题一直是苹果主推的方式，Xcode 也有相关设置，在 Debug 下打开相应开关，但是一旦把该功能放到线上做防护或监控就要考虑很多的问题。&lt;/p&gt;
+&lt;h3 id=&#34;成果检验&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#成果检验&#34;&gt;#&lt;/a&gt; 成果检验&lt;/h3&gt;
+&lt;p&gt;砸壳后需要检查是否砸壳成功，找到对应砸壳后的的 ipa，点进去找到 mach-o 文件，执行如下命令，然后在输出查看 &lt;code&gt;cryptid&lt;/code&gt;  字段如果为 &lt;code&gt;0&lt;/code&gt;  就说明砸壳成功。XXX = mach-o 名字&lt;/p&gt;
+&lt;p&gt;&lt;figure class=&#34;highlight 1c&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;otool -l XXXXX &lt;span class=&#34;string&#34;&gt;|grep cry&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008vxvgGgy1h84ripqxklj30tx02imxg.jpg&#34; alt=&#34;image-20221114170141723&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;头文件导出&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#头文件导出&#34;&gt;#&lt;/a&gt; 头文件导出&lt;/h2&gt;
+&lt;p&gt;砸壳后的的第一步就是将 ipa 文件的头.h 文件导出，然后根据 头文件的方法和属性进行逆向分析，在找到对应的 hook 点。通常我们使用 class-dump，可以去他的官网下载对应的文件，然后将文件拷贝到对应的目录下。&lt;/p&gt;
+&lt;p&gt;&lt;figure class=&#34;highlight shell&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;sudo cp class-dump /usr/local/bin   &lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;这一步没什么问题，拷贝完成重启终端就可以调用 class-dump 的方法了.&lt;/p&gt;
+&lt;h3 id=&#34;导出&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#导出&#34;&gt;#&lt;/a&gt; 导出&lt;/h3&gt;
+&lt;p&gt;执行下面的命令，导出头文件，需要注意的是：导出后会有上万个个文件，所以目标目录最好不要选 Desktop 或者其他的根目录&lt;/p&gt;
+&lt;p&gt;&lt;figure class=&#34;highlight shell&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;class-dump -S -s -H XXXXX -o /path/to/headers/&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;有的时候会收到这样的错误&lt;/p&gt;
+&lt;p&gt;&lt;figure class=&#34;highlight shell&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;Error:Cannot find offset for address 0xd80000000101534a in stringAtAddress:&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;这是因为项目使用了 Oc 和 Swift 的混编，需要赋予 class-dump 文件权限即可&lt;/p&gt;
+&lt;p&gt;&lt;figure class=&#34;highlight shell&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;sudo chmod 777 /usr/local/bin/class-dump&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;之后就可以导出成功了。&lt;/p&gt;
+&lt;h2 id=&#34;monkeydev&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#monkeydev&#34;&gt;#&lt;/a&gt; MonkeyDev&lt;/h2&gt;
+&lt;p&gt;这是一个为越狱和非越狱开发人员准备的工具，主要包括四个模块:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;zombie 入口问题：换句话说就是在哪个地方生成 zombie 对象，看了一些相关的 SDK 都是采用 Dealloc 作为入口函数，不是不行，只是不是最优。原因有两点:&lt;/p&gt;
+&lt;p&gt;Logos Tweak&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;使用&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9naXRodWIuY29tL3RoZW9zL3RoZW9zL3dpa2kvSW5zdGFsbGF0aW9u&#34;&gt; theos&lt;/span&gt; 提供的 &lt;code&gt;logify.pl&lt;/code&gt;  工具将 &lt;code&gt;*.xm&lt;/code&gt;  文件转成 &lt;code&gt;*.mm&lt;/code&gt;  文件进行编译，集成了 &lt;code&gt;CydiaSubstrate&lt;/code&gt; ，可以使用 &lt;code&gt;MSHookMessageEx&lt;/code&gt;  和 &lt;code&gt;MSHookFunction&lt;/code&gt;  来 &lt;code&gt;Hook&lt;/code&gt;  OC 函数和指定地址。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;CaptainHook Tweak&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;使用&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9naXRodWIuY29tL3JwZXRyaWNoL0NhcHRhaW5Ib29rLw==&#34;&gt; CaptainHook&lt;/span&gt; 提供的头文件进行 OC 函数的 Hook 以及属性的获取。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Command-line Tool&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;可以直接创建运行于越狱设备的命令行工具&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;MonkeyApp&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;这是自动给第三方应用集成 Reveal、Cycript 和注入 dylib 的模块，支持调试 dylib 和第三方应用，支持 Pod 给第三放应用集成 SDK，只需要准备一个砸壳后的 ipa 或者 app 文件即可。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;安装&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#安装&#34;&gt;#&lt;/a&gt; 安装&lt;/h3&gt;
+&lt;p&gt;Monkeydev 依赖&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly90aGVvcy5kZXYvZG9jcy9pbnN0YWxsYXRpb24=&#34;&gt; Theos&lt;/span&gt;.Theos 是一个越狱开发工具包，由 iOS 越狱界知名人士 Dustin Howett 开发并分享到 GitHub 上。Theos 与其他越狱开发工具相比，最大特点就是简单：下载安装简单、Logos 语法简单、编译发布简单，可以让使用者将精力都放在开发工作上去。&lt;/p&gt;
+&lt;h4 id=&#34;安装thoes&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#安装thoes&#34;&gt;#&lt;/a&gt; 安装 Thoes&lt;/h4&gt;
+&lt;p&gt;&lt;figure class=&#34;highlight shell&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;sudo git clone --recursive https://github.com/theos/theos.git /opt/theos&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h4 id=&#34;安装monkeydev&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#安装monkeydev&#34;&gt;#&lt;/a&gt; 安装 Monkeydev&lt;/h4&gt;
+&lt;p&gt;&lt;figure class=&#34;highlight shell&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;sudo /bin/sh -c &amp;quot;$(curl -fsSL https://raw.githubusercontent.com/AloneMonkey/MonkeyDev/master/bin/md-install)&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h4 id=&#34;卸载monkeydev&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#卸载monkeydev&#34;&gt;#&lt;/a&gt; 卸载 Monkeydev&lt;/h4&gt;
+&lt;p&gt;&lt;figure class=&#34;highlight shell&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;sudo /bin/sh -c &amp;quot;$(curl -fsSL https://raw.githubusercontent.com/AloneMonkey/MonkeyDev/master/bin/md-uninstall)&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h4 id=&#34;更新monkeydev&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#更新monkeydev&#34;&gt;#&lt;/a&gt; 更新 Monkeydev&lt;/h4&gt;
+&lt;p&gt;&lt;figure class=&#34;highlight shell&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;sudo /bin/sh -c &amp;quot;$(curl -fsSL https://raw.githubusercontent.com/AloneMonkey/MonkeyDev/master/bin/md-update)&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h4 id=&#34;安装问题&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#安装问题&#34;&gt;#&lt;/a&gt; 安装问题&lt;/h4&gt;
+&lt;p&gt;在安装过程中，修改用户  &lt;code&gt;profile&lt;/code&gt;  文件时，找不到  &lt;code&gt;MacOSX Package Types.xcspec&lt;/code&gt;  和  &lt;code&gt;MacOSX Product Types.xcspec&lt;/code&gt;  文件&lt;/p&gt;
+&lt;p&gt;&lt;figure class=&#34;highlight shell&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;File /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Xcode/Specifications/MacOSX Package Types.xcspec not found&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;这个是因为最新的 Xcode14 中 这个路径已经改变，所以原路径无法找到，不过如果大家需要逆向的事 iOS 的 App 到这一步可以不用关心，这个是 MacOS 相关的模板文件。此时打开 Xcode 如果有以下模版文件，并能成功创建工程即可。&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008vxvgGgy1h84skm4dlej30li0fbjsb.jpg&#34; alt=&#34;image-20221114173807449&#34; /&gt;&lt;/p&gt;
+&lt;h4 id=&#34;编译报错&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#编译报错&#34;&gt;#&lt;/a&gt; 编译报错&lt;/h4&gt;
+&lt;p&gt;通过上一步的模板文件创建好工程后，直接真机编译运行，这个时候会提示编译错误&lt;/p&gt;
+&lt;p&gt;&lt;figure class=&#34;highlight gradle&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;iOS &lt;span class=&#34;keyword&#34;&gt;file&lt;/span&gt; not found: &lt;span class=&#34;regexp&#34;&gt;/usr/&lt;/span&gt;lib/libstdc++.dylib&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;这是因为 &lt;code&gt;Xcode 10&lt;/code&gt;  之后删除的 &lt;code&gt;libstdc++&lt;/code&gt;  库。可以参考此&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9naXRodWIuY29tL2RibXo1MDIvTW9ua2V5RGV2X1hjb2RlMTQ=&#34;&gt;解决方案&lt;/span&gt;。之后就可以编译成功了，并且手机上可以跑起来。&lt;/p&gt;
+&lt;p&gt;第二个错误是 Fishhook 中的错误，这个是是由于 Fishhook 用的是比较老的版本，本身存在 bug，只要去 github 官网找到 fishhook 最新代码 copy 过来即可。&lt;/p&gt;
+&lt;h3 id=&#34;文件结构&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#文件结构&#34;&gt;#&lt;/a&gt; 文件结构&lt;/h3&gt;
+&lt;p&gt;文件结构如下如图&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://upload-images.jianshu.io/upload_images/1609369-0a4b973075bc5df2.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/854/format/webp&#34; alt=&#34;image-20221114174320781&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;这是一个标准的 MonkeyDemo 的结构&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;1: 苹果已经不建议在 ARC 下主动调用 dealloc，目前只能采用 performSelector 或者其他动态调用的方式。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;TargetApp&lt;/code&gt; ：放目标 &lt;code&gt;ipa&lt;/code&gt;  的文件，将需要逆向的破壳 &lt;code&gt;ipa&lt;/code&gt;  放在此处&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;2: 容易漏掉  &lt;code&gt;Objc_destructInstance&lt;/code&gt; ，所有的成员变量、属性都会在这个函数中释放，如果漏掉这个函数就会生成一个并不干净的僵尸对象，内存占用过高，白白浪费内存空间。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Logos&lt;/code&gt; ：编写相关 &lt;code&gt;hook&lt;/code&gt;  的文件，所有 &lt;code&gt;hook&lt;/code&gt;  操作在此处，但是因为该文件下要用了 logos 语句，有一定的学习成本，所以后面的 hook 函数可以直接写在上面的 MonkeyDeomDyLib.m 中&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;fishhook&lt;/code&gt; ：用来 &lt;code&gt;hook&lt;/code&gt;  系统函数的库&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;综上两点我最终选择在 Free 函数中生成僵尸对象&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gq6sr4ebj5j30vx0u0dhq.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;zombie 内存阈值问题：僵尸对象会占用内存空间，然而在线上环境操作内存一定要小心且一定要有一套完整的逻辑，当超过某一个内存阈值后需要及时清空僵尸对象。内存阈值的确定便成了关键，这里会遇到两个问题：&lt;/p&gt;
+&lt;p&gt;上方的 MonkeyDeomDyLib 就是我们即将注入进去的动态库。&lt;/p&gt;
+&lt;h3 id=&#34;动态库注入&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#动态库注入&#34;&gt;#&lt;/a&gt; 动态库注入&lt;/h3&gt;
+&lt;p&gt;运行 demo 后动态库注入成功，控制台会有如下输出&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008vxvgGgy1h84swti61vj31le0qn43z.jpg&#34; alt=&#34;image-20221114174950556&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;figure class=&#34;highlight erlang-repl&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;🎉!!！congratulations!!！🎉\n👍----------------insert dylib success----------------👍&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;但是如果是和我一样的运行环境，你是大概率看不到的，因为会注入失败。这里尝试了两种方式&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;insert_dylib 同样注入失败，&lt;/li&gt;
+&lt;li&gt;optool 注入成功&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;下面说下 optool 使用&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;&amp;lt;font color=&#39;red&#39;&amp;gt; 1：内存问题一定会和机型强相关，如何根据不同的机型调整不同的阈值？ &amp;lt;/font&amp;gt;&lt;/p&gt;
+&lt;p&gt;下载编译 optool&lt;/p&gt;
+&lt;p&gt;&lt;figure class=&#34;highlight awk&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;git clone https:&lt;span class=&#34;regexp&#34;&gt;//gi&lt;/span&gt;thub.com&lt;span class=&#34;regexp&#34;&gt;/alexzielenski/&lt;/span&gt;optool.git&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;cd optool&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;git submodule update --init --recursive&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&amp;lt;font color=&#39;red&#39;&amp;gt; 2：如何做到根据线上情况灵活动态调整？&amp;lt;/font&amp;gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;我们的底线是在加入 zombie 后不能触发 memorywarning，所以我先对大部分机型做了 memorywarning 阈值测试：&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gq6t2xweqcj312g0sg0xq.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;从上图可以看出当 App 占用内存达到总内存的 57%~69% 时候会触发内存警告，而且由于 iphone 中有一部分内存是系统保留内存并不会给到开发者，所以我们可用的也就 50% 左右，我总结出如下公式：&lt;/p&gt;
-&lt;p&gt;公式 1：不能触发内存警告  &lt;code&gt;Y = 0.5 * deviceMem – currentAppMem&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;公式 2: 僵尸对象的内存占用再大也不会超过 App 本身的内存  &lt;code&gt;Y = min ( ( 0.5 * deviceMem – currentAppMem ) , currentAppMem)&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;上面两个公式看似完美，但是还是有优化的地方，因为并不是 APP 中所有的变量都有可能成为僵尸对象，可能只是其中的某一部分需要被监控，所以得到最终的内存阈值计算公式：&lt;/p&gt;
-&lt;p&gt;&amp;lt;font color=red size=5 face=&amp;quot;黑体&amp;quot;&amp;gt;Y = min ( ( 0.5 * deviceMem – currentAppMem ) , currentAppMem / N )&amp;lt;/font&amp;gt;&lt;/p&gt;
-&lt;p&gt;因为 app 占用内存随时在变，所以可以加一个定时器每隔一定时间去更新该值。&lt;/p&gt;
-&lt;p&gt;上面公式的 N 还有一个好处就是我们可以后台动态下发，根据线上内存引起 Crash 量，如果 Crash 量大，那可能就需要更大的内存阈值去保存僵尸对象，就可以把 N 调小，反正调大，这样就可以无视机型的差异根据 Crash 的情况进行远程配置。&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gq6tozx4odj316l0u079c.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;通过如图的线上数据可以看出 随着 N 的减小，zombie 的内存阈值在增加，但是并不会超过内存警告阈值，确保了内存健康。&lt;/p&gt;
-&lt;p&gt;下图表示了不同的 N 值对应不同的捕获野指针问题的数量，各自 App 可以根据自己的业务情况进行调整。&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gq6tse6e79j31zo0kkk0x.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;找到编译产物&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008vxvgGgy1h84t2mlrmaj30aa0b7wer.jpg&#34; alt=&#34;image-20221114175525945&#34; /&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;zombie 更新策略问题：目前大家的做法都是在加入新的 zombie 对象时候检查是否超过阈值，达到阈值后删掉之前的 zombie 对象再加入新的对象，这样的清理逻辑是依赖于新 zombie 对象的加入，如果没有新对象的加入那么缓存空间也不会有变化，zombie 空间一旦生成就无法删掉，无法做到缓存的自清理，等于 App 无故增大了内存占用。&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gq6u18gh6cj30wa0saad2.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;同样借鉴 LRU 最近最久未使用的逻辑，每隔 30s 会检测下缓存情况，超过 30s 还未被使用的 zombie 对象将被删除，30s 是一个经验值，通过大量测试发现，内存问题一般会发生在对象被销毁的 30s 内，超过 30s 再出现的概率及小。这样可以做到缓存自清理的逻辑。&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gq6u92wzy3j30n00si41c.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;通过 Instrument 测试发现该 zombie 逻辑并不会对 App 本身的内存造成太大的影响。&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gq6ucxjfn5j31c60u078q.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;把编译产物拷贝到 &lt;code&gt;/opt/MonkeyDev/bin&lt;/code&gt;  下&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;修改 &lt;code&gt;/opt/MonkeyDev/Tools/pack.sh&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;figure class=&#34;highlight shell&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;顶部插入&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;OPTOOL=&amp;quot;$&amp;#123;MONKEYDEV_PATH&amp;#125;/bin/optool&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;同上面一样&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;修改插入动态库工具代码&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;quot;$OPTOOL&amp;quot; install -c load -p &amp;quot;@executable_path/Frameworks/lib&amp;quot;&amp;quot;$&amp;#123;TARGET_NAME&amp;#125;&amp;quot;&amp;quot;Dylib.dylib&amp;quot; -t &amp;quot;$&amp;#123;BUILD_APP_PATH&amp;#125;/$&amp;#123;APP_BINARY&amp;#125;&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;然后保存重新运行即可注入成功&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;
-			&lt;script&gt;
-				console.error(&#34;Error: [hexo-tag-aplayer] Specified asset file not found ( https://molier-1256056152.cos.ap-guangzhou.myqcloud.com/%E5%B0%B9%E6%98%94%E7%9C%A0%20-%20%E5%A5%94%E8%B5%B4%E6%98%9F%E7%A9%BA.mp3)&#34;);
-			&lt;/script&gt;&lt;/p&gt;
+&lt;h3 id=&#34;pod使用&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#pod使用&#34;&gt;#&lt;/a&gt; pod 使用&lt;/h3&gt;
+&lt;p&gt;在调试 App 时候我们会用到类似 lookIn 或者 FLEX 的等工具来看 App 的层级结构和 沙盒文件，同样需要 pod 来接入。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;像平时创建 podfile 文件一样 进入到工程目录 &lt;code&gt;pod init&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;在生成的 podfile 中添加 pod，但是要注意是在 &amp;lt;font color=&#39;red&#39;&amp;gt; DemoLib &amp;lt;/font &amp;gt; 的 trarget 中添加，因为我们的 pod 是打入动态库的，然后由动态库带入 App&lt;/p&gt;
+&lt;p&gt;&lt;figure class=&#34;highlight elixir&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# Uncomment the next line to define a global platform for your project&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# platform :ios, &amp;#x27;9.0&amp;#x27;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;target &lt;span class=&#34;string&#34;&gt;&amp;#x27;Demo&amp;#x27;&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;do&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  &lt;span class=&#34;comment&#34;&gt;# Comment the next line if you don&amp;#x27;t want to use dynamic frameworks&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  use_frameworks!&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;end&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;target &lt;span class=&#34;string&#34;&gt;&amp;#x27;DemoDylib&amp;#x27;&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;do&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  &lt;span class=&#34;comment&#34;&gt;# Comment the next line if you don&amp;#x27;t want to use dynamic frameworks&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  use_frameworks!&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    pod &lt;span class=&#34;string&#34;&gt;&amp;#x27;FLEX&amp;#x27;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    pod &lt;span class=&#34;string&#34;&gt;&amp;#x27;LookinServer&amp;#x27;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;end&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;然后 &lt;code&gt;pod install&lt;/code&gt;  即可看到效果&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008vxvgGgy1h85lo8xilij31b90u0ada.jpg&#34; alt=&#34;image-20221115102451908&#34; /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;代码hook&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#代码hook&#34;&gt;#&lt;/a&gt; 代码 Hook&lt;/h3&gt;
+&lt;p&gt;通过 Lookin 我们可以找到入手点和对应的类名，然后通过之前导出的头文件可以查看类名对应的函数，接下来就是要看下函数里面做了哪些事情，就要用到 Hook 手段，MonkeyDev 给我们封装好了 Hook 相关的方法，包括 OC 和 C 的 Hook 函数&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;CHDeclareClass&lt;/p&gt;
+&lt;p&gt;注册类名。也就是注册要被 hook 的函数所在的类，比如&lt;/p&gt;
+&lt;p&gt;&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;CHDeclareClass(MYViewController)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;CHOptimizedMethod1&lt;/p&gt;
+&lt;p&gt;hook 实例方法，你会发现后面跟了数字 1~10，代表被 hook 的函数的参数的个数，比如我将要 hook 的函数只有一个参数 那么就使用 CHOptimizedMethod1 参数含义为&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;第一个参数，一般传 self&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;第二个参数，传返回值类型，没有返回值就是 void&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;第三个参数，函数所在的类名&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;第四个参数，方法名&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;第五个参数，函数参数的类型&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;第六个参数，函数参数的变量&lt;/p&gt;
+&lt;p&gt;其中第五第六个参数在 CHOptimizedMethod1 ~10 中会重复 1~10 次&lt;/p&gt;
+&lt;p&gt;&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;CHOptimizedMethod1(self, void, MYViewController, appMethod, id, para) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    NSLog(@&amp;quot;appMethod被Hook = %@&amp;quot;, para);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;CHOptimizedClassMethod3&lt;/p&gt;
+&lt;p&gt;hook 类方法，所有函数定义同上&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;CHConstructor 结构&lt;/p&gt;
+&lt;p&gt;用来注册刚才的 hook 操作&lt;/p&gt;
+&lt;p&gt;&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;CHConstructor&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  // 注册将要hook的类&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    CHLoadLateClass(MYViewController);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	// 注册将要hook 的方法&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    CHHook1(MYViewController, appMethod);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;上面流程执行完成后就可以看到函数被 Hook 了&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;hopper-disassembler&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#hopper-disassembler&#34;&gt;#&lt;/a&gt; Hopper Disassembler&lt;/h2&gt;
+&lt;p&gt;上面的步骤讲了如何通过 lookin 或者 reveal 等工具来定位类名，然后通过类名在头文件中找到函数名，然后通过 hook 手段来改变函数的一些表现，但是在如何没有拿到.m 文件的前提下看到某个函数的实现呢？比如一个函数中都做了哪些操作，调用了哪些其他函数，以及调用链是怎样的？&lt;/p&gt;
+&lt;p&gt;这个时候就需要用到 &lt;code&gt;Hopper Disassembler&lt;/code&gt;  或者 &lt;code&gt;IDA Pro&lt;/code&gt;  这样的工具了，不过目前遇到的困难是在笔者的系统环境下，这两个软件的破解版无法安装，而且 &lt;code&gt;IDA Pro&lt;/code&gt;  的官方试用版还不支持 Arm 的汇编，所以只能使用 Hopper Disassembler 来举例子。打开软件，将 &lt;code&gt;对应App 的Mach-o&lt;/code&gt;  文件拖入 Hopper 中等待它分析完成&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008vxvgGgy1h85mc4b62oj31ec0u075n.jpg&#34; alt=&#34;image-20221115104755241&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;处理完后的界面左边会显示方法名，支持搜索查询，中间区域显示的是汇编代码，我们搜索一个在之前 dump 出的头文件中的一个函数名试下。&lt;/p&gt;
+&lt;p&gt;&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;[XXXXXXXX listenerDownloadLyricWithSongId:resultBlock:]&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;可以看到中间的部分显示出来函数所对应的汇编代码&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008vxvgGgy1h861n7q3isj317b0u0dlg.jpg&#34; alt=&#34;image-20221115193733635&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;然后按快捷键 &lt;code&gt;Option+enter&lt;/code&gt;  即可转为伪 OC 代码，虽然包含一些的寄存器信息，但是也足以分析了。同时双击可以跳转到对应的函数内部。&lt;/p&gt;
+&lt;h2 id=&#34;最后&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#最后&#34;&gt;#&lt;/a&gt; 最后&lt;/h2&gt;
+&lt;p&gt;以上就是目前的逆向调研过程，这里先记录下，后面还会深入研究，有新的发现会同步更新此文章。&lt;/p&gt;
  ]]></description>
         </item>
         <item>
@@ -636,6 +785,124 @@ token 被解密后分为三个部分&lt;/p&gt;
  ]]></description>
         </item>
         <item>
+            <guid isPermalink="true">https://oliverqueen.cn/2021-05-03-iOS%20Crash%E9%98%B2%E6%8A%A4%E4%BD%A0%E7%9C%8B%E8%BF%99%E4%B8%AA%E5%B0%B1%E5%A4%9F%E4%BA%86-%E4%B8%8A%E7%AF%87/</guid>
+            <title>iOS Crash防护你看这个就够了 - 上篇</title>
+            <link>https://oliverqueen.cn/2021-05-03-iOS%20Crash%E9%98%B2%E6%8A%A4%E4%BD%A0%E7%9C%8B%E8%BF%99%E4%B8%AA%E5%B0%B1%E5%A4%9F%E4%BA%86-%E4%B8%8A%E7%AF%87/</link>
+            <category>iOS</category>
+            <category>Crash防护</category>
+            <pubDate>Mon, 26 Jul 2021 23:49:06 +0800</pubDate>
+            <description><![CDATA[ &lt;link rel=&#34;stylesheet&#34; class=&#34;aplayer-secondary-style-marker&#34; href=&#34;/assets/css/APlayer.min.css&#34;&gt;&lt;script src=&#34;/assets/js/APlayer.min.js&#34; class=&#34;aplayer-secondary-script-marker&#34;&gt;&lt;/script&gt;&lt;h1 id=&#34;0x1-为什么要做crash防护&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#0x1-为什么要做crash防护&#34;&gt;#&lt;/a&gt; 0x1 为什么要做 Crash 防护&lt;/h1&gt;
+&lt;p&gt;在产品开发过程中 Crash 率是一个很重要的指标，也是一个团队中几乎所有的部门都应该关注或者去参与提升的一个指标，他不仅代表着整个产品的质量，也是一个团队整体技术能力的体现。更低的 Crash 率不但能让产品获得更好的用户口碑，在整个流程中也能让团队成员获得更多的成长，加深对 iOS 系统底层的理解，为今后的开发带了更大的帮助。&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://image-1256056152.cos.ap-nanjing.myqcloud.com/1111111111.jpeg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;h1 id=&#34;0x2-为什么要写这篇文章&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#0x2-为什么要写这篇文章&#34;&gt;#&lt;/a&gt; 0x2 为什么要写这篇文章&lt;/h1&gt;
+&lt;p&gt;起因也是因为自己的项目踩了 FB 的 SDK 的坑：2020.7.10，FB 后台下发数据错误，导致大量使用 FB SDK 的 App 发生启动 Crash，影响用户之多，范围之大，再加上当时包括我们的大部分 App 也缺乏相关的防护或者是容错处理，Crash 率瞬间飙升，重新发版又要走发布流程，只能依赖 FB 后台的修复，当时束手无策十分被动，所以决定自己做一套较为完整的 Crash 防护体系，来避免这样的场景再次发生。第二个目的就是，发生问题后我也第一之间查阅了网上的一些资料和其他团队的做法，发现大家的方式各有千秋，方法不同，效果不同，所以我也决定把市面上能找到的好的思路和方法再结合自己的一些想法和经验记录下来。最后也是因为知识是要沉淀、积累和分享的，也算是巩固和加深自己的理解吧。&lt;/p&gt;
+&lt;h1 id=&#34;0x3-怎么做&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#0x3-怎么做&#34;&gt;#&lt;/a&gt; 0x3 怎么做&lt;/h1&gt;
+&lt;p&gt;其实当时 Crash 的场景很简单，本来一个 Dictionary 参数 FB 后台却下发了个 String 类型的数据，这样一来解析时候必然会 Crash，解决的话其实只要做一层参数安全校验即可。&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gq58dki0g7j31ai0u01fd.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gq58c923pfj31020t8k5g.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;但是这么简单的问题，大部分 App 都没处理好，证明在流程上一定有大家注意不到的地方，暴露出来的只是冰山一角，我们机制一定存在着某种问题，或者存在可以优化的地方。&lt;/p&gt;
+&lt;p&gt;要想避免这种情况，就要先梳理出处理 Crash 的流程：&lt;/p&gt;
+&lt;h2 id=&#34;icrash处理流程&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#icrash处理流程&#34;&gt;#&lt;/a&gt; I：Crash 处理流程&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gq6lcsxy6jj31bw0u0n1w.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;在 iOS 系统中基本可以总结出这四个步骤，&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Crash 防护 - 通过 Hook 等手段，对一些类似容器类进行入参校验等措施，来进来避免 Crash 的发生&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Crash 拦截 - 如果第一步防护失败，那么在 Crash 走到这一步就要进行拦截，要让我们发现异常&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Crash 上报 - 对防护的、捕获的 Crash 进行防护，生成有效的日志进行上报，尽可能的还原堆栈。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Crash 后续流程 - Crash 发生后如何做才能最大限度的保护用户体验，如何优雅的 Crash&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;iicrash防护&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#iicrash防护&#34;&gt;#&lt;/a&gt; II：Crash 防护&lt;/h2&gt;
+&lt;p&gt;Crash 防护方式主要分两种：针对非内存问题通常采用 AOP 方式，内存问题采用 zombie 对象的方式，&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gq6lrlbl0vj30qi07mdg5.jpg&#34; alt=&#34;&#34; /&gt;&lt;br /&gt;
+&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gq6ls764zyj30qm06cjrq.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;h3 id=&#34;aopbr&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#aopbr&#34;&gt;#&lt;/a&gt; AOP：&amp;lt;br&amp;gt;&lt;/h3&gt;
+&lt;p&gt;iOS 中 AOP 的相关知识网上线程的代码也很多，这里就不在赘述，但是在 AOP 这种频繁调用的场景中就需要注意的地方和坑点比较多。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;AOP 的影响范围问题：当时用了普通的方式对数组相关的方法进行了 Hook，结果上线后发现大量的类似 Crash。 &lt;code&gt;[UIKeyboardLayoutStar release]: message sent to deallocated instance UIKeyboardLayoutStar&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gq6m6njbm8j30o40d0q8q.jpg&#34; alt=&#34;&#34; /&gt;&lt;br /&gt;
+在通过一些其他场景可以判断出是因为 HookNSMutableArr 的相关方法，导致系统类的调用受到了影响。&lt;/p&gt;
+&lt;p&gt;通过 Xcode 调试发现，因为 Hook 的本质就是在原有的系统调用前插入一个用户自定义的函数进行方法交换，那么在某种极端情况下（比如多线程），传入该函数的变量被释放，这样一来再走到原本系统调用的时候正常释放时就会出现重复释放的情况。大概的流程为&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gq6mhmeprhj31hm0fu75v.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;该场景在测试过程中很难复现，但是一旦到了线上，用户量覆盖够大后该问题就会显现出来。解决方式很简单，Hook 尽量在 MRC 下进行，使用 autorelease pool 进行包装。保证内部变量在当前的 runloop 结束时候进行释放。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;AOP 的性能问题：上面说了 AOP 的原理是会多一层方法调用，那么再结合 iOS 的方法转发流程可想而知，AOP 必定会造成性能的损耗，而且在 Crash 防护场景下频繁调用，性能问题一定不能忽略。&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gq6mswloauj310o0u0jx8.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;通过上图看出，方法调用流程最终会返回出对应的 IMP 指针供外部调用，作为动态语言，OC 无法确定开发者会再什么时候插入或者交换哪个函数，所以必须通过这一套流程进行类似校验的逻辑。&lt;/p&gt;
+&lt;p&gt;使用过 AOP 的同学一定知道在 AOP 前会先做一层校验&lt;/p&gt;
+&lt;p&gt;&lt;figure class=&#34;highlight reasonml&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;+(void)hookClass:(Class)classObject isClassMetohd:(BOOL)classMethod fromSelector:(SEL)fromSelector toSelector:(SEL)toSelector &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    Class &lt;span class=&#34;keyword&#34;&gt;class&lt;/span&gt; = classObject;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    Method fromMethod = &lt;span class=&#34;keyword&#34;&gt;class&lt;/span&gt;&lt;span class=&#34;constructor&#34;&gt;_getInstanceMethod(&lt;span class=&#34;params&#34;&gt;class&lt;/span&gt;, &lt;span class=&#34;params&#34;&gt;fromSelector&lt;/span&gt;)&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    Method toMethod = &lt;span class=&#34;keyword&#34;&gt;class&lt;/span&gt;&lt;span class=&#34;constructor&#34;&gt;_getInstanceMethod(&lt;span class=&#34;params&#34;&gt;class&lt;/span&gt;, &lt;span class=&#34;params&#34;&gt;toSelector&lt;/span&gt;)&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;comment&#34;&gt;//  添加前进行检测&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt; (classMethod) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;keyword&#34;&gt;class&lt;/span&gt; = &lt;span class=&#34;keyword&#34;&gt;object&lt;/span&gt;&lt;span class=&#34;constructor&#34;&gt;_getClass(&lt;span class=&#34;params&#34;&gt;classObject&lt;/span&gt;)&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        fromMethod = &lt;span class=&#34;keyword&#34;&gt;class&lt;/span&gt;&lt;span class=&#34;constructor&#34;&gt;_getClassMethod(&lt;span class=&#34;params&#34;&gt;class&lt;/span&gt;, &lt;span class=&#34;params&#34;&gt;fromSelector&lt;/span&gt;)&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        toMethod = &lt;span class=&#34;keyword&#34;&gt;class&lt;/span&gt;&lt;span class=&#34;constructor&#34;&gt;_getClassMethod(&lt;span class=&#34;params&#34;&gt;class&lt;/span&gt;, &lt;span class=&#34;params&#34;&gt;toSelector&lt;/span&gt;)&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt;(&lt;span class=&#34;keyword&#34;&gt;class&lt;/span&gt;&lt;span class=&#34;constructor&#34;&gt;_addMethod(&lt;span class=&#34;params&#34;&gt;class&lt;/span&gt;, &lt;span class=&#34;params&#34;&gt;fromSelector&lt;/span&gt;, &lt;span class=&#34;params&#34;&gt;method_getImplementation&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;toMethod&lt;/span&gt;)&lt;/span&gt;, &lt;span class=&#34;keyword&#34;&gt;method&lt;/span&gt;&lt;span class=&#34;constructor&#34;&gt;_getTypeEncoding(&lt;span class=&#34;params&#34;&gt;toMethod&lt;/span&gt;)&lt;/span&gt;)) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;keyword&#34;&gt;class&lt;/span&gt;&lt;span class=&#34;constructor&#34;&gt;_replaceMethod(&lt;span class=&#34;params&#34;&gt;class&lt;/span&gt;, &lt;span class=&#34;params&#34;&gt;toSelector&lt;/span&gt;, &lt;span class=&#34;params&#34;&gt;method_getImplementation&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;fromMethod&lt;/span&gt;)&lt;/span&gt;, &lt;span class=&#34;keyword&#34;&gt;method&lt;/span&gt;&lt;span class=&#34;constructor&#34;&gt;_getTypeEncoding(&lt;span class=&#34;params&#34;&gt;fromMethod&lt;/span&gt;)&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125; &lt;span class=&#34;keyword&#34;&gt;else&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;keyword&#34;&gt;method&lt;/span&gt;&lt;span class=&#34;constructor&#34;&gt;_exchangeImplementations(&lt;span class=&#34;params&#34;&gt;fromMethod&lt;/span&gt;, &lt;span class=&#34;params&#34;&gt;toMethod&lt;/span&gt;)&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br /&gt;
+ 所以在方法我们在上面代码中的 toSelector 中 当我们需要调用回原方法时直接调用对应的函数指针即可&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gq6rm11f7dj30nm05a74e.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;最终我对直接调用 IMP 的方法做了测试，分别是 Demo 中和 App 中的某一个场景，测试数据如下，对比结果还是较为明显。这也就是为什么 Swift 或者一些其他静态语言比 OC 快的原因。&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gq6rw5k68mj313c0r6n13.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;zombiebr&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#zombiebr&#34;&gt;#&lt;/a&gt; Zombie：&amp;lt;br&amp;gt;&lt;/h3&gt;
+&lt;p&gt;使用僵尸对象来解决内存问题一直是苹果主推的方式，Xcode 也有相关设置，在 Debug 下打开相应开关，但是一旦把该功能放到线上做防护或监控就要考虑很多的问题。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;zombie 入口问题：换句话说就是在哪个地方生成 zombie 对象，看了一些相关的 SDK 都是采用 Dealloc 作为入口函数，不是不行，只是不是最优。原因有两点:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;1: 苹果已经不建议在 ARC 下主动调用 dealloc，目前只能采用 performSelector 或者其他动态调用的方式。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;2: 容易漏掉  &lt;code&gt;Objc_destructInstance&lt;/code&gt; ，所有的成员变量、属性都会在这个函数中释放，如果漏掉这个函数就会生成一个并不干净的僵尸对象，内存占用过高，白白浪费内存空间。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;综上两点我最终选择在 Free 函数中生成僵尸对象&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gq6sr4ebj5j30vx0u0dhq.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;zombie 内存阈值问题：僵尸对象会占用内存空间，然而在线上环境操作内存一定要小心且一定要有一套完整的逻辑，当超过某一个内存阈值后需要及时清空僵尸对象。内存阈值的确定便成了关键，这里会遇到两个问题：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&amp;lt;font color=&#39;red&#39;&amp;gt; 1：内存问题一定会和机型强相关，如何根据不同的机型调整不同的阈值？ &amp;lt;/font&amp;gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&amp;lt;font color=&#39;red&#39;&amp;gt; 2：如何做到根据线上情况灵活动态调整？&amp;lt;/font&amp;gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;我们的底线是在加入 zombie 后不能触发 memorywarning，所以我先对大部分机型做了 memorywarning 阈值测试：&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gq6t2xweqcj312g0sg0xq.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;从上图可以看出当 App 占用内存达到总内存的 57%~69% 时候会触发内存警告，而且由于 iphone 中有一部分内存是系统保留内存并不会给到开发者，所以我们可用的也就 50% 左右，我总结出如下公式：&lt;/p&gt;
+&lt;p&gt;公式 1：不能触发内存警告  &lt;code&gt;Y = 0.5 * deviceMem – currentAppMem&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;公式 2: 僵尸对象的内存占用再大也不会超过 App 本身的内存  &lt;code&gt;Y = min ( ( 0.5 * deviceMem – currentAppMem ) , currentAppMem)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;上面两个公式看似完美，但是还是有优化的地方，因为并不是 APP 中所有的变量都有可能成为僵尸对象，可能只是其中的某一部分需要被监控，所以得到最终的内存阈值计算公式：&lt;/p&gt;
+&lt;p&gt;&amp;lt;font color=red size=5 face=&amp;quot;黑体&amp;quot;&amp;gt;Y = min ( ( 0.5 * deviceMem – currentAppMem ) , currentAppMem / N )&amp;lt;/font&amp;gt;&lt;/p&gt;
+&lt;p&gt;因为 app 占用内存随时在变，所以可以加一个定时器每隔一定时间去更新该值。&lt;/p&gt;
+&lt;p&gt;上面公式的 N 还有一个好处就是我们可以后台动态下发，根据线上内存引起 Crash 量，如果 Crash 量大，那可能就需要更大的内存阈值去保存僵尸对象，就可以把 N 调小，反正调大，这样就可以无视机型的差异根据 Crash 的情况进行远程配置。&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gq6tozx4odj316l0u079c.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;通过如图的线上数据可以看出 随着 N 的减小，zombie 的内存阈值在增加，但是并不会超过内存警告阈值，确保了内存健康。&lt;/p&gt;
+&lt;p&gt;下图表示了不同的 N 值对应不同的捕获野指针问题的数量，各自 App 可以根据自己的业务情况进行调整。&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gq6tse6e79j31zo0kkk0x.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;zombie 更新策略问题：目前大家的做法都是在加入新的 zombie 对象时候检查是否超过阈值，达到阈值后删掉之前的 zombie 对象再加入新的对象，这样的清理逻辑是依赖于新 zombie 对象的加入，如果没有新对象的加入那么缓存空间也不会有变化，zombie 空间一旦生成就无法删掉，无法做到缓存的自清理，等于 App 无故增大了内存占用。&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gq6u18gh6cj30wa0saad2.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;同样借鉴 LRU 最近最久未使用的逻辑，每隔 30s 会检测下缓存情况，超过 30s 还未被使用的 zombie 对象将被删除，30s 是一个经验值，通过大量测试发现，内存问题一般会发生在对象被销毁的 30s 内，超过 30s 再出现的概率及小。这样可以做到缓存自清理的逻辑。&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gq6u92wzy3j30n00si41c.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;通过 Instrument 测试发现该 zombie 逻辑并不会对 App 本身的内存造成太大的影响。&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/008i3skNly1gq6ucxjfn5j31c60u078q.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+			&lt;script&gt;
+				console.error(&#34;Error: [hexo-tag-aplayer] Specified asset file not found ( https://molier-1256056152.cos.ap-guangzhou.myqcloud.com/%E5%B0%B9%E6%98%94%E7%9C%A0%20-%20%E5%A5%94%E8%B5%B4%E6%98%9F%E7%A9%BA.mp3)&#34;);
+			&lt;/script&gt;&lt;/p&gt;
+ ]]></description>
+        </item>
+        <item>
             <guid isPermalink="true">https://oliverqueen.cn/2021-05-05-iOS-Crash%E9%98%B2%E6%8A%A4%E4%BD%A0%E7%9C%8B%E8%BF%99%E4%B8%AA%E5%B0%B1%E5%A4%9F%E4%BA%86-%E4%B8%8B%E7%AF%87/</guid>
             <title>iOS Crash防护你看这个就够了-下篇</title>
             <link>https://oliverqueen.cn/2021-05-05-iOS-Crash%E9%98%B2%E6%8A%A4%E4%BD%A0%E7%9C%8B%E8%BF%99%E4%B8%AA%E5%B0%B1%E5%A4%9F%E4%BA%86-%E4%B8%8B%E7%AF%87/</link>
@@ -816,10 +1083,10 @@ Mach 异常，分为两种情况，第一种是本身就是硬件层面或者系
 &lt;h1 id=&#34;0x6-最后&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#0x6-最后&#34;&gt;#&lt;/a&gt; 0x6: 最后&lt;/h1&gt;
 &lt;p&gt;大概这就是所有 Crash 防护的流程，通过两篇文章讲解，希望大家对 iOS 系统的 Crash 流程能有些许的了解，并没有贴太多的源码，其实还是解耦度不够，思路有了代码就很简单了。&lt;/p&gt;
 &lt;p&gt;
-        &lt;div id=&#34;aplayer-TuDqfXXc&#34; class=&#34;aplayer aplayer-tag-marker&#34; style=&#34;margin-bottom: 20px;&#34;&gt;&lt;/div&gt;
+        &lt;div id=&#34;aplayer-tCxkKwlZ&#34; class=&#34;aplayer aplayer-tag-marker&#34; style=&#34;margin-bottom: 20px;&#34;&gt;&lt;/div&gt;
 			  &lt;script&gt;
 				  var options = {&#34;narrow&#34;:false,&#34;autoplay&#34;:true,&#34;showlrc&#34;:0,&#34;mutex&#34;:true,&#34;music&#34;:[{&#34;title&#34;:&#34;错位时空&#34;,&#34;author&#34;:&#34;艾辰&#34;,&#34;url&#34;:&#34;https://molier-1256056152.cos.ap-guangzhou.myqcloud.com/%E8%89%BE%E8%BE%B0%20-%20%E9%94%99%E4%BD%8D%E6%97%B6%E7%A9%BA.mp3&#34;,&#34;pic&#34;:&#34;https://bkimg.cdn.bcebos.com/pic/a8ec8a13632762d0f7037ac288a71ffa513d26976830?x-bce-process=image/watermark,image_d2F0ZXIvYmFpa2UxMTY=,g_7,xp_5,yp_5/format,f_auto&#34;,&#34;lrc&#34;:&#34;https://歌词.lrc&#34;}]};
-				  options.element = document.getElementById(&#34;aplayer-TuDqfXXc&#34;);
+				  options.element = document.getElementById(&#34;aplayer-tCxkKwlZ&#34;);
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);
