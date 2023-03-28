@@ -1,7 +1,4 @@
 .deploy_git
-public
-public
 db.json
-public
+public/
 source/_posts/.DS_Store
-public
