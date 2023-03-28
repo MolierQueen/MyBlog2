@@ -10,10 +10,10 @@
         <category>欢迎页</category>
         <category>网络</category>
         <category>底层</category>
-        <category>OpenGL</category>
-        <category>UI</category>
         <category>DNS解析</category>
         <category>LocalDNS</category>
+        <category>OpenGL</category>
+        <category>UI</category>
         <category>动画</category>
         <category>性能优化</category>
         <category>xcode</category>
@@ -29,21 +29,21 @@
         <category>Cocoapods</category>
         <category>架构</category>
         <category>AlertView</category>
-        <category>Hook</category>
         <category>杂谈</category>
+        <category>Hook</category>
         <category>Hexo</category>
         <category>个人博客</category>
         <category>网站</category>
         <category>屏幕适配</category>
         <category>iOS 11</category>
-        <category>评论插件</category>
-        <category>总结</category>
-        <category>回味2017展望2018</category>
         <category>热修复</category>
         <category>JSPath</category>
+        <category>总结</category>
+        <category>回味2017展望2018</category>
+        <category>评论插件</category>
+        <category>Swift</category>
         <category>swift</category>
         <category>网络请求</category>
-        <category>Swift</category>
         <category>音频</category>
         <category>唱吧</category>
         <category>K歌</category>
@@ -74,14 +74,14 @@ UIDynamicBehavior：动力行为的描述，用来指定 UIDynamicItem 应该如
 UIDynamicAnimator；动画的播放者，动力行为（UIDynamicBehavior）的容器，添加到容器内的行为将发挥作用；&lt;br /&gt;
 ReferenceView：等同于力学参考系，如果你的初中物理不是语文老师教的话，我想你知道这是啥.. 只有当想要添加力学的 UIView 是 ReferenceView 的子 view 时，动力 UI 才发生作用。下面看下我们给一个 button 加一个重力下坠的动画 使用 self.View 做参考系来建立动画&lt;br /&gt;
 &lt;span id=&#34;more&#34;&gt;&lt;/span&gt;&lt;br /&gt;
-&lt;img data-src=&#34;https://wx4.sinaimg.cn/large/006tNc79gy1fo6m073lu9j30ft02n74g.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;img data-src=&#34;https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fo6m073lu9j30ft02n74g.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;然后&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://wx3.sinaimg.cn/large/006tNc79gy1fo6m0h0bvej307900s0si.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fo6m0h0bvej307900s0si.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;你可以吧这里航代码写到 button 的点击事件中，这样你一点就会下坠。很简单吧。&lt;br /&gt;
         再看下一个碰撞&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://wx3.sinaimg.cn/large/006tNc79gy1fo6m1auc65j30mx02ht92.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fo6m1auc65j30mx02ht92.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;我这里写碰撞动画的时候用了两个 button，其实大家可以猜到我是让两个 button 来碰撞的，碰撞的过程中也是会走代理方法的，开始碰撞啊，碰撞结束啊之类的。最后那句话的意思是吧他的参考系 (这里是的 self.view) 的边界作为碰撞边界，就是说这段代码运行后这两个 这两控件撞到屏幕 self.view 的边框会发生物理的碰撞反弹效果。想这样 (点我开始那个按钮)&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://wx2.sinaimg.cn/large/006tNc79gy1fo6m1l2ecwg308r0fl75h.gif&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fo6m1l2ecwg308r0fl75h.gif&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;除了重力和碰撞，iOS SDK 还预先帮我们实现了一些其他的有用的物理行为，它们包括&lt;br /&gt;
  UIAttachmentBehavior 描述一个 view 和一个锚相连接的情况，也可以描述 view 和 view 之间的连接。attachment 描述的是两个点之间的连接情况，可以通过设置来模拟无形变或者弹性形变的情况（再次希望你还记得这些概念，简单说就是木棒连接和弹簧连接两个物体）。当然，在多个物体间设定多个；UIAttachmentBehavior，就可以模拟多物体连接了.. 有了这些，似乎可以做个老鹰捉小鸡的游戏了 - -…&lt;br /&gt;
 UISnapBehavior 将 UIView 通过动画吸附到某个点上。初始化的时候设定一下 UISnapBehavior 的 initWithItem:snapToPoint: 就行，因为 API 非常简单，视觉效果也很棒，估计它是今后非游戏 app 里会被最常用的效果之一了；&lt;br /&gt;

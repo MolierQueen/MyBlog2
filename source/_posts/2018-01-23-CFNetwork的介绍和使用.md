@@ -11,7 +11,7 @@ comments:
 CFNetwork是ISO中一个比较底层的网络框架，C语言编写，可以控制一些更底层的东西，如各种常用网络协议、socket通讯等，我们通常使用的NSURL则更倾向于API数据请求等，虽然框架也提供了一些操作，但是远不如CFNetwork丰富。CFNetwork已经接近于UNIX系统的socket通信了，使用CFHttpMessageRef进行HTTP连接的好处就是控制的粒度更细了，例如你可以设置SSL连接的PeerName，证书验证的方式，还可以控制每个响应包的接收。不过CFNetwork本质上还是应用层上的封装的通用API。使用者可以不用关心底层协议的实际细节。下图是CFNetwork在iOS系统中的位置(图片来源于官方文档)。
 
 <!--more-->
-![image.png](https://wx2.sinaimg.cn/large/006tNc79gy1fo6mit8tsij30bn06lwen.jpg)
+![image.png](https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fo6mit8tsij30bn06lwen.jpg)
 
 由上图可以看出目前iOS的网络编程分四层：
 * WebKit：属于Cocoa层，苹果很多地方用到的页面渲染引擎WKWebview；
@@ -24,7 +24,7 @@ CFNetwork是ISO中一个比较底层的网络框架，C语言编写，可以控�
 
 ### CFNetwork结构
 
-![image.png](https://wx2.sinaimg.cn/large/006tNc79gy1fo6mlt3gwcj30od0a474w.jpg)
+![image.png](https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fo6mlt3gwcj30od0a474w.jpg)
 上图也是官方文档的图片，描述了CFNetwork的结构，下面逐一讲解。
 
 ##### CFSocket API

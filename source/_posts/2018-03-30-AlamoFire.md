@@ -197,15 +197,15 @@ let queue : OperationQueue = {
 ```
 我们运行然后点击开始下载
 
-![](https://wx1.sinaimg.cn/large/006tNc79gy1fpw0vlzbp6g308h0gnkjm.gif)
+![](https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fpw0vlzbp6g308h0gnkjm.gif)
 
 很奇怪我们发现他还是同时下载，我们又试了其他的个数，无论多少都是同时下载，最大线程数量完全不起作用，再反过来看下上面加入queue的任务。正常来说每一个operation都要等上一个operation完成后才会执行，而系统判断完成的标准就是上一个operation的闭包走完，我们闭包中放入的是一个下载任务，而Alamofire的下载都是异步执行，所以导致operation的闭包走完了，但是其实下载是异步在另一个线程执行的，实际上下载没有完成，知道原因我们对症下药，只需要保证operation闭包中的代码是同步执行的就OK了。而Alamofire是基于URLSession来实现的，并没有像connection那样提供同步的方法，所以我们使用信号量卡一下，像这样
 
-![](https://wx1.sinaimg.cn/large/006tNc79gy1fpw1444jp0j31610qbgrr.jpg)
+![](https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fpw1444jp0j31610qbgrr.jpg)
 
 这样之后就会按照我们设置好的队列进行了
 
-![](https://wx1.sinaimg.cn/large/006tNc79gy1fpw15riwhjg308h0gnb2i.gif)
+![](https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fpw15riwhjg308h0gnb2i.gif)
 
 有人会说下载同步进行会不会有影响，其实不会的首先我们实现同步的方式是信号量，本质上还是异步的只是我们阻塞的当前的下载线程，这个被阻塞线程一定不是主线程(除非Alamofire的开发者把他回调到主线程下载，这个基本不可能)，而且当我们把这个下载任务加到一个operation中之后，就注定不会在主线程中了，没一个operation都会被系统分配到一个非主线程的地方去做，所以这样不会性能有任何影响。
 

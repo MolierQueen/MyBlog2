@@ -49,7 +49,7 @@ comments:
 
 以上的所有东西看似是发生在同一时刻其实真的是吗？我们思考一个问题：比如你在看视频，这时候你点击了textfield弹出键盘，大家都知道键盘由下往上弹出是有一个动画的，就算键盘已经出现到了屏幕上，只要动画没有做完你的视频就不会暂停，真的是这样吗，内部又是如何实现的？如下图:
 
-![](https://wx3.sinaimg.cn/large/006tKfTcgy1fr41y6xhkij31kw0q0h80.jpg)
+![](https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tKfTcgy1fr41y6xhkij31kw0q0h80.jpg)
 
 程序里面不同的部分不会阻塞彼此的执行，iOS提供了几种API，通过多核CPU来在不同的线程上进行不同的工作。
 
@@ -73,7 +73,7 @@ comments:
 
 其实写好异步代码并不是绝对不可能的，毕竟苹果给我提供了非常强大的API，相比较于其他平台这要好很多。不过问题在于编写复杂的异步代码很难，部分原因是因为苹果给我们提供了大量的SDK，而且他们并不统一。如果使用delegate我们需要遵循特制的格式，block，NotificationCenter等等都是这样的，所以并没有一种通用的、贯穿所有异步方法的API，这样就导致读懂并且书写这样的异步代码很难。可以看下下图:
 
-![](https://wx3.sinaimg.cn/large/006tKfTcgy1fr4342v718j31kw0nlgzj.jpg)
+![](https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tKfTcgy1fr4342v718j31kw0nlgzj.jpg)
 
 我们来比较两个代码片段来总结下这章。一个是异步一个是同步。
 
@@ -97,7 +97,7 @@ print(array)
 ```
 最后的输出结果：
 
-![](https://wx3.sinaimg.cn/large/006tKfTcgy1fr43rz56omj304p02at8i.jpg)
+![](https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tKfTcgy1fr43rz56omj304p02at8i.jpg)
 
 数组在for循环中是不可变的吗？执行顺序是什么？
 

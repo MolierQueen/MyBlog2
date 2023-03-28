@@ -14,20 +14,20 @@ UIDynamicBehavior：动力行为的描述，用来指定UIDynamicItem应该如�
 UIDynamicAnimator；动画的播放者，动力行为（UIDynamicBehavior）的容器，添加到容器内的行为将发挥作用；
 ReferenceView：等同于力学参考系，如果你的初中物理不是语文老师教的话，我想你知道这是啥..只有当想要添加力学的UIView是ReferenceView的子view时，动力UI才发生作用。下面看下我们给一个button加一个重力下坠的动画 使用self.View做参考系来建立动画
 <!--more-->
-![](https://wx4.sinaimg.cn/large/006tNc79gy1fo6m073lu9j30ft02n74g.jpg)
+![](https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fo6m073lu9j30ft02n74g.jpg)
 
 然后
 
-![](https://wx3.sinaimg.cn/large/006tNc79gy1fo6m0h0bvej307900s0si.jpg)
+![](https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fo6m0h0bvej307900s0si.jpg)
 
 你可以吧这里航代码写到button的点击事件中，这样你一点就会下坠。很简单吧。
         再看下一个碰撞
 
-![](https://wx3.sinaimg.cn/large/006tNc79gy1fo6m1auc65j30mx02ht92.jpg)
+![](https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fo6m1auc65j30mx02ht92.jpg)
 
 我这里写碰撞动画的时候用了两个button，其实大家可以猜到我是让两个button来碰撞的，碰撞的过程中也是会走代理方法的，开始碰撞啊，碰撞结束啊之类的。最后那句话的意思是吧他的参考系(这里是的self.view)的边界作为碰撞边界，就是说这段代码运行后这两个 这两控件撞到屏幕self.view的边框会发生物理的碰撞反弹效果。想这样(点我开始那个按钮)
 
-![](https://wx2.sinaimg.cn/large/006tNc79gy1fo6m1l2ecwg308r0fl75h.gif)         
+![](https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fo6m1l2ecwg308r0fl75h.gif)         
 
 除了重力和碰撞，iOS SDK还预先帮我们实现了一些其他的有用的物理行为，它们包括
  UIAttachmentBehavior 描述一个view和一个锚相连接的情况，也可以描述view和view之间的连接。attachment描述的是两个点之间的连接情况，可以通过设置来模拟无形变或者弹性形变的情况（再次希望你还记得这些概念，简单说就是木棒连接和弹簧连接两个物体）。当然，在多个物体间设定多个；UIAttachmentBehavior，就可以模拟多物体连接了..有了这些，似乎可以做个老鹰捉小鸡的游戏了- -…

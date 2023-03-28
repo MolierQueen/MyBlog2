@@ -10,10 +10,10 @@
         <category>欢迎页</category>
         <category>网络</category>
         <category>底层</category>
-        <category>OpenGL</category>
-        <category>UI</category>
         <category>DNS解析</category>
         <category>LocalDNS</category>
+        <category>OpenGL</category>
+        <category>UI</category>
         <category>动画</category>
         <category>性能优化</category>
         <category>xcode</category>
@@ -29,21 +29,21 @@
         <category>Cocoapods</category>
         <category>架构</category>
         <category>AlertView</category>
-        <category>Hook</category>
         <category>杂谈</category>
+        <category>Hook</category>
         <category>Hexo</category>
         <category>个人博客</category>
         <category>网站</category>
         <category>屏幕适配</category>
         <category>iOS 11</category>
-        <category>评论插件</category>
-        <category>总结</category>
-        <category>回味2017展望2018</category>
         <category>热修复</category>
         <category>JSPath</category>
+        <category>总结</category>
+        <category>回味2017展望2018</category>
+        <category>评论插件</category>
+        <category>Swift</category>
         <category>swift</category>
         <category>网络请求</category>
-        <category>Swift</category>
         <category>音频</category>
         <category>唱吧</category>
         <category>K歌</category>
@@ -99,7 +99,7 @@
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;以上的所有东西看似是发生在同一时刻其实真的是吗？我们思考一个问题：比如你在看视频，这时候你点击了 textfield 弹出键盘，大家都知道键盘由下往上弹出是有一个动画的，就算键盘已经出现到了屏幕上，只要动画没有做完你的视频就不会暂停，真的是这样吗，内部又是如何实现的？如下图:&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://wx3.sinaimg.cn/large/006tKfTcgy1fr41y6xhkij31kw0q0h80.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tKfTcgy1fr41y6xhkij31kw0q0h80.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;程序里面不同的部分不会阻塞彼此的执行，iOS 提供了几种 API，通过多核 CPU 来在不同的线程上进行不同的工作。&lt;/p&gt;
 &lt;p&gt;其实编写真正并行的代码其实是很复杂的，打个比方假如两个线程同时访问同一个资源，就会产生资源争夺的问题，比如谁先访问，谁后访问。&lt;/p&gt;
 &lt;h3 id=&#34;uikit中的一些异步的api&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#uikit中的一些异步的api&#34;&gt;#&lt;/a&gt; UIKit 中的一些异步的 API&lt;/h3&gt;
@@ -121,7 +121,7 @@
 &lt;/ul&gt;
 &lt;p&gt;由于大部分的类都是异步的，并且 UI 在内部也是异步的，所以很难去猜测整个程序的执行顺序，因此你的 APp 会因为一些外部的原因而表现不同，比如用户的输入不同、网络环境的不同、或者一些其他的东西。用户每次在打开你的 APp 其实代码的执行顺序都是不同的 (当然除了一些自动化测试的场景，那些条件都是预先设置好的。)&lt;/p&gt;
 &lt;p&gt;其实写好异步代码并不是绝对不可能的，毕竟苹果给我提供了非常强大的 API，相比较于其他平台这要好很多。不过问题在于编写复杂的异步代码很难，部分原因是因为苹果给我们提供了大量的 SDK，而且他们并不统一。如果使用 delegate 我们需要遵循特制的格式，block，NotificationCenter 等等都是这样的，所以并没有一种通用的、贯穿所有异步方法的 API，这样就导致读懂并且书写这样的异步代码很难。可以看下下图:&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://wx3.sinaimg.cn/large/006tKfTcgy1fr4342v718j31kw0nlgzj.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tKfTcgy1fr4342v718j31kw0nlgzj.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;我们来比较两个代码片段来总结下这章。一个是异步一个是同步。&lt;/p&gt;
 &lt;h4 id=&#34;同步代码&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#同步代码&#34;&gt;#&lt;/a&gt; 同步代码&lt;/h4&gt;
 &lt;p&gt;对数组的每个元素进行操作你应该很熟悉了吧，其实就是循环遍历嘛。这是一个非常简单而又坚实的功能，因为它保证了两件事:&lt;/p&gt;
@@ -136,7 +136,7 @@
 &lt;p&gt;花点时间想想这意味着什么。当你遍历一个数组的时候，你不需要检查所有的元素是否仍然存在，并且您不需要重新返回，以防另一个线程在集合的开始插入一个元素。您假定您总是在循环的开始时遍历整个集合。试试以下代码:&lt;/p&gt;
 &lt;p&gt;&lt;figure class=&#34;highlight smali&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;var&lt;span class=&#34;built_in&#34;&gt; array &lt;/span&gt;= [1, 2, 3]&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;for number in&lt;span class=&#34;built_in&#34;&gt; array &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  print(number)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;span class=&#34;built_in&#34;&gt; array &lt;/span&gt;= [4, 5, 6]&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;print(array)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br /&gt;
  最后的输出结果：&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://wx3.sinaimg.cn/large/006tKfTcgy1fr43rz56omj304p02at8i.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tKfTcgy1fr43rz56omj304p02at8i.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;数组在 for 循环中是不可变的吗？执行顺序是什么？&lt;/p&gt;
 &lt;h4 id=&#34;异步代码&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#异步代码&#34;&gt;#&lt;/a&gt; 异步代码&lt;/h4&gt;
 &lt;p&gt;再考虑一个类似的代码，如下用户通过点击事件触发下面代码，每次点击都会输出数组下一个元素，然后用户重复点击直到把数组所有的元素输出完成：&lt;br /&gt;
@@ -196,19 +196,19 @@
  每一个 opeeation 对象我们都可以设置他的优先级、启动、暂停、等属性，简单的调用接口就可以，在此就不一一作解释了。然后我们需要对我们的 queue 进行设置，我们设置最大并发数，大家可以根据实际情况来设置，demo 中我只有两个下载任务，所以我就设置最大并发数为 1 这样就是一个一个下载。&lt;br /&gt;
 &lt;figure class=&#34;highlight lasso&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;let&lt;/span&gt; &lt;span class=&#34;built_in&#34;&gt;queue&lt;/span&gt; : OperationQueue = &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;keyword&#34;&gt;let&lt;/span&gt; que : OperationQueue = OperationQueue()&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        que.maxConcurrentOperationCount = &lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;keyword&#34;&gt;return&lt;/span&gt; que&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125;()&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br /&gt;
  我们运行然后点击开始下载&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://wx1.sinaimg.cn/large/006tNc79gy1fpw0vlzbp6g308h0gnkjm.gif&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fpw0vlzbp6g308h0gnkjm.gif&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;很奇怪我们发现他还是同时下载，我们又试了其他的个数，无论多少都是同时下载，最大线程数量完全不起作用，再反过来看下上面加入 queue 的任务。正常来说每一个 operation 都要等上一个 operation 完成后才会执行，而系统判断完成的标准就是上一个 operation 的闭包走完，我们闭包中放入的是一个下载任务，而 Alamofire 的下载都是异步执行，所以导致 operation 的闭包走完了，但是其实下载是异步在另一个线程执行的，实际上下载没有完成，知道原因我们对症下药，只需要保证 operation 闭包中的代码是同步执行的就 OK 了。而 Alamofire 是基于 URLSession 来实现的，并没有像 connection 那样提供同步的方法，所以我们使用信号量卡一下，像这样&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://wx1.sinaimg.cn/large/006tNc79gy1fpw1444jp0j31610qbgrr.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fpw1444jp0j31610qbgrr.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;这样之后就会按照我们设置好的队列进行了&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://wx1.sinaimg.cn/large/006tNc79gy1fpw15riwhjg308h0gnb2i.gif&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fpw15riwhjg308h0gnb2i.gif&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;有人会说下载同步进行会不会有影响，其实不会的首先我们实现同步的方式是信号量，本质上还是异步的只是我们阻塞的当前的下载线程，这个被阻塞线程一定不是主线程 (除非 Alamofire 的开发者把他回调到主线程下载，这个基本不可能)，而且当我们把这个下载任务加到一个 operation 中之后，就注定不会在主线程中了，没一个 operation 都会被系统分配到一个非主线程的地方去做，所以这样不会性能有任何影响。&lt;/p&gt;
 &lt;h2 id=&#34;总结&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#总结&#34;&gt;#&lt;/a&gt; 总结&lt;/h2&gt;
 &lt;p&gt;因为时间紧迫，暂时做了这么多，也遇到了这些问题，所以写出了总结下，本文还会继续更新，会慢慢的整个网络层分享出来。就是可能更新会慢，毕竟工作量有点饱和。多谢关注&lt;/p&gt;
 &lt;p&gt;
-        &lt;div id=&#34;aplayer-YponfWDf&#34; class=&#34;aplayer aplayer-tag-marker&#34; style=&#34;margin-bottom: 20px;&#34;&gt;&lt;/div&gt;
+        &lt;div id=&#34;aplayer-MBxOanLD&#34; class=&#34;aplayer aplayer-tag-marker&#34; style=&#34;margin-bottom: 20px;&#34;&gt;&lt;/div&gt;
 			  &lt;script&gt;
 				  var options = {&#34;narrow&#34;:false,&#34;autoplay&#34;:true,&#34;showlrc&#34;:0,&#34;mutex&#34;:true,&#34;music&#34;:[{&#34;title&#34;:&#34;Thank You Very Much&#34;,&#34;author&#34;:&#34;Margaret&#34;,&#34;url&#34;:&#34;https://molier-1256056152.cos.ap-guangzhou.myqcloud.com/Thankyou.mp3&#34;,&#34;pic&#34;:&#34;https://y.gtimg.cn/music/photo_new/T002R300x300M000000VbGX83hRicw.jpg?max_age=2592000&#34;,&#34;lrc&#34;:&#34;https://demo.meting.api.meto.moe/action/metingapi?server=tencent&amp;type=lrc&amp;id=001Ii3g54dIYpO&#34;}]};
-				  options.element = document.getElementById(&#34;aplayer-YponfWDf&#34;);
+				  options.element = document.getElementById(&#34;aplayer-MBxOanLD&#34;);
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);

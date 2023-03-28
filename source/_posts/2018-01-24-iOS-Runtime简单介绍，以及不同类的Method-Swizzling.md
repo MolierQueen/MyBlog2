@@ -9,7 +9,7 @@ comments:
 ---
 ##### Runtime介绍：
  runtime顾名思义就是运行时，其实我们的App从你按下command+R开始一直到App运行起来经历了大致两个阶段，1：编译时，2：运行时。还记得一道很经典的面试题
-![](https://wx3.sinaimg.cn/large/006tNc79gy1fo6kbsn9yxj30kk03et8z.jpg)
+![](https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fo6kbsn9yxj30kk03et8z.jpg)
 
 这里给大家解释下：首先， * testObject 是告诉编译器，testObject是一个指向某个Objective-C对象的指针。因为不管指向的是什么类型的对象，
 <!--more-->
@@ -97,12 +97,12 @@ unsigned int count;
     }
 ```
 输出后的结果是
-![image.png](https://wx1.sinaimg.cn/large/006tNc79gy1fo6kc7w3zcj30pk0ajdks.jpg)
+![image.png](https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fo6kc7w3zcj30pk0ajdks.jpg)
 其中也包括了私有方法。
 
 * 2：拦截方法调用
 有的时候我们用一个类或者一个实例变量去调用一个方法，由于操作失误或者是其他原因，导致这个所被调用的方法并不存在，报出这样的错误，然后闪退！
-![image.png](https://wx1.sinaimg.cn/large/006tNc79gy1fo6kcfrky6j30tr0120sy.jpg)
+![image.png](https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fo6kcfrky6j30tr0120sy.jpg)
 
 这个时候如果我们想避免这些崩溃，我们就需要在运行时对其做一些手脚。iOS中方法调用的流程：其实调用方法就是发送消息，所有调用方法的代码例如   [obj aaa]  在运行时runtime会将这段代码转换为objc_msgSend(obj, [@selector]);（本质就是发送消息）然后obj会通过其中isa指针去该类的缓存中(cache)查找对应函数的Method, 如果没有找到，再去该类的方法列表（methodList）中查找，如果没有找到再去该类的父类找，如果找到了，就先将方法添加到缓存中，以便下次查找，然后通过method中的指针定位到指定方法执行。如果一直没有找到，便会走完如下四个方法之后崩溃。
 
@@ -185,16 +185,16 @@ WKWebViewController * vc= [[WKWebViewController alloc] init];
 
 我调用了并不存在的testMethod方法并没有崩溃并且方法已经成功添加了
 
-![image.png](https://wx3.sinaimg.cn/large/006tNc79gy1fo6kexyuzgj30f801mwel.jpg)
+![image.png](https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fo6kexyuzgj30f801mwel.jpg)
 
 * 4：动态交换方法（也叫iOS黑魔法，慎用）
 没什么好例子，用一个网上说的例子(引用别人的东西，懒得复制了，就截了图)
 
-  ![](https://wx4.sinaimg.cn/large/006tNc79gy1fo6kg3i5z6j30hv0fj0z9.jpg)
+  ![](https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fo6kg3i5z6j30hv0fj0z9.jpg)
 
   其实本质即使SEL和IMP的交换，原理是这样的：在iOS中每一个类中都有一个叫dispatch table的东西，里面存放在SEL 和他所对应的IMP指针，之前也说过方法调用就是通过sel找IMP指针然后指针定位调用方法。方法交换就是对这个dispatch table进行操作。让A的SEL去对应B的IMP，B的SEL对应A的IMP，如图
 
-  ![](https://wx3.sinaimg.cn/large/006tNc79gy1fo6kgrq52oj30f80betcz.jpg)
+  ![](https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fo6kgrq52oj30f80betcz.jpg)
 
   这样就达到方法交换的目的，下面看代码：
 
@@ -233,35 +233,35 @@ WKWebViewController * vc= [[WKWebViewController alloc] init];
 
 在通常的方法交换中我们通常有两种情景，一种是我会针对被交换的类建一个category，然后hook的方法会写在category中。另一种是自己创建一个Tool类里面放些常用的工具方法其中包含了方法交换。可能大家普遍选择第一种方法，但是如果你需要hook的类非常多的(我实际项目中就遇到这样的问题)那你就需要针对不同的类创建category，就会导致文件过多，且每一个文件中只有一个hook方法，这样一来左侧一堆文件，所以我用了第二种方法，但是在使用过程中出现一个问题，先看下我的代码结构
 
-![image.png](https://wx3.sinaimg.cn/large/006tNc79gy1fo6khw8c97j30740ag74v.jpg)
+![image.png](https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fo6khw8c97j30740ag74v.jpg)
 
 我要hook的是ViewController中的viewDidLoad方法，我建立了两个类一个是ViewController的category，另一个是Tool类，为了一会区别演示不同类hook的不同(两个类中hook的代码完全一样)
 * ViewController中将要被替换的系统方法
 
-![被替换的方法(系统方法)](https://wx3.sinaimg.cn/large/006tNc79gy1fo6kir8y63j309a02rglq.jpg)
+![被替换的方法(系统方法)](https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fo6kir8y63j309a02rglq.jpg)
 
 
 * Category中将要用来替换的自定义方法
 
-![用来替换的方法(自定义方法)](https://wx1.sinaimg.cn/large/006tNc79gy1fo6kj5dcykj308z02lwep.jpg)
+![用来替换的方法(自定义方法)](https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fo6kj5dcykj308z02lwep.jpg)
 * 然后在ViewController中的load中做方法替换
 
-![进行方法替换](https://wx1.sinaimg.cn/large/006tNc79gy1fo6kjlzvdqj30f90b43zw.jpg)
+![进行方法替换](https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fo6kjlzvdqj30f90b43zw.jpg)
 
 运行一下的输出结果想必大家已经猜到了先执行custom再执行system，这是通常情况下大家的做法。
-![结果](https://wx1.sinaimg.cn/large/006tNc79gy1fo6kjxsheej30d701h3yl.jpg)
+![结果](https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fo6kjxsheej30d701h3yl.jpg)
 
 下面再来看下如果我将替换方法写在不同类中会怎样，调用Tool中的交换方法
 
-![执行Tool中的交换方法](https://wx1.sinaimg.cn/large/006tNc79gy1fo6kka2s8uj30dx0anwfp.jpg)
+![执行Tool中的交换方法](https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fo6kka2s8uj30dx0anwfp.jpg)
 
 然后直接看结果了，因为代码都是一模一样的我直接复制过去的
 
-![结果](https://wx3.sinaimg.cn/large/006tNc79gy1fo6kliitupj30yd08w422.jpg)
+![结果](https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fo6kliitupj30yd08w422.jpg)
 
 发生了crash，原因是ViewController中没有swizzel_viewDidLoad_custom这个方法，为什么不同类的交换会出现这种问题，我们用个图来说明下
 
-![image.png](https://wx3.sinaimg.cn/large/006tNc79gy1fo6km0wogkj30yg0pz43q.jpg)
+![image.png](https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fo6km0wogkj30yg0pz43q.jpg)
 
 解决的办法是我们在交换方法之前要先像其中添加方法，也就是说把customMethod添加到SystemClass中，但是注意要把customMethod的实现指向syetemMethod的实现。这样一来就可以达到SystemClass调用customMethod却执行systemMethod的代码的效果，实现以上要求我们需要在交换之前执行这个方法。
 
@@ -288,7 +288,7 @@ if (class_addMethod(systemClass, sel_Custom, imp_System, method_getTypeEncoding(
 我们来看下执行完add操作之后此时的方法和类的对应关系(红色的为add的修改)
 
 
-![关系](https://wx4.sinaimg.cn/large/006tNc79gy1fo6kmhkzidj30yg0g378f.jpg)
+![关系](https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fo6kmhkzidj30yg0g378f.jpg)
 
 
 因为SystemClass中本身不包含customMethod所以add一定是成功的，也就是说会进入判断执行replace方法。
@@ -300,7 +300,7 @@ class_replaceMethod(systemClass, sel_System, imp_Custom, method_getTypeEncoding(
 
 第一个参数：需要修改的方法的所在的类；第二个参数：需要替换其实现的方法名；第三个参数：需要把哪个实现替换给他；第四个参数：方法标识符。此时看下我们做完replace之后的类与方法名以及他们实现的关系(红色的为replace的修改)。
 
-![关系](https://wx1.sinaimg.cn/large/006tNc79gy1fo6kn9m5btj30yg0ifgqa.jpg)
+![关系](https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fo6kn9m5btj30yg0ifgqa.jpg)
 
 此时大家已经看出来了，虽然没有执行exchange方法，但是我已经达到了方法交换的目的。系统执行systemMethod时候会走customMethod的实现但是因为在customMethod方法中我会递归执行[self customMethod]，所以又会走到systemMethod的实现，因为之前进行了方法添加，所以此时A类中有了customMethod方法，不会再发生之前的crash。达到一个不同类进行Method Swizzling的目的。
 

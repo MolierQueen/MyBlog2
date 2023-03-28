@@ -10,7 +10,7 @@ comments:
 ## 背景：
 SVN和Git同样都是在特定时代下比较优秀的版本控制系统，但是随着时代的发展，SVN越来越不能满足多人开发的需求，尤其是在多种多样，天马星空的业务场景面前，SVN会显得力不从心。
 
-![](https://wx4.sinaimg.cn/large/006tNbRwgy1fujxnf8ilhj30zk0m8gm9.jpg)
+![](https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNbRwgy1fujxnf8ilhj30zk0m8gm9.jpg)
 
 <!-- more -->
 

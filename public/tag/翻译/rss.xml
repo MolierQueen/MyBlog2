@@ -10,10 +10,10 @@
         <category>欢迎页</category>
         <category>网络</category>
         <category>底层</category>
-        <category>OpenGL</category>
-        <category>UI</category>
         <category>DNS解析</category>
         <category>LocalDNS</category>
+        <category>OpenGL</category>
+        <category>UI</category>
         <category>动画</category>
         <category>性能优化</category>
         <category>xcode</category>
@@ -29,21 +29,21 @@
         <category>Cocoapods</category>
         <category>架构</category>
         <category>AlertView</category>
-        <category>Hook</category>
         <category>杂谈</category>
+        <category>Hook</category>
         <category>Hexo</category>
         <category>个人博客</category>
         <category>网站</category>
         <category>屏幕适配</category>
         <category>iOS 11</category>
-        <category>评论插件</category>
-        <category>总结</category>
-        <category>回味2017展望2018</category>
         <category>热修复</category>
         <category>JSPath</category>
+        <category>总结</category>
+        <category>回味2017展望2018</category>
+        <category>评论插件</category>
+        <category>Swift</category>
         <category>swift</category>
         <category>网络请求</category>
-        <category>Swift</category>
         <category>音频</category>
         <category>唱吧</category>
         <category>K歌</category>
@@ -84,13 +84,13 @@ Facebook 的 iOS 端有许多的地方都共享着一块内存，如果任何一
 &lt;h4 id=&#34;循环引用&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#循环引用&#34;&gt;#&lt;/a&gt; 循环引用&lt;/h4&gt;
 &lt;p&gt;Objective-C 使用引用计数来管理内存的，内存中的一个对象可以引用其他的对象，只要有一个对象使用它，那么他就会一直被留在内存中。我们也可以说一个对象持有另一个对象。&lt;/p&gt;
 &lt;p&gt;  一般来说这都没问题。但是有一种情会使我们陷入僵局。当两个 obj 不在相互持有，而是通过另一个 obj 来互相持有，这样就会陷入一个循环引用的状态就像下面这张图&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://wx1.sinaimg.cn/large/006tNc79gy1fnrkogrtqbj30kg0cndhd.jpg&#34; alt=&#34;循环引用&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fnrkogrtqbj30kg0cndhd.jpg&#34; alt=&#34;循环引用&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;一个 View Controller 持有一个 Viw View 中持有 delegate delegate 中持有 ViewController。这样就形成一个环状，谁也无法释放。&lt;/p&gt;
 &lt;p&gt;  循环引用会导致一些列的的问题，如果一个对象在 RAM 中无限的占用空间，充其量也只是浪费一点点内存。如果这些泄漏的对象正在做一些其他的事情那么就会导致 App 的其他的地方再也无法使用这块内存。更严重的如果循环引用过多，就会浪费掉大量的内存最终导致程序的 crash。&lt;/p&gt;
 &lt;p&gt;  在我们进行人工调试的时候我们已经找出了大量的很明显的循环引用，我们能很好地定位他，但是在运行之后我们就很难发现他们，但是我们这 SDK 能很轻松的做这些事。&lt;/p&gt;
 &lt;h4 id=&#34;在runtime下的循环引用检测&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#在runtime下的循环引用检测&#34;&gt;#&lt;/a&gt; 在 Runtime 下的循环引用检测&lt;/h4&gt;
 &lt;p&gt;  在 OC 中找循环引用其实就类似于在一个节点为对象，链接线为引用关系的有向无环图中寻找一个环。打个比方如果 A 引用 B 那么 A 到 B 就会有箭头指向可以看这个&lt;br /&gt;
-&lt;img data-src=&#34;https://wx4.sinaimg.cn/large/006tNc79gy1fo6kvv1735j30yg0mv0ug.jpg&#34; alt=&#34;image.png&#34; /&gt; 我们发现这张图在箭头处发生循环引用&lt;/p&gt;
+&lt;img data-src=&#34;https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fo6kvv1735j30yg0mv0ug.jpg&#34; alt=&#34;image.png&#34; /&gt; 我们发现这张图在箭头处发生循环引用&lt;/p&gt;
 &lt;p&gt;  这个是一个很简单的引用关系我们必须确保我们能像左侧那样的来引用对象，其实对于每一个对象我们都获取他所有引用 (持有的) 对象，有的是强引用有的是弱引用，但是循环引用只发生在强引用上，对于每个对象我们需要搞清楚如何找到引用关系。&lt;/p&gt;
 &lt;p&gt;  幸运的是 OC 给我提供了强大的 Runtime，这足够让我们去挖掘其中的关系，图中的一个点可能是 block 或者是 Object 中的其中一个，让我们来分别讨论下&lt;/p&gt;
 &lt;h4 id=&#34;objects&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#objects&#34;&gt;#&lt;/a&gt; Objects&lt;/h4&gt;
@@ -103,11 +103,11 @@ Facebook 的 iOS 端有许多的地方都共享着一块内存，如果任何一
 &lt;p&gt;  block 和对象有一点不同。运行时不允许我们轻松地查看它们的布局，但是我们仍然可以进行猜测。在处理 block 时，我们使用了 Mike Ash 在他的项目&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9naXRodWIuY29tL21pa2Vhc2gvQ2lyY2xl&#34;&gt; Circle&lt;/span&gt; 中提出的想法：也正是这个项目激发 FBRetainCycleDetector 的项目。&lt;/p&gt;
 &lt;p&gt; $emsp; 我们可以使用&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovL2NsYW5nLmxsdm0ub3JnL2RvY3MvQmxvY2stQUJJLUFwcGxlLmh0bWw=&#34;&gt; application binary interface for blocks&lt;/span&gt; (ABI)，他可以向我们展示一个 block 在内存中是什么样子的，如果我们知道了我们所研究的 block 的表现形式我们就可以用一个假的结构体来模仿实现 block 的功能，之后我们就能知道了哪些对象被 block 引用并且一直在那里，但是不幸的是我们并不知道这些事强引用还是弱引用。&lt;/p&gt;
 &lt;p&gt;  为了做到这些我们使用黑盒的方法，首先我们创建一个假的对象来模仿我们所研究的 Block，因为是我们自己创建的假对象，所以我们可以完全的操作他，我们给这个假装的 block 上面装上释放探测器，释放探测器是监听发给他们的释放消息的一个对象，如果一个所有者想放弃对对象们所有权的时候，释放探测器会给他所有强引用的对象发出消息，当我们释放我们的假对象时，我们可以检查哪些探测器收到了这样的消息。便知道了哪些 block 是被强引用的。这样一来我们可以找到我们原始 block 所持有的真是的对象，如下图所示&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://wx2.sinaimg.cn/large/006tNc79gy1fnrkpskc4zj30kg0fd76k.jpg&#34; alt=&#34;block&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fnrkpskc4zj30kg0fd76k.jpg&#34; alt=&#34;block&#34; /&gt;&lt;/p&gt;
 &lt;h4 id=&#34;自动化&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#自动化&#34;&gt;#&lt;/a&gt; 自动化&lt;/h4&gt;
 &lt;p&gt;  员工在进行持续执行时，这个工具就会非常出色。自动化在客户端上是非常容易的，我们使用定时器来建立一个循环引用检测，用来周期性的扫描一部分内存去寻找循环引用，不过还是有点问题，我们第一次运行检测器的时候我们发现他不快速的扫描完整个内存空间，所以我们需要给他提供一个候选检测对象，为了做到这一点，我们建立了 FBAllocationTracker，他可以追踪任何一个 Nsobject 对象的创建和销毁，他同样可以在任何给定的时刻以最小的性能开销来获取任何类的实例对象。&lt;/p&gt;
 &lt;p&gt;  在客户端上实现了这样的自动化操作意味着我们可以更加简单的在 NSTimer 上使用 FBRetainCycleDetector 和添加用了追踪实例的 FBAllocationTracker，现在让我们来看下后端到底发生了什么，循环引用可以有多个对象来组成，如果创建了许多的引用环并且有一个泄漏了那么事情将会变得非常复杂。如下如所示 A-&amp;gt;B 就是一个坏的引用环导致了 A-&amp;gt;B-&amp;gt;C-&amp;gt;D 和 A-&amp;gt;B-&amp;gt;C-&amp;gt;E&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://wx2.sinaimg.cn/large/006tNc79gy1fnrkrd6o9oj30kg0j6acn.jpg&#34; alt=&#34;引用环&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fnrkrd6o9oj30kg0j6acn.jpg&#34; alt=&#34;引用环&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;遇到这样的问题就会给我们的 SDK 带来两个问题：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -126,7 +126,7 @@ Facebook 的 iOS 端有许多的地方都共享着一块内存，如果任何一
 &lt;li&gt;5：仅仅只像开发者报告最小的周期。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;有了这些最后一部分就是找出谁可能会意外的引入一个循环引用，我们通过 “git/hg blame” 来做到这些。猜测这可能是导致出现问题的最新修改。最后一个提交代码的人会收到一个通知。整个系统可以如下展示&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://wx3.sinaimg.cn/large/006tNc79gy1fnrkrs9hmvj30kg0660ua.jpg&#34; alt=&#34;系统图&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fnrkrs9hmvj30kg0660ua.jpg&#34; alt=&#34;系统图&#34; /&gt;&lt;/p&gt;
 &lt;h4 id=&#34;手工配置&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#手工配置&#34;&gt;#&lt;/a&gt; 手工配置&lt;/h4&gt;
 &lt;p&gt;  尽管自动化帮助简化了寻找循环引用的过程，并减少了开发人员的工作，但是手动配置仍然很重呀。我们开发的另一款工具允许任何人查看应用程序的内存使用情况，甚至不用将手机插入电脑。FBMemoryProfiler 可以很容易地添加到任何应用中，让你手动配置你的工程，并在应用中运行循环引用检测，它可以通过使用 FBAllocationTracker 和 fbretaincycle 检测器来完成。&lt;/p&gt;
 &lt;p&gt;原文链接 &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9jb2RlLmZhY2Vib29rLmNvbS9wb3N0cy81ODM5NDYzMTUwOTQzNDcvYXV0b21hdGljLW1lbW9yeS1sZWFrLWRldGVjdGlvbi1vbi1pb3Mv&#34;&gt;https://code.facebook.com/posts/583946315094347/automatic-memory-leak-detection-on-ios/&lt;/span&gt;&lt;/p&gt;

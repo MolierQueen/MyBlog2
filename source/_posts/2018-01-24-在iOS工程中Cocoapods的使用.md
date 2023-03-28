@@ -13,24 +13,24 @@ comments:
 ### 第一步 ：
 首先安装cocoapods要在ruby环境下进行，虽然我们的mac系统都是自带了ruby，但是为了保险起见我们还是要先更新一下ruby环境：在这里我们直接使用   sudo gem update --system   命令来更新，网上有的说使用 gem update --system 前面少了sudo，其实加sudo的目的就是用管理员的权限去执行这句更新命令，不加的话容易出现这个错误
 
-![](https://wx4.sinaimg.cn/large/006tNc79gy1fo6jyxwn6cj30ta06kn1a.jpg)
+![](https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fo6jyxwn6cj30ta06kn1a.jpg)
 
 意思是你没有权限去执行这个命令，等出现了RubyGems system software updated 这句话的时候就证明升级成功了。
 
 ### 第二步：
 安装cocoapods时候我们要访问cocoapods.org这个网站，不用想这个网站已经被墙了，所以我们可以用淘宝的ruby的镜像来访问该网站。首先我们输入 gem sources -l 来看一下我们现在有什么，我目前里面只有一个
 
-![](https://wx3.sinaimg.cn/large/006tNc79gy1fo6jzdqmrlj30ma03ydjy.jpg)
+![](https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fo6jzdqmrlj30ma03ydjy.jpg)
 
 也就是我们需要的，不过可能有些人的里面不止一个，会有其他的东西，这时候我们先用gem sources --remove XXXXXXXXXXXXXXX 来把其他的source删除掉，只保留这一个，如果没有的话就手动添加用这个命令 gem sources -a https://ruby.taobao.org/ 来将我们需要的源添加进去，最后再用那个查看命令 最后只有确保像我里面一样只有那一个就好，要注意的是 https  网上好多教程写的是 http，那个已经作废了
 
-![](https://wx4.sinaimg.cn/large/006tNc79gy1fo6jzxkmf5j31kw0ask74.jpg)
+![](https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fo6jzxkmf5j31kw0ask74.jpg)
 ### 第三步：
 安装是cocoapods 使用 sudo gem install cocoapods 命令来安装cocoapods，你输入完这个命令回车后会提示你输入密码，这时候是没有光标提示的，也不会移动，凭感觉输入对之后就回车吧，然后就是等，时间长短是根据你的网速来的。安装完成后终端就进入待命阶段了。
 ### 第四步：
 使用search命令来搜索类库，这个是支持模糊搜索的，记不清全名，打一部分名也行，不过那样的就要从搜出来的东西里找你想要的类库了。比如我想找afnetworking 我就输入 pod search afn 回车后就会输出所有以afn开头的类库名字，像这样
 
-![](https://wx1.sinaimg.cn/large/006tNc79gy1fo6k0kkcjjj311u0wq4qp.jpg)
+![](https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fo6k0kkcjjj311u0wq4qp.jpg)
 
 搜出很多，其中第三就是我们想要的，afnetworking，用红圈圈起来是一会编辑podfile时候需要用的，可以先把他复制下来省的手打，后面的小数代表的是类库的版本，一般是最新的显示在这里，下面的version是历史版本，如果有需要可以直接导入它的历史版本，就是把后面的版本号替换下就好。
 ###### 值得注意的是如果你不是第一次安装cocoapods， 那么之前的缓存会对你有影响search先清理下缓存 使用这个命之后就可以了 rm ~/Library/Caches/CocoaPods/search_index.json
@@ -38,19 +38,19 @@ comments:
 ### 第五步：
 进入你的工程目录，这里建议直接右键你工程中.xcodeproj文件选择在终端中打开，然后 在终端中输入命令cd ..  就会跳到.xcodeproj所在的目录，也就是我们需要的目录，很多新手在这个地方容易出错。然后输入命令 vim Podfile熟悉Linux的用户都知道这是创建一个Podfile文件并打开编辑，按 “i” 进入编辑模式，将第五部粘贴的东西拷贝进来，然后依次操作esc键  ->  ":"  ->  输入wq
 
-![](https://wx4.sinaimg.cn/large/006tNc79gy1fo6k16wn0yj311s0wqth2.jpg)
+![](https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fo6k16wn0yj311s0wqth2.jpg)
 
 然后输入命令来安装 pod update --verbose --no-repo-update 等待过后就安装完成啦，其实使用pod install也可以，只是后者需要更新一个仓库，这是相当耗时的，我们可以使用前者来避免更新仓库就好，很快就结束了。
 
-![](https://wx1.sinaimg.cn/large/006tNc79gy1fo6k1nkijrj311u0wq1g6.jpg)
+![](https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fo6k1nkijrj311u0wq1g6.jpg)
 
 安装成功！以后打卡工程就直接打开这个文件就好啦
 
-![](https://wx1.sinaimg.cn/large/006tNc79gy1fo6k1y1x80j306q0cb0sy.jpg)
+![](https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fo6k1y1x80j306q0cb0sy.jpg)
 
 其中podfile文件中显示了我们这个工程中所以集成的第三方，
 
-![](https://wx2.sinaimg.cn/large/006tNc79gy1fo6k27zcbxj30ln0bfmxn.jpg)
+![](https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fo6k27zcbxj30ln0bfmxn.jpg)
 
 想修改版本的话就把后面的版本号改成你所需要的版本号就好，想删除的话就把这行删掉，想添加的话就用第五部的搜索命令去搜索然后同样把搜索结果中以pod开头的那句话复制进来就好。注意以上所有的增删改操作完成之后需要在去终端中相应的目录下使用 pod install --verbose --no-repo-update 命令来更新，这样才会真正的生效。
 
@@ -59,11 +59,11 @@ comments:
 ##### 值得注意1         
 经常遇到的错误比如下面这个
 
-![](https://wx3.sinaimg.cn/large/006tNc79gy1fo6k2hpy06j30ej01gt8q.jpg)
+![](https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fo6k2hpy06j30ej01gt8q.jpg)
 
 通常出现在OS X 10.11系统上 这是由于从这个系统开始苹果开始使用无根安装，这时你再用这个方法就会报这个错，这时只需
 
-![](https://wx4.sinaimg.cn/large/006tNc79gy1fo6k2pt7n9j30hy02zwev.jpg)
+![](https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fo6k2pt7n9j30hy02zwev.jpg)
 
 这个命令就可以成功升级啦      
 
@@ -74,7 +74,7 @@ comments:
 2：pod repo add master http://git.oschina.net/akuandev/Specs.git
     更换镜像完毕后，以后执行pod repo update的速度就会快很多。在说明一点上面两条指令如果第二条无法执行提示403错误像这样
 
-![](https://wx3.sinaimg.cn/large/006tNc79gy1fo6k2xgrwuj30i101h3yg.jpg)
+![](https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fo6k2xgrwuj30i101h3yg.jpg)
 
 那么在执行完第一条之后直接pod search 命令就好 这样他会自动找合适的配置了，因为第二条那个网址可能会变。
 ### 总结：

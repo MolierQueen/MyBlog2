@@ -278,8 +278,7 @@ default_category: uncategorized
 category_map: # edit for Theme.shoka
   iOS开发: ios
   计算机基础: computer-science
-  杂谈: note
-  情感: qinggan
+  闲谈: note
   译文: translate
   通用开发: common
 tag_map:
@@ -307,7 +306,6 @@ deploy:
   type: git
   repo: git@github.com:MolierQueen/molierqueen.github.io.git
   branch: master
-
 
 # edit for Theme.shoka
 autoprefixer:

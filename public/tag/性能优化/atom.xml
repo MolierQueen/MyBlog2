@@ -7,10 +7,10 @@
     <category term="欢迎页" />
     <category term="网络" />
     <category term="底层" />
-    <category term="OpenGL" />
-    <category term="UI" />
     <category term="DNS解析" />
     <category term="LocalDNS" />
+    <category term="OpenGL" />
+    <category term="UI" />
     <category term="动画" />
     <category term="性能优化" />
     <category term="xcode" />
@@ -26,21 +26,21 @@
     <category term="Cocoapods" />
     <category term="架构" />
     <category term="AlertView" />
-    <category term="Hook" />
     <category term="杂谈" />
+    <category term="Hook" />
     <category term="Hexo" />
     <category term="个人博客" />
     <category term="网站" />
     <category term="屏幕适配" />
     <category term="iOS 11" />
-    <category term="评论插件" />
-    <category term="总结" />
-    <category term="回味2017展望2018" />
     <category term="热修复" />
     <category term="JSPath" />
+    <category term="总结" />
+    <category term="回味2017展望2018" />
+    <category term="评论插件" />
+    <category term="Swift" />
     <category term="swift" />
     <category term="网络请求" />
-    <category term="Swift" />
     <category term="音频" />
     <category term="唱吧" />
     <category term="K歌" />
@@ -79,11 +79,11 @@ group opacity（不透明）&lt;br /&gt;
 复杂形状设置圆角等&lt;br /&gt;
 渐变&lt;br /&gt;
 我用一个现有的小 DEMO 来测试下，因为这个 demo 中没有切圆角，但是有阴影，一样可以出发离屏渲染，所以效果是一样的，在 tableView 中的自定义 cell 类中我设置了阴影如图：&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://wx4.sinaimg.cn/large/006tNc79gy1fo6makjj7sj30f2025aac.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fo6makjj7sj30f2025aac.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;使用 Instruments 测试得到当前帧数在二三十左右&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://wx4.sinaimg.cn/large/006tNc79gy1fo6maqxgt6j30uf03874d.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fo6maqxgt6j30uf03874d.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;同时屏幕是也出现了黄色图层&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://wx4.sinaimg.cn/large/006tNc79gy1fo6mb1epsnj30dx0ou40r.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fo6mb1epsnj30dx0ou40r.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;所有黄色的高亮的图层都进行了离屏渲染，也表示这些图层存在着问题，影响性能。而且帧数过低也会直接影响我们对 APP 的体验。&lt;/p&gt;
 &lt;h6 id=&#34;如何避免离屏渲染&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#如何避免离屏渲染&#34;&gt;#&lt;/a&gt; 如何避免离屏渲染：&lt;/h6&gt;
 &lt;ul&gt;
@@ -102,10 +102,10 @@ avatarImageView.image = UIGraphicsGetImageFromCurrentImageContext();UIGraphicsEn
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;最后给大家测试下，因为我之前的 demo 没有切圆角，而是使用的阴影，所以我就用第一种方法给大家测一下。&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://wx2.sinaimg.cn/large/006tNc79gy1fo6mbdmx1bj30lu04ywfj.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fo6mbdmx1bj30lu04ywfj.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;然后运行，打开 Instruments，然后看屏幕&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://wx2.sinaimg.cn/large/006tNc79gy1fo6mbm7cn6j30e40ox76i.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;图层都是绿色没问题，我们再来看帧数，几乎到 60 ，效果很明显。&lt;img data-src=&#34;https://wx4.sinaimg.cn/large/006tNc79gy1fo6mbsz37rj30j602k747.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fo6mbm7cn6j30e40ox76i.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;图层都是绿色没问题，我们再来看帧数，几乎到 60 ，效果很明显。&lt;img data-src=&#34;https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fo6mbsz37rj30j602k747.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;由此可见以后大家再切圆角的时候多注意下，刚才就研究了这么多，有什么问题及时与我交流吧。。。&lt;/p&gt;
 </content>
         <category term="UI" />

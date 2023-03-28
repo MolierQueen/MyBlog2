@@ -2,7 +2,7 @@
 title: iPa逆向之路
 categories: iOS开发
 date: 2022-11-15 19:40:49
-cover: https://tva1.sinaimg.cn/large/008vxvgGgy1h861sxytvij30ka0aoq3b.jpg
+cover: https://cdn.cdnjson.com/tva1.sinaimg.cn/large/008vxvgGgy1h861sxytvij30ka0aoq3b.jpg
 tags:
     - iOS
     - 逆向
@@ -60,15 +60,15 @@ iOS App的逆向的所有操作都是基于iPa的操作，所以大前提是要�
 
 可以直接从Mac 上的Apple Store上下载，官方出品，原本是给手机上安装app的。用此方式其实是利用了该App的App下载机制来进行ipa导出的
 
-![image-20221114144926709](https://tva1.sinaimg.cn/large/008vxvgGgy1h84np4us32j310y0io75z.jpg)
+![image-20221114144926709](https://cdn.cdnjson.com/tva1.sinaimg.cn/large/008vxvgGgy1h84np4us32j310y0io75z.jpg)
 
 选择添加App，然后在弹出的弹窗中选择App并且下载
 
-![image-20221114145027227](https://tva1.sinaimg.cn/large/008vxvgGgy1h84nq4zkpwj30ys0na0vm.jpg)
+![image-20221114145027227](https://cdn.cdnjson.com/tva1.sinaimg.cn/large/008vxvgGgy1h84nq4zkpwj30ys0na0vm.jpg)
 
 这个时候如果你手机上没有安装该App，则直接会安装成功，此时我们再点击安装下载，然后就会收到`设备上已经存在相同的App，是否覆盖安装的提示`的弹窗，此时我们<font color='red'> 不要理会 </font>这个弹窗。
 
-![image-20221114145604307](https://tva1.sinaimg.cn/large/008vxvgGgy1h84nvzsytmj30u00y6mz0.jpg)
+![image-20221114145604307](https://cdn.cdnjson.com/tva1.sinaimg.cn/large/008vxvgGgy1h84nvzsytmj30u00y6mz0.jpg)
 
 然后到如下路径就可以取到对应的ipa
 
@@ -82,7 +82,7 @@ iOS App的逆向的所有操作都是基于iPa的操作，所以大前提是要�
 
 是一个第三的网站，同在线砸壳+ipa下载的服务，因为我们最终想要的就是一个砸壳之后的ipa，所以这个网站直接帮我们做好了，只不过是收费的，每个app是9元，但是有多个境外的App市场，比较全面。
 
-![image-20221114154450405](https://tva1.sinaimg.cn/large/008vxvgGgy1h84par73tqj30be07saa1.jpg)
+![image-20221114154450405](https://cdn.cdnjson.com/tva1.sinaimg.cn/large/008vxvgGgy1h84par73tqj30be07saa1.jpg)
 
 
 
@@ -121,7 +121,7 @@ app 上传到AppStore后   苹果使用 fairplay DRM来加密，就是我们所�
 otool -l XXXXX |grep cry
 ```
 
-![image-20221114170141723](https://tva1.sinaimg.cn/large/008vxvgGgy1h84ripqxklj30tx02imxg.jpg)
+![image-20221114170141723](https://cdn.cdnjson.com/tva1.sinaimg.cn/large/008vxvgGgy1h84ripqxklj30tx02imxg.jpg)
 
 
 
@@ -223,7 +223,7 @@ File /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Develo
 
 这个是因为最新的Xcode14中 这个路径已经改变，所以原路径无法找到，不过如果大家需要逆向的事iOS的App到这一步可以不用关心，这个是MacOS相关的模板文件。此时打开Xcode如果有以下模版文件，并能成功创建工程即可。
 
-![image-20221114173807449](https://tva1.sinaimg.cn/large/008vxvgGgy1h84skm4dlej30li0fbjsb.jpg)
+![image-20221114173807449](https://cdn.cdnjson.com/tva1.sinaimg.cn/large/008vxvgGgy1h84skm4dlej30li0fbjsb.jpg)
 
 
 
@@ -269,7 +269,7 @@ iOS file not found: /usr/lib/libstdc++.dylib
 
 运行demo后动态库注入成功，控制台会有如下输出
 
-![image-20221114174950556](https://tva1.sinaimg.cn/large/008vxvgGgy1h84swti61vj31le0qn43z.jpg)
+![image-20221114174950556](https://cdn.cdnjson.com/tva1.sinaimg.cn/large/008vxvgGgy1h84swti61vj31le0qn43z.jpg)
 
 ```
                🎉!!！congratulations!!！🎉\n👍----------------insert dylib success----------------👍
@@ -294,7 +294,7 @@ iOS file not found: /usr/lib/libstdc++.dylib
 
 * 找到编译产物
 
-  ![image-20221114175525945](https://tva1.sinaimg.cn/large/008vxvgGgy1h84t2mlrmaj30aa0b7wer.jpg)
+  ![image-20221114175525945](https://cdn.cdnjson.com/tva1.sinaimg.cn/large/008vxvgGgy1h84t2mlrmaj30aa0b7wer.jpg)
 
 * 把编译产物拷贝到`/opt/MonkeyDev/bin`下
 
@@ -343,7 +343,7 @@ iOS file not found: /usr/lib/libstdc++.dylib
 
 * 然后`pod install` 即可看到效果
 
-  ![image-20221115102451908](https://tva1.sinaimg.cn/large/008vxvgGgy1h85lo8xilij31b90u0ada.jpg)
+  ![image-20221115102451908](https://cdn.cdnjson.com/tva1.sinaimg.cn/large/008vxvgGgy1h85lo8xilij31b90u0ada.jpg)
 
   
 
@@ -417,7 +417,7 @@ iOS file not found: /usr/lib/libstdc++.dylib
 
 这个时候就需要用到`Hopper Disassembler`或者`IDA Pro`这样的工具了，不过目前遇到的困难是在笔者的系统环境下，这两个软件的破解版无法安装，而且`IDA Pro`的官方试用版还不支持Arm的汇编，所以只能使用Hopper Disassembler来举例子。打开软件，将`对应App 的Mach-o`文件拖入Hopper中等待它分析完成
 
-![image-20221115104755241](https://tva1.sinaimg.cn/large/008vxvgGgy1h85mc4b62oj31ec0u075n.jpg)
+![image-20221115104755241](https://cdn.cdnjson.com/tva1.sinaimg.cn/large/008vxvgGgy1h85mc4b62oj31ec0u075n.jpg)
 
 
 
@@ -429,7 +429,7 @@ iOS file not found: /usr/lib/libstdc++.dylib
 
 可以看到中间的部分显示出来函数所对应的汇编代码
 
-![image-20221115193733635](https://tva1.sinaimg.cn/large/008vxvgGgy1h861n7q3isj317b0u0dlg.jpg)
+![image-20221115193733635](https://cdn.cdnjson.com/tva1.sinaimg.cn/large/008vxvgGgy1h861n7q3isj317b0u0dlg.jpg)
 
 然后按快捷键`Option+enter`即可转为伪OC代码,虽然包含一些的寄存器信息，但是也足以分析了。同时双击可以跳转到对应的函数内部。
 

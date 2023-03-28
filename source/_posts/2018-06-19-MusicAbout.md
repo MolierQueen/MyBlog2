@@ -15,7 +15,7 @@ comments:
 
 在iOS上多媒体的处理主要依赖的是AVFoundation框架，而AVFoundation是基于CoreAudio、CoreVideo、CoreMedia、CoreAnimation之上高层框架，在AVFoundation框架之上苹果还提供给我们更高层一些处理媒体数据的框架。
 
-![](https://wx4.sinaimg.cn/large/006tNc79gy1fsgu5859czj30ol0et75h.jpg)
+![](https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fsgu5859czj30ol0et75h.jpg)
 <!-- more -->
 
 如AVKit、iOS的UIKit、OS的AppKit。AVFoundation提供了大量强大的工具集，可通过这个框架处理音视频编程，但是如同苹果中的的Kit一样，封装的越高级，个性化就会困难些，一些实际项目中的奇葩需求难以实现。本章所讲的内容是AVFoundation上层加下层的AVAudioEngine实现。
@@ -38,18 +38,18 @@ AVAudioEngine是Objective-C的音频API接口，具有低延迟(low-latency)和�
 
 AVAudioEngine的工作原理可以简单的分为三个部分:
 
-![](https://wx2.sinaimg.cn/large/006tNc79gy1fsgusaq6ttj316208i41t.jpg)
+![](https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fsgusaq6ttj316208i41t.jpg)
 
 从图中可以看出AVAudioEngine的每一步操作都是一个音频操作节点(Node)，每个完整的操作都包含输入节点和输出节点以及经中间的若干个处理节点，包括但不限于，添加音效、混音、音频处理等。整体的流程和GPUImage的流程差不多，都是链式结构，通过节点来链接成一个完整的流水线，其中每个节点都有自己特有的属性，可以通过改变属性的值来改变经由该节点后的音频输出效果，用音效节点举例：一个声音流通过这个音效节点，假如这个节点可以给该段声音添加一个回响的效果，那么通过该节点特有的属性可以设置回想的间隔、干湿程度等，这样一来经过这个节点处理过的声音流就会变成我们想要的样子，然后他作为为一个输入了再次流入其他节点。上图的Mixer其实是包含若干个这样的音效节点
 
-![](https://wx1.sinaimg.cn/large/006tNc79gy1fsgvxmt21cj310c0dpq4l.jpg)
+![](https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fsgvxmt21cj310c0dpq4l.jpg)
 
 
 ## 原理
 
 清唱的功能很简单，就是通过麦克风录制声音，然后添加音效或者做一些处理之后再输出，因为不要配乐，所以省略了一大部分操作(添加配乐完整K歌在下期会讲到)，但是有一个问题就是耳返，也叫返送：
 
-![](https://wx1.sinaimg.cn/large/006tNc79gy1fsgv4t4pd6j30n602ujsg.jpg)
+![](https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fsgv4t4pd6j30n602ujsg.jpg)
 
 这个东西是必不可少的，因为有了耳返你就可以实时调整自己的声音，极大的降低了走调的风险和尴尬，一个很简单的例子，现在有不少人喜欢在水房唱歌或者是洗澡的时候唱歌，原因就是在水房或者是卫生间通常会有回音，而回音就是天然的耳返，所以在有回音的地方唱歌就会感觉自己的声音洪亮而且音准很好(因为你可以实时的通过回音来调整自己的声调)。演唱会上唱歌的人的耳机中都是耳返。而且耳返要有一个要求就是，你所听到的你自己的声音一定要和观众或者是其他的人听到的一样，不然就不会有作用，我们平时自己说话自己能听到是因为声音通过骨传导到达我们的耳朵，而听众听到的是通过空气介质传播，所以是否有耳返直接决定了你演唱质量的好坏。
 
@@ -117,7 +117,7 @@ AVAudioEngine的工作原理可以简单的分为三个部分:
 
   正常来说光有耳返还不够，因为清唱虽然没有配乐伴奏，但是是支持用户调节音效的，类似于变声。这就用到AVAudioEngine中的AVAudioUnitEffect类。
 
-  ![](https://wx2.sinaimg.cn/large/006tNc79gy1fsgxpydeq8j30hw0cwq32.jpg)
+  ![](https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fsgxpydeq8j30hw0cwq32.jpg)
 
   * 1.AVAudioUnitReverb:混响，混响可以模拟咱们在一个空旷的环境，比如教堂、大房间等，这样咱们在说话的时候，就会有回音，并且声音也比较有立体感。其中该类别下面又分为
   ```

@@ -10,7 +10,7 @@ comments:
 ---
 ### 功能效果
 
-![demo示例](https://wx3.sinaimg.cn/large/006tNc79gy1fo6lpd4q64g308u0fqnpe.gif)
+![demo示例](https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fo6lpd4q64g308u0fqnpe.gif)
 <!--more-->
 
 ### 功能分析  
@@ -26,12 +26,12 @@ comments:
 * 渲染图片拆分图片：
    * 拆分方法1：通过图形看出是一个矩形，而矩形是可以分成两个三角形和四个顶点，通过此可以用GL渲染出图片。
 
-![拆分三角形](https://wx4.sinaimg.cn/large/006tNc79gy1fo6lpjw6g3j30dw0ee7ft.jpg)
+![拆分三角形](https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fo6lpjw6g3j30dw0ee7ft.jpg)
 
   这样拆分之后虽然可以正常渲染，但是带来的问题是我的四个顶点都是死的，也就是四个顶点必须是画布的四个顶点，改变顶点的坐标后只能导致整张画布的变动，而不是某一个区域的变动，拉伸的话也是整张图片的拉伸，所以想要实现局部处理的话这种分割方式不可行。
   * 拆分方法2：将整张图片先拆分为三个矩形，然后再把每个矩形拆分成两个三角形，得到6个三角形，8个顶点，如下图：
 
-![拆分2](https://wx1.sinaimg.cn/large/006tNc79gy1fo6lprpvrrj30dw0eddrh.jpg)
+![拆分2](https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fo6lprpvrrj30dw0eddrh.jpg)
 
 这样一来就可以保证中间的矩形的高度可以任意变化而上下两部分的高度不变只改变位置，也就是说我们这个DEMO中所做的任何拉伸操作都是对中间矩形的操作，换而言之就是改变最上面的矩形和最下面的矩形之间的距离来达到对中间区域的拉伸和压缩的目的。根据拆分的方式我们用顶点的坐标创建一个数组
 ```

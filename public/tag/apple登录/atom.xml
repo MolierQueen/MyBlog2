@@ -7,10 +7,10 @@
     <category term="欢迎页" />
     <category term="网络" />
     <category term="底层" />
-    <category term="OpenGL" />
-    <category term="UI" />
     <category term="DNS解析" />
     <category term="LocalDNS" />
+    <category term="OpenGL" />
+    <category term="UI" />
     <category term="动画" />
     <category term="性能优化" />
     <category term="xcode" />
@@ -26,21 +26,21 @@
     <category term="Cocoapods" />
     <category term="架构" />
     <category term="AlertView" />
-    <category term="Hook" />
     <category term="杂谈" />
+    <category term="Hook" />
     <category term="Hexo" />
     <category term="个人博客" />
     <category term="网站" />
     <category term="屏幕适配" />
     <category term="iOS 11" />
-    <category term="评论插件" />
-    <category term="总结" />
-    <category term="回味2017展望2018" />
     <category term="热修复" />
     <category term="JSPath" />
+    <category term="总结" />
+    <category term="回味2017展望2018" />
+    <category term="评论插件" />
+    <category term="Swift" />
     <category term="swift" />
     <category term="网络请求" />
-    <category term="Swift" />
     <category term="音频" />
     <category term="唱吧" />
     <category term="K歌" />
@@ -62,15 +62,15 @@
         <title>Apple登录流程详解</title>
         <link rel="alternate" href="https://oliverqueen.cn/2022-05-26-Apple%E7%99%BB%E5%BD%95%E6%B5%81%E7%A8%8B%E8%AF%A6%E8%A7%A3/"/>
         <content type="html">&lt;link rel=&#34;stylesheet&#34; class=&#34;aplayer-secondary-style-marker&#34; href=&#34;/assets/css/APlayer.min.css&#34;&gt;&lt;script src=&#34;/assets/js/APlayer.min.js&#34; class=&#34;aplayer-secondary-script-marker&#34;&gt;&lt;/script&gt;&lt;h2 id=&#34;1背景&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#1背景&#34;&gt;#&lt;/a&gt; 1：背景&lt;/h2&gt;
-&lt;p&gt;2019 年苹果推出 苹果登录（Sign in with Apple）方式，要求 2020 年 4 月之后运行在 iOS13 及以上系统的 APP 如果使用第三方或社交登录服务（如 Facebook、谷歌、 Twitter、Linkedln 或亚马逊等），必须向用户提供 “以苹果账号登录” 服务的选项。其中苹果的&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly90dmExLnNpbmFpbWcuY24vbGFyZ2UvZTZjOWQyNGVneTFoMmZ6amp3d3VhajIxNjQwcDQ0NGQuanBn&#34;&gt;审核细则 4.8&lt;/span&gt; 也明确的规定了这一点。&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/e6c9d24egy1h2lmep99kij21ns0rkaba.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;2019 年苹果推出 苹果登录（Sign in with Apple）方式，要求 2020 年 4 月之后运行在 iOS13 及以上系统的 APP 如果使用第三方或社交登录服务（如 Facebook、谷歌、 Twitter、Linkedln 或亚马逊等），必须向用户提供 “以苹果账号登录” 服务的选项。其中苹果的&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9jZG4uY2RuanNvbi5jb20vdHZhMS5zaW5haW1nLmNuL2xhcmdlL2U2YzlkMjRlZ3kxaDJmempqd3d1YWoyMTY0MHA0NDRkLmpwZw==&#34;&gt;审核细则 4.8&lt;/span&gt; 也明确的规定了这一点。&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://cdn.cdnjson.com/tva1.sinaimg.cn/large/e6c9d24egy1h2lmep99kij21ns0rkaba.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;&amp;lt;font color=&amp;quot;#dd0000&amp;quot;&amp;gt; 不过需要注意的一点是腾讯系列的产品如果只是使用微信、QQ 登录并不算第三方登录，所以可以添加 AppleID 登录方式。&amp;lt;/font&amp;gt;&amp;lt;br /&amp;gt;&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/e6c9d24egy1h2fzjjwwuaj21640p444d.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://cdn.cdnjson.com/tva1.sinaimg.cn/large/e6c9d24egy1h2fzjjwwuaj21640p444d.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 &lt;h2 id=&#34;2前置配置&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2前置配置&#34;&gt;#&lt;/a&gt; 2：前置配置&lt;/h2&gt;
 &lt;h4 id=&#34;21-xcode工程配置&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#21-xcode工程配置&#34;&gt;#&lt;/a&gt; 2.1 Xcode 工程配置&lt;/h4&gt;
 &lt;p&gt;选中工程 trager，在 capabilities 中添加 AppleID 登录的能力&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/e6c9d24egy1h2g28b5w8aj21960u0769.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://cdn.cdnjson.com/tva1.sinaimg.cn/large/e6c9d24egy1h2g28b5w8aj21960u0769.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 &lt;h4 id=&#34;22-开发者账号配置&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#22-开发者账号配置&#34;&gt;#&lt;/a&gt; 2.2 开发者账号配置&lt;/h4&gt;
 &lt;p&gt;基于授权码的后端验证方式需要此步骤，如果使用 JWT 验证方式则不依赖此步骤，不过建议按顺序看完多做了解。&lt;/p&gt;
 &lt;p&gt;该步骤的最终目的是获取用于校验客户端身份的所需内容，其中包括以下三个内容&lt;/p&gt;
@@ -88,28 +88,28 @@
 &lt;p&gt;&amp;lt;font color=&amp;quot;#dd0000&amp;quot;&amp;gt; 注意：该步骤需要登录 Apple 开发者账号并对其进行功能的配置、开启、以及描述文件更新等操作，可能需要证书管理团队或者有相关权限的人员来处理，并由他们将对应信息输出 &amp;lt;/font&amp;gt;&amp;lt;br /&amp;gt;&lt;/p&gt;
 &lt;h5 id=&#34;步骤一能力开启&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#步骤一能力开启&#34;&gt;#&lt;/a&gt; &lt;strong&gt;步骤一：能力开启&lt;/strong&gt;&lt;/h5&gt;
 &lt;p&gt;进入开发者账号，选择需要支持 AppleID 登录能力的应用并进入打开其 AppleID 登录的功能&lt;br /&gt;
-&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/e6c9d24egy1h2g335dozbj219o0kiwg6.jpg&#34; alt=&#34;&#34; /&gt;&lt;br /&gt;
-&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/e6c9d24egy1h2g36gha89j216x0u0gnx.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;img data-src=&#34;https://cdn.cdnjson.com/tva1.sinaimg.cn/large/e6c9d24egy1h2g335dozbj219o0kiwg6.jpg&#34; alt=&#34;&#34; /&gt;&lt;br /&gt;
+&lt;img data-src=&#34;https://cdn.cdnjson.com/tva1.sinaimg.cn/large/e6c9d24egy1h2g36gha89j216x0u0gnx.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 &lt;h5 id=&#34;步骤二更新profile&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#步骤二更新profile&#34;&gt;#&lt;/a&gt; &lt;strong&gt;步骤二：更新 profile&lt;/strong&gt;&lt;/h5&gt;
 &lt;p&gt;对 app 的任何更改都会导致现有的 profile 文件失效，所以需要重新生成 profile 描述文件。&lt;br /&gt;
-&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/e6c9d24egy1h2g38wg6kij20ia08qmxk.jpg&#34; alt=&#34;&#34; /&gt;&lt;br /&gt;
+&lt;img data-src=&#34;https://cdn.cdnjson.com/tva1.sinaimg.cn/large/e6c9d24egy1h2g38wg6kij20ia08qmxk.jpg&#34; alt=&#34;&#34; /&gt;&lt;br /&gt;
 按照如下路径操作，点进已经 &lt;code&gt;invalid&lt;/code&gt;  的描述文件并重新生成&lt;br /&gt;
-&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/e6c9d24egy1h2g3em4u2oj21fq0lc75x.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;img data-src=&#34;https://cdn.cdnjson.com/tva1.sinaimg.cn/large/e6c9d24egy1h2g3em4u2oj21fq0lc75x.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 &lt;h5 id=&#34;步骤三生成密钥文件&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#步骤三生成密钥文件&#34;&gt;#&lt;/a&gt; &lt;strong&gt;步骤三：生成密钥文件&lt;/strong&gt;&lt;/h5&gt;
 &lt;p&gt;进入如下界面点击 &lt;code&gt;加号&lt;/code&gt; 进行生成&lt;br /&gt;
-&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/e6c9d24egy1h2g3hh2cz2j216m0ms406.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;img data-src=&#34;https://cdn.cdnjson.com/tva1.sinaimg.cn/large/e6c9d24egy1h2g3hh2cz2j216m0ms406.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;填完并勾选 &lt;code&gt;Sigin with apple&lt;/code&gt;  后点击右侧的 &lt;code&gt;Configure&lt;/code&gt;  进行配置，在配置页面选择需要开启苹果登录的 app 并保存，然后回到上一页并开始注册&lt;br /&gt;
-&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/e6c9d24egy1h2g3kyolw0j21m10u043i.jpg&#34; alt=&#34;&#34; /&gt;&lt;br /&gt;
-&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/e6c9d24egy1h2g3ps0bfjj21v70u0td1.jpg&#34; alt=&#34;&#34; /&gt;&lt;br /&gt;
-&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/e6c9d24egy1h2g3qw6gvmj22120s0dkq.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;img data-src=&#34;https://cdn.cdnjson.com/tva1.sinaimg.cn/large/e6c9d24egy1h2g3kyolw0j21m10u043i.jpg&#34; alt=&#34;&#34; /&gt;&lt;br /&gt;
+&lt;img data-src=&#34;https://cdn.cdnjson.com/tva1.sinaimg.cn/large/e6c9d24egy1h2g3ps0bfjj21v70u0td1.jpg&#34; alt=&#34;&#34; /&gt;&lt;br /&gt;
+&lt;img data-src=&#34;https://cdn.cdnjson.com/tva1.sinaimg.cn/large/e6c9d24egy1h2g3qw6gvmj22120s0dkq.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;最终注册成功后会有 KeyID、TeamID 和可供下载的密钥文件&lt;br /&gt;
-&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/e6c9d24egy1h2g3umbtqzj21wg0s4gqg.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;img data-src=&#34;https://cdn.cdnjson.com/tva1.sinaimg.cn/large/e6c9d24egy1h2g3umbtqzj21wg0s4gqg.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;密钥文件格式为.p8 实际是文本文件&lt;br /&gt;
-&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/e6c9d24egy1h2g3yn74llj212g0badht.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;img data-src=&#34;https://cdn.cdnjson.com/tva1.sinaimg.cn/large/e6c9d24egy1h2g3yn74llj212g0badht.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;&amp;lt;font color=&amp;quot;#dd0000&amp;quot;&amp;gt; 注意：密钥文件只能被下载一次，下载后保存在安全的地方，丢了的话只能重新申请了 &amp;lt;/font&amp;gt;&amp;lt;br /&amp;gt;&lt;/p&gt;
 &lt;h2 id=&#34;3登录流程&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#3登录流程&#34;&gt;#&lt;/a&gt; 3：登录流程&lt;/h2&gt;
 &lt;p&gt;登录流程分两大块，一个是客户端部分，一个是后端部分，其中后端部分有两种校验方式 &lt;code&gt;基于授权码的后端验证&lt;/code&gt; 、 &lt;code&gt;基于JWT的算法验证&lt;/code&gt; ，稍后会一一讲解。总体流程如下图：&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tva1.sinaimg.cn/large/e6c9d24egy1h2g4un5dizj20ve0u0dip.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://cdn.cdnjson.com/tva1.sinaimg.cn/large/e6c9d24egy1h2g4un5dizj20ve0u0dip.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 &lt;h4 id=&#34;31-客户端侧&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#31-客户端侧&#34;&gt;#&lt;/a&gt; 3.1 客户端侧&lt;/h4&gt;
 &lt;h5 id=&#34;步骤一授权&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#步骤一授权&#34;&gt;#&lt;/a&gt; &lt;strong&gt;步骤一：授权&lt;/strong&gt;&lt;/h5&gt;
 &lt;p&gt;对于客户端来说 AppleID 登录与传统的三方登录流程一样，分为 &lt;code&gt;调用接口&lt;/code&gt; 与 &lt;code&gt;回调信息获取&lt;/code&gt; 两步，唯一不同点是苹果登录的 API 是在 iOS SDK 内部封装，只用导入对应头文件即可&lt;br /&gt;

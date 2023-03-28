@@ -10,10 +10,10 @@
         <category>欢迎页</category>
         <category>网络</category>
         <category>底层</category>
-        <category>OpenGL</category>
-        <category>UI</category>
         <category>DNS解析</category>
         <category>LocalDNS</category>
+        <category>OpenGL</category>
+        <category>UI</category>
         <category>动画</category>
         <category>性能优化</category>
         <category>xcode</category>
@@ -29,21 +29,21 @@
         <category>Cocoapods</category>
         <category>架构</category>
         <category>AlertView</category>
-        <category>Hook</category>
         <category>杂谈</category>
+        <category>Hook</category>
         <category>Hexo</category>
         <category>个人博客</category>
         <category>网站</category>
         <category>屏幕适配</category>
         <category>iOS 11</category>
-        <category>评论插件</category>
-        <category>总结</category>
-        <category>回味2017展望2018</category>
         <category>热修复</category>
         <category>JSPath</category>
+        <category>总结</category>
+        <category>回味2017展望2018</category>
+        <category>评论插件</category>
+        <category>Swift</category>
         <category>swift</category>
         <category>网络请求</category>
-        <category>Swift</category>
         <category>音频</category>
         <category>唱吧</category>
         <category>K歌</category>
@@ -69,7 +69,7 @@
             <pubDate>Thu, 23 Aug 2018 20:47:19 +0800</pubDate>
             <description><![CDATA[ &lt;link rel=&#34;stylesheet&#34; class=&#34;aplayer-secondary-style-marker&#34; href=&#34;/assets/css/APlayer.min.css&#34;&gt;&lt;script src=&#34;/assets/js/APlayer.min.js&#34; class=&#34;aplayer-secondary-script-marker&#34;&gt;&lt;/script&gt;&lt;h2 id=&#34;背景&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#背景&#34;&gt;#&lt;/a&gt; 背景：&lt;/h2&gt;
 &lt;p&gt;SVN 和 Git 同样都是在特定时代下比较优秀的版本控制系统，但是随着时代的发展，SVN 越来越不能满足多人开发的需求，尤其是在多种多样，天马星空的业务场景面前，SVN 会显得力不从心。&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://wx4.sinaimg.cn/large/006tNbRwgy1fujxnf8ilhj30zk0m8gm9.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNbRwgy1fujxnf8ilhj30zk0m8gm9.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;最近在将公司的项目从 SVN 迁移到 git，踩了不少坑，所以来记录下:&lt;/p&gt;
 &lt;p&gt;因为迁移的快慢和整个仓库的大小，电脑配置有关，所以我先说下这边的情况&lt;/p&gt;

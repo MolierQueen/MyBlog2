@@ -7,10 +7,10 @@
     <category term="欢迎页" />
     <category term="网络" />
     <category term="底层" />
-    <category term="OpenGL" />
-    <category term="UI" />
     <category term="DNS解析" />
     <category term="LocalDNS" />
+    <category term="OpenGL" />
+    <category term="UI" />
     <category term="动画" />
     <category term="性能优化" />
     <category term="xcode" />
@@ -26,21 +26,21 @@
     <category term="Cocoapods" />
     <category term="架构" />
     <category term="AlertView" />
-    <category term="Hook" />
     <category term="杂谈" />
+    <category term="Hook" />
     <category term="Hexo" />
     <category term="个人博客" />
     <category term="网站" />
     <category term="屏幕适配" />
     <category term="iOS 11" />
-    <category term="评论插件" />
-    <category term="总结" />
-    <category term="回味2017展望2018" />
     <category term="热修复" />
     <category term="JSPath" />
+    <category term="总结" />
+    <category term="回味2017展望2018" />
+    <category term="评论插件" />
+    <category term="Swift" />
     <category term="swift" />
     <category term="网络请求" />
-    <category term="Swift" />
     <category term="音频" />
     <category term="唱吧" />
     <category term="K歌" />
@@ -63,7 +63,7 @@
         <link rel="alternate" href="https://oliverqueen.cn/2018-08-23-ChangeSvnToGit/"/>
         <content type="html">&lt;link rel=&#34;stylesheet&#34; class=&#34;aplayer-secondary-style-marker&#34; href=&#34;/assets/css/APlayer.min.css&#34;&gt;&lt;script src=&#34;/assets/js/APlayer.min.js&#34; class=&#34;aplayer-secondary-script-marker&#34;&gt;&lt;/script&gt;&lt;h2 id=&#34;背景&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#背景&#34;&gt;#&lt;/a&gt; 背景：&lt;/h2&gt;
 &lt;p&gt;SVN 和 Git 同样都是在特定时代下比较优秀的版本控制系统，但是随着时代的发展，SVN 越来越不能满足多人开发的需求，尤其是在多种多样，天马星空的业务场景面前，SVN 会显得力不从心。&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://wx4.sinaimg.cn/large/006tNbRwgy1fujxnf8ilhj30zk0m8gm9.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNbRwgy1fujxnf8ilhj30zk0m8gm9.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;最近在将公司的项目从 SVN 迁移到 git，踩了不少坑，所以来记录下:&lt;/p&gt;
 &lt;p&gt;因为迁移的快慢和整个仓库的大小，电脑配置有关，所以我先说下这边的情况&lt;/p&gt;

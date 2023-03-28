@@ -79,7 +79,7 @@ struct hostent {
 
 * 网上说的比较多的问题
 
-  ![image.png](https://wx3.sinaimg.cn/large/006tNc79gy1fo6myoq10ej30po01w0tb.jpg)
+  ![image.png](https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fo6myoq10ej30po01w0tb.jpg)
 
 ### 方式二
 除了经常用到的gethostbyname(3)和gethostbyaddr(3)函数以外, Linux(以及其它UNIX/UNIX-like系统)还提供了一套用于在底层处理DNS相关问题的函数(这里所说的底层仅是相对gethostbyname和gethostbyaddr两个函数而言). 这套函数被称为地址解析函数(resolver functions)。曾经尝试过这个方式...

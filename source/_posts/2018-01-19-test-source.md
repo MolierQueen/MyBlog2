@@ -9,6 +9,6 @@ top: 100
 
 
 Test
-![你好](https://wx2.sinaimg.cn/large/006tNc79ly1fnygnuhm3rj31kw0zk1ky.jpg)
+![你好](https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79ly1fnygnuhm3rj31kw0zk1ky.jpg)
 welcome !!!
 <!--more-->

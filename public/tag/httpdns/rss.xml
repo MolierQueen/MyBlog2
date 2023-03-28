@@ -10,10 +10,10 @@
         <category>欢迎页</category>
         <category>网络</category>
         <category>底层</category>
-        <category>OpenGL</category>
-        <category>UI</category>
         <category>DNS解析</category>
         <category>LocalDNS</category>
+        <category>OpenGL</category>
+        <category>UI</category>
         <category>动画</category>
         <category>性能优化</category>
         <category>xcode</category>
@@ -29,21 +29,21 @@
         <category>Cocoapods</category>
         <category>架构</category>
         <category>AlertView</category>
-        <category>Hook</category>
         <category>杂谈</category>
+        <category>Hook</category>
         <category>Hexo</category>
         <category>个人博客</category>
         <category>网站</category>
         <category>屏幕适配</category>
         <category>iOS 11</category>
-        <category>评论插件</category>
-        <category>总结</category>
-        <category>回味2017展望2018</category>
         <category>热修复</category>
         <category>JSPath</category>
+        <category>总结</category>
+        <category>回味2017展望2018</category>
+        <category>评论插件</category>
+        <category>Swift</category>
         <category>swift</category>
         <category>网络请求</category>
-        <category>Swift</category>
         <category>音频</category>
         <category>唱吧</category>
         <category>K歌</category>
@@ -71,10 +71,10 @@
             <description><![CDATA[ &lt;link rel=&#34;stylesheet&#34; class=&#34;aplayer-secondary-style-marker&#34; href=&#34;/assets/css/APlayer.min.css&#34;&gt;&lt;script src=&#34;/assets/js/APlayer.min.js&#34; class=&#34;aplayer-secondary-script-marker&#34;&gt;&lt;/script&gt;&lt;h1 id=&#34;科普片&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#科普片&#34;&gt;#&lt;/a&gt; 科普片&lt;/h1&gt;
 &lt;h5 id=&#34;1-dns劫持的危害&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#1-dns劫持的危害&#34;&gt;#&lt;/a&gt; 1、DNS 劫持的危害&lt;/h5&gt;
 &lt;p&gt;不知道大家有没有发现这样一个现象，在打开一些网页的时候会弹出一些与所浏览网页不相关的内容比如这样奇 (se) 怪 (qing) 的东西&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://wx2.sinaimg.cn/large/006tNc79gy1fo6jm5b190j30h60ugqkg.jpg&#34; alt=&#34;图一&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fo6jm5b190j30h60ugqkg.jpg&#34; alt=&#34;图一&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;或者这样&lt;br /&gt;
 &lt;span id=&#34;more&#34;&gt;&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://wx4.sinaimg.cn/large/006tNc79gy1fo6jmr1afuj30ww0ue4qp.jpg&#34; alt=&#34;图二&#34; /&gt;，&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fo6jmr1afuj30ww0ue4qp.jpg&#34; alt=&#34;图二&#34; /&gt;，&lt;/p&gt;
 &lt;p&gt;其实造成这样的原因就是 DNS 劫持，在我们正常浏览的网页链接里面被恶意插入一些奇怪的东西。不止是这些，DNS 劫持还会对我们的个人信息安全造成很大的伤害，钓鱼网站之类的，也许我们所访问的网站根本不是我们需要的网站，或者根本打不开网页，有时还会消耗我们过多的流量。&lt;/p&gt;
 &lt;h5 id=&#34;2-什么是dns解析&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2-什么是dns解析&#34;&gt;#&lt;/a&gt; 2、什么是 DNS 解析&lt;/h5&gt;
 &lt;p&gt;现在假如我们访问一个网站 www.baidu.com 从按下回车到百度页面显示到我们的电脑上会经历如下几个步骤&lt;/p&gt;
@@ -96,8 +96,8 @@
 &lt;h5 id=&#34;5项目中的实际操作&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#5项目中的实际操作&#34;&gt;#&lt;/a&gt; 5：项目中的实际操作&lt;/h5&gt;
 &lt;h6 id=&#34;51dnspod相关&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#51dnspod相关&#34;&gt;#&lt;/a&gt; 5.1：DNSPOD 相关&lt;/h6&gt;
 &lt;p&gt;我们知道要要把项目中请求的接口替换成成 IP 其实很简单，URL 是字符串，域名替换 IP，无非就是一个字符串替换而已，的确这块其实没有什么技术含量，而且现在像阿里云 (没开源)，七牛云 (开源)，等一些比较大的平台在这方面也都有了比较成熟的解决方案，一个 SDK，传个普通的 URL 进去就会返回一个域名被替换成 IP 的 URL 出来，也比较好用，这里要说一下 IP 地址的来源，如何拿到一个域名所对应的 IP 呢？这里就是需要用到另一个服务 ——HTTPDNS，国内比较有名的就是 DNSPOD，包括阿里，七牛等也是使用他们的 DNS 服务来解析，就是这个&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://wx3.sinaimg.cn/large/006tNc79gy1fo6jnbe2zhj30sa0i8dwv.jpg&#34; alt=&#34;DNSPOD logo&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://wx2.sinaimg.cn/large/006tNc79gy1fo6jnt2uw9j31kw0icava.jpg&#34; alt=&#34;简介&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fo6jnbe2zhj30sa0i8dwv.jpg&#34; alt=&#34;DNSPOD logo&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fo6jnt2uw9j31kw0icava.jpg&#34; alt=&#34;简介&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;他会给我们提供一个接口，我们使用 HTTP 请求的方式去请求这个接口，参数带上我们的域名，他们就会把域名对应的 IP 列表返回回来。类似这样：&lt;br /&gt;
 &lt;figure class=&#34;highlight objectivec&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;///这个请求URL的结构是固定的119.29.29.29是DNSPOD固定的服务器地址，ttl参数的意思是返回结果是否带ttl是个BOOL，dn就是我们需要解析的域名，id就是我们在dnspod上注册时候他给我们的一个KEY&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;built_in&#34;&gt;NSString&lt;/span&gt; *url = [&lt;span class=&#34;built_in&#34;&gt;NSString&lt;/span&gt; stringWithFormat:&lt;span class=&#34;string&#34;&gt;@&amp;quot;http://119.29.29.29/d?ttl=1&amp;amp;dn=www.baidu.com&amp;amp;id=KEY&amp;quot;&lt;/span&gt;];&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;built_in&#34;&gt;NSMutableURLRequest&lt;/span&gt; * request = [&lt;span class=&#34;built_in&#34;&gt;NSMutableURLRequest&lt;/span&gt; requestWithURL:[&lt;span class=&#34;built_in&#34;&gt;NSURL&lt;/span&gt; URLWithString:url] cachePolicy:&lt;span class=&#34;built_in&#34;&gt;NSURLRequestUseProtocolCachePolicy&lt;/span&gt; timeoutInterval:&lt;span class=&#34;number&#34;&gt;10&lt;/span&gt;];&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;built_in&#34;&gt;NSData&lt;/span&gt; * data = [&lt;span class=&#34;built_in&#34;&gt;NSURLConnection&lt;/span&gt; sendSynchronousRequest:request returningResponse:&lt;span class=&#34;literal&#34;&gt;nil&lt;/span&gt; error:&amp;amp;networkError];&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;这里使用同步还是异步都是可以的，具体根据你们业务需求。&lt;/p&gt;
@@ -128,7 +128,7 @@ client 在后面会有讲解。&lt;/p&gt;
 &lt;h6 id=&#34;-voidstoploading&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#-voidstoploading&#34;&gt;#&lt;/a&gt; - (void)stopLoading;&lt;/h6&gt;
 &lt;p&gt;请求完毕后调用&lt;br /&gt;
 大概的执行流程是这样&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://wx1.sinaimg.cn/large/006tNc79gy1fo6jtpp3z0j30ze1by122.jpg&#34; alt=&#34;流程&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fo6jtpp3z0j30ze1by122.jpg&#34; alt=&#34;流程&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;在 NSURLProtocol 中有一个贯穿始终的变量&lt;br /&gt;
  &lt;figure class=&#34;highlight objectivec&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;/*!&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;    @method client&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;    @abstract Returns the NSURLProtocolClient of the receiver.&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;    @result The NSURLProtocolClient of the receiver.  &lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;*/&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;@property&lt;/span&gt; (&lt;span class=&#34;keyword&#34;&gt;nullable&lt;/span&gt;, &lt;span class=&#34;keyword&#34;&gt;readonly&lt;/span&gt;, &lt;span class=&#34;keyword&#34;&gt;retain&lt;/span&gt;) &lt;span class=&#34;type&#34;&gt;id&lt;/span&gt; &amp;lt;&lt;span class=&#34;built_in&#34;&gt;NSURLProtocolClient&lt;/span&gt;&amp;gt; client;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br /&gt;
  你可以认为是这个是请求的发送者，打个比方，A 想给 B 发送一个消息，由于距离遥远于是 A 去了邮局，A 把消息内容告诉了邮局，并且 A 在邮局登记了自己名字方便 B 有反馈的时候邮局来通知 A 查收。这个例子中邮局就是 NSURLProtocol，A 在邮局登记的名字就是 client。所有的 client 都实现了 NSURLProtocolClient 协议，协议的作用就是在 HTTP 请求发出以及接受响应时向其它对象传输数据：&lt;br /&gt;
@@ -165,7 +165,7 @@ client 在后面会有讲解。&lt;/p&gt;
 &lt;h6 id=&#34;这样之后的req就是携带了body体的request啦可以愉快地做post请求啦&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#这样之后的req就是携带了body体的request啦可以愉快地做post请求啦&#34;&gt;#&lt;/a&gt; 这样之后的 req 就是携带了 body 体的 request 啦，可以愉快地做 post 请求啦。&lt;/h6&gt;
 &lt;h6 id=&#34;65wkwebview是新出的浏览器控件这里就不多说了wkwebview不走url-loading-system所以也不会被拦截不过也是有办法的但是因为这次项目中没有用到所以没有过多的去研究后续我会写一篇关于这个博客不是很难依旧是runtime大法&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#65wkwebview是新出的浏览器控件这里就不多说了wkwebview不走url-loading-system所以也不会被拦截不过也是有办法的但是因为这次项目中没有用到所以没有过多的去研究后续我会写一篇关于这个博客不是很难依旧是runtime大法&#34;&gt;#&lt;/a&gt; 6.5：WKWebview 是新出的浏览器控件，这里就不多说了，WKWebview 不走 URL Loading System，所以也不会被拦截，不过也是有办法的，但是因为这次项目中没有用到，所以没有过多的去研究，后续我会写一篇关于这个博客，不是很难，依旧是 runtime 大法。&lt;/h6&gt;
 &lt;h6 id=&#34;66sni环境这个可是坑了我好久好久的东西所以我会放在最后去说sni环境因为涉及到证书验证所以是在https的基础上来说的sniserver-name-indication是为了解决一个服务器使用多个域名和证书的扩展-一句话简述它的工作原理就是在连接到服务器建立ssl链接之前先发送要访问站点的域名hostname这样服务器根据这个域名返回一个合适的证书-其实关于sni环境在这里就不过多解释阿里云文档有很明白的解释同时他也有安卓和ios在sni环境下的处理文档我们发现安卓部分写的很详细可是已到了ios这边就这样了&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#66sni环境这个可是坑了我好久好久的东西所以我会放在最后去说sni环境因为涉及到证书验证所以是在https的基础上来说的sniserver-name-indication是为了解决一个服务器使用多个域名和证书的扩展-一句话简述它的工作原理就是在连接到服务器建立ssl链接之前先发送要访问站点的域名hostname这样服务器根据这个域名返回一个合适的证书-其实关于sni环境在这里就不过多解释阿里云文档有很明白的解释同时他也有安卓和ios在sni环境下的处理文档我们发现安卓部分写的很详细可是已到了ios这边就这样了&#34;&gt;#&lt;/a&gt; 6.6：SNI 环境，这个可是坑了我好久好久的东西，所以我会放在最后去说，SNI 环境因为涉及到证书验证所以是在 https 的基础上来说的，SNI（Server Name Indication）是为了解决一个服务器使用多个域名和证书的扩展。一句话简述它的工作原理就是，在连接到服务器建立 SSL 链接之前先发送要访问站点的域名（Hostname），这样服务器根据这个域名返回一个合适的证书。其实关于 SNI 环境在这里就不过多解释，**&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9oZWxwLmFsaXl1bi5jb20vZG9jdW1lbnRfZGV0YWlsLzMwMTQzLmh0bWw=&#34;&gt; 阿里云文档&lt;/span&gt; ** 有很明白的解释，同时他也有安卓和 iOS 在 SNI 环境下的处理文档，我们发现安卓部分写的很详细，可是已到了 iOS 这边就这样了：&lt;/h6&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://wx3.sinaimg.cn/large/006tNc79gy1fo6juzsqdqj31kw0bbn5v.jpg&#34; alt=&#34;阿里云文档截图&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fo6juzsqdqj31kw0bbn5v.jpg&#34; alt=&#34;阿里云文档截图&#34; /&gt;&lt;/p&gt;
 &lt;h6 id=&#34;三行文字加三个链接就完事了-其实在遇到这个坑的时候我也查过很多相关资料无非就是这三行话加这三个链接复制来复制去没有实质性的进展大部分公司或者是项目没有这么重的httpdns需求所以也就不会有这个环境即使遇到了也就直接关闭httpdns了后来只能自己去用cfnetwork一点点实现-具体代码就不跟大家粘贴了因为涉及到一些公司内部的代码不过我会把我主要的参考资料发给大家-这里有个小技巧因为都在说cfnetwork是比较底层的网络实现好多东西需要开发者自行处理比如一些变量的释放之类的所以我们能少用尽量少用因为cfnetwork是为snihttps环境服务所以我们在拦截判断的时候可以区分是用上层的网络请求转发还是用底层的cfnetwork来转发&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#三行文字加三个链接就完事了-其实在遇到这个坑的时候我也查过很多相关资料无非就是这三行话加这三个链接复制来复制去没有实质性的进展大部分公司或者是项目没有这么重的httpdns需求所以也就不会有这个环境即使遇到了也就直接关闭httpdns了后来只能自己去用cfnetwork一点点实现-具体代码就不跟大家粘贴了因为涉及到一些公司内部的代码不过我会把我主要的参考资料发给大家-这里有个小技巧因为都在说cfnetwork是比较底层的网络实现好多东西需要开发者自行处理比如一些变量的释放之类的所以我们能少用尽量少用因为cfnetwork是为snihttps环境服务所以我们在拦截判断的时候可以区分是用上层的网络请求转发还是用底层的cfnetwork来转发&#34;&gt;#&lt;/a&gt; 三行文字加三个链接就完事了。其实在遇到这个坑的时候我也查过很多相关资料，无非就是这三行话加这三个链接复制来复制去，没有实质性的进展，大部分公司或者是项目没有这么重的 Httpdns 需求，所以也就不会有这个环境，即使遇到了也就直接关闭 httpdns 了，后来只能自己去用 CFNetwork 一点点实现。具体代码就不跟大家粘贴了因为涉及到一些公司内部的代码，不过我会把我 **&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9naXRodWIuY29tL0RhdmUxOTkxL2FsaWNsb3VkLWlvcy1kZW1vL2Jsb2IvbWFzdGVyL2h0dHBkbnNfaW9zX2RlbW8vaHR0cGRuc19pb3NfZGVtby9DRkh0dHBNZXNzYWdlVVJMUHJvdG9jb2wubQ==&#34;&gt; 主要的参考资料&lt;/span&gt; ** 发给大家。这里有个小技巧，因为都在说 CFNetwork 是比较底层的网络实现，好多东西需要开发者自行处理比如一些变量的释放之类的，所以我们能少用尽量少用，因为 Cfnetwork 是为 SNI (https) 环境服务，所以我们在拦截判断的时候可以区分是用上层的网络请求转发还是用底层的 cfnetwork 来转发，&lt;/h6&gt;
 &lt;p&gt;&lt;figure class=&#34;highlight swift&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt; &lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt; ([&lt;span class=&#34;keyword&#34;&gt;self&lt;/span&gt;.request.&lt;span class=&#34;type&#34;&gt;URL&lt;/span&gt;.scheme isEqualToString:@&lt;span class=&#34;string&#34;&gt;&amp;quot;https&amp;quot;&lt;/span&gt;] ) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;//使用CFnetwork&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        curRequest &lt;span class=&#34;operator&#34;&gt;=&lt;/span&gt; req;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;keyword&#34;&gt;self&lt;/span&gt;.task &lt;span class=&#34;operator&#34;&gt;=&lt;/span&gt; [[&lt;span class=&#34;type&#34;&gt;CustomCFNetworkRequestTask&lt;/span&gt; alloc] initWithURLRequest:originalRequest swizzleRequest:curRequest delegate:&lt;span class=&#34;keyword&#34;&gt;self&lt;/span&gt;];&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt; (&lt;span class=&#34;keyword&#34;&gt;self&lt;/span&gt;.task) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            [&lt;span class=&#34;keyword&#34;&gt;self&lt;/span&gt;.task startLoading];&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125; &lt;span class=&#34;keyword&#34;&gt;else&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;//使用普通网络请求&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;type&#34;&gt;NSURLSessionConfiguration&lt;/span&gt; &lt;span class=&#34;operator&#34;&gt;*&lt;/span&gt;configuration &lt;span class=&#34;operator&#34;&gt;=&lt;/span&gt; [&lt;span class=&#34;type&#34;&gt;NSURLSessionConfiguration&lt;/span&gt; defaultSessionConfiguration];&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;keyword&#34;&gt;self&lt;/span&gt;.session &lt;span class=&#34;operator&#34;&gt;=&lt;/span&gt; [&lt;span class=&#34;type&#34;&gt;NSURLSession&lt;/span&gt; sessionWithConfiguration:configuration delegate:&lt;span class=&#34;keyword&#34;&gt;self&lt;/span&gt; delegateQueue:[&lt;span class=&#34;type&#34;&gt;NSOperationQueue&lt;/span&gt; mainQueue]];&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;type&#34;&gt;NSURLSessionTask&lt;/span&gt; &lt;span class=&#34;operator&#34;&gt;*&lt;/span&gt;task &lt;span class=&#34;operator&#34;&gt;=&lt;/span&gt; [&lt;span class=&#34;keyword&#34;&gt;self&lt;/span&gt;.session dataTaskWithRequest:req];&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        [task resume];&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;h6 id=&#34;我是这么做的&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#我是这么做的&#34;&gt;#&lt;/a&gt; 我是这么做的。&lt;/h6&gt;

@@ -185,11 +185,11 @@ Programming with Swift)-书
 
 * 公司内部影响力（KM 平台为腾讯内部原创分享平台，通过技术文章原创，奖项获取等方式来获取内部影响力）
 
-  ![image-20220918152912096](https://tva1.sinaimg.cn/large/e6c9d24egy1h6asiw0h74j20u40dv3zn.jpg)
+  ![image-20220918152912096](https://cdn.cdnjson.com/tva1.sinaimg.cn/large/e6c9d24egy1h6asiw0h74j20u40dv3zn.jpg)
 
 # 自我评价
 
 在工作中有很强的责任心和求知欲,有很强的学习能力,善于发现,和解决问题,并能从问题中总结规律。使自己得到提升。善于举一反三触类旁通。有较强的团队合作精神,同时也具备很强的独立开发的能力,有较强的适应性,吃苦耐劳,工作踏实严谨。最重要的一点就是深深的爱着自己所从事的工作, 喜欢编程,坚信代码可以改变世界。但是不满足于目前的工作内容，想学习世界各地的先进技术，不断的提高自己，希望能继续深造，在图像识别，人工智能领域有所造诣。 同时乐于分享和讨论，在掘金技术社区有一定的影响力。也希望跟优秀的人一起共事。
 
-![image-20220918152402131](https://tva1.sinaimg.cn/large/e6c9d24egy1h6asdjvbq6j207207smx6.jpg)
+![image-20220918152402131](https://cdn.cdnjson.com/tva1.sinaimg.cn/large/e6c9d24egy1h6asdjvbq6j207207smx6.jpg)
 

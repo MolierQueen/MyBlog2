@@ -7,10 +7,10 @@
     <category term="欢迎页" />
     <category term="网络" />
     <category term="底层" />
-    <category term="OpenGL" />
-    <category term="UI" />
     <category term="DNS解析" />
     <category term="LocalDNS" />
+    <category term="OpenGL" />
+    <category term="UI" />
     <category term="动画" />
     <category term="性能优化" />
     <category term="xcode" />
@@ -26,21 +26,21 @@
     <category term="Cocoapods" />
     <category term="架构" />
     <category term="AlertView" />
-    <category term="Hook" />
     <category term="杂谈" />
+    <category term="Hook" />
     <category term="Hexo" />
     <category term="个人博客" />
     <category term="网站" />
     <category term="屏幕适配" />
     <category term="iOS 11" />
-    <category term="评论插件" />
-    <category term="总结" />
-    <category term="回味2017展望2018" />
     <category term="热修复" />
     <category term="JSPath" />
+    <category term="总结" />
+    <category term="回味2017展望2018" />
+    <category term="评论插件" />
+    <category term="Swift" />
     <category term="swift" />
     <category term="网络请求" />
-    <category term="Swift" />
     <category term="音频" />
     <category term="唱吧" />
     <category term="K歌" />
@@ -105,19 +105,19 @@
  每一个 opeeation 对象我们都可以设置他的优先级、启动、暂停、等属性，简单的调用接口就可以，在此就不一一作解释了。然后我们需要对我们的 queue 进行设置，我们设置最大并发数，大家可以根据实际情况来设置，demo 中我只有两个下载任务，所以我就设置最大并发数为 1 这样就是一个一个下载。&lt;br /&gt;
 &lt;figure class=&#34;highlight lasso&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;let&lt;/span&gt; &lt;span class=&#34;built_in&#34;&gt;queue&lt;/span&gt; : OperationQueue = &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;keyword&#34;&gt;let&lt;/span&gt; que : OperationQueue = OperationQueue()&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        que.maxConcurrentOperationCount = &lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;keyword&#34;&gt;return&lt;/span&gt; que&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125;()&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br /&gt;
  我们运行然后点击开始下载&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://wx1.sinaimg.cn/large/006tNc79gy1fpw0vlzbp6g308h0gnkjm.gif&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fpw0vlzbp6g308h0gnkjm.gif&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;很奇怪我们发现他还是同时下载，我们又试了其他的个数，无论多少都是同时下载，最大线程数量完全不起作用，再反过来看下上面加入 queue 的任务。正常来说每一个 operation 都要等上一个 operation 完成后才会执行，而系统判断完成的标准就是上一个 operation 的闭包走完，我们闭包中放入的是一个下载任务，而 Alamofire 的下载都是异步执行，所以导致 operation 的闭包走完了，但是其实下载是异步在另一个线程执行的，实际上下载没有完成，知道原因我们对症下药，只需要保证 operation 闭包中的代码是同步执行的就 OK 了。而 Alamofire 是基于 URLSession 来实现的，并没有像 connection 那样提供同步的方法，所以我们使用信号量卡一下，像这样&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://wx1.sinaimg.cn/large/006tNc79gy1fpw1444jp0j31610qbgrr.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fpw1444jp0j31610qbgrr.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;这样之后就会按照我们设置好的队列进行了&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://wx1.sinaimg.cn/large/006tNc79gy1fpw15riwhjg308h0gnb2i.gif&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fpw15riwhjg308h0gnb2i.gif&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;有人会说下载同步进行会不会有影响，其实不会的首先我们实现同步的方式是信号量，本质上还是异步的只是我们阻塞的当前的下载线程，这个被阻塞线程一定不是主线程 (除非 Alamofire 的开发者把他回调到主线程下载，这个基本不可能)，而且当我们把这个下载任务加到一个 operation 中之后，就注定不会在主线程中了，没一个 operation 都会被系统分配到一个非主线程的地方去做，所以这样不会性能有任何影响。&lt;/p&gt;
 &lt;h2 id=&#34;总结&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#总结&#34;&gt;#&lt;/a&gt; 总结&lt;/h2&gt;
 &lt;p&gt;因为时间紧迫，暂时做了这么多，也遇到了这些问题，所以写出了总结下，本文还会继续更新，会慢慢的整个网络层分享出来。就是可能更新会慢，毕竟工作量有点饱和。多谢关注&lt;/p&gt;
 &lt;p&gt;
-        &lt;div id=&#34;aplayer-YponfWDf&#34; class=&#34;aplayer aplayer-tag-marker&#34; style=&#34;margin-bottom: 20px;&#34;&gt;&lt;/div&gt;
+        &lt;div id=&#34;aplayer-MBxOanLD&#34; class=&#34;aplayer aplayer-tag-marker&#34; style=&#34;margin-bottom: 20px;&#34;&gt;&lt;/div&gt;
 			  &lt;script&gt;
 				  var options = {&#34;narrow&#34;:false,&#34;autoplay&#34;:true,&#34;showlrc&#34;:0,&#34;mutex&#34;:true,&#34;music&#34;:[{&#34;title&#34;:&#34;Thank You Very Much&#34;,&#34;author&#34;:&#34;Margaret&#34;,&#34;url&#34;:&#34;https://molier-1256056152.cos.ap-guangzhou.myqcloud.com/Thankyou.mp3&#34;,&#34;pic&#34;:&#34;https://y.gtimg.cn/music/photo_new/T002R300x300M000000VbGX83hRicw.jpg?max_age=2592000&#34;,&#34;lrc&#34;:&#34;https://demo.meting.api.meto.moe/action/metingapi?server=tencent&amp;type=lrc&amp;id=001Ii3g54dIYpO&#34;}]};
-				  options.element = document.getElementById(&#34;aplayer-YponfWDf&#34;);
+				  options.element = document.getElementById(&#34;aplayer-MBxOanLD&#34;);
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);

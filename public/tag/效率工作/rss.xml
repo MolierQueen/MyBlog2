@@ -10,10 +10,10 @@
         <category>欢迎页</category>
         <category>网络</category>
         <category>底层</category>
-        <category>OpenGL</category>
-        <category>UI</category>
         <category>DNS解析</category>
         <category>LocalDNS</category>
+        <category>OpenGL</category>
+        <category>UI</category>
         <category>动画</category>
         <category>性能优化</category>
         <category>xcode</category>
@@ -29,21 +29,21 @@
         <category>Cocoapods</category>
         <category>架构</category>
         <category>AlertView</category>
-        <category>Hook</category>
         <category>杂谈</category>
+        <category>Hook</category>
         <category>Hexo</category>
         <category>个人博客</category>
         <category>网站</category>
         <category>屏幕适配</category>
         <category>iOS 11</category>
-        <category>评论插件</category>
-        <category>总结</category>
-        <category>回味2017展望2018</category>
         <category>热修复</category>
         <category>JSPath</category>
+        <category>总结</category>
+        <category>回味2017展望2018</category>
+        <category>评论插件</category>
+        <category>Swift</category>
         <category>swift</category>
         <category>网络请求</category>
-        <category>Swift</category>
         <category>音频</category>
         <category>唱吧</category>
         <category>K歌</category>
@@ -72,7 +72,7 @@
 &lt;p&gt;Git Flow 是构建在 Git 之上的一个组织、管理软件开发活动的模型。Git Flow 是一套使用 Git 进行源代码管理时的一套行为规范和，通过利用 Git 创建和管理分支的能力，为每个分支设定具有特定的含义名称，并将软件生命周期中的各类活动归并到不同的分支上。实现了软件开发过程不同操作的相互隔离。这种软件开发的活动模型被称为 “Git Flow”。&lt;/p&gt;
 &lt;h2 id=&#34;原理&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#原理&#34;&gt;#&lt;/a&gt; 原理：&lt;/h2&gt;
 &lt;p&gt;gitflow 的核心就 branch，通过在项目的不同阶段对 branch 的不同操作包括但不限于 create、marge、rebase、等来实现一个完整的高效率的工作流程。一般而言，软件开发模型有常见的瀑布模型、迭代开发模型、以及最近出现的敏捷开发模型等不同的模型。每种模型有各自应用场景。&lt;strong&gt;Git Flow 重点解决的是由于源代码在开发过程中的各种冲突导致开发活动混乱的问题。因此，Git flow 可以很好的于各种现有开发模型相结合使用，尤其是多人合作开发时提高效率&lt;/strong&gt;。用一张图来了解 gitflow 的流程：从右向左看 从上到下看&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://wx4.sinaimg.cn/large/006tNc79gy1ftk5pkvn7ij30vy16cwhl.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1ftk5pkvn7ij30vy16cwhl.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;&lt;/p&gt;
 &lt;h2 id=&#34;branch&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#branch&#34;&gt;#&lt;/a&gt; Branch：&lt;/h2&gt;
 &lt;p&gt;Branch 是 gitfolw 的核心。主要分为两大类 &lt;strong&gt;Main Branchs&lt;/strong&gt; 和 &lt;strong&gt;Supporting branches&lt;/strong&gt;, 其中 &lt;strong&gt;Main Branchs&lt;/strong&gt; 中又包含了 &lt;strong&gt;Master&lt;/strong&gt; 和 &lt;strong&gt;Develop&lt;/strong&gt;，而 &lt;strong&gt;Supporting branches&lt;/strong&gt; 中包含了 **Feature **、&lt;strong&gt;Release&lt;/strong&gt;、&lt;strong&gt;Hotfix&lt;/strong&gt; &lt;strong&gt;以及其他自定义分支&lt;/strong&gt;，下面逐一讲解：&lt;/p&gt;
@@ -109,7 +109,7 @@
 &lt;p&gt;流程：&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://wx4.sinaimg.cn/large/006tNc79gy1ftk7aszas4j30eu0mc74p.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1ftk7aszas4j30eu0mc74p.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 &lt;h4 id=&#34;feature&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#feature&#34;&gt;#&lt;/a&gt; Feature:&lt;/h4&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -128,7 +128,7 @@
 &lt;p&gt;流程：&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://wx3.sinaimg.cn/large/006tNc79gy1ftk7br1fvqj307e0jugln.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1ftk7br1fvqj307e0jugln.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 &lt;h4 id=&#34;release&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#release&#34;&gt;#&lt;/a&gt; Release:&lt;/h4&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -164,7 +164,7 @@
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;流程：&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://wx2.sinaimg.cn/large/006tNc79gy1ftk81yr4iej308j0bqwf3.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1ftk81yr4iej308j0bqwf3.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;总结&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#总结&#34;&gt;#&lt;/a&gt; 总结&lt;/h2&gt;

@@ -9,7 +9,7 @@ comments:
 ---
 ## 向大佬致敬
 总是喜欢把参考资料、致谢等写在文章最前面，毕竟是站在人家的肩膀上，向大佬致敬，写这篇文章的也是参考他的 然后加上一些自己的思考，主要目的还是自己再写一遍Demo和文档，以便加深记忆，也帮助自己更好的理解，有句话说：看懂的东西不一定就是学会了，自己能在不看资料的前提下写出来才算是略知一二。
-![](https://wx4.sinaimg.cn/large/006tNc79gy1fpcbkfx1z9j319e0kkdmp.jpg)
+![](https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fpcbkfx1z9j319e0kkdmp.jpg)
 
 以下是** [原文链接](http://limboy.me/tech/2018/03/04/ios-lightweight-hotfix.html)**有兴趣的还可以看下**[大佬博客](http://limboy.me/)**
 <!-- more -->
@@ -30,7 +30,7 @@ comments:
 
 进行了上述操作后每次用户启动，App都会进行如下操作
 
-![](https://wx3.sinaimg.cn/large/006tNc79gy1fpcce8vzimj30vg0t0wva.jpg)
+![](https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fpcce8vzimj30vg0t0wva.jpg)
 
 这样一来如果开发在项目发布出去后发现有Crash那么可以立即通过服务器下发JS代码来制定APp每次执行新方法(新方法的定义也是在下发的JS代码中)，可以避免一些问题。
 
@@ -102,7 +102,7 @@ typedef NS_OPTIONS(NSUInteger, AspectOptions) {
 ```
 导入上面说的那个第三方.h和.m 然后自己建立一个桥接类，用来处理JS和O的交互，大概的结构就是这样
 
-![](https://wx4.sinaimg.cn/large/006tNc79gy1fpcdbh9ahbj307k0duwfd.jpg)
+![](https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fpcdbh9ahbj307k0duwfd.jpg)
 
 其中交互类中暴露出如下接口
 
@@ -164,7 +164,7 @@ typedef NS_OPTIONS(NSUInteger, AspectOptions) {
 ```
 其中JS的代码就是我们所要修改的内容，可以看到当参数为0的时候输出crash！！！然后不再继续执行了。实际项目中这段代码是由服务器动态返回的，如果我们要修改多个方法，就需要服务器返回JS字符串数组我们这边来进行循环处理即可。这时候在运行下代码不会崩溃，下面会输出一个crash！！！！
 
-![](https://wx2.sinaimg.cn/large/006tNc79gy1fpcdjfkqkmj30i4034t8s.jpg)
+![](https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fpcdjfkqkmj30i4034t8s.jpg)
 
 ## 思考
 

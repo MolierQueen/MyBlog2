@@ -7,10 +7,10 @@
     <category term="欢迎页" />
     <category term="网络" />
     <category term="底层" />
-    <category term="OpenGL" />
-    <category term="UI" />
     <category term="DNS解析" />
     <category term="LocalDNS" />
+    <category term="OpenGL" />
+    <category term="UI" />
     <category term="动画" />
     <category term="性能优化" />
     <category term="xcode" />
@@ -26,21 +26,21 @@
     <category term="Cocoapods" />
     <category term="架构" />
     <category term="AlertView" />
-    <category term="Hook" />
     <category term="杂谈" />
+    <category term="Hook" />
     <category term="Hexo" />
     <category term="个人博客" />
     <category term="网站" />
     <category term="屏幕适配" />
     <category term="iOS 11" />
-    <category term="评论插件" />
-    <category term="总结" />
-    <category term="回味2017展望2018" />
     <category term="热修复" />
     <category term="JSPath" />
+    <category term="总结" />
+    <category term="回味2017展望2018" />
+    <category term="评论插件" />
+    <category term="Swift" />
     <category term="swift" />
     <category term="网络请求" />
-    <category term="Swift" />
     <category term="音频" />
     <category term="唱吧" />
     <category term="K歌" />
@@ -62,7 +62,7 @@
         <title>iOS中使用OpenGL实现增高功能</title>
         <link rel="alternate" href="https://oliverqueen.cn/2018-01-23-iOS%E4%B8%AD%E4%BD%BF%E7%94%A8OpenGL%E5%AE%9E%E7%8E%B0%E5%A2%9E%E9%AB%98%E5%8A%9F%E8%83%BD/"/>
         <content type="html">&lt;link rel=&#34;stylesheet&#34; class=&#34;aplayer-secondary-style-marker&#34; href=&#34;/assets/css/APlayer.min.css&#34;&gt;&lt;script src=&#34;/assets/js/APlayer.min.js&#34; class=&#34;aplayer-secondary-script-marker&#34;&gt;&lt;/script&gt;&lt;h3 id=&#34;功能效果&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#功能效果&#34;&gt;#&lt;/a&gt; 功能效果&lt;/h3&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://wx3.sinaimg.cn/large/006tNc79gy1fo6lpd4q64g308u0fqnpe.gif&#34; alt=&#34;demo示例&#34; /&gt;&lt;br /&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fo6lpd4q64g308u0fqnpe.gif&#34; alt=&#34;demo示例&#34; /&gt;&lt;br /&gt;
 &lt;span id=&#34;more&#34;&gt;&lt;/span&gt;&lt;/p&gt;
 &lt;h3 id=&#34;功能分析&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#功能分析&#34;&gt;#&lt;/a&gt; 功能分析&lt;/h3&gt;
 &lt;ul&gt;
@@ -89,12 +89,12 @@
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://wx4.sinaimg.cn/large/006tNc79gy1fo6lpjw6g3j30dw0ee7ft.jpg&#34; alt=&#34;拆分三角形&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fo6lpjw6g3j30dw0ee7ft.jpg&#34; alt=&#34;拆分三角形&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;这样拆分之后虽然可以正常渲染，但是带来的问题是我的四个顶点都是死的，也就是四个顶点必须是画布的四个顶点，改变顶点的坐标后只能导致整张画布的变动，而不是某一个区域的变动，拉伸的话也是整张图片的拉伸，所以想要实现局部处理的话这种分割方式不可行。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;拆分方法 2：将整张图片先拆分为三个矩形，然后再把每个矩形拆分成两个三角形，得到 6 个三角形，8 个顶点，如下图：&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://wx1.sinaimg.cn/large/006tNc79gy1fo6lprpvrrj30dw0eddrh.jpg&#34; alt=&#34;拆分2&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fo6lprpvrrj30dw0eddrh.jpg&#34; alt=&#34;拆分2&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;这样一来就可以保证中间的矩形的高度可以任意变化而上下两部分的高度不变只改变位置，也就是说我们这个 DEMO 中所做的任何拉伸操作都是对中间矩形的操作，换而言之就是改变最上面的矩形和最下面的矩形之间的距离来达到对中间区域的拉伸和压缩的目的。根据拆分的方式我们用顶点的坐标创建一个数组&lt;br /&gt;
  &lt;figure class=&#34;highlight jboss-cli&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;24&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;string&#34;&gt;//&lt;/span&gt;顶点数组&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;GLfloat vertices[] = &amp;#123;   &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    -1.2, -1.2,     &lt;span class=&#34;string&#34;&gt;//&lt;/span&gt;左下&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    1.2, -1.2,      &lt;span class=&#34;string&#34;&gt;//&lt;/span&gt;右下&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    -1.2, -0.4,     &lt;span class=&#34;string&#34;&gt;//&lt;/span&gt;小矩形左下&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    1.2, -0.4,      &lt;span class=&#34;string&#34;&gt;//&lt;/span&gt;小矩形右下&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    -1.2,  0.4,     &lt;span class=&#34;string&#34;&gt;//&lt;/span&gt;小矩形左上&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    1.2,  0.4,      &lt;span class=&#34;string&#34;&gt;//&lt;/span&gt;小矩形右上&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    -1.2,  1.2,     &lt;span class=&#34;string&#34;&gt;//&lt;/span&gt;左上&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    1.2,  1.2,      &lt;span class=&#34;string&#34;&gt;//&lt;/span&gt;右上&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;span class=&#34;string&#34;&gt;//&lt;/span&gt;填充纹理的数组&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;GLfloat texCoords[] = &amp;#123;     &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    0, 0,        &lt;span class=&#34;string&#34;&gt;//&lt;/span&gt;左下                  &lt;span class=&#34;string&#34;&gt;//&lt;/span&gt;下标为 0 1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    1, 0,        &lt;span class=&#34;string&#34;&gt;//&lt;/span&gt;右下                  &lt;span class=&#34;string&#34;&gt;//&lt;/span&gt;下标为2 3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    0, 1.0/3.0,  &lt;span class=&#34;string&#34;&gt;//&lt;/span&gt;小矩形左下             &lt;span class=&#34;string&#34;&gt;//&lt;/span&gt;下标为4 5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    1, 1.0/3.0,  &lt;span class=&#34;string&#34;&gt;//&lt;/span&gt;小矩形右下             &lt;span class=&#34;string&#34;&gt;//&lt;/span&gt;下标为6 7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    0, 2.0/3.0,  &lt;span class=&#34;string&#34;&gt;//&lt;/span&gt;小矩形左上角           &lt;span class=&#34;string&#34;&gt;//&lt;/span&gt;下标为8 9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    1, 2.0/3.0,  &lt;span class=&#34;string&#34;&gt;//&lt;/span&gt;小矩形右上角           &lt;span class=&#34;string&#34;&gt;//&lt;/span&gt;下标为10 11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    0, 1,        &lt;span class=&#34;string&#34;&gt;//&lt;/span&gt;左上                  &lt;span class=&#34;string&#34;&gt;//&lt;/span&gt;下标为12 13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    1, 1,        &lt;span class=&#34;string&#34;&gt;//&lt;/span&gt;右上                  &lt;span class=&#34;string&#34;&gt;//&lt;/span&gt;下标为14 15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;ul&gt;

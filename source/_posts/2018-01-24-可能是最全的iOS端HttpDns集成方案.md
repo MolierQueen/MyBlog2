@@ -12,12 +12,12 @@ comments:
 ##### 1、DNS劫持的危害
   不知道大家有没有发现这样一个现象，在打开一些网页的时候会弹出一些与所浏览网页不相关的内容比如这样奇(se)怪(qing)的东西
 
-![图一](https://wx2.sinaimg.cn/large/006tNc79gy1fo6jm5b190j30h60ugqkg.jpg)
+![图一](https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fo6jm5b190j30h60ugqkg.jpg)
 
 或者这样
 <!--more-->
 
-![图二](https://wx4.sinaimg.cn/large/006tNc79gy1fo6jmr1afuj30ww0ue4qp.jpg)，
+![图二](https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fo6jmr1afuj30ww0ue4qp.jpg)，
 
 其实造成这样的原因就是DNS劫持，在我们正常浏览的网页链接里面被恶意插入一些奇怪的东西。不止是这些，DNS劫持还会对我们的个人信息安全造成很大的伤害，钓鱼网站之类的，也许我们所访问的网站根本不是我们需要的网站，或者根本打不开网页，有时还会消耗我们过多的流量。
 ##### 2、什么是DNS解析
@@ -40,9 +40,9 @@ DNS劫持，是指在DNS解析过程中拦截域名解析的请求，然后做�
 ###### 5.1：DNSPOD相关
   我们知道要要把项目中请求的接口替换成成IP其实很简单，URL是字符串，域名替换IP，无非就是一个字符串替换而已，的确这块其实没有什么技术含量，而且现在像阿里云(没开源)，七牛云(开源)，等一些比较大的平台在这方面也都有了比较成熟的解决方案，一个SDK，传个普通的URL进去就会返回一个域名被替换成IP的URL出来，也比较好用，这里要说一下IP地址的来源，如何拿到一个域名所对应的IP呢？这里就是需要用到另一个服务——HTTPDNS，国内比较有名的就是DNSPOD，包括阿里，七牛等也是使用他们的DNS服务来解析，就是这个
 
-![DNSPOD logo](https://wx3.sinaimg.cn/large/006tNc79gy1fo6jnbe2zhj30sa0i8dwv.jpg)
+![DNSPOD logo](https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fo6jnbe2zhj30sa0i8dwv.jpg)
 
-![简介](https://wx2.sinaimg.cn/large/006tNc79gy1fo6jnt2uw9j31kw0icava.jpg)
+![简介](https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fo6jnt2uw9j31kw0icava.jpg)
 
 他会给我们提供一个接口，我们使用HTTP请求的方式去请求这个接口，参数带上我们的域名，他们就会把域名对应的IP列表返回回来。类似这样：
 ```
@@ -111,7 +111,7 @@ client在后面会有讲解。
 请求完毕后调用
 大概的执行流程是这样
 
-![流程](https://wx1.sinaimg.cn/large/006tNc79gy1fo6jtpp3z0j30ze1by122.jpg)
+![流程](https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fo6jtpp3z0j30ze1by122.jpg)
 
 在NSURLProtocol中有一个贯穿始终的变量
 ```
@@ -279,7 +279,7 @@ return [self swizzle_initWithURL:videoURL options:@{[self getRequestHeaderKey] :
 ###### 这样之后的req就是携带了body体的request啦，可以愉快地做post请求啦。
 ###### 6.5：WKWebview是新出的浏览器控件，这里就不多说了，WKWebview不走URL Loading System，所以也不会被拦截，不过也是有办法的，但是因为这次项目中没有用到，所以没有过多的去研究，后续我会写一篇关于这个博客，不是很难，依旧是runtime大法。
 ###### 6.6：SNI环境，这个可是坑了我好久好久的东西，所以我会放在最后去说，SNI环境因为涉及到证书验证所以是在https的基础上来说的，SNI（Server Name Indication）是为了解决一个服务器使用多个域名和证书的扩展。一句话简述它的工作原理就是，在连接到服务器建立SSL链接之前先发送要访问站点的域名（Hostname），这样服务器根据这个域名返回一个合适的证书。其实关于SNI环境在这里就不过多解释，**[阿里云文档](https://help.aliyun.com/document_detail/30143.html)**有很明白的解释，同时他也有安卓和iOS在SNI环境下的处理文档，我们发现安卓部分写的很详细，可是已到了iOS这边就这样了：
-![阿里云文档截图](https://wx3.sinaimg.cn/large/006tNc79gy1fo6juzsqdqj31kw0bbn5v.jpg)
+![阿里云文档截图](https://cdn.cdnjson.com/tvax3.sinaimg.cn/large/006tNc79gy1fo6juzsqdqj31kw0bbn5v.jpg)
 ###### 三行文字加三个链接就完事了。其实在遇到这个坑的时候我也查过很多相关资料，无非就是这三行话加这三个链接复制来复制去，没有实质性的进展，大部分公司或者是项目没有这么重的Httpdns需求，所以也就不会有这个环境，即使遇到了也就直接关闭httpdns了，后来只能自己去用CFNetwork一点点实现。具体代码就不跟大家粘贴了因为涉及到一些公司内部的代码，不过我会把我**[主要的参考资料](https://github.com/Dave1991/alicloud-ios-demo/blob/master/httpdns_ios_demo/httpdns_ios_demo/CFHttpMessageURLProtocol.m)**发给大家。这里有个小技巧，因为都在说CFNetwork是比较底层的网络实现，好多东西需要开发者自行处理比如一些变量的释放之类的，所以我们能少用尽量少用，因为Cfnetwork是为SNI(https)环境服务,所以我们在拦截判断的时候可以区分是用上层的网络请求转发还是用底层的cfnetwork来转发，
 ```
  if ([self.request.URL.scheme isEqualToString:@"https"] ) {
